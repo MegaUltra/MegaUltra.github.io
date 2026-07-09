@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MegaUltra · DachNima & DachAshkan</title>
-  <!-- dark & motion style -->
+  <title>MegaUltra · DachNima & DachAshkan · IR</title>
   <style>
-    /* reset & base */
     * {
       margin: 0;
       padding: 0;
@@ -15,7 +13,7 @@
     }
 
     body {
-      background: #0b0b0b;
+      background: #070707;
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -24,358 +22,713 @@
       overflow: hidden;
       color: #e0e0e0;
       user-select: none;
+      position: relative;
     }
 
-    /* dark glass panel */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 0, 0, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(200, 0, 0, 0.03) 0%, transparent 50%),
+        repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255, 0, 0, 0.01) 40px, rgba(255, 0, 0, 0.01) 41px);
+      z-index: 0;
+      pointer-events: none;
+      animation: bgShift 15s infinite alternate;
+    }
+
+    @keyframes bgShift {
+      0% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+      100% { transform: scale(1.2) rotate(2deg); opacity: 1; }
+    }
+
     .mega-container {
       position: relative;
-      width: 90vw;
-      max-width: 1200px;
-      padding: 3rem 2rem;
-      background: rgba(10, 10, 10, 0.65);
-      backdrop-filter: blur(12px) brightness(0.7);
-      border: 1px solid rgba(255, 70, 70, 0.25);
-      box-shadow: 0 0 60px rgba(200, 0, 0, 0.2), inset 0 0 80px rgba(255, 0, 0, 0.05);
+      width: 85vw;
+      max-width: 900px;
+      padding: 2.5rem 2rem;
+      background: rgba(6, 6, 6, 0.85);
+      backdrop-filter: blur(20px) brightness(0.55);
+      border: 1px solid rgba(255, 40, 40, 0.35);
+      box-shadow: 
+        0 0 80px rgba(200, 0, 0, 0.25),
+        inset 0 0 120px rgba(255, 0, 0, 0.04),
+        0 0 200px rgba(100, 0, 0, 0.12);
       border-radius: 3.5rem;
       text-align: center;
-      transition: box-shadow 0.2s ease;
+      z-index: 2;
+      transition: all 0.3s ease;
     }
 
-    /* glitch border effect */
     .mega-container::before {
       content: '';
       position: absolute;
-      inset: -6px;
+      inset: -8px;
       border-radius: 4rem;
       padding: 2px;
-      background: radial-gradient(circle at 30% 40%, #ff3b3b, #990000, transparent 80%);
+      background: conic-gradient(from 0deg, #ff2222, #880000, #ff4444, #440000, #ff2222);
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
-      opacity: 0.6;
-      pointer-events: none;
+      opacity: 0.5;
+      animation: borderSpin 10s linear infinite;
     }
 
-    /* TITLE - heavy dark */
+    .mega-container::after {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      border-radius: 4.5rem;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 0, 0, 0.06), transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(40px);
+      animation: glowPulse 2.5s infinite alternate;
+    }
+
+    @keyframes borderSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes glowPulse {
+      0% { opacity: 0.2; transform: scale(0.95); }
+      100% { opacity: 0.6; transform: scale(1.06); }
+    }
+
     .ultra-title {
-      font-size: clamp(3.2rem, 15vw, 7rem);
+      font-size: clamp(3rem, 12vw, 5.5rem);
       font-weight: 900;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #141414;
+      color: #0a0a0a;
       text-shadow: 
-        0 0 6px #ff2a2a,
-        0 0 20px #aa0000,
-        0 0 50px #660000,
-        4px 4px 0 #1a1a1a,
-        -2px -2px 0 #3a3a3a;
+        0 0 12px #ff2a2a,
+        0 0 30px #aa0000,
+        0 0 60px #660000,
+        6px 6px 0 #1a1a1a,
+        -3px -3px 0 #3a3a3a,
+        0 0 120px rgba(255, 0, 0, 0.2);
       font-family: 'Impact', 'Arial Black', 'Segoe UI Black', sans-serif;
-      transform: skewX(-4deg) scaleY(1.1);
-      transition: all 0.15s ease;
-      margin-bottom: 0.2rem;
-      word-break: break-word;
+      transform: skewX(-5deg) scaleY(1.08);
+      position: relative;
+      animation: titleGlitch 3.5s infinite;
+      margin-bottom: 0.1rem;
+    }
+
+    @keyframes titleGlitch {
+      0%, 100% { transform: skewX(-5deg) scaleY(1.08) translateX(0); }
+      94% { transform: skewX(-5deg) scaleY(1.08) translateX(0); }
+      95% { transform: skewX(3deg) scaleY(1.1) translateX(-4px); }
+      96% { transform: skewX(-7deg) scaleY(1.06) translateX(6px); }
+      97% { transform: skewX(4deg) scaleY(1.09) translateX(-3px); }
+      98% { transform: skewX(-4deg) scaleY(1.07) translateX(2px); }
     }
 
     .ultra-title span {
       display: inline-block;
-      animation: flicker 3s infinite alternate;
+      animation: flicker 2.8s infinite alternate;
     }
+
+    .ultra-title span:nth-child(odd) { animation-delay: 0.15s; }
+    .ultra-title span:nth-child(3n) { animation-delay: 0.4s; }
+    .ultra-title span:nth-child(4n) { animation-delay: 0.7s; }
 
     @keyframes flicker {
-      0% { opacity: 0.95; text-shadow: 0 0 8px #ff3a3a, 0 0 30px #aa0000; }
-      100% { opacity: 1; text-shadow: 0 0 15px #ff5e5e, 0 0 60px #cc0000, 0 0 100px #880000; }
+      0% { opacity: 0.85; text-shadow: 0 0 8px #ff3a3a, 0 0 30px #aa0000; }
+      100% { opacity: 1; text-shadow: 0 0 20px #ff5e5e, 0 0 60px #cc0000, 0 0 120px #880000; }
     }
 
-    /* owners */
     .owners {
-      font-size: clamp(1.4rem, 6vw, 2.8rem);
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      background: linear-gradient(135deg, #b0b0b0, #4a4a4a);
+      font-size: clamp(1.4rem, 4.5vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      background: linear-gradient(135deg, #d5d5d5, #7a7a7a);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: 0 0 30px rgba(200, 0, 0, 0.6);
-      margin-top: -0.4rem;
-      margin-bottom: 2.2rem;
+      text-shadow: 0 0 40px rgba(200, 0, 0, 0.3);
+      margin-top: -0.2rem;
+      margin-bottom: 1.2rem;
       font-family: 'Segoe UI', 'Arial Black', sans-serif;
-      transform: scaleX(1.2) scaleY(0.9);
+      transform: scaleX(1.08) scaleY(0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .owners .flag {
+      font-size: 0.7em;
+      background: none;
+      -webkit-text-fill-color: initial;
+      color: #ff6b6b;
+      text-shadow: 0 0 30px #ff0000, 0 0 60px #ff000066;
+      filter: drop-shadow(0 0 15px rgba(255,0,0,0.4));
+      letter-spacing: 0.05em;
+      padding: 0 0.2rem;
     }
 
     .owners small {
-      font-size: 0.6em;
+      font-size: 0.45em;
       background: none;
       -webkit-text-fill-color: #888;
       color: #888;
-      text-shadow: 0 0 8px #440000;
+      text-shadow: 0 0 12px #440000;
+      font-weight: 300;
+      letter-spacing: 0.2em;
     }
 
-    /* update section – ONLY update, no extra files/text */
     .update-zone {
-      margin: 2.8rem auto 1rem;
+      margin: 1.5rem auto 0.5rem;
       padding: 0.8rem 1.8rem;
-      max-width: 700px;
-      border-left: 4px solid #ff2222;
-      border-right: 4px solid #ff2222;
-      background: rgba(20, 0, 0, 0.4);
-      border-radius: 60px;
-      backdrop-filter: blur(4px);
-      box-shadow: 0 0 40px rgba(255, 0, 0, 0.15);
+      max-width: 750px;
+      border-left: 3px solid #ff2222;
+      border-right: 3px solid #ff2222;
+      background: rgba(15, 0, 0, 0.5);
+      border-radius: 70px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 60px rgba(255, 0, 0, 0.1), inset 0 0 40px rgba(255, 0, 0, 0.03);
       display: inline-block;
+      position: relative;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .update-zone:hover {
+      box-shadow: 0 0 100px rgba(255, 0, 0, 0.2), inset 0 0 60px rgba(255, 0, 0, 0.06);
+      border-color: #ff4444;
+      transform: scale(1.005);
     }
 
     .update-label {
-      font-size: clamp(0.9rem, 2.5vw, 1.3rem);
-      letter-spacing: 0.4em;
+      font-size: clamp(0.5rem, 1.4vw, 0.75rem);
+      letter-spacing: 0.7em;
       text-transform: uppercase;
-      color: #9e9e9e;
-      font-weight: 300;
-      border-bottom: 1px dashed #4a4a4a;
-      padding-bottom: 0.2rem;
-      margin-bottom: 0.2rem;
+      color: #7a7a7a;
+      font-weight: 400;
+      border-bottom: 1px dashed #3a3a3a;
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
+      font-family: 'Segoe UI', sans-serif;
     }
 
     .update-content {
-      font-size: clamp(1.5rem, 5vw, 2.8rem);
-      font-weight: 800;
+      font-size: clamp(1.6rem, 5.5vw, 3.2rem);
+      font-weight: 900;
       color: #ff4d4d;
-      text-shadow: 0 0 20px #cc0000, 0 0 50px #880000;
-      letter-spacing: 0.1em;
+      text-shadow: 0 0 30px #cc0000, 0 0 70px #880000, 0 0 120px #440000;
+      letter-spacing: 0.05em;
       font-family: 'Impact', 'Arial Black', sans-serif;
       background: linear-gradient(180deg, #ff5555, #aa2222);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       word-break: break-word;
+      line-height: 1.2;
     }
 
-    .update-content small {
-      font-size: 0.5em;
-      -webkit-text-fill-color: #bbbbbb;
-      color: #bbbbbb;
-      background: none;
+    .update-content .bomb-icon {
+      -webkit-text-fill-color: initial;
+      color: #ff3333;
+      font-size: 0.7em;
+      filter: drop-shadow(0 0 25px #ff0000);
+      display: inline-block;
+      animation: bombPulse 1s infinite alternate;
+    }
+
+    @keyframes bombPulse {
+      0% { transform: scale(1) rotate(-6deg); }
+      100% { transform: scale(1.15) rotate(6deg); }
+    }
+
+    .megabomb-main {
+      font-size: clamp(2.2rem, 7.5vw, 4.2rem);
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      background: linear-gradient(180deg, #ff4444, #cc0000, #880000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 40px rgba(255, 0, 0, 0.2);
+      filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.15));
+      animation: megaPulse 1.5s infinite alternate;
+    }
+
+    @keyframes megaPulse {
+      0% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.15)); }
+      100% { transform: scale(1.015); filter: drop-shadow(0 0 40px rgba(255, 0, 0, 0.3)); }
+    }
+
+    .megabomb-sub {
+      font-size: clamp(0.6rem, 1.8vw, 1rem);
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      color: #ff8888;
+      -webkit-text-fill-color: #ff8888;
+      text-shadow: 0 0 20px rgba(255, 0, 0, 0.1);
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      margin-top: 0.05rem;
+    }
+
+    .megabomb-sub .bracket {
+      color: #664444;
+      -webkit-text-fill-color: #664444;
+    }
+
+    .datetime-row {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      font-size: clamp(0.5rem, 1.2vw, 0.75rem);
+      letter-spacing: 0.12em;
+      color: #666;
+      font-family: 'Segoe UI', monospace;
+      border-top: 1px solid #1a1a1a;
+      padding-top: 0.5rem;
+    }
+
+    .datetime-row .label {
+      color: #444;
+      text-transform: uppercase;
       font-weight: 300;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.25em;
+      font-size: 0.65em;
     }
 
-    /* extra glow for comming soon */
-    .coming-glow {
-      animation: pulseGlow 1.8s infinite alternate;
+    .datetime-row .value {
+      color: #ff6666;
+      font-weight: 700;
+      text-shadow: 0 0 15px rgba(255, 0, 0, 0.15);
+      background: rgba(255, 0, 0, 0.03);
+      padding: 0.05rem 0.6rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 50, 50, 0.06);
+      font-size: 1.05em;
     }
 
-    @keyframes pulseGlow {
-      0% { text-shadow: 0 0 10px #ff0000, 0 0 30px #990000; }
-      100% { text-shadow: 0 0 25px #ff6666, 0 0 70px #ff0000, 0 0 120px #aa0000; }
+    .datetime-row .value.time {
+      color: #ff8888;
     }
 
-    /* ghost cursor follower (motion) */
+    .country-tag {
+      font-size: clamp(0.4rem, 1.2vw, 0.65rem);
+      -webkit-text-fill-color: #ff6b6b;
+      color: #ff6b6b;
+      background: rgba(255,0,0,0.05);
+      padding: 0.05rem 1rem;
+      border-radius: 30px;
+      border: 1px solid #ff333344;
+      display: inline-block;
+      margin-top: 0.25rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-shadow: 0 0 20px #ff0000;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .discord-link {
+      margin-top: 0.7rem;
+      padding: 0.3rem 1.2rem;
+      background: rgba(88, 101, 242, 0.06);
+      border: 1px solid rgba(88, 101, 242, 0.15);
+      border-radius: 50px;
+      display: inline-block;
+      backdrop-filter: blur(4px);
+      transition: all 0.3s ease;
+    }
+
+    .discord-link:hover {
+      background: rgba(88, 101, 242, 0.12);
+      border-color: rgba(88, 101, 242, 0.3);
+      transform: scale(1.04);
+      box-shadow: 0 0 30px rgba(88, 101, 242, 0.1);
+    }
+
+    .discord-link a {
+      color: #8a9bff;
+      text-decoration: none;
+      font-size: clamp(0.65rem, 1.4vw, 0.95rem);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      -webkit-text-fill-color: initial;
+    }
+
+    .discord-link a .dc-icon {
+      font-size: 1.2em;
+      filter: drop-shadow(0 0 15px rgba(88, 101, 242, 0.2));
+    }
+
+    .discord-link a .dc-text {
+      background: linear-gradient(135deg, #8a9bff, #5865f2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+    }
+
+    .discord-link a .dc-inv {
+      color: #6a7bcc;
+      -webkit-text-fill-color: #6a7bcc;
+      font-weight: 300;
+      font-size: 0.65em;
+      letter-spacing: 0.15em;
+    }
+
+    .coming-soon-tag {
+      font-size: clamp(0.4rem, 1.3vw, 0.7rem);
+      letter-spacing: 0.4em;
+      color: #ff4444;
+      -webkit-text-fill-color: #ff4444;
+      text-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+      font-weight: 700;
+      margin-top: 0.15rem;
+      border-top: 1px dashed #2a2a2a;
+      padding-top: 0.3rem;
+    }
+
+    .coming-soon-tag .en {
+      color: #ff6666;
+      -webkit-text-fill-color: #ff6666;
+    }
+
+    .coming-soon-tag .fa {
+      color: #ff8888;
+      -webkit-text-fill-color: #ff8888;
+      font-weight: 300;
+    }
+
+    .particle {
+      position: fixed;
+      pointer-events: none;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 30, 30, 0.12), transparent 70%);
+      z-index: 1;
+      filter: blur(8px);
+      animation: floatParticle 25s infinite alternate ease-in-out;
+    }
+
+    @keyframes floatParticle {
+      0% { transform: translate(0, 0) scale(1); opacity: 0.04; }
+      100% { transform: translate(80px, -60px) scale(1.6); opacity: 0.2; }
+    }
+
     #cursor-glow {
       position: fixed;
       pointer-events: none;
-      width: 280px;
-      height: 280px;
-      background: radial-gradient(circle, rgba(255, 30, 30, 0.25) 0%, rgba(200, 0, 0, 0) 70%);
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255, 15, 15, 0.15) 0%, rgba(200, 0, 0, 0.03) 40%, transparent 70%);
       border-radius: 50%;
       transform: translate(-50%, -50%);
       z-index: 9999;
       mix-blend-mode: screen;
-      filter: blur(18px);
-      transition: width 0.15s ease, height 0.15s ease, background 0.2s;
+      filter: blur(25px);
+      transition: width 0.2s ease, height 0.2s ease;
     }
 
     #cursor-dot {
       position: fixed;
       pointer-events: none;
-      width: 18px;
-      height: 18px;
-      background: #ff3b3b;
+      width: 20px;
+      height: 20px;
+      background: #ff2222;
       border-radius: 50%;
       transform: translate(-50%, -50%);
       z-index: 10000;
-      box-shadow: 0 0 40px #ff3b3b, 0 0 100px #cc0000;
+      box-shadow: 0 0 60px #ff3b3b, 0 0 120px #cc0000, 0 0 200px #880000;
       mix-blend-mode: difference;
-      transition: width 0.1s, height 0.1s;
+      transition: width 0.06s, height 0.06s;
     }
 
-    /* secondary motion lines */
+    #cursor-dot::after {
+      content: '';
+      position: absolute;
+      inset: -16px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 40, 40, 0.1);
+      animation: ringExpand 1.8s infinite;
+    }
+
+    @keyframes ringExpand {
+      0% { transform: scale(0.7); opacity: 0.7; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+
+    #cursor-dot::before {
+      content: '×';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: rgba(255, 255, 255, 0.12);
+      font-size: 10px;
+      font-weight: 100;
+      letter-spacing: 0;
+    }
+
     .motion-line {
       position: fixed;
       pointer-events: none;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #ff4d4d55, transparent);
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, rgba(255, 50, 50, 0.1), transparent);
       z-index: 1;
       opacity: 0;
-      transition: opacity 0.2s;
+      transition: opacity 0.3s;
+      filter: blur(2px);
     }
 
-    /* no extra files or text -> just minimal */
     .footer-note {
-      margin-top: 2.8rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      color: #353535;
+      margin-top: 1.8rem;
+      font-size: 0.5rem;
+      letter-spacing: 0.5em;
+      color: #222;
       text-transform: uppercase;
-      border-top: 1px solid #222;
-      padding-top: 1.5rem;
-      width: 60%;
+      border-top: 1px solid #151515;
+      padding-top: 1.2rem;
+      width: 35%;
       margin-left: auto;
       margin-right: auto;
-      opacity: 0.5;
+      opacity: 0.35;
+      font-weight: 300;
     }
 
-    /* responsive */
-    @media (max-width: 600px) {
-      .mega-container {
-        padding: 2rem 1rem;
-        border-radius: 2.5rem;
-      }
-      .owners {
-        transform: scale(1);
-        margin-bottom: 1.2rem;
-      }
-      .update-zone {
-        padding: 0.4rem 1rem;
-      }
+    @media (max-width: 768px) {
+      .mega-container { padding: 1.8rem 1rem; border-radius: 2.5rem; width: 92vw; max-width: 600px; }
+      .owners { transform: scale(1); flex-direction: column; gap: 0.05rem; margin-bottom: 0.8rem; }
+      .update-zone { padding: 0.6rem 1rem; border-radius: 40px; }
+      .datetime-row { flex-direction: column; gap: 0.3rem; align-items: center; }
+      #cursor-glow { width: 140px; height: 140px; filter: blur(15px); }
+      #cursor-dot { width: 14px; height: 14px; }
+      .footer-note { width: 60%; }
+      .discord-link a { font-size: 0.7rem; flex-wrap: wrap; justify-content: center; }
+      .megabomb-main { font-size: 1.8rem; }
+    }
+
+    @media (max-width: 480px) {
+      .ultra-title { font-size: 2.2rem; letter-spacing: 0.04em; }
+      .owners { font-size: 1rem; }
+      .mega-container { padding: 1.2rem 0.6rem; }
+      .megabomb-main { font-size: 1.5rem; }
+      .megabomb-sub { font-size: 0.55rem; }
+      .update-content { font-size: 1.2rem; }
+      .update-zone { padding: 0.4rem 0.6rem; border-radius: 30px; }
+      .discord-link { padding: 0.2rem 0.8rem; }
+      .discord-link a { font-size: 0.6rem; gap: 0.3rem; }
+      .datetime-row { gap: 0.2rem; font-size: 0.45rem; }
+      .country-tag { font-size: 0.35rem; padding: 0.03rem 0.6rem; }
+      .coming-soon-tag { font-size: 0.35rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- cursor effects -->
+  <div class="particle" style="width: 100px; height: 100px; top: 5%; left: 5%;"></div>
+  <div class="particle" style="width: 70px; height: 70px; bottom: 12%; right: 8%; animation-duration: 30s; animation-delay: 2s;"></div>
+  <div class="particle" style="width: 130px; height: 130px; top: 45%; left: 88%; animation-duration: 20s; animation-delay: 4s;"></div>
+  <div class="particle" style="width: 50px; height: 50px; bottom: 30%; left: 3%; animation-duration: 35s; animation-delay: 1s;"></div>
+  <div class="particle" style="width: 80px; height: 80px; top: 75%; left: 12%; animation-duration: 28s; animation-delay: 3s;"></div>
+
   <div id="cursor-glow"></div>
   <div id="cursor-dot"></div>
 
-  <!-- main card -->
   <div class="mega-container" id="megaCard">
-    <h1 class="ultra-title">
+    <h1 class="ultra-title" id="titleGlitch">
       <span>M</span><span>E</span><span>G</span><span>A</span>
       <span>U</span><span>L</span><span>T</span><span>R</span><span>A</span>
     </h1>
 
     <div class="owners">
-      ⚡ DachNima & DachAshkan <small>· founders</small>
+      <span>⚡ DachNima</span>
+      <span style="color: #555; font-weight: 300;">&</span>
+      <span>DachAshkan</span>
+      <span class="flag">🇮🇷</span>
+      <small>· founders</small>
     </div>
 
-    <!-- only update section – NO extra files / text -->
     <div class="update-zone">
-      <div class="update-label">⬡ update ⬡</div>
-      <div class="update-content coming-glow">
-        MegaBomb <small>(SmsBomber)</small><br>
-        <span style="font-size: 0.6em; letter-spacing: 0.3em; -webkit-text-fill-color: #888; color: #888;">Comming Soon</span>
+      <div class="update-label">◈ UPDATE · به‌روزرسانی ◈</div>
+      <div class="update-content">
+        <div class="megabomb-main">
+          <span class="bomb-icon">💣</span>
+          MegaBomb
+          <span class="bomb-icon">💥</span>
+        </div>
+        
+        <div class="megabomb-sub">
+          <span class="bracket">〈</span> 
+          SmsBomber 
+          <span class="bracket">〉</span>
+        </div>
+
+        <div class="country-tag">📍 IRAN · ۲۰۲۶</div>
+
+        <div class="datetime-row">
+          <div>
+            <span class="label">📅 Date</span>
+            <span class="value" id="dateDisplay">2026-07-09</span>
+          </div>
+          <div>
+            <span class="label">🕒 Time</span>
+            <span class="value time" id="timeDisplay">00:00:00</span>
+          </div>
+          <div>
+            <span class="label">⏳ Updated</span>
+            <span class="value" style="color: #ff6666;" id="updateDisplay">Live</span>
+          </div>
+        </div>
+
+        <div class="discord-link">
+          <a href="https://discord.gg/PHT7av9aK" target="_blank">
+            <span class="dc-icon">🎮</span>
+            <span class="dc-text">Discord</span>
+            <span class="dc-inv">· join us</span>
+            <span style="color: #5865f2; -webkit-text-fill-color: #5865f2; font-size: 0.7em;">💬</span>
+          </a>
+        </div>
+
+        <div class="coming-soon-tag">
+          <span class="en">⚡ Comming Soon</span>
+          <span style="color: #444; margin: 0 0.3rem;">·</span>
+          <span class="fa">به زودی</span>
+          <span style="color: #444; margin: 0 0.3rem;">·</span>
+          <span style="color: #ff4444; -webkit-text-fill-color: #ff4444;">⚡</span>
+        </div>
       </div>
     </div>
 
-    <!-- minimal footer (just aesthetic) -->
-    <div class="footer-note">// ultra · dark · motion //</div>
+    <div class="footer-note">// ultra · dark · motion · ir //</div>
   </div>
 
-  <!-- motion script: mouse tracking + extra motion effects -->
   <script>
     (function(){
       const glow = document.getElementById('cursor-glow');
       const dot = document.getElementById('cursor-dot');
       const card = document.getElementById('megaCard');
+      const title = document.getElementById('titleGlitch');
+      const dateEl = document.getElementById('dateDisplay');
+      const timeEl = document.getElementById('timeDisplay');
 
-      // create motion lines (floating background)
-      const linesCount = 12;
+      const linesCount = 16;
       const lines = [];
       for (let i = 0; i < linesCount; i++) {
         const line = document.createElement('div');
         line.className = 'motion-line';
-        line.style.top = (i * 8) + '%';
-        line.style.left = '-20%';
-        line.style.width = '140%';
-        line.style.height = (i % 2 === 0) ? '1px' : '3px';
-        line.style.background = `linear-gradient(90deg, transparent, rgba(255, ${50 + i * 10}, ${30 + i * 5}, 0.2), transparent)`;
+        line.style.top = (i * 6.5) + '%';
+        line.style.left = '-15%';
+        line.style.width = '130%';
+        line.style.height = (i % 4 === 0) ? '2px' : '1px';
+        const r = 160 + Math.floor(Math.random() * 95);
+        const g = 20 + Math.floor(Math.random() * 30);
+        line.style.background = `linear-gradient(90deg, transparent, rgba(${r}, ${g}, 20, 0.1), transparent)`;
         line.style.filter = 'blur(2px)';
         document.body.appendChild(line);
         lines.push(line);
       }
 
-      // mouse move -> core motion
+      function updateClock() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        dateEl.textContent = `${year}-${month}-${day}`;
+        const hours = String(now.getHours()).padStart(2, '0');
+        const mins = String(now.getMinutes()).padStart(2, '0');
+        const secs = String(now.getSeconds()).padStart(2, '0');
+        timeEl.textContent = `${hours}:${mins}:${secs}`;
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+
       document.addEventListener('mousemove', (e) => {
         const x = e.clientX;
         const y = e.clientY;
-        
-        // move glow & dot
         glow.style.left = x + 'px';
         glow.style.top = y + 'px';
         dot.style.left = x + 'px';
         dot.style.top = y + 'px';
 
-        // dynamic glow size based on movement (random feel)
-        const size = 200 + Math.sin(Date.now() * 0.005) * 60;
+        const size = 260 + Math.sin(Date.now() * 0.002) * 50;
         glow.style.width = size + 'px';
         glow.style.height = size + 'px';
 
-        // rotate card slightly with mouse (parallax)
         const rect = card.getBoundingClientRect();
         const cx = rect.left + rect.width/2;
         const cy = rect.top + rect.height/2;
         const dx = (x - cx) / rect.width;
         const dy = (y - cy) / rect.height;
-        const rotX = dy * 3.5;
-        const rotY = dx * -3.5;
-        card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.01)`;
-        card.style.transition = 'transform 0.08s cubic-bezier(0.2, 0.9, 0.4, 1)';
+        const rotX = dy * 5;
+        const rotY = dx * -5;
+        card.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.015)`;
+        card.style.transition = 'transform 0.05s cubic-bezier(0.1, 0.9, 0.2, 1)';
 
-        // move lines dynamically (motion waves)
+        title.style.transform = `skewX(${-5 + dx * 2.5}deg) scaleY(${1.08 + dy * 0.04}) translateX(${dx * 4}px)`;
+
         lines.forEach((line, idx) => {
-          const offset = (x / window.innerWidth) * 60 + (y / window.innerHeight) * 40;
-          const delay = idx * 0.1;
-          const shift = (Math.sin(Date.now() * 0.001 + idx + offset) * 25) + 30;
-          line.style.transform = `translateX(${shift - 20}px)`;
-          line.style.opacity = 0.2 + Math.sin(Date.now() * 0.003 + idx) * 0.1 + 0.1;
+          const offset = (x / window.innerWidth) * 80 + (y / window.innerHeight) * 50;
+          const shift = (Math.sin(Date.now() * 0.0012 + idx * 0.4 + offset * 0.15) * 30) + 15;
+          line.style.transform = `translateX(${shift - 8}px)`;
+          const opacity = 0.08 + Math.sin(Date.now() * 0.0018 + idx * 0.25) * 0.06 + 0.03;
+          line.style.opacity = Math.min(opacity, 0.3);
         });
       });
 
-      // additional mouse leave (fade)
       document.addEventListener('mouseleave', () => {
-        glow.style.opacity = '0.2';
-        dot.style.opacity = '0.3';
-        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
-        card.style.transition = 'transform 0.3s ease';
-        lines.forEach(line => {
-          line.style.opacity = '0.05';
-        });
+        glow.style.opacity = '0.04';
+        dot.style.opacity = '0.08';
+        card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)';
+        card.style.transition = 'transform 0.5s ease';
+        title.style.transform = 'skewX(-5deg) scaleY(1.08) translateX(0)';
+        lines.forEach(line => { line.style.opacity = '0.01'; });
       });
 
       document.addEventListener('mouseenter', () => {
         glow.style.opacity = '1';
         dot.style.opacity = '1';
-        lines.forEach(line => {
-          line.style.opacity = '0.2';
-        });
+        lines.forEach(line => { line.style.opacity = '0.08'; });
       });
 
-      // initial fake motion to show off
       setTimeout(() => {
-        const fakeEvent = new MouseEvent('mousemove', {
+        const fake = new MouseEvent('mousemove', {
           clientX: window.innerWidth * 0.5,
-          clientY: window.innerHeight * 0.5,
+          clientY: window.innerHeight * 0.45,
         });
-        document.dispatchEvent(fakeEvent);
-      }, 100);
+        document.dispatchEvent(fake);
+      }, 150);
 
-      // random sparkle (extra motion)
       setInterval(() => {
-        if (Math.random() > 0.7) {
-          glow.style.background = `radial-gradient(circle, rgba(255, ${80 + Math.floor(Math.random()*100)}, 50, 0.4) 0%, rgba(200, 0, 0, 0) 70%)`;
+        if (Math.random() > 0.82) {
+          title.style.animation = 'none';
+          title.style.transform = `skewX(${(Math.random() - 0.5) * 10}deg) scaleY(${1.05 + Math.random() * 0.1})`;
           setTimeout(() => {
-            glow.style.background = `radial-gradient(circle, rgba(255, 30, 30, 0.25) 0%, rgba(200, 0, 0, 0) 70%)`;
-          }, 200);
+            title.style.animation = 'titleGlitch 3.5s infinite';
+            title.style.transform = '';
+          }, 100);
+        }
+      }, 2800);
+
+      setInterval(() => {
+        if (Math.random() > 0.75) {
+          const r = 180 + Math.floor(Math.random() * 75);
+          glow.style.background = `radial-gradient(circle, rgba(${r}, 15, 15, 0.18) 0%, rgba(200, 0, 0, 0.03) 40%, transparent 70%)`;
+          setTimeout(() => {
+            glow.style.background = `radial-gradient(circle, rgba(255, 15, 15, 0.15) 0%, rgba(200, 0, 0, 0.03) 40%, transparent 70%)`;
+          }, 350);
         }
       }, 400);
 
-      // (optional) resize recalibration
-      window.addEventListener('resize', () => {
-        // nothing heavy
-      });
-
-      console.log('⚡ MegaUltra · DachNima & DachAshkan ⚡');
-      console.log('🔥 MegaBomb (SmsBomber) Comming Soon 🔥');
+      console.log('🔥 MegaUltra · DachNima & DachAshkan · IR 🔥');
+      console.log('💣 MegaBomb (SmsBomber) · Comming Soon');
+      console.log('📅 ' + new Date().toISOString().slice(0,10) + ' ' + new Date().toTimeString().slice(0,8));
+      console.log('🎮 Discord: https://discord.gg/PHT7av9aK');
     })();
   </script>
 
