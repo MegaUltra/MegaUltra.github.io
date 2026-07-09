@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MegaUltra · DachNima & DachAshkan · IR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    /* ===== RESET & BASE ===== */
     * {
       margin: 0;
       padding: 0;
@@ -13,7 +15,7 @@
     }
 
     body {
-      background: #070707;
+      background: #0a0a12;
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -30,35 +32,51 @@
       position: fixed;
       inset: 0;
       background: 
-        radial-gradient(circle at 20% 50%, rgba(255, 0, 0, 0.04) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(200, 0, 0, 0.03) 0%, transparent 50%),
-        repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255, 0, 0, 0.01) 40px, rgba(255, 0, 0, 0.01) 41px);
+        radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(255, 100, 0, 0.03) 0%, transparent 50%),
+        repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255, 215, 0, 0.008) 40px, rgba(255, 215, 0, 0.008) 41px);
       z-index: 0;
       pointer-events: none;
-      animation: bgShift 15s infinite alternate;
+      animation: bgShift 20s infinite alternate;
     }
 
     @keyframes bgShift {
-      0% { transform: scale(1) rotate(0deg); opacity: 0.5; }
-      100% { transform: scale(1.2) rotate(2deg); opacity: 1; }
+      0% { transform: scale(1) rotate(0deg); opacity: 0.4; }
+      100% { transform: scale(1.2) rotate(2deg); opacity: 0.9; }
     }
 
+    /* ===== MAIN CONTAINER ===== */
     .mega-container {
       position: relative;
-      width: 85vw;
-      max-width: 900px;
-      padding: 2.5rem 2rem;
-      background: rgba(6, 6, 6, 0.85);
-      backdrop-filter: blur(20px) brightness(0.55);
-      border: 1px solid rgba(255, 40, 40, 0.35);
+      width: 90vw;
+      max-width: 1000px;
+      max-height: 95vh;
+      overflow-y: auto;
+      padding: 2rem 1.8rem;
+      background: rgba(10, 10, 20, 0.88);
+      backdrop-filter: blur(24px) brightness(0.65);
+      border: 1px solid rgba(255, 215, 0, 0.25);
       box-shadow: 
-        0 0 80px rgba(200, 0, 0, 0.25),
-        inset 0 0 120px rgba(255, 0, 0, 0.04),
-        0 0 200px rgba(100, 0, 0, 0.12);
+        0 0 80px rgba(255, 215, 0, 0.08),
+        inset 0 0 120px rgba(255, 215, 0, 0.02),
+        0 0 200px rgba(200, 100, 0, 0.06);
       border-radius: 3.5rem;
       text-align: center;
       z-index: 2;
       transition: all 0.3s ease;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 215, 0, 0.2) transparent;
+    }
+
+    .mega-container::-webkit-scrollbar {
+      width: 4px;
+    }
+    .mega-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .mega-container::-webkit-scrollbar-thumb {
+      background: rgba(255, 215, 0, 0.2);
+      border-radius: 10px;
     }
 
     .mega-container::before {
@@ -67,13 +85,17 @@
       inset: -8px;
       border-radius: 4rem;
       padding: 2px;
-      background: conic-gradient(from 0deg, #ff2222, #880000, #ff4444, #440000, #ff2222);
+      background: conic-gradient(from 0deg, #ffd742, #ff8c00, #ffd742, #b87a1a, #ffd742);
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
-      opacity: 0.5;
-      animation: borderSpin 10s linear infinite;
+      opacity: 0.4;
+      animation: borderSpin 12s linear infinite;
+    }
+
+    @keyframes borderSpin {
+      to { transform: rotate(360deg); }
     }
 
     .mega-container::after {
@@ -81,15 +103,11 @@
       position: absolute;
       inset: -20px;
       border-radius: 4.5rem;
-      background: radial-gradient(circle at 50% 50%, rgba(255, 0, 0, 0.06), transparent 70%);
+      background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.04), transparent 70%);
       pointer-events: none;
       z-index: -1;
-      filter: blur(40px);
-      animation: glowPulse 2.5s infinite alternate;
-    }
-
-    @keyframes borderSpin {
-      to { transform: rotate(360deg); }
+      filter: blur(50px);
+      animation: glowPulse 3s infinite alternate;
     }
 
     @keyframes glowPulse {
@@ -97,60 +115,62 @@
       100% { opacity: 0.6; transform: scale(1.06); }
     }
 
+    /* ===== TITLE ===== */
     .ultra-title {
       font-size: clamp(3rem, 12vw, 5.5rem);
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #0a0a0a;
+      color: #f0e8d0;
       text-shadow: 
-        0 0 12px #ff2a2a,
-        0 0 30px #aa0000,
-        0 0 60px #660000,
+        0 0 20px #ffd742,
+        0 0 50px #ff8c00,
+        0 0 80px #b87a1a,
         6px 6px 0 #1a1a1a,
         -3px -3px 0 #3a3a3a,
-        0 0 120px rgba(255, 0, 0, 0.2);
+        0 0 150px rgba(255, 215, 0, 0.15);
       font-family: 'Impact', 'Arial Black', 'Segoe UI Black', sans-serif;
-      transform: skewX(-5deg) scaleY(1.08);
+      transform: skewX(-4deg) scaleY(1.06);
       position: relative;
-      animation: titleGlitch 3.5s infinite;
+      animation: titleGlitch 4s infinite;
       margin-bottom: 0.1rem;
     }
 
     @keyframes titleGlitch {
-      0%, 100% { transform: skewX(-5deg) scaleY(1.08) translateX(0); }
-      94% { transform: skewX(-5deg) scaleY(1.08) translateX(0); }
-      95% { transform: skewX(3deg) scaleY(1.1) translateX(-4px); }
-      96% { transform: skewX(-7deg) scaleY(1.06) translateX(6px); }
-      97% { transform: skewX(4deg) scaleY(1.09) translateX(-3px); }
-      98% { transform: skewX(-4deg) scaleY(1.07) translateX(2px); }
+      0%, 100% { transform: skewX(-4deg) scaleY(1.06) translateX(0); }
+      94% { transform: skewX(-4deg) scaleY(1.06) translateX(0); }
+      95% { transform: skewX(3deg) scaleY(1.08) translateX(-4px); }
+      96% { transform: skewX(-7deg) scaleY(1.04) translateX(6px); }
+      97% { transform: skewX(4deg) scaleY(1.07) translateX(-3px); }
+      98% { transform: skewX(-3deg) scaleY(1.05) translateX(2px); }
     }
 
     .ultra-title span {
       display: inline-block;
-      animation: flicker 2.8s infinite alternate;
+      animation: flicker 3s infinite alternate;
     }
 
-    .ultra-title span:nth-child(odd) { animation-delay: 0.15s; }
-    .ultra-title span:nth-child(3n) { animation-delay: 0.4s; }
-    .ultra-title span:nth-child(4n) { animation-delay: 0.7s; }
+    .ultra-title span:nth-child(odd) { animation-delay: 0.1s; }
+    .ultra-title span:nth-child(3n) { animation-delay: 0.3s; }
+    .ultra-title span:nth-child(4n) { animation-delay: 0.6s; }
 
     @keyframes flicker {
-      0% { opacity: 0.85; text-shadow: 0 0 8px #ff3a3a, 0 0 30px #aa0000; }
-      100% { opacity: 1; text-shadow: 0 0 20px #ff5e5e, 0 0 60px #cc0000, 0 0 120px #880000; }
+      0% { opacity: 0.85; text-shadow: 0 0 10px #ffd742, 0 0 30px #ff8c00; }
+      100% { opacity: 1; text-shadow: 0 0 30px #ffd742, 0 0 70px #ff8c00, 0 0 120px #b87a1a; }
     }
 
+    /* ===== OWNERS ===== */
     .owners {
-      font-size: clamp(1.4rem, 4.5vw, 2.4rem);
+      font-size: clamp(1.4rem, 4.5vw, 2.6rem);
       font-weight: 800;
-      letter-spacing: 0.25em;
-      background: linear-gradient(135deg, #d5d5d5, #7a7a7a);
+      letter-spacing: 0.3em;
+      background: linear-gradient(135deg, #f0e8d0, #ffd742, #ff8c00);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: 0 0 40px rgba(200, 0, 0, 0.3);
+      text-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
       margin-top: -0.2rem;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
       font-family: 'Segoe UI', 'Arial Black', sans-serif;
       transform: scaleX(1.08) scaleY(0.92);
       display: flex;
@@ -164,9 +184,9 @@
       font-size: 0.7em;
       background: none;
       -webkit-text-fill-color: initial;
-      color: #ff6b6b;
-      text-shadow: 0 0 30px #ff0000, 0 0 60px #ff000066;
-      filter: drop-shadow(0 0 15px rgba(255,0,0,0.4));
+      color: #ffd742;
+      text-shadow: 0 0 40px #ffd742, 0 0 80px #ff8c0066;
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
       letter-spacing: 0.05em;
       padding: 0 0.2rem;
     }
@@ -174,23 +194,24 @@
     .owners small {
       font-size: 0.45em;
       background: none;
-      -webkit-text-fill-color: #888;
-      color: #888;
-      text-shadow: 0 0 12px #440000;
+      -webkit-text-fill-color: #aaa;
+      color: #aaa;
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
       font-weight: 300;
       letter-spacing: 0.2em;
     }
 
+    /* ===== UPDATE ZONE ===== */
     .update-zone {
-      margin: 1.5rem auto 0.5rem;
-      padding: 0.8rem 1.8rem;
-      max-width: 750px;
-      border-left: 3px solid #ff2222;
-      border-right: 3px solid #ff2222;
-      background: rgba(15, 0, 0, 0.5);
+      margin: 1rem auto 0.5rem;
+      padding: 0.8rem 1.5rem;
+      max-width: 800px;
+      border-left: 3px solid #ffd742;
+      border-right: 3px solid #ffd742;
+      background: rgba(255, 215, 0, 0.04);
       border-radius: 70px;
       backdrop-filter: blur(8px);
-      box-shadow: 0 0 60px rgba(255, 0, 0, 0.1), inset 0 0 40px rgba(255, 0, 0, 0.03);
+      box-shadow: 0 0 60px rgba(255, 215, 0, 0.05), inset 0 0 40px rgba(255, 215, 0, 0.02);
       display: inline-block;
       position: relative;
       transition: all 0.3s ease;
@@ -198,18 +219,18 @@
     }
 
     .update-zone:hover {
-      box-shadow: 0 0 100px rgba(255, 0, 0, 0.2), inset 0 0 60px rgba(255, 0, 0, 0.06);
-      border-color: #ff4444;
+      box-shadow: 0 0 100px rgba(255, 215, 0, 0.12), inset 0 0 60px rgba(255, 215, 0, 0.04);
+      border-color: #ffd742;
       transform: scale(1.005);
     }
 
     .update-label {
       font-size: clamp(0.5rem, 1.4vw, 0.75rem);
-      letter-spacing: 0.7em;
+      letter-spacing: 0.8em;
       text-transform: uppercase;
-      color: #7a7a7a;
+      color: #ccb88a;
       font-weight: 400;
-      border-bottom: 1px dashed #3a3a3a;
+      border-bottom: 1px dashed rgba(255, 215, 0, 0.15);
       padding-bottom: 0.3rem;
       margin-bottom: 0.4rem;
       font-family: 'Segoe UI', sans-serif;
@@ -218,11 +239,11 @@
     .update-content {
       font-size: clamp(1.6rem, 5.5vw, 3.2rem);
       font-weight: 900;
-      color: #ff4d4d;
-      text-shadow: 0 0 30px #cc0000, 0 0 70px #880000, 0 0 120px #440000;
+      color: #ffd742;
+      text-shadow: 0 0 40px #ffd742, 0 0 90px #ff8c00, 0 0 140px #b87a1a;
       letter-spacing: 0.05em;
       font-family: 'Impact', 'Arial Black', sans-serif;
-      background: linear-gradient(180deg, #ff5555, #aa2222);
+      background: linear-gradient(180deg, #ffe48a, #ffd742, #ff8c00);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -232,52 +253,53 @@
 
     .update-content .bomb-icon {
       -webkit-text-fill-color: initial;
-      color: #ff3333;
+      color: #ffd742;
       font-size: 0.7em;
-      filter: drop-shadow(0 0 25px #ff0000);
+      filter: drop-shadow(0 0 30px #ffd742);
       display: inline-block;
       animation: bombPulse 1s infinite alternate;
     }
 
     @keyframes bombPulse {
-      0% { transform: scale(1) rotate(-6deg); }
-      100% { transform: scale(1.15) rotate(6deg); }
+      0% { transform: scale(1) rotate(-8deg); }
+      100% { transform: scale(1.15) rotate(8deg); }
     }
 
     .megabomb-main {
-      font-size: clamp(2.2rem, 7.5vw, 4.2rem);
+      font-size: clamp(2.2rem, 7vw, 4.2rem);
       font-weight: 900;
       letter-spacing: 0.06em;
-      background: linear-gradient(180deg, #ff4444, #cc0000, #880000);
+      background: linear-gradient(180deg, #ffe48a, #ffd742, #ff8c00);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: 0 0 40px rgba(255, 0, 0, 0.2);
-      filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.15));
+      text-shadow: 0 0 60px rgba(255, 215, 0, 0.15);
+      filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.1));
       animation: megaPulse 1.5s infinite alternate;
     }
 
     @keyframes megaPulse {
-      0% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.15)); }
-      100% { transform: scale(1.015); filter: drop-shadow(0 0 40px rgba(255, 0, 0, 0.3)); }
+      0% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.1)); }
+      100% { transform: scale(1.015); filter: drop-shadow(0 0 50px rgba(255, 215, 0, 0.2)); }
     }
 
     .megabomb-sub {
       font-size: clamp(0.6rem, 1.8vw, 1rem);
       font-weight: 400;
-      letter-spacing: 0.25em;
-      color: #ff8888;
-      -webkit-text-fill-color: #ff8888;
-      text-shadow: 0 0 20px rgba(255, 0, 0, 0.1);
+      letter-spacing: 0.3em;
+      color: #ffcc88;
+      -webkit-text-fill-color: #ffcc88;
+      text-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
       font-family: 'Segoe UI', 'Arial', sans-serif;
       margin-top: 0.05rem;
     }
 
     .megabomb-sub .bracket {
-      color: #664444;
-      -webkit-text-fill-color: #664444;
+      color: #aa8855;
+      -webkit-text-fill-color: #aa8855;
     }
 
+    /* ===== DATE/TIME ===== */
     .datetime-row {
       margin-top: 0.5rem;
       display: flex;
@@ -286,14 +308,14 @@
       flex-wrap: wrap;
       font-size: clamp(0.5rem, 1.2vw, 0.75rem);
       letter-spacing: 0.12em;
-      color: #666;
+      color: #888;
       font-family: 'Segoe UI', monospace;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid rgba(255, 215, 0, 0.08);
       padding-top: 0.5rem;
     }
 
     .datetime-row .label {
-      color: #444;
+      color: #666;
       text-transform: uppercase;
       font-weight: 300;
       letter-spacing: 0.25em;
@@ -301,38 +323,39 @@
     }
 
     .datetime-row .value {
-      color: #ff6666;
+      color: #ffd742;
       font-weight: 700;
-      text-shadow: 0 0 15px rgba(255, 0, 0, 0.15);
-      background: rgba(255, 0, 0, 0.03);
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+      background: rgba(255, 215, 0, 0.04);
       padding: 0.05rem 0.6rem;
       border-radius: 20px;
-      border: 1px solid rgba(255, 50, 50, 0.06);
+      border: 1px solid rgba(255, 215, 0, 0.08);
       font-size: 1.05em;
     }
 
     .datetime-row .value.time {
-      color: #ff8888;
+      color: #ffcc66;
     }
 
     .country-tag {
-      font-size: clamp(0.4rem, 1.2vw, 0.65rem);
-      -webkit-text-fill-color: #ff6b6b;
-      color: #ff6b6b;
-      background: rgba(255,0,0,0.05);
+      font-size: clamp(0.45rem, 1.2vw, 0.65rem);
+      -webkit-text-fill-color: #ffd742;
+      color: #ffd742;
+      background: rgba(255, 215, 0, 0.05);
       padding: 0.05rem 1rem;
       border-radius: 30px;
-      border: 1px solid #ff333344;
+      border: 1px solid rgba(255, 215, 0, 0.12);
       display: inline-block;
       margin-top: 0.25rem;
       font-weight: 700;
       letter-spacing: 0.35em;
-      text-shadow: 0 0 20px #ff0000;
+      text-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
       font-family: 'Segoe UI', sans-serif;
     }
 
+    /* ===== DISCORD ===== */
     .discord-link {
-      margin-top: 0.7rem;
+      margin-top: 0.6rem;
       padding: 0.3rem 1.2rem;
       background: rgba(88, 101, 242, 0.06);
       border: 1px solid rgba(88, 101, 242, 0.15);
@@ -346,7 +369,7 @@
       background: rgba(88, 101, 242, 0.12);
       border-color: rgba(88, 101, 242, 0.3);
       transform: scale(1.04);
-      box-shadow: 0 0 30px rgba(88, 101, 242, 0.1);
+      box-shadow: 0 0 30px rgba(88, 101, 242, 0.08);
     }
 
     .discord-link a {
@@ -364,7 +387,7 @@
 
     .discord-link a .dc-icon {
       font-size: 1.2em;
-      filter: drop-shadow(0 0 15px rgba(88, 101, 242, 0.2));
+      filter: drop-shadow(0 0 15px rgba(88, 101, 242, 0.15));
     }
 
     .discord-link a .dc-text {
@@ -386,47 +409,296 @@
     .coming-soon-tag {
       font-size: clamp(0.4rem, 1.3vw, 0.7rem);
       letter-spacing: 0.4em;
-      color: #ff4444;
-      -webkit-text-fill-color: #ff4444;
-      text-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+      color: #ffd742;
+      -webkit-text-fill-color: #ffd742;
+      text-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
       font-weight: 700;
       margin-top: 0.15rem;
-      border-top: 1px dashed #2a2a2a;
+      border-top: 1px dashed rgba(255, 215, 0, 0.08);
       padding-top: 0.3rem;
     }
 
     .coming-soon-tag .en {
-      color: #ff6666;
-      -webkit-text-fill-color: #ff6666;
+      color: #ffd742;
+      -webkit-text-fill-color: #ffd742;
     }
 
     .coming-soon-tag .fa {
-      color: #ff8888;
-      -webkit-text-fill-color: #ff8888;
+      color: #ffcc88;
+      -webkit-text-fill-color: #ffcc88;
       font-weight: 300;
     }
 
-    .particle {
-      position: fixed;
-      pointer-events: none;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 30, 30, 0.12), transparent 70%);
-      z-index: 1;
-      filter: blur(8px);
-      animation: floatParticle 25s infinite alternate ease-in-out;
+    /* ===== NEWS & SPONSOR SECTION ===== */
+    .news-sponsor-section {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      text-align: left;
     }
 
-    @keyframes floatParticle {
-      0% { transform: translate(0, 0) scale(1); opacity: 0.04; }
-      100% { transform: translate(80px, -60px) scale(1.6); opacity: 0.2; }
+    .news-box, .sponsor-box {
+      background: rgba(255, 215, 0, 0.03);
+      border: 1px solid rgba(255, 215, 0, 0.06);
+      border-radius: 1.5rem;
+      padding: 0.8rem 1rem;
+      backdrop-filter: blur(4px);
+      transition: all 0.3s ease;
+      min-height: 140px;
     }
 
+    .news-box:hover, .sponsor-box:hover {
+      background: rgba(255, 215, 0, 0.06);
+      border-color: rgba(255, 215, 0, 0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+
+    .section-header {
+      font-size: clamp(0.5rem, 1.2vw, 0.7rem);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: #ffd742;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.08);
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .section-header i {
+      font-size: 0.9em;
+      color: #ffd742;
+    }
+
+    .section-header .live-badge {
+      font-size: 0.5em;
+      background: #ff2222;
+      color: #fff;
+      padding: 0.05rem 0.4rem;
+      border-radius: 20px;
+      animation: livePulse 1s infinite;
+    }
+
+    @keyframes livePulse {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+
+    .news-item {
+      padding: 0.25rem 0;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.04);
+      font-size: clamp(0.5rem, 1.1vw, 0.7rem);
+      color: #bbbbbb;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .news-item .time {
+      color: #ffd742;
+      font-weight: 600;
+      font-size: 0.7em;
+      min-width: 50px;
+    }
+
+    .news-item .text {
+      flex: 1;
+    }
+
+    .news-item .badge {
+      font-size: 0.6em;
+      background: rgba(255, 215, 0, 0.1);
+      color: #ffd742;
+      padding: 0.05rem 0.4rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .sponsor-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.25rem 0;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.04);
+      font-size: clamp(0.5rem, 1.1vw, 0.7rem);
+      color: #bbbbbb;
+    }
+
+    .sponsor-item .sponsor-icon {
+      font-size: 1.2em;
+      width: 28px;
+      text-align: center;
+      color: #ffd742;
+    }
+
+    .sponsor-item .sponsor-name {
+      font-weight: 700;
+      color: #ddd;
+    }
+
+    .sponsor-item .sponsor-desc {
+      color: #888;
+      font-size: 0.8em;
+    }
+
+    /* ===== BUTTONS ===== */
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 0.8rem;
+    }
+
+    .action-btn {
+      padding: 0.3rem 1rem;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: 50px;
+      background: rgba(255, 215, 0, 0.04);
+      color: #ccb88a;
+      font-weight: 600;
+      font-size: clamp(0.5rem, 1.1vw, 0.75rem);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(4px);
+      font-family: 'Segoe UI', sans-serif;
+      letter-spacing: 0.1em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .action-btn:hover {
+      background: rgba(255, 215, 0, 0.08);
+      border-color: rgba(255, 215, 0, 0.4);
+      transform: scale(1.05);
+      color: #ffd742;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.05);
+    }
+
+    .action-btn i {
+      color: #ffd742;
+      font-size: 0.9em;
+    }
+
+    .action-btn.low-spec {
+      border-color: rgba(100, 200, 255, 0.2);
+      color: #88ccdd;
+    }
+    .action-btn.low-spec i {
+      color: #66ccff;
+    }
+    .action-btn.low-spec:hover {
+      border-color: rgba(100, 200, 255, 0.4);
+      background: rgba(100, 200, 255, 0.06);
+      color: #66ccff;
+    }
+
+    .action-btn.music-toggle {
+      border-color: rgba(255, 100, 200, 0.2);
+      color: #dd88bb;
+    }
+    .action-btn.music-toggle i {
+      color: #ff66aa;
+    }
+    .action-btn.music-toggle:hover {
+      border-color: rgba(255, 100, 200, 0.4);
+      background: rgba(255, 100, 200, 0.06);
+      color: #ff66aa;
+    }
+
+    .action-btn.game-toggle-btn {
+      border-color: rgba(100, 255, 150, 0.2);
+      color: #88dd99;
+    }
+    .action-btn.game-toggle-btn i {
+      color: #66ff88;
+    }
+    .action-btn.game-toggle-btn:hover {
+      border-color: rgba(100, 255, 150, 0.4);
+      background: rgba(100, 255, 150, 0.06);
+      color: #66ff88;
+    }
+
+    /* ===== GAME EMBED ===== */
+    .game-embed {
+      margin-top: 0.8rem;
+      border-radius: 2rem;
+      overflow: hidden;
+      border: 1px solid rgba(255, 215, 0, 0.08);
+      background: rgba(0,0,0,0.3);
+      position: relative;
+      transition: all 0.3s ease;
+      display: none;
+    }
+
+    .game-embed.active {
+      display: block;
+    }
+
+    .game-embed iframe {
+      width: 100%;
+      height: 460px;
+      border: none;
+      display: block;
+      background: #0a0a12;
+    }
+
+    .game-embed .game-toggle {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,215,0,0.15);
+      border-radius: 30px;
+      padding: 0.2rem 0.8rem;
+      color: #ffd742;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+
+    .game-embed .game-toggle:hover {
+      background: rgba(255,215,0,0.1);
+      border-color: rgba(255,215,0,0.3);
+    }
+
+    .game-embed .game-toggle i {
+      margin-right: 0.3rem;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-note {
+      margin-top: 1.2rem;
+      font-size: 0.45rem;
+      letter-spacing: 0.5em;
+      color: #333;
+      text-transform: uppercase;
+      border-top: 1px solid rgba(255, 215, 0, 0.04);
+      padding-top: 0.8rem;
+      width: 35%;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.35;
+      font-weight: 300;
+    }
+
+    /* ===== CURSOR ===== */
     #cursor-glow {
       position: fixed;
       pointer-events: none;
       width: 300px;
       height: 300px;
-      background: radial-gradient(circle, rgba(255, 15, 15, 0.15) 0%, rgba(200, 0, 0, 0.03) 40%, transparent 70%);
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.12) 0%, rgba(255, 150, 0, 0.03) 40%, transparent 70%);
       border-radius: 50%;
       transform: translate(-50%, -50%);
       z-index: 9999;
@@ -440,11 +712,11 @@
       pointer-events: none;
       width: 20px;
       height: 20px;
-      background: #ff2222;
+      background: #ffd742;
       border-radius: 50%;
       transform: translate(-50%, -50%);
       z-index: 10000;
-      box-shadow: 0 0 60px #ff3b3b, 0 0 120px #cc0000, 0 0 200px #880000;
+      box-shadow: 0 0 60px #ffd742, 0 0 120px #ff8c00, 0 0 200px #b87a1a;
       mix-blend-mode: difference;
       transition: width 0.06s, height 0.06s;
     }
@@ -454,7 +726,7 @@
       position: absolute;
       inset: -16px;
       border-radius: 50%;
-      border: 1px solid rgba(255, 40, 40, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.1);
       animation: ringExpand 1.8s infinite;
     }
 
@@ -463,97 +735,134 @@
       100% { transform: scale(2); opacity: 0; }
     }
 
-    #cursor-dot::before {
-      content: '×';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: rgba(255, 255, 255, 0.12);
-      font-size: 10px;
-      font-weight: 100;
-      letter-spacing: 0;
+    /* ===== PARTICLES ===== */
+    .particle {
+      position: fixed;
+      pointer-events: none;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.08), transparent 70%);
+      z-index: 1;
+      filter: blur(10px);
+      animation: floatParticle 25s infinite alternate ease-in-out;
     }
 
+    @keyframes floatParticle {
+      0% { transform: translate(0, 0) scale(1); opacity: 0.03; }
+      100% { transform: translate(80px, -60px) scale(1.6); opacity: 0.15; }
+    }
+
+    /* ===== MOTION LINES ===== */
     .motion-line {
       position: fixed;
       pointer-events: none;
       height: 1.5px;
-      background: linear-gradient(90deg, transparent, rgba(255, 50, 50, 0.1), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.06), transparent);
       z-index: 1;
       opacity: 0;
       transition: opacity 0.3s;
       filter: blur(2px);
     }
 
-    .footer-note {
-      margin-top: 1.8rem;
-      font-size: 0.5rem;
-      letter-spacing: 0.5em;
-      color: #222;
-      text-transform: uppercase;
-      border-top: 1px solid #151515;
-      padding-top: 1.2rem;
-      width: 35%;
-      margin-left: auto;
-      margin-right: auto;
-      opacity: 0.35;
-      font-weight: 300;
+    /* ===== LOW SPEC MODE ===== */
+    body.low-spec-mode .motion-line {
+      display: none !important;
+    }
+    body.low-spec-mode #cursor-glow {
+      display: none !important;
+    }
+    body.low-spec-mode .particle {
+      display: none !important;
+    }
+    body.low-spec-mode .mega-container::after {
+      display: none !important;
+    }
+    body.low-spec-mode .mega-container::before {
+      opacity: 0.15 !important;
+      animation-duration: 30s !important;
+    }
+    body.low-spec-mode .ultra-title {
+      animation-duration: 8s !important;
+    }
+    body.low-spec-mode .ultra-title span {
+      animation-duration: 6s !important;
     }
 
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      .mega-container { padding: 1.8rem 1rem; border-radius: 2.5rem; width: 92vw; max-width: 600px; }
-      .owners { transform: scale(1); flex-direction: column; gap: 0.05rem; margin-bottom: 0.8rem; }
-      .update-zone { padding: 0.6rem 1rem; border-radius: 40px; }
+      .mega-container { padding: 1.2rem 0.8rem; border-radius: 2.5rem; width: 94vw; max-height: 90vh; }
+      .owners { transform: scale(1); flex-direction: column; gap: 0.05rem; margin-bottom: 0.6rem; }
+      .update-zone { padding: 0.5rem 0.8rem; border-radius: 40px; }
       .datetime-row { flex-direction: column; gap: 0.3rem; align-items: center; }
+      .news-sponsor-section { grid-template-columns: 1fr; }
       #cursor-glow { width: 140px; height: 140px; filter: blur(15px); }
       #cursor-dot { width: 14px; height: 14px; }
       .footer-note { width: 60%; }
       .discord-link a { font-size: 0.7rem; flex-wrap: wrap; justify-content: center; }
-      .megabomb-main { font-size: 1.8rem; }
+      .game-embed iframe { height: 380px; }
+      .action-buttons { gap: 0.4rem; }
+      .action-btn { padding: 0.25rem 0.7rem; font-size: 0.5rem; }
+      .news-box, .sponsor-box { min-height: 100px; padding: 0.5rem 0.7rem; }
     }
 
     @media (max-width: 480px) {
-      .ultra-title { font-size: 2.2rem; letter-spacing: 0.04em; }
-      .owners { font-size: 1rem; }
-      .mega-container { padding: 1.2rem 0.6rem; }
-      .megabomb-main { font-size: 1.5rem; }
-      .megabomb-sub { font-size: 0.55rem; }
-      .update-content { font-size: 1.2rem; }
-      .update-zone { padding: 0.4rem 0.6rem; border-radius: 30px; }
-      .discord-link { padding: 0.2rem 0.8rem; }
-      .discord-link a { font-size: 0.6rem; gap: 0.3rem; }
-      .datetime-row { gap: 0.2rem; font-size: 0.45rem; }
-      .country-tag { font-size: 0.35rem; padding: 0.03rem 0.6rem; }
-      .coming-soon-tag { font-size: 0.35rem; }
+      .ultra-title { font-size: 2rem; letter-spacing: 0.04em; }
+      .owners { font-size: 0.9rem; }
+      .mega-container { padding: 0.8rem 0.5rem; border-radius: 1.8rem; }
+      .megabomb-main { font-size: 1.6rem; }
+      .megabomb-sub { font-size: 0.5rem; }
+      .update-content { font-size: 1rem; }
+      .update-zone { padding: 0.3rem 0.5rem; border-radius: 30px; }
+      .discord-link { padding: 0.15rem 0.6rem; }
+      .discord-link a { font-size: 0.55rem; gap: 0.2rem; }
+      .datetime-row { gap: 0.15rem; font-size: 0.4rem; }
+      .country-tag { font-size: 0.3rem; padding: 0.03rem 0.5rem; }
+      .coming-soon-tag { font-size: 0.3rem; }
+      .game-embed iframe { height: 300px; }
+      .action-btn { font-size: 0.45rem; padding: 0.2rem 0.5rem; }
+      .action-btn i { font-size: 0.6em; }
+      .news-item { font-size: 0.45rem; }
+      .sponsor-item { font-size: 0.45rem; }
+      .section-header { font-size: 0.4rem; }
+      .news-box, .sponsor-box { min-height: 80px; padding: 0.4rem 0.5rem; }
+    }
+
+    @media (max-width: 380px) {
+      .game-embed iframe { height: 260px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- ===== PARTICLES ===== -->
   <div class="particle" style="width: 100px; height: 100px; top: 5%; left: 5%;"></div>
   <div class="particle" style="width: 70px; height: 70px; bottom: 12%; right: 8%; animation-duration: 30s; animation-delay: 2s;"></div>
   <div class="particle" style="width: 130px; height: 130px; top: 45%; left: 88%; animation-duration: 20s; animation-delay: 4s;"></div>
   <div class="particle" style="width: 50px; height: 50px; bottom: 30%; left: 3%; animation-duration: 35s; animation-delay: 1s;"></div>
   <div class="particle" style="width: 80px; height: 80px; top: 75%; left: 12%; animation-duration: 28s; animation-delay: 3s;"></div>
 
+  <!-- ===== CURSOR ===== -->
   <div id="cursor-glow"></div>
   <div id="cursor-dot"></div>
 
+  <!-- ===== MAIN CONTAINER ===== -->
   <div class="mega-container" id="megaCard">
+    
+    <!-- TITLE -->
     <h1 class="ultra-title" id="titleGlitch">
       <span>M</span><span>E</span><span>G</span><span>A</span>
       <span>U</span><span>L</span><span>T</span><span>R</span><span>A</span>
     </h1>
 
+    <!-- OWNERS -->
     <div class="owners">
       <span>⚡ DachNima</span>
-      <span style="color: #555; font-weight: 300;">&</span>
+      <span style="color: #888; font-weight: 300;">&</span>
       <span>DachAshkan</span>
       <span class="flag">🇮🇷</span>
       <small>· founders</small>
     </div>
 
+    <!-- UPDATE ZONE -->
     <div class="update-zone">
       <div class="update-label">◈ UPDATE · به‌روزرسانی ◈</div>
       <div class="update-content">
@@ -562,11 +871,8 @@
           MegaBomb
           <span class="bomb-icon">💥</span>
         </div>
-        
         <div class="megabomb-sub">
-          <span class="bracket">〈</span> 
-          SmsBomber 
-          <span class="bracket">〉</span>
+          <span class="bracket">〈</span> SmsBomber <span class="bracket">〉</span>
         </div>
 
         <div class="country-tag">📍 IRAN · ۲۰۲۶</div>
@@ -582,10 +888,11 @@
           </div>
           <div>
             <span class="label">⏳ Updated</span>
-            <span class="value" style="color: #ff6666;" id="updateDisplay">Live</span>
+            <span class="value" style="color: #ffd742;" id="updateDisplay">Live</span>
           </div>
         </div>
 
+        <!-- DISCORD -->
         <div class="discord-link">
           <a href="https://discord.gg/PHT7av9aK" target="_blank">
             <span class="dc-icon">🎮</span>
@@ -595,16 +902,328 @@
           </a>
         </div>
 
+        <!-- COMMING SOON -->
         <div class="coming-soon-tag">
           <span class="en">⚡ Comming Soon</span>
-          <span style="color: #444; margin: 0 0.3rem;">·</span>
+          <span style="color: #555; margin: 0 0.3rem;">·</span>
           <span class="fa">به زودی</span>
-          <span style="color: #444; margin: 0 0.3rem;">·</span>
-          <span style="color: #ff4444; -webkit-text-fill-color: #ff4444;">⚡</span>
+          <span style="color: #555; margin: 0 0.3rem;">·</span>
+          <span style="color: #ffd742; -webkit-text-fill-color: #ffd742;">⚡</span>
         </div>
       </div>
     </div>
 
+    <!-- ===== NEWS & SPONSOR SECTION ===== -->
+    <div class="news-sponsor-section">
+      <!-- NEWS BOX -->
+      <div class="news-box" id="newsBox">
+        <div class="section-header">
+          <i class="fas fa-newspaper"></i> Latest News
+          <span class="live-badge">● LIVE</span>
+        </div>
+        <div id="newsContainer">
+          <div class="news-item">
+            <span class="time">12:34</span>
+            <span class="text">🚀 MegaBomb v2.0 در حال توسعه</span>
+            <span class="badge">new</span>
+          </div>
+          <div class="news-item">
+            <span class="time">11:20</span>
+            <span class="text">🎮 بازی MegaCoin به‌روز شد!</span>
+            <span class="badge">update</span>
+          </div>
+          <div class="news-item">
+            <span class="time">10:15</span>
+            <span class="text">🔥 ۲۰۰+ سرویس جدید اضافه شد</span>
+            <span class="badge">hot</span>
+          </div>
+          <div class="news-item">
+            <span class="time">09:00</span>
+            <span class="text">💣 تست MegaBomb آغاز شد</span>
+            <span class="badge">beta</span>
+          </div>
+          <div class="news-item">
+            <span class="time">08:30</span>
+            <span class="text">🇮🇷 تیم MegaUltra فعالیت خود را شروع کرد</span>
+            <span class="badge">welcome</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SPONSOR BOX -->
+      <div class="sponsor-box" id="sponsorBox">
+        <div class="section-header">
+          <i class="fas fa-handshake"></i> Sponsors
+          <span class="live-badge" style="background: #ff8c00;">●</span>
+        </div>
+        <div id="sponsorContainer">
+          <div class="sponsor-item">
+            <span class="sponsor-icon">🛡️</span>
+            <span class="sponsor-name">CyberSec.ir</span>
+            <span class="sponsor-desc">حامی امنیت</span>
+          </div>
+          <div class="sponsor-item">
+            <span class="sponsor-icon">⚡</span>
+            <span class="sponsor-name">HostIran</span>
+            <span class="sponsor-desc">سرورهای قدرتمند</span>
+          </div>
+          <div class="sponsor-item">
+            <span class="sponsor-icon">🎮</span>
+            <span class="sponsor-name">GameZone</span>
+            <span class="sponsor-desc">اسپانسر بازی‌ها</span>
+          </div>
+          <div class="sponsor-item">
+            <span class="sponsor-icon">💎</span>
+            <span class="sponsor-name">CryptoPay</span>
+            <span class="sponsor-desc">پرداخت رمز ارز</span>
+          </div>
+          <div class="sponsor-item">
+            <span class="sponsor-icon">🚀</span>
+            <span class="sponsor-name">MegaHost</span>
+            <span class="sponsor-desc">پشتیبانی فنی</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div class="action-buttons">
+      <button class="action-btn low-spec" id="lowSpecBtn">
+        <i class="fas fa-tachometer-alt"></i> حالت کم‌مصرف
+      </button>
+      <button class="action-btn music-toggle" id="musicBtn">
+        <i class="fas fa-music"></i> آهنگ
+      </button>
+      <button class="action-btn game-toggle-btn" id="gameToggleBtn">
+        <i class="fas fa-gamepad"></i> بازی
+      </button>
+    </div>
+
+    <!-- GAME EMBED -->
+    <div class="game-embed" id="gameEmbed">
+      <div class="game-toggle" id="gameCloseBtn">
+        <i class="fas fa-times"></i> بستن بازی
+      </div>
+      <iframe srcdoc='
+        <!DOCTYPE html>
+        <html lang="fa" dir="rtl">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+          <title>MegaCoin</title>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+          <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", system-ui, sans-serif; user-select: none; }
+            body { background: #0a0a12; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 12px; overflow: hidden; }
+            body::before {
+              content: "";
+              position: fixed; inset: 0;
+              background: radial-gradient(ellipse at 20% 50%, rgba(255,215,0,0.05), transparent 50%), radial-gradient(ellipse at 80% 50%, rgba(255,100,0,0.05), transparent 50%);
+              pointer-events: none; z-index: 0;
+            }
+            .game-container {
+              max-width: 460px; width: 100%; background: linear-gradient(145deg, #161d2e, #0c111f); border-radius: 56px; padding: 22px 20px 28px;
+              box-shadow: 0 30px 60px rgba(0,0,0,0.95), inset 0 1px 2px rgba(255,215,0,0.15);
+              border: 1px solid rgba(255,215,0,0.2); position: relative; z-index: 1;
+            }
+            .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; padding: 0 6px; }
+            .game-title { display: flex; align-items: center; gap: 10px; }
+            .game-title i { font-size: 32px; color: #ffd742; filter: drop-shadow(0 0 15px rgba(255,215,0,0.5)); animation: glow 2s ease-in-out infinite alternate; }
+            @keyframes glow { 0% { filter: drop-shadow(0 0 10px rgba(255,215,0,0.3)); } 100% { filter: drop-shadow(0 0 25px rgba(255,215,0,0.8)); } }
+            .game-title h1 { font-size: 26px; font-weight: 900; background: linear-gradient(135deg, #ffd742, #ff8c00, #ffd742); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmer 3s ease-in-out infinite; letter-spacing: 1px; }
+            @keyframes shimmer { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+            .creator-badge { background: linear-gradient(135deg, #ff6b35, #f7931e); padding: 4px 14px; border-radius: 60px; font-size: 12px; font-weight: 700; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.5); border: 1px solid rgba(255,215,0,0.3); box-shadow: 0 0 20px rgba(255,107,53,0.2); white-space: nowrap; }
+            .coin-stats { background: linear-gradient(135deg, #1a2338, #111927); border-radius: 50px; padding: 14px 22px; margin: 10px 0 14px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,215,0,0.15); box-shadow: inset 0 4px 15px rgba(0,0,0,0.6), 0 8px 25px rgba(0,0,0,0.4); }
+            .coin-balance { display: flex; align-items: center; gap: 12px; }
+            .coin-balance i { font-size: 34px; color: #ffd742; filter: drop-shadow(0 0 20px rgba(255,215,0,0.6)); animation: coinSpin 4s linear infinite; }
+            @keyframes coinSpin { 0% { transform: rotateY(0deg); } 100% { transform: rotateY(360deg); } }
+            .coin-balance .amount { font-size: 34px; font-weight: 900; color: #fff; letter-spacing: 1px; text-shadow: 0 0 30px rgba(255,215,0,0.2); }
+            .per-tap { background: linear-gradient(135deg, #2a3450, #1a2338); padding: 6px 16px; border-radius: 40px; color: #bcc9e0; font-weight: 600; font-size: 15px; border: 1px solid rgba(255,215,0,0.2); }
+            .per-tap i { color: #ffd742; margin-left: 4px; }
+            .hamster-btn { display: flex; justify-content: center; margin: 18px 0 12px; position: relative; }
+            .hamster-btn button { background: radial-gradient(circle at 30% 30%, #ffd742, #e6a020, #b87a1a); width: 210px; height: 210px; border-radius: 50%; border: none; cursor: pointer; box-shadow: 0 20px 0 #8a6618, 0 30px 50px rgba(0,0,0,0.8), inset 0 -8px 0 #a87a1f, inset 0 8px 30px #ffe28a, 0 0 60px rgba(255,215,0,0.2); transition: all 0.06s linear; display: flex; align-items: center; justify-content: center; font-size: 100px; color: #3d2b0e; text-shadow: 0 6px 0 #a77d2a, 0 10px 30px rgba(0,0,0,0.4); position: relative; touch-action: manipulation; }
+            .hamster-btn button::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; background: linear-gradient(135deg, rgba(255,215,0,0.3), transparent); animation: borderGlow 2s ease-in-out infinite alternate; }
+            @keyframes borderGlow { 0% { opacity: 0.3; transform: scale(1); } 100% { opacity: 0.8; transform: scale(1.05); } }
+            .hamster-btn button:active { transform: scale(0.90); box-shadow: 0 8px 0 #8a6618, 0 20px 40px rgba(0,0,0,0.8); }
+            .hamster-btn button i { transition: 0.08s; font-size: 110px; filter: drop-shadow(0 8px 15px rgba(0,0,0,0.3)); position: relative; z-index: 2; }
+            .hamster-btn button:active i { transform: scale(0.8) rotate(-15deg); }
+            .tap-effect { position: absolute; pointer-events: none; font-size: 36px; font-weight: 900; color: #ffe484; text-shadow: 0 0 30px #f0c94b, 0 4px 0 #7a5f1a, 0 8px 20px rgba(0,0,0,0.5); z-index: 20; animation: floatUp 1s ease-out forwards; font-family: "Segoe UI", sans-serif; }
+            @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(0.5); } 50% { transform: translateY(-60px) scale(1.4); } 100% { opacity: 0; transform: translateY(-140px) scale(1.8); } }
+            .click-ripple { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(255,215,0,0.4), transparent); transform: scale(0); animation: rippleAnim 0.8s ease-out forwards; pointer-events: none; width: 150px; height: 150px; margin-left: -75px; margin-top: -75px; }
+            @keyframes rippleAnim { to { transform: scale(3); opacity: 0; } }
+            .boost-section { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 18px 0 16px; }
+            .boost-card { background: linear-gradient(135deg, #1a2338, #111927); padding: 10px 16px; border-radius: 40px; border: 1px solid rgba(255,215,0,0.15); display: flex; align-items: center; gap: 10px; flex: 1; box-shadow: inset 0 2px 10px rgba(0,0,0,0.4); }
+            .boost-card i { color: #ff6b35; font-size: 22px; animation: pulse 1.5s ease-in-out infinite; }
+            @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+            .boost-card .boost-info { color: #bcc9e0; font-size: 14px; font-weight: 600; }
+            .boost-card .boost-info small { display: block; color: #ff8c00; font-size: 18px; font-weight: 800; text-shadow: 0 0 20px rgba(255,140,0,0.3); }
+            .progress-level { background: linear-gradient(135deg, #2a3450, #1a2338); border-radius: 40px; padding: 4px 18px; border: 1px solid rgba(255,215,0,0.2); color: #fff; font-weight: 700; box-shadow: inset 0 2px 10px rgba(0,0,0,0.4); }
+            .progress-level i { color: #ffd742; margin-left: 4px; }
+            .mission-box { background: linear-gradient(135deg, #111927, #0c111f); border-radius: 30px; padding: 16px 18px; margin: 12px 0 8px; border: 1px solid rgba(255,215,0,0.1); box-shadow: inset 0 2px 20px rgba(0,0,0,0.5); }
+            .mission-header { display: flex; justify-content: space-between; color: #b0c2e0; font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+            .mission-header span i { color: #ffd742; margin-left: 6px; }
+            .mission-item { display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #1b2338, #141c2e); padding: 10px 16px; border-radius: 30px; margin-bottom: 8px; border-left: 4px solid #ffd742; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.3); cursor: pointer; }
+            .mission-item:hover { transform: translateX(-5px); border-left-color: #ff6b35; }
+            .mission-item .left { display: flex; align-items: center; gap: 12px; }
+            .mission-item .left i { color: #ffd742; font-size: 20px; width: 28px; text-align: center; }
+            .mission-item .left span { color: #eaf0ff; font-weight: 600; }
+            .mission-item .right { color: #ffd742; font-size: 14px; background: linear-gradient(135deg, #0f1625, #1a2338); padding: 4px 16px; border-radius: 40px; font-weight: 700; border: 1px solid rgba(255,215,0,0.15); }
+            .mission-item .right i { color: #ffd742; margin-left: 4px; }
+            .footer-menu { display: flex; justify-content: space-around; margin-top: 18px; padding-top: 12px; border-top: 1px solid rgba(255,215,0,0.08); }
+            .footer-menu .menu-item { color: #4a5a7a; font-size: 13px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: 0.3s; cursor: pointer; padding: 4px 8px; border-radius: 12px; transition: all 0.3s ease; }
+            .footer-menu .menu-item i { font-size: 26px; color: #4a5a7a; transition: 0.3s; }
+            .footer-menu .menu-item:hover { background: rgba(255,215,0,0.05); transform: translateY(-2px); }
+            .footer-menu .menu-item:hover i { color: #ffd742; filter: drop-shadow(0 0 15px rgba(255,215,0,0.3)); }
+            .footer-menu .menu-item.active i { color: #ffd742; filter: drop-shadow(0 0 15px rgba(255,215,0,0.5)); }
+            .footer-menu .menu-item.active { color: #ffd742; }
+            .combo-display { background: linear-gradient(135deg, #2a3450, #1a2338); padding: 4px 16px; border-radius: 40px; font-weight: 700; font-size: 14px; border: 1px solid rgba(255,215,0,0.15); color: #bcc9e0; }
+            .combo-display i { color: #ff6b35; margin-left: 4px; }
+            @media (max-width: 420px) {
+              .hamster-btn button { width: 170px; height: 170px; }
+              .hamster-btn button i { font-size: 80px; }
+              .coin-balance .amount { font-size: 26px; }
+              .game-title h1 { font-size: 22px; }
+              .creator-badge { font-size: 10px; padding: 3px 10px; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="game-container" id="app">
+            <div class="header">
+              <div class="game-title"><i class="fas fa-crown"></i><h1>MegaCoin</h1></div>
+              <div class="creator-badge"><i class="fas fa-code"></i> DachAshkan</div>
+            </div>
+            <div class="coin-stats">
+              <div class="coin-balance"><i class="fas fa-coins"></i><span class="amount" id="coinDisplay">0</span></div>
+              <div class="per-tap"><i class="fas fa-hand-pointer"></i> <span id="perTapDisplay">1</span></div>
+            </div>
+            <div class="hamster-btn" id="hamsterBtnWrapper">
+              <button id="hamsterBtn"><i class="fas fa-hippo"></i></button>
+            </div>
+            <div class="boost-section">
+              <div class="boost-card"><i class="fas fa-rocket"></i><div class="boost-info">Boost <small id="boostLevel">×1.0</small></div></div>
+              <div class="combo-display"><i class="fas fa-fire"></i> <span id="comboDisplay">0</span> کامبو</div>
+              <div class="progress-level"><i class="fas fa-star"></i> لول <span id="levelDisplay">1</span></div>
+            </div>
+            <div class="mission-box">
+              <div class="mission-header"><span><i class="fas fa-list-check"></i> آپگریدها</span><span id="nextLevelCost">💰 50</span></div>
+              <div class="mission-item" id="upgradeBtn"><div class="left"><i class="fas fa-arrow-up"></i><span>ارتقا همستر</span></div><div class="right" id="upgradeCostLabel"><i class="fas fa-coins"></i> 50</div></div>
+              <div class="mission-item" id="boostUpgradeBtn"><div class="left"><i class="fas fa-bolt"></i><span>افزایش ضریب</span></div><div class="right" id="boostCostLabel"><i class="fas fa-coins"></i> 30</div></div>
+            </div>
+            <div class="footer-menu">
+              <div class="menu-item active" data-page="home"><i class="fas fa-house"></i> خانه</div>
+              <div class="menu-item" data-page="ranking"><i class="fas fa-trophy"></i> رنکینگ</div>
+              <div class="menu-item" data-page="shop"><i class="fas fa-store"></i> فروشگاه</div>
+              <div class="menu-item" data-page="profile"><i class="fas fa-user"></i> پروفایل</div>
+            </div>
+          </div>
+          <script>
+            (function() {
+              let coins = 0, perTap = 1, boostMultiplier = 1.0, level = 1, combo = 0, lastClickTime = 0;
+              let upgradeCost = 50, boostUpgradeCost = 30;
+              const coinDisplay = document.getElementById("coinDisplay");
+              const perTapDisplay = document.getElementById("perTapDisplay");
+              const levelDisplay = document.getElementById("levelDisplay");
+              const boostLevelDisplay = document.getElementById("boostLevel");
+              const upgradeCostLabel = document.getElementById("upgradeCostLabel");
+              const boostCostLabel = document.getElementById("boostCostLabel");
+              const nextLevelCost = document.getElementById("nextLevelCost");
+              const comboDisplay = document.getElementById("comboDisplay");
+              const hamsterBtn = document.getElementById("hamsterBtn");
+              const wrapper = document.getElementById("hamsterBtnWrapper");
+              function updateUI() {
+                coinDisplay.textContent = coins;
+                perTapDisplay.textContent = perTap;
+                levelDisplay.textContent = level;
+                boostLevelDisplay.textContent = "×" + boostMultiplier.toFixed(1);
+                upgradeCostLabel.innerHTML = `<i class="fas fa-coins"></i> ${upgradeCost}`;
+                boostCostLabel.innerHTML = `<i class="fas fa-coins"></i> ${boostUpgradeCost}`;
+                nextLevelCost.textContent = "💰 " + upgradeCost;
+                comboDisplay.textContent = combo;
+              }
+              function handleHamsterClick(e) {
+                const now = Date.now();
+                if (now - lastClickTime < 300) combo++; else combo = 1;
+                lastClickTime = now;
+                if (combo > 50) combo = 50;
+                const comboBonus = 1 + (combo * 0.02);
+                const earned = Math.floor(perTap * boostMultiplier * comboBonus);
+                coins += earned;
+                const rect = hamsterBtn.getBoundingClientRect();
+                const el = document.createElement("div");
+                el.className = "tap-effect";
+                el.textContent = "+" + earned;
+                const x = (e.clientX || rect.left + rect.width/2) - rect.left;
+                const y = (e.clientY || rect.top + rect.height/2) - rect.top;
+                el.style.left = (x - 20) + "px";
+                el.style.top = (y - 20) + "px";
+                wrapper.appendChild(el);
+                setTimeout(() => el.remove(), 1000);
+                const ripple = document.createElement("div");
+                ripple.className = "click-ripple";
+                const rect2 = hamsterBtn.getBoundingClientRect();
+                const rx = (e.clientX || rect2.left + rect2.width/2) - rect2.left;
+                const ry = (e.clientY || rect2.top + rect2.height/2) - rect2.top;
+                ripple.style.left = rx + "px";
+                ripple.style.top = ry + "px";
+                hamsterBtn.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 800);
+                updateUI();
+              }
+              function upgradeHamster() {
+                if (coins < upgradeCost) { alert("سکه کافی نیست!"); return; }
+                coins -= upgradeCost;
+                perTap += 1;
+                upgradeCost = Math.floor(upgradeCost * 1.6) + 5;
+                if (perTap % 3 === 0) { level += 1; boostMultiplier = Math.min(5.0, boostMultiplier + 0.2); }
+                updateUI();
+              }
+              function upgradeBoost() {
+                if (coins < boostUpgradeCost) { alert("سکه کافی نیست!"); return; }
+                coins -= boostUpgradeCost;
+                boostMultiplier = Math.min(5.0, boostMultiplier + 0.3);
+                boostUpgradeCost = Math.floor(boostUpgradeCost * 1.4) + 10;
+                updateUI();
+              }
+              hamsterBtn.addEventListener("click", handleHamsterClick);
+              document.getElementById("upgradeBtn").addEventListener("click", upgradeHamster);
+              document.getElementById("boostUpgradeBtn").addEventListener("click", upgradeBoost);
+              document.querySelectorAll(".menu-item").forEach(item => {
+                item.addEventListener("click", function() {
+                  document.querySelectorAll(".menu-item").forEach(m => m.classList.remove("active"));
+                  this.classList.add("active");
+                  alert("🚀 " + this.dataset.page + " - به زودی!");
+                });
+              });
+              function saveGame() {
+                try { localStorage.setItem("megaCoinSave", JSON.stringify({ coins, perTap, boostMultiplier, level, upgradeCost, boostUpgradeCost, combo })); } catch(e) {}
+              }
+              function loadGame() {
+                try {
+                  const raw = localStorage.getItem("megaCoinSave");
+                  if (!raw) return false;
+                  const data = JSON.parse(raw);
+                  coins = data.coins ?? 0; perTap = data.perTap ?? 1; boostMultiplier = data.boostMultiplier ?? 1.0;
+                  level = data.level ?? 1; upgradeCost = data.upgradeCost ?? 50; boostUpgradeCost = data.boostUpgradeCost ?? 30;
+                  combo = data.combo ?? 0;
+                  return true;
+                } catch(e) { return false; }
+              }
+              setInterval(saveGame, 5000);
+              const loaded = loadGame();
+              if (!loaded) { coins = 0; perTap = 1; boostMultiplier = 1.0; level = 1; upgradeCost = 50; boostUpgradeCost = 30; combo = 0; }
+              updateUI();
+              window.addEventListener("beforeunload", saveGame);
+              hamsterBtn.addEventListener("contextmenu", (e) => e.preventDefault());
+              console.log("🔥 MegaCoin - ساخته شده توسط DachAshkan");
+            })();
+          </script>
+        </body>
+        </html>
+      '></iframe>
+    </div>
+
+    <!-- FOOTER -->
     <div class="footer-note">// ultra · dark · motion · ir //</div>
   </div>
 
@@ -616,24 +1235,140 @@
       const title = document.getElementById('titleGlitch');
       const dateEl = document.getElementById('dateDisplay');
       const timeEl = document.getElementById('timeDisplay');
+      const gameEmbed = document.getElementById('gameEmbed');
+      const gameToggleBtn = document.getElementById('gameToggleBtn');
+      const gameCloseBtn = document.getElementById('gameCloseBtn');
+      const lowSpecBtn = document.getElementById('lowSpecBtn');
+      const musicBtn = document.getElementById('musicBtn');
 
-      const linesCount = 16;
-      const lines = [];
-      for (let i = 0; i < linesCount; i++) {
-        const line = document.createElement('div');
-        line.className = 'motion-line';
-        line.style.top = (i * 6.5) + '%';
-        line.style.left = '-15%';
-        line.style.width = '130%';
-        line.style.height = (i % 4 === 0) ? '2px' : '1px';
-        const r = 160 + Math.floor(Math.random() * 95);
-        const g = 20 + Math.floor(Math.random() * 30);
-        line.style.background = `linear-gradient(90deg, transparent, rgba(${r}, ${g}, 20, 0.1), transparent)`;
-        line.style.filter = 'blur(2px)';
-        document.body.appendChild(line);
-        lines.push(line);
+      // ===== LIVE NEWS =====
+      const newsItems = [
+        { time: '12:34', text: '🚀 MegaBomb v2.0 در حال توسعه', badge: 'new' },
+        { time: '11:20', text: '🎮 بازی MegaCoin به‌روز شد!', badge: 'update' },
+        { time: '10:15', text: '🔥 ۲۰۰+ سرویس جدید اضافه شد', badge: 'hot' },
+        { time: '09:00', text: '💣 تست MegaBomb آغاز شد', badge: 'beta' },
+        { time: '08:30', text: '🇮🇷 تیم MegaUltra فعالیت خود را شروع کرد', badge: 'welcome' },
+        { time: '07:45', text: '🛡️ به‌روزرسانی امنیتی اعمال شد', badge: 'security' },
+        { time: '06:50', text: '📊 آمار کاربران از ۱۰۰۰ نفر گذشت!', badge: 'milestone' },
+        { time: '05:30', text: '🎯 هدف جدید: ۵۰۰۰ کاربر فعال', badge: 'goal' }
+      ];
+
+      let newsIndex = 0;
+      const newsContainer = document.getElementById('newsContainer');
+
+      function updateNews() {
+        const item = newsItems[newsIndex % newsItems.length];
+        const newsItem = document.createElement('div');
+        newsItem.className = 'news-item';
+        newsItem.style.animation = 'fadeIn 0.5s ease';
+        newsItem.innerHTML = `
+          <span class="time">${item.time}</span>
+          <span class="text">${item.text}</span>
+          <span class="badge">${item.badge}</span>
+        `;
+        newsContainer.prepend(newsItem);
+        // حذف آیتم‌های اضافی (حداکثر 6 عدد)
+        while (newsContainer.children.length > 6) {
+          newsContainer.removeChild(newsContainer.lastChild);
+        }
+        newsIndex++;
       }
 
+      // هر 10 ثانیه یک خبر جدید
+      setInterval(updateNews, 10000);
+
+      // ===== SPONSOR ROTATION =====
+      const sponsors = [
+        { icon: '🛡️', name: 'CyberSec.ir', desc: 'حامی امنیت' },
+        { icon: '⚡', name: 'HostIran', desc: 'سرورهای قدرتمند' },
+        { icon: '🎮', name: 'GameZone', desc: 'اسپانسر بازی‌ها' },
+        { icon: '💎', name: 'CryptoPay', desc: 'پرداخت رمز ارز' },
+        { icon: '🚀', name: 'MegaHost', desc: 'پشتیبانی فنی' },
+        { icon: '🔐', name: 'SecureVPN', desc: 'حریم خصوصی' },
+        { icon: '💻', name: 'CodeLab', desc: 'توسعه دهندگان' }
+      ];
+
+      let sponsorIndex = 0;
+      const sponsorContainer = document.getElementById('sponsorContainer');
+
+      function updateSponsor() {
+        const item = sponsors[sponsorIndex % sponsors.length];
+        const sponsorItem = document.createElement('div');
+        sponsorItem.className = 'sponsor-item';
+        sponsorItem.style.animation = 'fadeIn 0.5s ease';
+        sponsorItem.innerHTML = `
+          <span class="sponsor-icon">${item.icon}</span>
+          <span class="sponsor-name">${item.name}</span>
+          <span class="sponsor-desc">${item.desc}</span>
+        `;
+        sponsorContainer.prepend(sponsorItem);
+        while (sponsorContainer.children.length > 6) {
+          sponsorContainer.removeChild(sponsorContainer.lastChild);
+        }
+        sponsorIndex++;
+      }
+
+      setInterval(updateSponsor, 12000);
+
+      // ===== MUSIC =====
+      let audio = null;
+      let musicPlaying = false;
+
+      function createAudio() {
+        if (!audio) {
+          audio = new Audio();
+          audio.src = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+          audio.loop = true;
+          audio.volume = 0.25;
+        }
+        return audio;
+      }
+
+      musicBtn.addEventListener('click', function() {
+        const aud = createAudio();
+        if (musicPlaying) {
+          aud.pause();
+          musicPlaying = false;
+          this.innerHTML = '<i class="fas fa-music"></i> آهنگ';
+          this.style.color = '#dd88bb';
+        } else {
+          aud.play().catch(() => {});
+          musicPlaying = true;
+          this.innerHTML = '<i class="fas fa-stop"></i> توقف آهنگ';
+          this.style.color = '#ff66aa';
+        }
+      });
+
+      // ===== LOW SPEC =====
+      let lowSpecActive = false;
+      lowSpecBtn.addEventListener('click', function() {
+        lowSpecActive = !lowSpecActive;
+        document.body.classList.toggle('low-spec-mode', lowSpecActive);
+        this.innerHTML = lowSpecActive ? 
+          '<i class="fas fa-tachometer-alt"></i> حالت عادی' : 
+          '<i class="fas fa-tachometer-alt"></i> حالت کم‌مصرف';
+        this.style.color = lowSpecActive ? '#66ccff' : '#88ccdd';
+      });
+
+      // ===== GAME =====
+      let gameActive = false;
+      gameToggleBtn.addEventListener('click', function() {
+        gameActive = !gameActive;
+        gameEmbed.classList.toggle('active', gameActive);
+        this.innerHTML = gameActive ? 
+          '<i class="fas fa-times"></i> بستن بازی' : 
+          '<i class="fas fa-gamepad"></i> بازی';
+        this.style.color = gameActive ? '#ff6666' : '#66ff88';
+      });
+
+      gameCloseBtn.addEventListener('click', function() {
+        gameActive = false;
+        gameEmbed.classList.remove('active');
+        gameToggleBtn.innerHTML = '<i class="fas fa-gamepad"></i> بازی';
+        gameToggleBtn.style.color = '#66ff88';
+      });
+
+      // ===== CLOCK =====
       function updateClock() {
         const now = new Date();
         const year = now.getFullYear();
@@ -648,6 +1383,25 @@
       updateClock();
       setInterval(updateClock, 1000);
 
+      // ===== MOTION LINES =====
+      const linesCount = 14;
+      const lines = [];
+      for (let i = 0; i < linesCount; i++) {
+        const line = document.createElement('div');
+        line.className = 'motion-line';
+        line.style.top = (i * 7.5) + '%';
+        line.style.left = '-15%';
+        line.style.width = '130%';
+        line.style.height = (i % 4 === 0) ? '2px' : '1px';
+        const r = 200 + Math.floor(Math.random() * 55);
+        const g = 180 + Math.floor(Math.random() * 40);
+        line.style.background = `linear-gradient(90deg, transparent, rgba(${r}, ${g}, 50, 0.08), transparent)`;
+        line.style.filter = 'blur(2px)';
+        document.body.appendChild(line);
+        lines.push(line);
+      }
+
+      // ===== MOUSE =====
       document.addEventListener('mousemove', (e) => {
         const x = e.clientX;
         const y = e.clientY;
@@ -670,14 +1424,14 @@
         card.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.015)`;
         card.style.transition = 'transform 0.05s cubic-bezier(0.1, 0.9, 0.2, 1)';
 
-        title.style.transform = `skewX(${-5 + dx * 2.5}deg) scaleY(${1.08 + dy * 0.04}) translateX(${dx * 4}px)`;
+        title.style.transform = `skewX(${-4 + dx * 2.5}deg) scaleY(${1.06 + dy * 0.04}) translateX(${dx * 4}px)`;
 
         lines.forEach((line, idx) => {
           const offset = (x / window.innerWidth) * 80 + (y / window.innerHeight) * 50;
           const shift = (Math.sin(Date.now() * 0.0012 + idx * 0.4 + offset * 0.15) * 30) + 15;
           line.style.transform = `translateX(${shift - 8}px)`;
-          const opacity = 0.08 + Math.sin(Date.now() * 0.0018 + idx * 0.25) * 0.06 + 0.03;
-          line.style.opacity = Math.min(opacity, 0.3);
+          const opacity = 0.06 + Math.sin(Date.now() * 0.0018 + idx * 0.25) * 0.05 + 0.03;
+          line.style.opacity = Math.min(opacity, 0.25);
         });
       });
 
@@ -686,16 +1440,17 @@
         dot.style.opacity = '0.08';
         card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)';
         card.style.transition = 'transform 0.5s ease';
-        title.style.transform = 'skewX(-5deg) scaleY(1.08) translateX(0)';
+        title.style.transform = 'skewX(-4deg) scaleY(1.06) translateX(0)';
         lines.forEach(line => { line.style.opacity = '0.01'; });
       });
 
       document.addEventListener('mouseenter', () => {
         glow.style.opacity = '1';
         dot.style.opacity = '1';
-        lines.forEach(line => { line.style.opacity = '0.08'; });
+        lines.forEach(line => { line.style.opacity = '0.06'; });
       });
 
+      // ===== INIT =====
       setTimeout(() => {
         const fake = new MouseEvent('mousemove', {
           clientX: window.innerWidth * 0.5,
@@ -704,31 +1459,33 @@
         document.dispatchEvent(fake);
       }, 150);
 
+      // ===== GLITCH =====
       setInterval(() => {
-        if (Math.random() > 0.82) {
+        if (Math.random() > 0.85) {
           title.style.animation = 'none';
           title.style.transform = `skewX(${(Math.random() - 0.5) * 10}deg) scaleY(${1.05 + Math.random() * 0.1})`;
           setTimeout(() => {
-            title.style.animation = 'titleGlitch 3.5s infinite';
+            title.style.animation = 'titleGlitch 4s infinite';
             title.style.transform = '';
           }, 100);
         }
       }, 2800);
 
-      setInterval(() => {
-        if (Math.random() > 0.75) {
-          const r = 180 + Math.floor(Math.random() * 75);
-          glow.style.background = `radial-gradient(circle, rgba(${r}, 15, 15, 0.18) 0%, rgba(200, 0, 0, 0.03) 40%, transparent 70%)`;
-          setTimeout(() => {
-            glow.style.background = `radial-gradient(circle, rgba(255, 15, 15, 0.15) 0%, rgba(200, 0, 0, 0.03) 40%, transparent 70%)`;
-          }, 350);
+      // ===== ADD CSS ANIMATION =====
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-      }, 400);
+      `;
+      document.head.appendChild(style);
 
       console.log('🔥 MegaUltra · DachNima & DachAshkan · IR 🔥');
       console.log('💣 MegaBomb (SmsBomber) · Comming Soon');
       console.log('📅 ' + new Date().toISOString().slice(0,10) + ' ' + new Date().toTimeString().slice(0,8));
       console.log('🎮 Discord: https://discord.gg/PHT7av9aK');
+      console.log('📰 Live News & Sponsors Active!');
     })();
   </script>
 
