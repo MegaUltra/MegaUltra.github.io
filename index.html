@@ -117,8 +117,22 @@ body::before {
     transform: translate(-50%, -50%);
     text-align: center;
     z-index: 1;
-    width: 80%;
-    max-width: 900px;
+    width: 85%;
+    max-width: 1100px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.content::-webkit-scrollbar {
+    width: 4px;
+}
+.content::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.02);
+}
+.content::-webkit-scrollbar-thumb {
+    background: rgba(166,255,179,0.2);
+    border-radius: 10px;
 }
 
 .title {
@@ -230,9 +244,9 @@ body::before {
 /* ================= TEAM ================= */
 .team-grid {
     display: none;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    margin-top: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
     padding: 0 20px;
 }
 
@@ -245,7 +259,7 @@ body::before {
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255,255,255,0.05);
     border-radius: 24px;
-    padding: 40px 30px 35px;
+    padding: 32px 24px 28px;
     text-align: center;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: default;
@@ -270,20 +284,20 @@ body::before {
 }
 
 .team-card:hover {
-    transform: translateY(-12px) scale(1.02);
+    transform: translateY(-10px) scale(1.02);
     border-color: rgba(166,255,179,0.2);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.7), 0 0 40px rgba(166,255,179,0.05);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.7), 0 0 40px rgba(166,255,179,0.05);
 }
 
 .team-card .avatar {
-    width: 100px;
-    height: 100px;
+    width: 85px;
+    height: 85px;
     border-radius: 50%;
-    margin: 0 auto 18px;
+    margin: 0 auto 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 48px;
+    font-size: 38px;
     font-weight: 900;
     color: #0a0a0a;
     background: linear-gradient(135deg, #a6ffb3, #4ecdc4);
@@ -294,38 +308,44 @@ body::before {
 
 .team-card:hover .avatar {
     transform: scale(1.08) rotate(-5deg);
-    box-shadow: 0 0 60px rgba(166,255,179,0.25);
+    box-shadow: 0 0 50px rgba(166,255,179,0.25);
 }
 
 .team-card .team-name {
     font-family: 'Orbitron', sans-serif;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 700;
     color: #a6ffb3;
-    margin: 0 0 4px 0;
-    letter-spacing: 2px;
+    margin: 0 0 3px 0;
+    letter-spacing: 1px;
     text-shadow: 0 0 20px rgba(166,255,179,0.1);
 }
 
 .team-card .team-role {
     font-family: "V1", sans-serif;
-    font-size: 15px;
+    font-size: 13px;
     color: rgba(255,255,255,0.5);
-    margin: 0 0 6px 0;
-    letter-spacing: 1px;
+    margin: 0 0 4px 0;
+    letter-spacing: 0.5px;
 }
 
 .team-card .team-badge {
     display: inline-block;
     background: rgba(166,255,179,0.08);
     border: 1px solid rgba(166,255,179,0.1);
-    padding: 4px 16px;
+    padding: 3px 14px;
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 10px;
     font-family: 'Orbitron', sans-serif;
     color: #a6ffb3;
-    letter-spacing: 1px;
-    margin-top: 6px;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+
+.team-card .team-badge.admin {
+    background: rgba(255,215,0,0.12);
+    border-color: rgba(255,215,0,0.15);
+    color: #ffd700;
 }
 
 .team-card .glow-line {
@@ -360,6 +380,263 @@ body::before {
 @keyframes pulseRing {
     0%, 100% { transform: scale(1); opacity: 0.3; }
     50% { transform: scale(1.02); opacity: 0.6; }
+}
+
+/* ================= TICKET SYSTEM WITH ANTI-SPAM ================= */
+.ticket-section {
+    display: none;
+    margin-top: 35px;
+    padding: 0 10px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ticket-section.active {
+    display: block;
+}
+
+.ticket-form {
+    background: rgba(15,15,15,0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 20px;
+    padding: 30px 28px;
+    text-align: left;
+}
+
+.ticket-form h4 {
+    font-family: 'Orbitron', sans-serif;
+    color: #a6ffb3;
+    font-size: 18px;
+    margin: 0 0 18px 0;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.ticket-form .form-group {
+    margin-bottom: 16px;
+}
+
+.ticket-form .form-group label {
+    display: block;
+    color: rgba(255,255,255,0.5);
+    font-family: "V1", sans-serif;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.ticket-form .form-group input,
+.ticket-form .form-group select,
+.ticket-form .form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    color: #fff;
+    font-family: "V1", sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+.ticket-form .form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.ticket-form .form-group input:focus,
+.ticket-form .form-group select:focus,
+.ticket-form .form-group textarea:focus {
+    border-color: rgba(166,255,179,0.15);
+    background: rgba(255,255,255,0.06);
+}
+
+.ticket-form .form-group select {
+    appearance: none;
+    color: rgba(255,255,255,0.6);
+}
+
+.ticket-form .form-group select option {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+/* ===== ANTI-SPAM SYSTEM ===== */
+.spam-protection {
+    background: rgba(255,180,50,0.04);
+    border: 1px solid rgba(255,180,50,0.06);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.spam-protection .status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "V1", sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+}
+
+.spam-protection .status .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.spam-protection .status .dot.green {
+    background: #a6ffb3;
+    box-shadow: 0 0 15px rgba(166,255,179,0.3);
+}
+
+.spam-protection .status .dot.yellow {
+    background: #ffb833;
+    box-shadow: 0 0 15px rgba(255,184,51,0.3);
+    animation: pulse 1s ease-in-out infinite;
+}
+
+.spam-protection .status .dot.red {
+    background: #ff6b6b;
+    box-shadow: 0 0 15px rgba(255,107,107,0.3);
+    animation: pulse 0.5s ease-in-out infinite;
+}
+
+.spam-protection .status .dot.gray {
+    background: rgba(255,255,255,0.1);
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}
+
+.spam-protection .cooldown {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffb833;
+    letter-spacing: 1px;
+}
+
+.spam-protection .cooldown span {
+    font-size: 20px;
+}
+
+.spam-protection .limit-info {
+    font-family: "V1", sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+}
+
+.ticket-form .submit-ticket {
+    width: 100%;
+    padding: 12px;
+    background: rgba(166,255,179,0.06);
+    border: 1px solid rgba(166,255,179,0.1);
+    border-radius: 14px;
+    color: #a6ffb3;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    letter-spacing: 1px;
+}
+
+.ticket-form .submit-ticket:hover:not(:disabled) {
+    background: rgba(166,255,179,0.1);
+    border-color: rgba(166,255,179,0.2);
+}
+
+.ticket-form .submit-ticket:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.ticket-form .submit-ticket.spam-blocked {
+    background: rgba(255,80,80,0.08);
+    border-color: rgba(255,80,80,0.15);
+    color: #ff6b6b;
+}
+
+.ticket-list {
+    margin-top: 20px;
+    background: rgba(15,15,15,0.3);
+    border-radius: 16px;
+    padding: 16px 20px;
+    border: 1px solid rgba(255,255,255,0.03);
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.ticket-list::-webkit-scrollbar {
+    width: 3px;
+}
+.ticket-list::-webkit-scrollbar-thumb {
+    background: rgba(166,255,179,0.15);
+    border-radius: 10px;
+}
+
+.ticket-list h5 {
+    font-family: 'Orbitron', sans-serif;
+    color: rgba(255,255,255,0.3);
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin: 0 0 12px 0;
+}
+
+.ticket-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.ticket-item:last-child {
+    border-bottom: none;
+}
+
+.ticket-item .ticket-title {
+    font-family: "V1", sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+}
+
+.ticket-item .ticket-status {
+    font-size: 11px;
+    font-family: 'Orbitron', sans-serif;
+    padding: 3px 12px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+}
+
+.ticket-item .ticket-status.open {
+    background: rgba(255,180,50,0.08);
+    color: #ffb833;
+    border: 1px solid rgba(255,180,50,0.06);
+}
+
+.ticket-item .ticket-status.inprogress {
+    background: rgba(70,130,255,0.08);
+    color: #66aaff;
+    border: 1px solid rgba(70,130,255,0.06);
+}
+
+.ticket-item .ticket-status.resolved {
+    background: rgba(166,255,179,0.08);
+    color: #a6ffb3;
+    border: 1px solid rgba(166,255,179,0.06);
 }
 
 /* ================= SUPPORT MODAL ================= */
@@ -635,7 +912,7 @@ body::before {
 
 .chatbot-messages {
     padding: 20px 22px;
-    max-height: 320px;
+    max-height: 280px;
     overflow-y: auto;
     scroll-behavior: smooth;
 }
@@ -643,11 +920,9 @@ body::before {
 .chatbot-messages::-webkit-scrollbar {
     width: 4px;
 }
-
 .chatbot-messages::-webkit-scrollbar-track {
     background: rgba(255,255,255,0.02);
 }
-
 .chatbot-messages::-webkit-scrollbar-thumb {
     background: rgba(166,255,179,0.2);
     border-radius: 10px;
@@ -683,16 +958,6 @@ body::before {
     color: #a6ffb3;
     margin-left: auto;
     border-bottom-right-radius: 4px;
-}
-
-.chatbot-messages .msg.bot .typing {
-    display: inline-block;
-    animation: typing 1.2s ease-in-out infinite;
-}
-
-@keyframes typing {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
 }
 
 .chatbot-input {
@@ -1113,6 +1378,8 @@ body::before {
     .support-box .support-users { flex-direction: column; align-items: center; }
     .chatbot-window { width: calc(100% - 30px); right: 15px; bottom: 80px; max-height: 400px; }
     .chatbot-toggle { padding: 10px 16px; font-size: 12px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .spam-protection { flex-direction: column; align-items: stretch; text-align: center; }
 }
 </style>
 </head>
@@ -1128,6 +1395,7 @@ body::before {
     </div>
     <div class="logo">MEGA</div>
     <div class="nav right-nav">
+        <button id="navTickets" style="color: #a6ffb3; background: rgba(166,255,179,0.06);">🎫 Tickets</button>
         <button id="supportBtn" style="color: #a6ffb3; background: rgba(166,255,179,0.06);">💬 Support</button>
         <button id="loginNavBtn" style="background: rgba(166,255,179,0.08); color: #a6ffb3;">Login</button>
     </div>
@@ -1172,7 +1440,85 @@ body::before {
             <div class="glow-line"></div>
         </div>
 
+        <div class="team-card">
+            <div class="pulse-ring"></div>
+            <div class="avatar">⚡</div>
+            <h3 class="team-name">llA_Sll</h3>
+            <p class="team-role">👑 Admin · Team Manager</p>
+            <div class="team-badge admin">⭐ ADMIN</div>
+            <div class="glow-line"></div>
+        </div>
+
+        <div class="team-card">
+            <div class="pulse-ring"></div>
+            <div class="avatar">💻</div>
+            <h3 class="team-name">arad1040</h3>
+            <p class="team-role">👤 Member · Developer</p>
+            <div class="team-badge">🛠️ MEMBER</div>
+            <div class="glow-line"></div>
+        </div>
+
+        <div class="team-card">
+            <div class="pulse-ring"></div>
+            <div class="avatar">🚀</div>
+            <h3 class="team-name">Mohammadvip10</h3>
+            <p class="team-role">👤 Member · Supporter</p>
+            <div class="team-badge">🤝 MEMBER</div>
+            <div class="glow-line"></div>
+        </div>
+
         <button class="back-btn" id="backTeamBtn">⬅ Back to Home</button>
+    </div>
+
+    <!-- TICKET SYSTEM WITH ANTI-SPAM -->
+    <div id="ticketsContent" class="ticket-section">
+        <div class="ticket-form">
+            <h4>🎫 Submit a Ticket</h4>
+
+            <!-- Anti-Spam Protection Status -->
+            <div class="spam-protection" id="spamProtection">
+                <div class="status">
+                    <span class="dot green" id="statusDot"></span>
+                    <span id="statusText">Ready</span>
+                </div>
+                <div class="cooldown" id="cooldownDisplay">
+                    <span id="cooldownCount">0</span>s
+                </div>
+                <div class="limit-info">
+                    ⚡ <span id="ticketCount">0</span> / 3 tickets per hour
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" id="ticketTitle" placeholder="Brief issue description">
+            </div>
+            <div class="form-group">
+                <label>Priority</label>
+                <select id="ticketPriority">
+                    <option value="Low">Low</option>
+                    <option value="Medium" selected>Medium</option>
+                    <option value="High">High</option>
+                    <option value="Critical">Critical</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Message</label>
+                <textarea id="ticketMessage" placeholder="Describe your issue in detail..."></textarea>
+            </div>
+            <button class="submit-ticket" id="submitBtn" onclick="submitTicket()">📤 Submit Ticket</button>
+        </div>
+
+        <div class="ticket-list">
+            <h5>📋 Your Tickets</h5>
+            <div id="ticketListContainer">
+                <div style="color: rgba(255,255,255,0.2); font-family: 'V1', sans-serif; font-size: 13px; text-align: center; padding: 10px 0;">
+                    No tickets submitted yet.
+                </div>
+            </div>
+        </div>
+
+        <button class="back-btn" id="backTicketsBtn">⬅ Back to Home</button>
     </div>
 </div>
 
@@ -1314,6 +1660,266 @@ body::before {
 </div>
 
 <script>
+// ===================== ANTI-SPAM SYSTEM =====================
+const SPAM_CONFIG = {
+    MAX_TICKETS_PER_HOUR: 3,
+    COOLDOWN_SECONDS: 60, // 60 seconds cooldown between tickets
+    BLOCK_DURATION: 300 // 5 minutes block if spam detected
+};
+
+let spamState = {
+    ticketCount: 0,
+    lastTicketTime: 0,
+    cooldownEnd: 0,
+    blockEnd: 0,
+    isBlocked: false
+};
+
+// Load spam state from localStorage
+function loadSpamState() {
+    const saved = localStorage.getItem('megaSpamState');
+    if (saved) {
+        try {
+            const parsed = JSON.parse(saved);
+            spamState = { ...spamState, ...parsed };
+            // Reset if too old (more than 1 hour)
+            if (Date.now() - spamState.lastTicketTime > 3600000) {
+                spamState.ticketCount = 0;
+                spamState.blockEnd = 0;
+                spamState.isBlocked = false;
+            }
+        } catch (e) {
+            console.log('Spam state reset');
+        }
+    }
+}
+
+function saveSpamState() {
+    localStorage.setItem('megaSpamState', JSON.stringify(spamState));
+}
+
+function updateSpamUI() {
+    const now = Date.now();
+    const dot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
+    const cooldownCount = document.getElementById('cooldownCount');
+    const ticketCount = document.getElementById('ticketCount');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // Update ticket count
+    ticketCount.textContent = spamState.ticketCount;
+
+    // Check block
+    if (spamState.blockEnd > now) {
+        const remaining = Math.ceil((spamState.blockEnd - now) / 1000);
+        dot.className = 'dot red';
+        statusText.textContent = `🚫 BLOCKED (${remaining}s)`;
+        cooldownCount.textContent = remaining;
+        submitBtn.disabled = true;
+        submitBtn.classList.add('spam-blocked');
+        submitBtn.textContent = '⛔ BLOCKED';
+        return;
+    }
+
+    // Check cooldown
+    if (spamState.cooldownEnd > now) {
+        const remaining = Math.ceil((spamState.cooldownEnd - now) / 1000);
+        dot.className = 'dot yellow';
+        statusText.textContent = '⏳ Cooldown';
+        cooldownCount.textContent = remaining;
+        submitBtn.disabled = true;
+        submitBtn.classList.remove('spam-blocked');
+        submitBtn.textContent = `⏳ Wait ${remaining}s`;
+        return;
+    }
+
+    // Check rate limit
+    if (spamState.ticketCount >= SPAM_CONFIG.MAX_TICKETS_PER_HOUR) {
+        // Check if still within the hour
+        const hourAgo = now - 3600000;
+        if (spamState.lastTicketTime > hourAgo) {
+            // Block for 5 minutes if rate limit exceeded
+            spamState.blockEnd = now + SPAM_CONFIG.BLOCK_DURATION * 1000;
+            spamState.isBlocked = true;
+            saveSpamState();
+            updateSpamUI();
+            return;
+        } else {
+            // Reset count if hour passed
+            spamState.ticketCount = 0;
+            saveSpamState();
+        }
+    }
+
+    // Ready state
+    dot.className = 'dot green';
+    statusText.textContent = '✅ Ready';
+    cooldownCount.textContent = '0';
+    submitBtn.disabled = false;
+    submitBtn.classList.remove('spam-blocked');
+    submitBtn.textContent = '📤 Submit Ticket';
+}
+
+function checkSpam() {
+    const now = Date.now();
+    
+    // Reset count if hour passed
+    if (now - spamState.lastTicketTime > 3600000) {
+        spamState.ticketCount = 0;
+    }
+
+    // Check if blocked
+    if (spamState.blockEnd > now) {
+        return { allowed: false, reason: 'blocked' };
+    }
+
+    // Check cooldown
+    if (spamState.cooldownEnd > now) {
+        return { allowed: false, reason: 'cooldown' };
+    }
+
+    // Check rate limit
+    if (spamState.ticketCount >= SPAM_CONFIG.MAX_TICKETS_PER_HOUR) {
+        spamState.blockEnd = now + SPAM_CONFIG.BLOCK_DURATION * 1000;
+        spamState.isBlocked = true;
+        saveSpamState();
+        return { allowed: false, reason: 'rate_limit' };
+    }
+
+    return { allowed: true };
+}
+
+function registerTicket() {
+    const now = Date.now();
+    spamState.ticketCount++;
+    spamState.lastTicketTime = now;
+    spamState.cooldownEnd = now + SPAM_CONFIG.COOLDOWN_SECONDS * 1000;
+    spamState.blockEnd = 0;
+    spamState.isBlocked = false;
+    saveSpamState();
+    updateSpamUI();
+
+    // Auto-unblock after cooldown
+    setTimeout(() => {
+        updateSpamUI();
+    }, SPAM_CONFIG.COOLDOWN_SECONDS * 1000);
+}
+
+// Initialize spam system
+loadSpamState();
+setInterval(updateSpamUI, 1000);
+updateSpamUI();
+
+// ===================== TICKET SYSTEM =====================
+let tickets = JSON.parse(localStorage.getItem('megaTickets')) || [];
+
+function renderTickets() {
+    const container = document.getElementById('ticketListContainer');
+    if (tickets.length === 0) {
+        container.innerHTML = `<div style="color: rgba(255,255,255,0.2); font-family: 'V1', sans-serif; font-size: 13px; text-align: center; padding: 10px 0;">No tickets submitted yet.</div>`;
+        return;
+    }
+    let html = '';
+    tickets.slice().reverse().forEach((ticket, index) => {
+        const statusClass = ticket.status.toLowerCase();
+        html += `
+            <div class="ticket-item">
+                <span class="ticket-title">#${tickets.length - index} ${ticket.title}</span>
+                <span class="ticket-status ${statusClass}">${ticket.status}</span>
+            </div>
+        `;
+    });
+    container.innerHTML = html;
+}
+
+function submitTicket() {
+    const title = document.getElementById('ticketTitle').value.trim();
+    const priority = document.getElementById('ticketPriority').value;
+    const message = document.getElementById('ticketMessage').value.trim();
+
+    if (!title || !message) {
+        alert('Please fill in both title and message.');
+        return;
+    }
+
+    // Anti-Spam Check
+    const spamCheck = checkSpam();
+    if (!spamCheck.allowed) {
+        let msg = '';
+        switch(spamCheck.reason) {
+            case 'blocked':
+                msg = '⛔ You are temporarily blocked due to suspicious activity. Please wait.';
+                break;
+            case 'cooldown':
+                msg = '⏳ Please wait before submitting another ticket.';
+                break;
+            case 'rate_limit':
+                msg = '🚫 Rate limit exceeded! You can submit up to 3 tickets per hour. You have been blocked for 5 minutes.';
+                break;
+            default:
+                msg = '⚠️ Spam protection triggered. Please try again later.';
+        }
+        alert(msg);
+        updateSpamUI();
+        return;
+    }
+
+    const currentUser = getCurrentUser();
+    const ticket = {
+        id: Date.now(),
+        title: title,
+        priority: priority,
+        message: message,
+        status: 'Open',
+        createdBy: currentUser ? currentUser.name : 'Guest',
+        userEmail: currentUser ? currentUser.email : 'guest@mega.com',
+        createdAt: new Date().toISOString()
+    };
+
+    tickets.push(ticket);
+    localStorage.setItem('megaTickets', JSON.stringify(tickets));
+    renderTickets();
+
+    // Register this ticket for spam protection
+    registerTicket();
+
+    // Send notification
+    sendTicketToTelegram(ticket);
+
+    document.getElementById('ticketTitle').value = '';
+    document.getElementById('ticketMessage').value = '';
+    alert('✅ Ticket submitted successfully! Team has been notified.');
+    updateSpamUI();
+}
+
+function sendTicketToTelegram(ticket) {
+    const message = `
+📨 NEW TICKET RECEIVED
+─────────────────
+👤 From: ${ticket.createdBy} (${ticket.userEmail})
+📌 Title: ${ticket.title}
+⚡ Priority: ${ticket.priority}
+📝 Message: ${ticket.message}
+🕐 Time: ${new Date(ticket.createdAt).toLocaleString()}
+─────────────────
+🔔 Reply to: @DachAshkan or @DachNima
+    `.trim();
+
+    console.log('📨 TELEGRAM NOTIFICATION:');
+    console.log(message);
+    console.log('─'.repeat(40));
+
+    alert(`📨 New Ticket from ${ticket.createdBy}!\n\nTitle: ${ticket.title}\nPriority: ${ticket.priority}\nMessage: ${ticket.message}\n\n🔔 Check console for full details.`);
+
+    let notifications = JSON.parse(localStorage.getItem('megaNotifications')) || [];
+    notifications.push({
+        type: 'ticket',
+        ticket: ticket,
+        notifiedAt: new Date().toISOString()
+    });
+    localStorage.setItem('megaNotifications', JSON.stringify(notifications));
+}
+
 // ===================== AI CHATBOT =====================
 const chatMessages = document.getElementById('chatMessages');
 const chatInput = document.getElementById('chatInput');
@@ -1323,7 +1929,9 @@ const botResponses = {
     'megabomber': '💣 MegaBomber is an SMS Bomber tool currently in development. It will be released soon with powerful features.',
     'launch': '🚀 Our projects are under active development. MegaBomber is coming soon! Follow our channels for updates.',
     'support': '💬 You can contact support through @DachAshkan and @DachNima on Discord and Telegram. A support bot is also coming soon!',
-    'default': '🤖 I\'m Mega AI. I can tell you about our owners (@DachAshkan & @DachNima), MegaBomber project, launch dates, or support. What would you like to know?'
+    'team': '👥 MegaGroup team:\n• @DachAshkan - Owner & Lead Developer\n• @DachNima - Owner & Project Manager\n• llA_Sll - Admin & Team Manager\n• arad1040 - Member & Developer\n• Mohammadvip10 - Member & Supporter',
+    'spam': '🛡️ Anti-Spam System: You can submit up to 3 tickets per hour with a 60-second cooldown between each. If you exceed the limit, you\'ll be blocked for 5 minutes.',
+    'default': '🤖 I\'m Mega AI. I can tell you about our owners (@DachAshkan & @DachNima), MegaBomber project, launch dates, support, or the anti-spam system.'
 };
 
 function getBotResponse(message) {
@@ -1336,6 +1944,10 @@ function getBotResponse(message) {
         return botResponses.launch;
     } else if (msg.includes('support') || msg.includes('contact') || msg.includes('help')) {
         return botResponses.support;
+    } else if (msg.includes('team') || msg.includes('member') || msg.includes('admin') || msg.includes('llA') || msg.includes('arad') || msg.includes('mohammad')) {
+        return botResponses.team;
+    } else if (msg.includes('spam') || msg.includes('anti') || msg.includes('limit') || msg.includes('block') || msg.includes('cooldown')) {
+        return botResponses.spam;
     } else {
         return botResponses.default;
     }
@@ -1385,6 +1997,7 @@ function showHome() {
     document.getElementById('homeContent').style.display = 'block';
     document.getElementById('projectsContent').classList.remove('active');
     document.getElementById('teamContent').classList.remove('active');
+    document.getElementById('ticketsContent').classList.remove('active');
     document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active-nav'));
     document.getElementById('navHome').classList.add('active-nav');
 }
@@ -1395,6 +2008,7 @@ document.getElementById('navProjects').addEventListener('click', function() {
     document.getElementById('homeContent').style.display = 'none';
     document.getElementById('projectsContent').classList.add('active');
     document.getElementById('teamContent').classList.remove('active');
+    document.getElementById('ticketsContent').classList.remove('active');
     document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active-nav'));
     this.classList.add('active-nav');
 });
@@ -1403,12 +2017,25 @@ document.getElementById('navTeam').addEventListener('click', function() {
     document.getElementById('homeContent').style.display = 'none';
     document.getElementById('projectsContent').classList.remove('active');
     document.getElementById('teamContent').classList.add('active');
+    document.getElementById('ticketsContent').classList.remove('active');
     document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active-nav'));
     this.classList.add('active-nav');
 });
 
+document.getElementById('navTickets').addEventListener('click', function() {
+    document.getElementById('homeContent').style.display = 'none';
+    document.getElementById('projectsContent').classList.remove('active');
+    document.getElementById('teamContent').classList.remove('active');
+    document.getElementById('ticketsContent').classList.add('active');
+    document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active-nav'));
+    this.classList.add('active-nav');
+    renderTickets();
+    updateSpamUI();
+});
+
 document.getElementById('backProjectsBtn').addEventListener('click', showHome);
 document.getElementById('backTeamBtn').addEventListener('click', showHome);
+document.getElementById('backTicketsBtn').addEventListener('click', showHome);
 
 // ===================== SUPPORT =====================
 document.getElementById('supportBtn').addEventListener('click', function() {
@@ -1545,6 +2172,7 @@ function handleRegister(e) {
         name: name,
         email: email,
         password: password,
+        role: 'User',
         createdAt: new Date().toISOString()
     };
     users.push(newUser);
@@ -1596,6 +2224,7 @@ function handleLogin(e) {
     showModalMessage(`✅ Welcome ${user.name}!`, 'success');
     updateUI();
     closeModal();
+    renderTickets();
 }
 
 function handleLogout() {
@@ -1652,6 +2281,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Admin',
             email: 'admin@mega.com',
             password: '123456',
+            role: 'Admin',
             createdAt: new Date().toISOString()
         });
         saveUsers(users);
@@ -1682,6 +2312,9 @@ document.addEventListener('DOMContentLoaded', function() {
         updateUI();
     }
 
+    tickets = JSON.parse(localStorage.getItem('megaTickets')) || [];
+    renderTickets();
+
     document.querySelectorAll('input').forEach(inp => {
         inp.addEventListener('input', function() {
             this.classList.remove('error');
@@ -1695,12 +2328,15 @@ document.addEventListener('DOMContentLoaded', function() {
             switchTab(this.dataset.tab);
         });
     });
+
+    // Update spam UI on load
+    updateSpamUI();
 });
 
-console.log('🚀 MegaGroup · AI Chatbot ready');
+console.log('🚀 MegaGroup - Advanced Anti-Spam System Active');
 console.log('📧 default: admin@mega.com / 123456');
-console.log('💬 Support: @DachAshkan & @DachNima');
-console.log('🤖 AI Assistant active');
+console.log('🛡️ Spam Protection: 3 tickets/hour, 60s cooldown, 5min block');
+console.log('👥 Team: DachAshkan, DachNima, llA_Sll (Admin), arad1040, Mohammadvip10');
 </script>
 
 </body>
