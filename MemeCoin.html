@@ -1,1 +1,168 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>صفحه دارک</title>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="MemeCoinHome.css">
+</head>
+
+<body>
+
+<div class="bg-image"></div>
+
+
+<!-- عنوان -->
+<div class="header-text">
+  <h1>!به میم‌کوین خوش آمدید</h1>
+  <p>!اینجا میتونید با ماین کردن سکه کلی جایزه بگیرید</p>
+</div>
+
+
+
+<!-- نوار پیشرفت -->
+<div class="center-bar">
+  <div class="inner-bar" id="progressBar"></div>
+</div>
+
+
+
+<!-- اطلاعات -->
+<div class="info-row">
+
+  <div class="progress-text" id="levelText">
+    لول ۱
+  </div>
+
+
+  <div class="below-text" id="counterText">
+    ۰ / ۲۰۰
+  </div>
+
+
+<div class="rank-text rank-normal" id="rankText">
+ معمولی
+</div>
+
+</div>
+
+
+
+
+<img
+src="https://www.iconpacks.net/icons/1/free-coin-icon-794-thumb.png"
+class="click-image"
+id="clickImage"
+draggable="false"
+alt="Coin">
+
+
+
+
+
+
+<script>
+let count = 0;
+let level = 1;
+let maxCount = 200; // تعداد لازم برای لول اول
+
+const counterText = document.getElementById("counterText");
+const progressBar = document.getElementById("progressBar");
+const clickImage = document.getElementById("clickImage");
+const levelText = document.getElementById("levelText");
+const rankText = document.getElementById("rankText");
+
+function toPersianNumber(num) {
+    const digits = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+    return num.toString().replace(/\d/g, d => digits[d]);
+}
+
+function updateRank() {
+
+    if (level >= 6) {
+        rankText.textContent = "[تایتان] ";
+        rankText.style.color = "#00ffff";
+    }
+    else if (level >= 5) {
+        rankText.textContent = "[اسطوره‌ای] !مشکل داری؟";
+        rankText.style.color = "#ff3b3b";
+    }
+    else if (level >= 4) {
+        rankText.textContent = "[افسانه‌ای] !خوشتیپ";
+        rankText.style.color = "#ff9800";
+    }
+    else if (level >= 3) {
+        rankText.textContent = "[کمیاب] !کره خر";
+        rankText.style.color = "#b45cff";
+    }
+    else if (level >= 2) {
+        rankText.textContent = "[+پلاس] !نادر کوچیکه؟";
+        rankText.style.color = "#4da6ff";
+    }
+    else {
+        rankText.textContent = "[معمولی] ";
+        rankText.style.color = "#8b8b8b";
+    }
+
+}
+
+function updateUI() {
+
+    counterText.textContent =
+        `${toPersianNumber(count)} / ${toPersianNumber(maxCount)}`;
+
+    levelText.textContent =
+        `لول ${toPersianNumber(level)}`;
+
+    progressBar.style.width =
+        `${(count / maxCount) * 100}%`;
+
+    updateRank();
+}
+
+function showClickEffect(x, y) {
+
+    const text = document.createElement("div");
+
+    text.className = "click-effect";
+    text.innerHTML = "+1";
+
+    text.style.left = x + "px";
+    text.style.top = y + "px";
+
+    document.body.appendChild(text);
+
+    setTimeout(() => {
+        text.remove();
+    }, 800);
+}
+
+clickImage.addEventListener("click", (e) => {
+
+    count++;
+
+    showClickEffect(e.clientX, e.clientY);
+
+    if(count >= maxCount){
+
+        level++;
+        count = 0;
+
+        // دو برابر شدن تعداد موردنیاز
+        maxCount *= 2;
+    }
+
+    updateUI();
+});
+
+clickImage.addEventListener("dragstart", e => {
+    e.preventDefault();
+});
+
+updateUI();
+</script>
+
+
+</body>
+</html>
