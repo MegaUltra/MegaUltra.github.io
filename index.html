@@ -1,1039 +1,1707 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MegaGroup - Official</title>
-
-    <style>
-        @font-face {
-            font-family: "Vazirmatn";
-            src: url('https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/Digi%20Rastin%20Bold.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: "V1";
-            src: url('https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/Vazirmatn-Medium.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: "Poppins";
-            src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            width: 100%;
-            min-height: 100vh;
-            background: #000;
-            font-family: 'Poppins', 'V1', Arial, sans-serif;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* ===== پس‌زمینه با افکت ===== */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: url("https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/44.png") center/cover no-repeat;
-            animation: fade 6s ease-in-out infinite;
-            z-index: 0;
-        }
-
-        @keyframes fade {
-            0% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.9; transform: scale(1.02); }
-            100% { opacity: 0.4; transform: scale(1); }
-        }
-
-        .overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1;
-        }
-
-        /* ===== محتوای اصلی ===== */
-        .content {
-            position: relative;
-            z-index: 2;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-        }
-
-        .title {
-            margin: 0;
-            color: #a6ffb3;
-            font-size: 52px;
-            font-weight: 700;
-            font-family: 'Poppins', "Vazirmatn", Arial, sans-serif;
-            text-shadow: 0 0 40px rgba(0, 255, 100, 0.1);
-            text-align: center;
-            letter-spacing: 1px;
-        }
-
-        .subtitle {
-            margin-top: -10px;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 20px;
-            font-weight: 400;
-            font-family: 'Poppins', "V1", Arial, sans-serif;
-            text-align: center;
-            letter-spacing: 2px;
-        }
-
-        /* ================================================================
-           دکمه‌ها در گوشه‌های صفحه — پررنگ با فونت باحال
-           ================================================================ */
-        .corner-buttons {
-            position: fixed;
-            z-index: 10;
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        /* گوشه بالا سمت راست */
-        .corner-buttons.top-right {
-            top: 20px;
-            right: 20px;
-            left: auto;
-            bottom: auto;
-            justify-content: flex-end;
-        }
-
-        /* گوشه پایین سمت چپ */
-        .corner-buttons.bottom-left {
-            bottom: 20px;
-            left: 20px;
-            top: auto;
-            right: auto;
-            justify-content: flex-start;
-        }
-
-        .corner-btn {
-            color: rgba(166, 255, 179, 0.5);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            font-family: 'Poppins', "V1", Arial, sans-serif;
-            padding: 10px 22px;
-            border: 1.5px solid rgba(166, 255, 179, 0.08);
-            border-radius: 50px;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            cursor: pointer;
-            letter-spacing: 0.5px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .corner-btn .icon {
-            font-size: 15px;
-        }
-
-        .corner-btn:hover {
-            color: #a6ffb3;
-            border-color: rgba(166, 255, 179, 0.2);
-            background: rgba(0, 255, 100, 0.06);
-            transform: translateY(-3px) scale(1.04);
-            box-shadow: 0 0 40px rgba(0, 255, 100, 0.06);
-        }
-
-        .corner-btn:active {
-            transform: translateY(0px) scale(0.96);
-        }
-
-        .corner-btn.login-btn {
-            background: rgba(166, 255, 179, 0.06);
-            border-color: rgba(166, 255, 179, 0.12);
-            color: #a6ffb3;
-            font-weight: 700;
-            box-shadow: 0 0 30px rgba(0, 255, 100, 0.02);
-        }
-
-        .corner-btn.login-btn:hover {
-            background: rgba(166, 255, 179, 0.08);
-            border-color: rgba(166, 255, 179, 0.2);
-            box-shadow: 0 0 50px rgba(0, 255, 100, 0.06);
-        }
-
-        .corner-btn.date-badge {
-            color: rgba(166, 255, 179, 0.15);
-            border-color: rgba(166, 255, 179, 0.03);
-            cursor: default;
-            font-weight: 400;
-        }
-
-        .corner-btn.date-badge:hover {
-            transform: none;
-            background: rgba(0, 0, 0, 0.6);
-            box-shadow: none;
-        }
-
-        /* ================================================================
-           مودال لاگین
-           ================================================================ */
-        .login-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            animation: fadeInOverlay 0.4s ease;
-        }
-
-        .login-overlay.active {
-            display: flex;
-        }
-
-        @keyframes fadeInOverlay {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .login-container {
-            background: rgba(10, 10, 18, 0.92);
-            backdrop-filter: blur(20px);
-            border-radius: 32px;
-            padding: 40px 36px;
-            max-width: 440px;
-            width: 100%;
-            border: 1px solid rgba(166, 255, 179, 0.04);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 60px rgba(0, 255, 100, 0.01);
-            animation: slideUp 0.4s ease;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(30px) scale(0.95); opacity: 0; }
-            to { transform: translateY(0) scale(1); opacity: 1; }
-        }
-
-        .login-container .close-btn {
-            position: absolute;
-            top: 16px;
-            left: 20px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: rgba(166, 255, 179, 0.15);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            line-height: 1;
-            font-family: 'Poppins', Arial, sans-serif;
-        }
-
-        .login-container .close-btn:hover {
-            color: #ff4444;
-            transform: rotate(90deg);
-        }
-
-        .login-container .login-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #a6ffb3;
-            margin-bottom: 4px;
-            text-align: center;
-            font-family: 'Poppins', "Vazirmatn", Arial, sans-serif;
-            letter-spacing: 1px;
-        }
-
-        .login-container .login-sub {
-            color: rgba(166, 255, 179, 0.2);
-            font-size: 14px;
-            margin-bottom: 24px;
-            text-align: center;
-            font-family: 'Poppins', "V1", Arial, sans-serif;
-        }
-
-        .login-container .form-group {
-            margin-bottom: 16px;
-            text-align: right;
-        }
-
-        .login-container .form-group label {
-            display: block;
-            color: rgba(166, 255, 179, 0.3);
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 5px;
-            font-family: 'Poppins', "V1", Arial, sans-serif;
-            letter-spacing: 0.5px;
-        }
-
-        .login-container .form-group input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid rgba(166, 255, 179, 0.04);
-            border-radius: 14px;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            outline: none;
-            background: rgba(0, 255, 100, 0.02);
-            color: #e0e0e0;
-            font-family: 'Poppins', "V1", Arial, sans-serif;
-        }
-
-        .login-container .form-group input:focus {
-            border-color: #a6ffb3;
-            background: rgba(0, 255, 100, 0.03);
-            box-shadow: 0 0 30px rgba(166, 255, 179, 0.03);
-        }
-
-        .login-container .form-group input.error {
-            border-color: #ff4444;
-            background: rgba(255, 0, 0, 0.05);
-        }
-
-        .login-container .password-wrapper {
-            position: relative;
-        }
-
-        .login-container .password-wrapper input {
-            padding-left: 48px;
-        }
-
-        .login-container .toggle-password {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: rgba(166, 255, 179, 0.15);
-            font-size: 18px;
-            background: none;
-            border: none;
-            padding: 5px;
-        }
-
-        .login-container .toggle-password:hover {
-            color: #a6ffb3;
-        }
-
-        .login-container .error-message {
-            color: #ff4444;
-            font-size: 12px;
-            margin-top: 4px;
-            display: none;
-            font-family: 'Poppins', "V1", Arial, sans-serif;
-        }
-
-        .login-container .error-message.show {
-            display: block;
-        }
-
-        .login-container .btn-login {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #a6ffb3, rgba(0, 255, 100, 0.3));
-            color: #0a0a12;
-            border: none;
-            border-radius: 14px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            margin-top: 8px;
-            font-family: 'Poppins', "Vazirmatn", Arial, sans-serif;
-            letter-spacing: 0.5px;
-        }
-
-        .login-container .btn-login:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 0 50px rgba(166, 255, 179, 0.05);
-        }
-
-        .login-container .btn-login:active {
-            transform: scale(0.96);
-        }
-
-        .login-container .btn-logout {
-            background: linear-gradient(135deg, #ff4444, #cc0033);
-            color: white;
-        }
-
-        .login-container .btn-logout:hover {
-            box-shadow: 0 0 50px rgba(255, 68, 68, 0.1);
-        }
-
-        .login-container .message {
-            padding: 12px 16px;
-            border-radius: 12px;
-            margin-bottom: 16px;
-            display: none;
-            font-weight: 600;
-            font-size: 14px;
-            font-family: 'Poppins', "V1", Arial, sans-serif;
-        }
-
-        .login-container .message.success {
-            display: block;
-            background: rgba(166, 255, 179, 0.05);
-            color: #a6ffb3;
-            border: 1px solid rgba(166, 255, 179, 0.08);
-        }
-
-        .login-container .message.error {
-            display: block;
-            background: rgba(255, 0, 0, 0.05);
-            color: #ff4444;
-            border: 1px solid rgba(255, 0, 0, 0.08);
-        }
-
-        .login-container .message.info {
-            display: block;
-            background: rgba(0, 200, 255, 0.05);
-            color: #00ccff;
-            border: 1px solid rgba(0, 200, 255, 0.08);
-        }
-
-        .login-container .hidden {
-            display: none !important;
-        }
-
-        .login-container .user-info {
-            text-align: center;
-            padding: 10px 0;
-        }
-
-        .login-container .user-info .avatar {
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #a6ffb3, rgba(0, 255, 100, 0.3));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 12px;
-            font-size: 32px;
-            color: #0a0a12;
-            font-weight: 700;
-            box-shadow: 0 0 40px rgba(166, 255, 179, 0.05);
-            font-family: 'Poppins', Arial, sans-serif;
-        }
-
-        .login-container .user-info h3 {
-            color: #e0e0e0;
-            margin-bottom: 2px;
-            font-size: 20px;
-            font-family: 'Poppins', "Vazirmatn", Arial, sans-serif;
-            letter-spacing: 0.5px;
-        }
-
-        .login-container .user-info p {
-            color: rgba(166, 255, 179, 0.2);
-            font-size: 14px;
-            margin-bottom: 16px;
-            font-family: 'Poppins', "V1", Arial, sans-serif;
-        }
-
-        .login-container .tabs {
-            display: flex;
-            gap: 4px;
-            margin-bottom: 20px;
-            background: rgba(166, 255, 179, 0.02);
-            border-radius: 14px;
-            padding: 4px;
-            border: 1px solid rgba(166, 255, 179, 0.02);
-        }
-
-        .login-container .tab {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            cursor: pointer;
-            color: rgba(166, 255, 179, 0.2);
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border-radius: 12px;
-            border: none;
-            background: none;
-            font-family: 'Poppins', "V1", Arial, sans-serif;
-            letter-spacing: 0.5px;
-        }
-
-        .login-container .tab.active {
-            background: rgba(166, 255, 179, 0.04);
-            color: #a6ffb3;
-            box-shadow: 0 0 30px rgba(166, 255, 179, 0.01);
-        }
-
-        .login-container .tab:hover {
-            color: #a6ffb3;
-            transform: scale(1.05);
-        }
-
-        .login-container .tab:active {
-            transform: scale(0.95);
-        }
-
-        .login-container .remember-me {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
-        }
-
-        .login-container .remember-me label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: rgba(166, 255, 179, 0.15);
-            font-size: 13px;
-            cursor: pointer;
-            font-family: 'Poppins', "V1", Arial, sans-serif;
-        }
-
-        .login-container .remember-me input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            cursor: pointer;
-            accent-color: #a6ffb3;
-            background: transparent;
-        }
-
-        .login-container .forgot-password {
-            color: rgba(166, 255, 179, 0.2);
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            font-family: 'Poppins', "V1", Arial, sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        .login-container .forgot-password:hover {
-            color: #a6ffb3;
-            transform: scale(1.05);
-        }
-
-        /* ================================================================
-           RESPONSIVE
-           ================================================================ */
-        @media (max-width: 550px) {
-            .title {
-                font-size: 32px;
-            }
-            .subtitle {
-                font-size: 16px;
-                margin-top: -5px;
-            }
-            .corner-buttons.top-right {
-                top: 12px;
-                right: 12px;
-                gap: 8px;
-            }
-            .corner-buttons.bottom-left {
-                bottom: 12px;
-                left: 12px;
-                gap: 8px;
-            }
-            .corner-btn {
-                font-size: 11px;
-                padding: 6px 12px;
-                gap: 4px;
-            }
-            .corner-btn .icon {
-                font-size: 12px;
-            }
-            .login-container {
-                padding: 28px 20px;
-                margin: 10px;
-            }
-        }
-
-        @media (max-width: 420px) {
-            .title {
-                font-size: 26px;
-            }
-            .corner-btn {
-                font-size: 10px;
-                padding: 5px 10px;
-            }
-            .login-container {
-                padding: 20px 14px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MegaGroup - Official</title>
+
+<style>
+@font-face {
+    font-family: "Vazirmatn";
+    src: url('https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/Digi%20Rastin%20Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "V1";
+    src: url('https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/Vazirmatn-Medium.ttf') format('truetype');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: Arial, sans-serif;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/44.png") center/cover no-repeat;
+    animation: fade 4s ease-in-out infinite;
+    z-index: 0;
+}
+
+@keyframes fade {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+/* ================= NAVBAR ================= */
+.topbar {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    max-width: calc(100% - 40px);
+    height: 68px;
+    background: rgba(15,15,15,.6);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 18px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0 25px;
+    box-sizing: border-box;
+    z-index: 999;
+}
+
+.logo {
+    justify-self: center;
+    color: #a6ffb3;
+    font-size: 30px;
+    font-family: "Vazirmatn";
+    user-select: none;
+}
+
+.left-nav {
+    justify-self: start;
+}
+
+.right-nav {
+    justify-self: end;
+}
+
+.nav {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.nav button {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-family: "V1";
+    font-size: 15px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.nav button:hover {
+    background: rgba(166,255,179,.12);
+    color: #a6ffb3;
+}
+
+.nav button.active-nav {
+    background: rgba(166,255,179,.12);
+    color: #a6ffb3;
+}
+
+/* ================= CONTENT ================= */
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1;
+    width: 80%;
+    max-width: 900px;
+}
+
+.title {
+    margin: 0;
+    color: #a6ffb3;
+    font-size: 52px;
+    font-family: "Vazirmatn";
+}
+
+.subtitle {
+    margin-top: -20px;
+    color: #fff;
+    font-size: 20px;
+    font-family: "V1";
+}
+
+/* ================= PROJECTS ================= */
+.projects-grid {
+    display: none;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-top: 40px;
+    padding: 0 20px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.projects-grid.active {
+    display: grid;
+}
+
+.project-card {
+    background: rgba(15,15,15,0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(166,255,179,0.2);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+}
+
+.project-card .icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.project-card h3 {
+    color: #a6ffb3;
+    font-family: "Vazirmatn";
+    font-size: 28px;
+    margin: 0 0 8px 0;
+}
+
+.project-card p {
+    color: rgba(255,255,255,0.5);
+    font-family: "V1";
+    font-size: 16px;
+    margin: 0;
+}
+
+.project-card .coming-badge {
+    display: inline-block;
+    background: rgba(166,255,179,0.12);
+    color: #a6ffb3;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: "V1";
+    margin-top: 14px;
+    border: 1px solid rgba(166,255,179,0.1);
+}
+
+.project-card .soon-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.project-card:hover .soon-overlay {
+    opacity: 1;
+}
+
+.project-card .soon-overlay span {
+    color: #a6ffb3;
+    font-family: "Vazirmatn";
+    font-size: 28px;
+    letter-spacing: 6px;
+    text-shadow: 0 0 30px rgba(166,255,179,0.3);
+}
+
+/* ================= TEAM ================= */
+.team-grid {
+    display: none;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+    padding: 0 20px;
+}
+
+.team-grid.active {
+    display: grid;
+}
+
+.team-card {
+    background: rgba(15,15,15,0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 24px;
+    padding: 40px 30px 35px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+}
+
+.team-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(166,255,179,0.03) 0%, transparent 70%);
+    opacity: 0;
+    transition: 0.6s;
+}
+
+.team-card:hover::before {
+    opacity: 1;
+}
+
+.team-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: rgba(166,255,179,0.2);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.7), 0 0 40px rgba(166,255,179,0.05);
+}
+
+.team-card .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: 900;
+    color: #0a0a0a;
+    background: linear-gradient(135deg, #a6ffb3, #4ecdc4);
+    box-shadow: 0 0 30px rgba(166,255,179,0.15);
+    transition: 0.4s;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.team-card:hover .avatar {
+    transform: scale(1.08) rotate(-5deg);
+    box-shadow: 0 0 60px rgba(166,255,179,0.25);
+}
+
+.team-card .team-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #a6ffb3;
+    margin: 0 0 4px 0;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(166,255,179,0.1);
+}
+
+.team-card .team-role {
+    font-family: "V1", sans-serif;
+    font-size: 15px;
+    color: rgba(255,255,255,0.5);
+    margin: 0 0 6px 0;
+    letter-spacing: 1px;
+}
+
+.team-card .team-badge {
+    display: inline-block;
+    background: rgba(166,255,179,0.08);
+    border: 1px solid rgba(166,255,179,0.1);
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-family: 'Orbitron', sans-serif;
+    color: #a6ffb3;
+    letter-spacing: 1px;
+    margin-top: 6px;
+}
+
+.team-card .glow-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #a6ffb3, transparent);
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.team-card:hover .glow-line {
+    opacity: 1;
+}
+
+.team-card .pulse-ring {
+    position: absolute;
+    inset: -2px;
+    border-radius: 24px;
+    border: 1px solid rgba(166,255,179,0);
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.team-card:hover .pulse-ring {
+    border-color: rgba(166,255,179,0.1);
+    animation: pulseRing 2s ease-in-out infinite;
+}
+
+@keyframes pulseRing {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.02); opacity: 0.6; }
+}
+
+/* ================= SUPPORT MODAL ================= */
+.support-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(16px);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.support-modal.active {
+    display: flex;
+}
+
+.support-box {
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(166,255,179,0.08);
+    border-radius: 36px;
+    padding: 50px 45px;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    animation: supportIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes supportIn {
+    0% { transform: scale(0.8) rotate(-5deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+.support-box .support-close {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.3);
+    font-size: 32px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.support-box .support-close:hover {
+    color: #ff6b6b;
+    transform: rotate(90deg);
+}
+
+.support-box .support-icon {
+    font-size: 72px;
+    display: block;
+    margin-bottom: 10px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.support-box h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: #a6ffb3;
+    margin: 0 0 6px 0;
+    letter-spacing: 3px;
+    text-shadow: 0 0 40px rgba(166,255,179,0.15);
+}
+
+.support-box .support-sub {
+    font-family: "V1", sans-serif;
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    margin: 0 0 25px 0;
+    letter-spacing: 1px;
+}
+
+.support-box .support-users {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin: 20px 0 30px;
+    flex-wrap: wrap;
+}
+
+.support-box .support-user {
+    background: rgba(166,255,179,0.04);
+    border: 1px solid rgba(166,255,179,0.06);
+    border-radius: 16px;
+    padding: 16px 28px;
+    transition: 0.3s;
+}
+
+.support-box .support-user:hover {
+    background: rgba(166,255,179,0.08);
+    border-color: rgba(166,255,179,0.15);
+    transform: scale(1.05);
+}
+
+.support-box .support-user .name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #a6ffb3;
+    display: block;
+    letter-spacing: 1px;
+}
+
+.support-box .support-user .role {
+    font-family: "V1", sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+}
+
+.support-box .support-channels {
+    font-family: "V1", sans-serif;
+    font-size: 15px;
+    color: rgba(255,255,255,0.6);
+    margin: 10px 0 20px;
+    letter-spacing: 0.5px;
+}
+
+.support-box .support-channels span {
+    color: #a6ffb3;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.support-box .support-coming {
+    display: inline-block;
+    background: rgba(166,255,179,0.06);
+    border: 1px solid rgba(166,255,179,0.08);
+    padding: 8px 24px;
+    border-radius: 30px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    color: rgba(166,255,179,0.6);
+    letter-spacing: 2px;
+    margin-top: 10px;
+    animation: pulseText 2s ease-in-out infinite;
+}
+
+@keyframes pulseText {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+.support-box .glow-ring {
+    position: absolute;
+    inset: -2px;
+    border-radius: 36px;
+    border: 1px solid rgba(166,255,179,0);
+    pointer-events: none;
+    animation: ringPulse 3s ease-in-out infinite;
+}
+
+@keyframes ringPulse {
+    0%, 100% { border-color: rgba(166,255,179,0); transform: scale(1); }
+    50% { border-color: rgba(166,255,179,0.05); transform: scale(1.01); }
+}
+
+/* ================= AI CHAT BOT ================= */
+.chatbot-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 998;
+}
+
+.chatbot-toggle {
+    background: rgba(15,15,15,0.8);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(166,255,179,0.15);
+    border-radius: 50px;
+    padding: 14px 24px;
+    color: #a6ffb3;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 1px;
+}
+
+.chatbot-toggle:hover {
+    background: rgba(166,255,179,0.08);
+    border-color: rgba(166,255,179,0.3);
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(166,255,179,0.05);
+}
+
+.chatbot-toggle .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #a6ffb3;
+    display: inline-block;
+    animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+.chatbot-window {
+    display: none;
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 380px;
+    max-width: calc(100% - 40px);
+    max-height: 500px;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(166,255,179,0.08);
+    border-radius: 24px;
+    z-index: 999;
+    overflow: hidden;
+    animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slideUp {
+    0% { transform: translateY(30px) scale(0.95); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.chatbot-window.active {
+    display: block;
+}
+
+.chatbot-header {
+    padding: 18px 22px;
+    background: rgba(166,255,179,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chatbot-header h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    color: #a6ffb3;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.chatbot-header .close-chat {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.3);
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.chatbot-header .close-chat:hover {
+    color: #ff6b6b;
+    transform: rotate(90deg);
+}
+
+.chatbot-messages {
+    padding: 20px 22px;
+    max-height: 320px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.chatbot-messages::-webkit-scrollbar {
+    width: 4px;
+}
+
+.chatbot-messages::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.02);
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb {
+    background: rgba(166,255,179,0.2);
+    border-radius: 10px;
+}
+
+.chatbot-messages .msg {
+    margin-bottom: 14px;
+    padding: 12px 16px;
+    border-radius: 16px;
+    max-width: 85%;
+    font-family: "V1", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    animation: msgIn 0.3s ease;
+}
+
+@keyframes msgIn {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.chatbot-messages .msg.bot {
+    background: rgba(166,255,179,0.06);
+    border: 1px solid rgba(166,255,179,0.04);
+    color: rgba(255,255,255,0.8);
+    margin-right: auto;
+    border-bottom-left-radius: 4px;
+}
+
+.chatbot-messages .msg.user {
+    background: rgba(166,255,179,0.1);
+    border: 1px solid rgba(166,255,179,0.06);
+    color: #a6ffb3;
+    margin-left: auto;
+    border-bottom-right-radius: 4px;
+}
+
+.chatbot-messages .msg.bot .typing {
+    display: inline-block;
+    animation: typing 1.2s ease-in-out infinite;
+}
+
+@keyframes typing {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+.chatbot-input {
+    padding: 14px 22px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    gap: 10px;
+}
+
+.chatbot-input input {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 10px 14px;
+    color: #fff;
+    font-family: "V1", sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.chatbot-input input:focus {
+    border-color: rgba(166,255,179,0.2);
+    background: rgba(255,255,255,0.06);
+}
+
+.chatbot-input input::placeholder {
+    color: rgba(255,255,255,0.2);
+}
+
+.chatbot-input button {
+    background: rgba(166,255,179,0.08);
+    border: 1px solid rgba(166,255,179,0.1);
+    border-radius: 14px;
+    padding: 10px 18px;
+    color: #a6ffb3;
+    font-family: "V1", sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.chatbot-input button:hover {
+    background: rgba(166,255,179,0.15);
+    border-color: rgba(166,255,179,0.2);
+}
+
+.quick-questions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 22px 14px;
+}
+
+.quick-questions button {
+    background: rgba(166,255,179,0.03);
+    border: 1px solid rgba(166,255,179,0.04);
+    border-radius: 20px;
+    padding: 4px 14px;
+    color: rgba(255,255,255,0.4);
+    font-family: "V1", sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.quick-questions button:hover {
+    background: rgba(166,255,179,0.06);
+    color: #a6ffb3;
+    border-color: rgba(166,255,179,0.08);
+}
+
+/* ================= BACK BUTTON ================= */
+.back-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 12px;
+    font-family: "V1";
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 30px;
+}
+
+.back-btn:hover {
+    background: rgba(166,255,179,0.08);
+    color: #a6ffb3;
+    border-color: rgba(166,255,179,0.15);
+}
+
+/* ================= MODAL (LOGIN) ================= */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-box {
+    background: rgba(10,10,10,0.9);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 36px;
+    padding: 35px 30px;
+    max-width: 420px;
+    width: 90%;
+    color: #fff;
+    font-family: "V1", "Segoe UI", sans-serif;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.9);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 28px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-close:hover {
+    color: #ff6b6b;
+    transform: rotate(90deg);
+}
+
+.modal-box .logo-icon {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modal-box .logo-icon h1 {
+    font-family: "Vazirmatn";
+    font-size: 28px;
+    color: #a6ffb3;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.modal-box .logo-icon p {
+    color: rgba(255,255,255,0.4);
+    font-size: 13px;
+    margin-top: -6px;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    cursor: pointer;
+    color: rgba(255,255,255,0.4);
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.25s;
+    position: relative;
+}
+
+.tab.active {
+    color: #a6ffb3;
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 20%;
+    width: 60%;
+    height: 3px;
+    background: #a6ffb3;
+    border-radius: 6px;
+}
+
+.tab:hover {
+    color: #a6ffb3;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    font-size: 14px;
+    background: rgba(255,255,255,0.04);
+    color: #fff;
+    transition: 0.2s;
+    outline: none;
+    font-family: "V1", "Segoe UI", sans-serif;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: #a6ffb3;
+    background: rgba(255,255,255,0.07);
+    box-shadow: 0 0 0 3px rgba(166,255,179,0.1);
+}
+
+.form-group input.error {
+    border-color: #ff6b6b;
+    background: rgba(255,80,80,0.08);
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 44px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.3);
+    font-size: 17px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.toggle-password:hover {
+    color: #a6ffb3;
+}
+
+.error-message {
+    color: #ff6b6b;
+    font-size: 11px;
+    margin-top: 3px;
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 14px 0 20px;
+}
+
+.remember-me label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.remember-me input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    accent-color: #a6ffb3;
+    cursor: pointer;
+}
+
+.forgot-password {
+    color: #a6ffb3;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(145deg, #1e2b2a, #0f1a18);
+    color: #a6ffb3;
+    border: 1px solid rgba(166,255,179,0.15);
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: "Vazirmatn", "Segoe UI", sans-serif;
+    letter-spacing: 0.5px;
+    margin-top: 6px;
+}
+
+.btn:hover {
+    background: #1f332f;
+    transform: scale(1.02);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+.btn-logout {
+    background: transparent;
+    border: 1px solid rgba(255,80,80,0.25);
+    color: #ff8a8a;
+}
+
+.btn-logout:hover {
+    background: rgba(255,80,80,0.1);
+    border-color: #ff6b6b;
+}
+
+.message {
+    padding: 10px 14px;
+    border-radius: 14px;
+    margin-bottom: 16px;
+    display: none;
+    font-weight: 500;
+    font-size: 13px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid transparent;
+}
+
+.message.success {
+    display: block;
+    background: rgba(166,255,179,0.08);
+    color: #a6ffb3;
+    border-color: rgba(166,255,179,0.15);
+}
+
+.message.error {
+    display: block;
+    background: rgba(255,80,80,0.08);
+    color: #ff8a8a;
+    border-color: rgba(255,80,80,0.15);
+}
+
+.message.info {
+    display: block;
+    background: rgba(70,130,255,0.08);
+    color: #88b0ff;
+    border-color: rgba(70,130,255,0.15);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.user-info {
+    text-align: center;
+    padding: 8px 0 4px;
+}
+
+.user-info .avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #1e332f, #0d1a17);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    font-size: 34px;
+    color: #a6ffb3;
+    font-weight: 700;
+    border: 1px solid rgba(166,255,179,0.12);
+}
+
+.user-info h3 {
+    color: #fff;
+    margin-bottom: 2px;
+    font-size: 20px;
+}
+
+.user-info p {
+    color: rgba(255,255,255,0.4);
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 500px) {
+    .topbar { height: 58px; padding: 0 14px; }
+    .logo { font-size: 22px; }
+    .nav button { font-size: 12px; padding: 6px 10px; }
+    .modal-box { padding: 25px 18px; }
+    .title { font-size: 32px; }
+    .subtitle { font-size: 16px; }
+    .team-grid { grid-template-columns: 1fr; }
+    .support-box { padding: 30px 20px; }
+    .support-box h2 { font-size: 24px; }
+    .support-box .support-users { flex-direction: column; align-items: center; }
+    .chatbot-window { width: calc(100% - 30px); right: 15px; bottom: 80px; max-height: 400px; }
+    .chatbot-toggle { padding: 10px 16px; font-size: 12px; }
+}
+</style>
 </head>
+
 <body>
 
-    <div class="overlay"></div>
-
-    <!-- ================================================================
-    دکمه‌ها در گوشه‌های صفحه — پررنگ با فونت پاپینز
-    ================================================================ -->
-
-    <!-- گوشه بالا سمت راست -->
-    <div class="corner-buttons top-right">
-        <span class="corner-btn date-badge" id="currentDate">۱۴۰۴/۰۴/۲۱</span>
-        <button class="corner-btn login-btn" id="openLoginBtn">
-            <span class="icon">🔑</span> <span id="loginBtnText">ورود</span>
-        </button>
+<!-- NAVBAR -->
+<div class="topbar">
+    <div class="nav left-nav">
+        <button id="navHome" class="active-nav">Home</button>
+        <button id="navProjects">Projects</button>
+        <button id="navTeam">Team</button>
     </div>
-
-    <!-- گوشه پایین سمت چپ -->
-    <div class="corner-buttons bottom-left">
-        <a href="#" class="corner-btn" id="telegramLink">
-            <span class="icon">✈️</span> تلگرام
-        </a>
-        <a href="#" class="corner-btn" id="discordLink">
-            <span class="icon">🎮</span> دیسکورد
-        </a>
-        <a href="#" class="corner-btn" id="supportLink">
-            <span class="icon">💬</span> پشتیبانی
-        </a>
+    <div class="logo">MEGA</div>
+    <div class="nav right-nav">
+        <button id="supportBtn" style="color: #a6ffb3; background: rgba(166,255,179,0.06);">💬 Support</button>
+        <button id="loginNavBtn" style="background: rgba(166,255,179,0.08); color: #a6ffb3;">Login</button>
     </div>
+</div>
 
-    <!-- ================================================================
-    محتوای اصلی
-    ================================================================ -->
-    <div class="content">
+<!-- MAIN CONTENT -->
+<div class="content">
+    <div id="homeContent">
         <h1 class="title">MEGAGROUP - ULTRA EDITION</h1>
-        <p class="subtitle">بزرگترین تیم تولید کننده‌ی نرم افزار</p>
+        <p class="subtitle">!اولین و بزرگترین تیم نرم افزاری در ایران</p>
     </div>
 
-    <!-- ================================================================
-    مودال لاگین
-    ================================================================ -->
-    <div class="login-overlay" id="loginOverlay">
-        <div class="login-container">
+    <!-- PROJECTS -->
+    <div id="projectsContent" class="projects-grid">
+        <div class="project-card">
+            <span class="icon">💣</span>
+            <h3>MegaBomber</h3>
+            <p>SMS Bomber Tool</p>
+            <div class="coming-badge">🚀 Coming Soon</div>
+            <div class="soon-overlay"><span>SOON</span></div>
+        </div>
+        <button class="back-btn" id="backProjectsBtn">⬅ Back to Home</button>
+    </div>
 
-            <button class="close-btn" id="closeLoginBtn">✕</button>
+    <!-- TEAM -->
+    <div id="teamContent" class="team-grid">
+        <div class="team-card">
+            <div class="pulse-ring"></div>
+            <div class="avatar">DA</div>
+            <h3 class="team-name">DACHASHKAN</h3>
+            <p class="team-role">🎯 Owner · Lead Developer</p>
+            <div class="team-badge">⚡ SITE DEVELOPER</div>
+            <div class="glow-line"></div>
+        </div>
 
-            <div class="login-title">🔐 حساب کاربری</div>
-            <div class="login-sub">ورود یا ثبت‌نام در سایت</div>
+        <div class="team-card">
+            <div class="pulse-ring"></div>
+            <div class="avatar">DN</div>
+            <h3 class="team-name">DACHNIMA</h3>
+            <p class="team-role">🎯 Owner · Project Manager</p>
+            <div class="team-badge">🚀 PROJECT DEVELOPER</div>
+            <div class="glow-line"></div>
+        </div>
 
-            <div id="message" class="message"></div>
+        <button class="back-btn" id="backTeamBtn">⬅ Back to Home</button>
+    </div>
+</div>
 
-            <div id="authSection">
-                <div class="tabs">
-                    <button class="tab active" data-tab="login" onclick="switchTab('login')">ورود</button>
-                    <button class="tab" data-tab="register" onclick="switchTab('register')">ثبت‌نام</button>
-                </div>
+<!-- ====== SUPPORT MODAL ====== -->
+<div class="support-modal" id="supportModal">
+    <div class="support-box">
+        <div class="glow-ring"></div>
+        <button class="support-close" id="closeSupport">✕</button>
+        <span class="support-icon">🛡️</span>
+        <h2>MEGA SUPPORT</h2>
+        <p class="support-sub">Get help from our team</p>
 
-                <form id="loginForm" onsubmit="handleLogin(event)">
-                    <div class="form-group">
-                        <label>📧 ایمیل</label>
-                        <input type="email" id="loginEmail" placeholder="example@gmail.com" required>
-                        <div class="error-message" id="loginEmailError">لطفاً ایمیل معتبر وارد کنید</div>
-                    </div>
-                    <div class="form-group">
-                        <label>🔒 رمز عبور</label>
-                        <div class="password-wrapper">
-                            <input type="password" id="loginPassword" placeholder="********" required>
-                            <button type="button" class="toggle-password" onclick="togglePassword('loginPassword')">👁️</button>
-                        </div>
-                        <div class="error-message" id="loginPasswordError">رمز عبور حداقل ۶ کاراکتر است</div>
-                    </div>
-                    <div class="remember-me">
-                        <label>
-                            <input type="checkbox" id="rememberMe"> مرا به خاطر بسپار
-                        </label>
-                        <a href="#" class="forgot-password" onclick="alert('لطفاً با پشتیبانی تماس بگیرید')">رمز را فراموش کردم؟</a>
-                    </div>
-                    <button type="submit" class="btn-login">ورود به حساب</button>
-                </form>
+        <div class="support-users">
+            <div class="support-user">
+                <span class="name">@DachAshkan</span>
+                <span class="role">⚡ Site Developer</span>
+            </div>
+            <div class="support-user">
+                <span class="name">@DachNima</span>
+                <span class="role">🚀 Project Developer</span>
+            </div>
+        </div>
 
-                <form id="registerForm" class="hidden" onsubmit="handleRegister(event)">
-                    <div class="form-group">
-                        <label>👤 نام کامل</label>
-                        <input type="text" id="registerName" placeholder="علی محمدی" required>
-                        <div class="error-message" id="registerNameError">نام حداقل ۳ کاراکتر است</div>
-                    </div>
-                    <div class="form-group">
-                        <label>📧 ایمیل</label>
-                        <input type="email" id="registerEmail" placeholder="example@gmail.com" required>
-                        <div class="error-message" id="registerEmailError">لطفاً ایمیل معتبر وارد کنید</div>
-                    </div>
-                    <div class="form-group">
-                        <label>🔒 رمز عبور</label>
-                        <div class="password-wrapper">
-                            <input type="password" id="registerPassword" placeholder="********" required>
-                            <button type="button" class="toggle-password" onclick="togglePassword('registerPassword')">👁️</button>
-                        </div>
-                        <div class="error-message" id="registerPasswordError">رمز عبور حداقل ۶ کاراکتر است</div>
-                    </div>
-                    <div class="form-group">
-                        <label>✅ تکرار رمز عبور</label>
-                        <input type="password" id="registerConfirmPassword" placeholder="********" required>
-                        <div class="error-message" id="registerConfirmError">رمزها مطابقت ندارند</div>
-                    </div>
-                    <button type="submit" class="btn-login">ثبت‌نام</button>
-                </form>
+        <div class="support-channels">
+            📱 Contact us on <span>Discord</span> &amp; <span>Telegram</span>
+        </div>
+
+        <div class="support-coming">🤖 SUPPORT BOT · COMING SOON</div>
+    </div>
+</div>
+
+<!-- ====== AI CHATBOT ====== -->
+<div class="chatbot-container">
+    <button class="chatbot-toggle" id="chatToggle">
+        <span class="dot"></span>
+        AI Assistant
+    </button>
+</div>
+
+<div class="chatbot-window" id="chatWindow">
+    <div class="chatbot-header">
+        <h4>🤖 MEGA AI</h4>
+        <button class="close-chat" id="closeChat">✕</button>
+    </div>
+    <div class="chatbot-messages" id="chatMessages">
+        <div class="msg bot">👋 Hello! I'm Mega AI. Ask me anything about MegaGroup, our projects, or team.</div>
+    </div>
+    <div class="quick-questions">
+        <button onclick="askQuestion('Who are the owners?')">Who are the owners?</button>
+        <button onclick="askQuestion('What is MegaBomber?')">What is MegaBomber?</button>
+        <button onclick="askQuestion('When will projects launch?')">When will projects launch?</button>
+        <button onclick="askQuestion('How to contact support?')">How to contact support?</button>
+    </div>
+    <div class="chatbot-input">
+        <input type="text" id="chatInput" placeholder="Ask me anything..." onkeypress="if(event.key==='Enter') sendMessage()">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<!-- ====== MODAL LOGIN ====== -->
+<div class="modal-overlay" id="loginModal">
+    <div class="modal-box">
+        <button class="modal-close" id="closeModal">✕</button>
+
+        <div class="logo-icon">
+            <h1>⚡ MEGA</h1>
+            <p>sign in · sign up</p>
+        </div>
+
+        <div id="modalMessage" class="message"></div>
+
+        <div id="authSection">
+            <div class="tabs">
+                <div class="tab active" data-tab="login" onclick="switchTab('login')">Login</div>
+                <div class="tab" data-tab="register" onclick="switchTab('register')">Sign up</div>
             </div>
 
-            <div id="userPanel" class="hidden">
-                <div class="user-info">
-                    <div class="avatar" id="userAvatar">👤</div>
-                    <h3 id="userName">کاربر</h3>
-                    <p id="userEmail">email@example.com</p>
-                    <button class="btn-login btn-logout" onclick="handleLogout()">🚪 خروج از حساب</button>
+            <!-- login form -->
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>📧 Email</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                    <div class="error-message" id="loginEmailError">Enter a valid email</div>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label>🔒 Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="loginPassword" placeholder="••••••••" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('loginPassword')">👁️</button>
+                    </div>
+                    <div class="error-message" id="loginPasswordError">Minimum 6 characters</div>
+                </div>
+                <div class="remember-me">
+                    <label><input type="checkbox" id="rememberMe"> Remember me</label>
+                    <a href="#" class="forgot-password">Forgot?</a>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
 
+            <!-- register form -->
+            <form id="registerForm" class="hidden" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label>👤 Full name</label>
+                    <input type="text" id="registerName" placeholder="Ali Reza" required>
+                    <div class="error-message" id="registerNameError">At least 3 characters</div>
+                </div>
+                <div class="form-group">
+                    <label>📧 Email</label>
+                    <input type="email" id="registerEmail" placeholder="your@email.com" required>
+                    <div class="error-message" id="registerEmailError">Enter a valid email</div>
+                </div>
+                <div class="form-group">
+                    <label>🔒 Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="registerPassword" placeholder="••••••••" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('registerPassword')">👁️</button>
+                    </div>
+                    <div class="error-message" id="registerPasswordError">Minimum 6 characters</div>
+                </div>
+                <div class="form-group">
+                    <label>✅ Confirm password</label>
+                    <input type="password" id="registerConfirmPassword" placeholder="••••••••" required>
+                    <div class="error-message" id="registerConfirmError">Passwords do not match</div>
+                </div>
+                <button type="submit" class="btn">Create account</button>
+            </form>
+        </div>
+
+        <!-- user panel (logged in) -->
+        <div id="userPanel" class="hidden">
+            <div class="user-info">
+                <div class="avatar" id="userAvatar">👤</div>
+                <h3 id="userName">User</h3>
+                <p id="userEmail">user@example.com</p>
+                <button class="btn btn-logout" onclick="handleLogout()">🚪 Logout</button>
+            </div>
         </div>
     </div>
+</div>
 
-    <script>
-        // ================================================================
-        // تاریخ شمسی
-        // ================================================================
-        (function setPersianDate() {
-            const now = new Date();
-            const y = now.getFullYear() - 621;
-            const m = String(now.getMonth() + 1).padStart(2, '0');
-            const d = String(now.getDate()).padStart(2, '0');
-            document.getElementById('currentDate').textContent = `${y}/${m}/${d}`;
-        })();
+<script>
+// ===================== AI CHATBOT =====================
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
 
-        // ================================================================
-        // لینک‌های اجتماعی
-        // ================================================================
-        const LINKS = {
-            telegram: 'https://t.me/megagroup_channel',
-            discord: 'https://discord.gg/megagroup',
-            support: 'https://t.me/megagroup_support'
-        };
+const botResponses = {
+    'owners': '🎯 MegaGroup is owned by @DachAshkan (Site Developer) and @DachNima (Project Developer). They are the founders and lead the team.',
+    'megabomber': '💣 MegaBomber is an SMS Bomber tool currently in development. It will be released soon with powerful features.',
+    'launch': '🚀 Our projects are under active development. MegaBomber is coming soon! Follow our channels for updates.',
+    'support': '💬 You can contact support through @DachAshkan and @DachNima on Discord and Telegram. A support bot is also coming soon!',
+    'default': '🤖 I\'m Mega AI. I can tell you about our owners (@DachAshkan & @DachNima), MegaBomber project, launch dates, or support. What would you like to know?'
+};
 
-        document.getElementById('telegramLink').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.open(LINKS.telegram, '_blank');
+function getBotResponse(message) {
+    const msg = message.toLowerCase();
+    if (msg.includes('owner') || msg.includes('who') || msg.includes('founder')) {
+        return botResponses.owners;
+    } else if (msg.includes('bomber') || msg.includes('sms') || msg.includes('megabomber')) {
+        return botResponses.megabomber;
+    } else if (msg.includes('launch') || msg.includes('soon') || msg.includes('release') || msg.includes('when')) {
+        return botResponses.launch;
+    } else if (msg.includes('support') || msg.includes('contact') || msg.includes('help')) {
+        return botResponses.support;
+    } else {
+        return botResponses.default;
+    }
+}
+
+function addMessage(text, type) {
+    const div = document.createElement('div');
+    div.className = `msg ${type}`;
+    div.textContent = text;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function sendMessage() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+    addMessage(text, 'user');
+    chatInput.value = '';
+    setTimeout(() => {
+        const response = getBotResponse(text);
+        addMessage(response, 'bot');
+    }, 400);
+}
+
+function askQuestion(question) {
+    chatInput.value = question;
+    sendMessage();
+}
+
+// Chat toggle
+let chatOpen = false;
+document.getElementById('chatToggle').addEventListener('click', function() {
+    chatOpen = !chatOpen;
+    document.getElementById('chatWindow').classList.toggle('active');
+    if (chatOpen) {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+});
+
+document.getElementById('closeChat').addEventListener('click', function() {
+    chatOpen = false;
+    document.getElementById('chatWindow').classList.remove('active');
+});
+
+// ===================== NAVIGATION =====================
+function showHome() {
+    document.getElementById('homeContent').style.display = 'block';
+    document.getElementById('projectsContent').classList.remove('active');
+    document.getElementById('teamContent').classList.remove('active');
+    document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active-nav'));
+    document.getElementById('navHome').classList.add('active-nav');
+}
+
+document.getElementById('navHome').addEventListener('click', showHome);
+
+document.getElementById('navProjects').addEventListener('click', function() {
+    document.getElementById('homeContent').style.display = 'none';
+    document.getElementById('projectsContent').classList.add('active');
+    document.getElementById('teamContent').classList.remove('active');
+    document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active-nav'));
+    this.classList.add('active-nav');
+});
+
+document.getElementById('navTeam').addEventListener('click', function() {
+    document.getElementById('homeContent').style.display = 'none';
+    document.getElementById('projectsContent').classList.remove('active');
+    document.getElementById('teamContent').classList.add('active');
+    document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active-nav'));
+    this.classList.add('active-nav');
+});
+
+document.getElementById('backProjectsBtn').addEventListener('click', showHome);
+document.getElementById('backTeamBtn').addEventListener('click', showHome);
+
+// ===================== SUPPORT =====================
+document.getElementById('supportBtn').addEventListener('click', function() {
+    document.getElementById('supportModal').classList.add('active');
+});
+
+document.getElementById('closeSupport').addEventListener('click', function() {
+    document.getElementById('supportModal').classList.remove('active');
+});
+
+document.getElementById('supportModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        this.classList.remove('active');
+    }
+});
+
+// ===================== AUTH LOGIC =====================
+
+function getUsers() {
+    return JSON.parse(localStorage.getItem('megaUsers')) || [];
+}
+
+function saveUsers(users) {
+    localStorage.setItem('megaUsers', JSON.stringify(users));
+}
+
+function getCurrentUser() {
+    return JSON.parse(localStorage.getItem('megaCurrentUser'));
+}
+
+function setCurrentUser(user) {
+    localStorage.setItem('megaCurrentUser', JSON.stringify(user));
+}
+
+function clearCurrentUser() {
+    localStorage.removeItem('megaCurrentUser');
+}
+
+function showModalMessage(text, type = 'info') {
+    const msg = document.getElementById('modalMessage');
+    msg.textContent = text;
+    msg.className = `message ${type}`;
+    msg.style.display = 'block';
+    clearTimeout(window._msgTimer);
+    window._msgTimer = setTimeout(() => { msg.style.display = 'none'; }, 4000);
+}
+
+function switchTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    if (tab === 'login') {
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+    } else {
+        loginForm.classList.add('hidden');
+        registerForm.classList.remove('hidden');
+    }
+    document.getElementById('modalMessage').style.display = 'none';
+}
+
+function togglePassword(inputId) {
+    const input = document.getElementById(inputId);
+    const btn = input.nextElementSibling;
+    if (input.type === 'password') {
+        input.type = 'text';
+        btn.textContent = '🙈';
+    } else {
+        input.type = 'password';
+        btn.textContent = '👁️';
+    }
+}
+
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function handleRegister(e) {
+    e.preventDefault();
+    const name = document.getElementById('registerName').value.trim();
+    const email = document.getElementById('registerEmail').value.trim();
+    const password = document.getElementById('registerPassword').value;
+    const confirm = document.getElementById('registerConfirmPassword').value;
+
+    let valid = true;
+
+    if (name.length < 3) {
+        document.getElementById('registerNameError').classList.add('show');
+        document.getElementById('registerName').classList.add('error');
+        valid = false;
+    } else {
+        document.getElementById('registerNameError').classList.remove('show');
+        document.getElementById('registerName').classList.remove('error');
+    }
+
+    if (!isValidEmail(email)) {
+        document.getElementById('registerEmailError').classList.add('show');
+        document.getElementById('registerEmail').classList.add('error');
+        valid = false;
+    } else {
+        document.getElementById('registerEmailError').classList.remove('show');
+        document.getElementById('registerEmail').classList.remove('error');
+    }
+
+    if (password.length < 6) {
+        document.getElementById('registerPasswordError').classList.add('show');
+        document.getElementById('registerPassword').classList.add('error');
+        valid = false;
+    } else {
+        document.getElementById('registerPasswordError').classList.remove('show');
+        document.getElementById('registerPassword').classList.remove('error');
+    }
+
+    if (password !== confirm) {
+        document.getElementById('registerConfirmError').classList.add('show');
+        document.getElementById('registerConfirmPassword').classList.add('error');
+        valid = false;
+    } else {
+        document.getElementById('registerConfirmError').classList.remove('show');
+        document.getElementById('registerConfirmPassword').classList.remove('error');
+    }
+
+    if (!valid) return;
+
+    const users = getUsers();
+    if (users.find(u => u.email === email)) {
+        showModalMessage('❌ Email already registered', 'error');
+        return;
+    }
+
+    const newUser = {
+        id: Date.now(),
+        name: name,
+        email: email,
+        password: password,
+        createdAt: new Date().toISOString()
+    };
+    users.push(newUser);
+    saveUsers(users);
+    showModalMessage('✅ Account created! Please login.', 'success');
+    document.getElementById('registerForm').reset();
+    switchTab('login');
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    const remember = document.getElementById('rememberMe').checked;
+
+    let valid = true;
+
+    if (!isValidEmail(email)) {
+        document.getElementById('loginEmailError').classList.add('show');
+        document.getElementById('loginEmail').classList.add('error');
+        valid = false;
+    } else {
+        document.getElementById('loginEmailError').classList.remove('show');
+        document.getElementById('loginEmail').classList.remove('error');
+    }
+
+    if (password.length < 6) {
+        document.getElementById('loginPasswordError').classList.add('show');
+        document.getElementById('loginPassword').classList.add('error');
+        valid = false;
+    } else {
+        document.getElementById('loginPasswordError').classList.remove('show');
+        document.getElementById('loginPassword').classList.remove('error');
+    }
+
+    if (!valid) return;
+
+    const users = getUsers();
+    const user = users.find(u => u.email === email && u.password === password);
+    if (!user) {
+        showModalMessage('❌ Wrong email or password', 'error');
+        return;
+    }
+
+    setCurrentUser(user);
+    if (remember) localStorage.setItem('megaRemember', 'true');
+    else localStorage.removeItem('megaRemember');
+
+    showModalMessage(`✅ Welcome ${user.name}!`, 'success');
+    updateUI();
+    closeModal();
+}
+
+function handleLogout() {
+    if (confirm('Are you sure you want to logout?')) {
+        clearCurrentUser();
+        localStorage.removeItem('megaRemember');
+        showModalMessage('👋 Logged out', 'info');
+        updateUI();
+    }
+}
+
+function updateUI() {
+    const user = getCurrentUser();
+    const authSection = document.getElementById('authSection');
+    const userPanel = document.getElementById('userPanel');
+    const loginBtn = document.getElementById('loginNavBtn');
+
+    if (user) {
+        authSection.classList.add('hidden');
+        userPanel.classList.remove('hidden');
+        document.getElementById('userName').textContent = user.name;
+        document.getElementById('userEmail').textContent = user.email;
+        document.getElementById('userAvatar').textContent = user.name.charAt(0).toUpperCase();
+        loginBtn.textContent = '👤 ' + user.name;
+        loginBtn.style.background = 'rgba(166,255,179,0.12)';
+    } else {
+        authSection.classList.remove('hidden');
+        userPanel.classList.add('hidden');
+        document.getElementById('loginForm').reset();
+        document.getElementById('registerForm').reset();
+        document.querySelectorAll('.error-message').forEach(el => el.classList.remove('show'));
+        document.querySelectorAll('input').forEach(inp => inp.classList.remove('error'));
+        loginBtn.textContent = 'Login';
+        loginBtn.style.background = 'rgba(166,255,179,0.08)';
+    }
+}
+
+function openModal() {
+    document.getElementById('loginModal').classList.add('active');
+    document.getElementById('modalMessage').style.display = 'none';
+    updateUI();
+}
+
+function closeModal() {
+    document.getElementById('loginModal').classList.remove('active');
+}
+
+// ---------- init ----------
+document.addEventListener('DOMContentLoaded', function() {
+    const users = getUsers();
+    if (users.length === 0) {
+        users.push({
+            id: 1,
+            name: 'Admin',
+            email: 'admin@mega.com',
+            password: '123456',
+            createdAt: new Date().toISOString()
         });
+        saveUsers(users);
+    }
 
-        document.getElementById('discordLink').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.open(LINKS.discord, '_blank');
+    document.getElementById('loginNavBtn').addEventListener('click', openModal);
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    document.getElementById('loginModal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+            document.getElementById('supportModal').classList.remove('active');
+            document.getElementById('chatWindow').classList.remove('active');
+            chatOpen = false;
+        }
+    });
+
+    const remember = localStorage.getItem('megaRemember');
+    const current = getCurrentUser();
+    if (remember === 'true' && current) {
+        updateUI();
+    } else if (current) {
+        updateUI();
+    } else {
+        updateUI();
+    }
+
+    document.querySelectorAll('input').forEach(inp => {
+        inp.addEventListener('input', function() {
+            this.classList.remove('error');
+            const err = this.parentElement.querySelector('.error-message');
+            if (err) err.classList.remove('show');
         });
+    });
 
-        document.getElementById('supportLink').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.open(LINKS.support, '_blank');
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            switchTab(this.dataset.tab);
         });
+    });
+});
 
-        // ================================================================
-        // مودال لاگین
-        // ================================================================
-        const loginOverlay = document.getElementById('loginOverlay');
-
-        function openLoginModal() {
-            loginOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLoginModal() {
-            loginOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        document.getElementById('openLoginBtn').addEventListener('click', openLoginModal);
-        document.getElementById('closeLoginBtn').addEventListener('click', closeLoginModal);
-        loginOverlay.addEventListener('click', function(e) {
-            if (e.target === this) closeLoginModal();
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && loginOverlay.classList.contains('active')) {
-                closeLoginModal();
-            }
-        });
-
-        // ================================================================
-        // ===== سیستم لاگین =====
-        // ================================================================
-
-        function getUsers() {
-            return JSON.parse(localStorage.getItem('users')) || [];
-        }
-
-        function saveUsers(users) {
-            localStorage.setItem('users', JSON.stringify(users));
-        }
-
-        function getCurrentUser() {
-            return JSON.parse(localStorage.getItem('currentUser'));
-        }
-
-        function setCurrentUser(user) {
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            updateUI();
-        }
-
-        function clearCurrentUser() {
-            localStorage.removeItem('currentUser');
-            updateUI();
-        }
-
-        function showMessage(text, type = 'info') {
-            const msg = document.getElementById('message');
-            msg.textContent = text;
-            msg.className = `message ${type}`;
-            msg.style.display = 'block';
-            
-            setTimeout(() => {
-                msg.style.display = 'none';
-            }, 4000);
-        }
-
-        function switchTab(tab) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.querySelector(`.tab[data-tab="${tab}"]`).classList.add('active');
-            
-            const loginForm = document.getElementById('loginForm');
-            const registerForm = document.getElementById('registerForm');
-            
-            if (tab === 'login') {
-                loginForm.classList.remove('hidden');
-                registerForm.classList.add('hidden');
-            } else {
-                loginForm.classList.add('hidden');
-                registerForm.classList.remove('hidden');
-            }
-            
-            document.getElementById('message').style.display = 'none';
-        }
-
-        function togglePassword(inputId) {
-            const input = document.getElementById(inputId);
-            const btn = input.nextElementSibling;
-            
-            if (input.type === 'password') {
-                input.type = 'text';
-                btn.textContent = '🙈';
-            } else {
-                input.type = 'password';
-                btn.textContent = '👁️';
-            }
-        }
-
-        function isValidEmail(email) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        }
-
-        function handleRegister(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('registerName').value.trim();
-            const email = document.getElementById('registerEmail').value.trim();
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('registerConfirmPassword').value;
-            
-            let isValid = true;
-            
-            if (name.length < 3) {
-                document.getElementById('registerNameError').classList.add('show');
-                document.getElementById('registerName').classList.add('error');
-                isValid = false;
-            } else {
-                document.getElementById('registerNameError').classList.remove('show');
-                document.getElementById('registerName').classList.remove('error');
-            }
-            
-            if (!isValidEmail(email)) {
-                document.getElementById('registerEmailError').classList.add('show');
-                document.getElementById('registerEmail').classList.add('error');
-                isValid = false;
-            } else {
-                document.getElementById('registerEmailError').classList.remove('show');
-                document.getElementById('registerEmail').classList.remove('error');
-            }
-            
-            if (password.length < 6) {
-                document.getElementById('registerPasswordError').classList.add('show');
-                document.getElementById('registerPassword').classList.add('error');
-                isValid = false;
-            } else {
-                document.getElementById('registerPasswordError').classList.remove('show');
-                document.getElementById('registerPassword').classList.remove('error');
-            }
-            
-            if (password !== confirmPassword) {
-                document.getElementById('registerConfirmError').classList.add('show');
-                document.getElementById('registerConfirmPassword').classList.add('error');
-                isValid = false;
-            } else {
-                document.getElementById('registerConfirmError').classList.remove('show');
-                document.getElementById('registerConfirmPassword').classList.remove('error');
-            }
-            
-            if (!isValid) return;
-            
-            const users = getUsers();
-            if (users.find(u => u.email === email)) {
-                showMessage('❌ این ایمیل قبلاً ثبت شده است!', 'error');
-                return;
-            }
-            
-            const newUser = {
-                id: Date.now(),
-                name: name,
-                email: email,
-                password: password,
-                createdAt: new Date().toISOString()
-            };
-            
-            users.push(newUser);
-            saveUsers(users);
-            
-            showMessage('✅ ثبت‌نام با موفقیت انجام شد! لطفاً وارد شوید.', 'success');
-            document.getElementById('registerForm').reset();
-            switchTab('login');
-        }
-
-        function handleLogin(event) {
-            event.preventDefault();
-            
-            const email = document.getElementById('loginEmail').value.trim();
-            const password = document.getElementById('loginPassword').value;
-            const rememberMe = document.getElementById('rememberMe').checked;
-            
-            let isValid = true;
-            
-            if (!isValidEmail(email)) {
-                document.getElementById('loginEmailError').classList.add('show');
-                document.getElementById('loginEmail').classList.add('error');
-                isValid = false;
-            } else {
-                document.getElementById('loginEmailError').classList.remove('show');
-                document.getElementById('loginEmail').classList.remove('error');
-            }
-            
-            if (password.length < 6) {
-                document.getElementById('loginPasswordError').classList.add('show');
-                document.getElementById('loginPassword').classList.add('error');
-                isValid = false;
-            } else {
-                document.getElementById('loginPasswordError').classList.remove('show');
-                document.getElementById('loginPassword').classList.remove('error');
-            }
-            
-            if (!isValid) return;
-            
-            const users = getUsers();
-            const user = users.find(u => u.email === email && u.password === password);
-            
-            if (!user) {
-                showMessage('❌ ایمیل یا رمز عبور اشتباه است!', 'error');
-                return;
-            }
-            
-            setCurrentUser(user);
-            
-            if (rememberMe) {
-                localStorage.setItem('rememberMe', 'true');
-            } else {
-                localStorage.removeItem('rememberMe');
-            }
-            
-            showMessage(`✅ خوش آمدید ${user.name}!`, 'success');
-            closeLoginModal();
-            updateUI();
-        }
-
-        function handleLogout() {
-            if (confirm('آیا مطمئن هستید که می‌خواهید خارج شوید؟')) {
-                clearCurrentUser();
-                localStorage.removeItem('rememberMe');
-                showMessage('👋 شما خارج شدید!', 'info');
-                updateUI();
-                closeLoginModal();
-            }
-        }
-
-        function updateUI() {
-            const currentUser = getCurrentUser();
-            const authSection = document.getElementById('authSection');
-            const userPanel = document.getElementById('userPanel');
-            const loginBtnText = document.getElementById('loginBtnText');
-            
-            if (currentUser) {
-                authSection.classList.add('hidden');
-                userPanel.classList.remove('hidden');
-                
-                document.getElementById('userName').textContent = currentUser.name;
-                document.getElementById('userEmail').textContent = currentUser.email;
-                document.getElementById('userAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
-                
-                loginBtnText.textContent = currentUser.name;
-            } else {
-                authSection.classList.remove('hidden');
-                userPanel.classList.add('hidden');
-                
-                document.getElementById('loginForm').reset();
-                document.getElementById('registerForm').reset();
-                
-                loginBtnText.textContent = 'ورود';
-            }
-        }
-
-        function checkLoginStatus() {
-            const rememberMe = localStorage.getItem('rememberMe');
-            const currentUser = getCurrentUser();
-            
-            if (rememberMe === 'true' && currentUser) {
-                updateUI();
-            } else if (currentUser) {
-                updateUI();
-            } else {
-                updateUI();
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const users = getUsers();
-            if (users.length === 0) {
-                users.push({
-                    id: 1,
-                    name: 'مدیر سایت',
-                    email: 'admin@example.com',
-                    password: '123456',
-                    createdAt: new Date().toISOString()
-                });
-                saveUsers(users);
-            }
-            
-            checkLoginStatus();
-            
-            document.querySelectorAll('input').forEach(input => {
-                input.addEventListener('input', function() {
-                    this.classList.remove('error');
-                    const errorMsg = this.parentElement.querySelector('.error-message');
-                    if (errorMsg) {
-                        errorMsg.classList.remove('show');
-                    }
-                });
-            });
-        });
-
-        console.log('🚀 سیستم لاگین با موفقیت راه‌اندازی شد!');
-        console.log('📧 ایمیل پیش‌فرض: admin@example.com');
-        console.log('🔑 رمز عبور: 123456');
-    </script>
+console.log('🚀 MegaGroup · AI Chatbot ready');
+console.log('📧 default: admin@mega.com / 123456');
+console.log('💬 Support: @DachAshkan & @DachNima');
+console.log('🤖 AI Assistant active');
+</script>
 
 </body>
 </html>
