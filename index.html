@@ -196,7 +196,7 @@
       backdrop-filter: blur(14px);
       border: 1px solid rgba(166, 255, 179, 0.12);
       border-radius: 24px;
-      padding: 32px 20px;
+      padding: 32px 20px 28px;
       text-align: center;
       transition: 0.3s;
       position: relative;
@@ -237,6 +237,28 @@
       font-size: 28px;
       letter-spacing: 6px;
       text-shadow: 0 0 40px rgba(166,255,179,0.3);
+    }
+    .project-card .project-btn {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 10px 28px;
+      border-radius: 30px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 1px;
+      border: 1px solid rgba(166,255,179,0.15);
+      background: rgba(166,255,179,0.06);
+      color: #b8ffc4;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .project-card .project-btn:hover {
+      background: rgba(166,255,179,0.12);
+      border-color: rgba(166,255,179,0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(166,255,179,0.06);
     }
 
     /* TEAM */
@@ -1200,7 +1222,7 @@
       <span class="icon">🪙</span>
       <h3>MemeCoin</h3>
       <p>Mega Meme Token</p>
-      <div class="coming-badge">🚀 Coming Soon</div>
+      <a href="https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/MemeCoin.html" target="_blank" class="project-btn">🔗 View Project</a>
       <div class="soon-overlay"><span>SOON</span></div>
     </div>
     <button class="back-btn" id="backProjectsBtn">⬅ Back to Home</button>
@@ -1340,6 +1362,11 @@
 <script>
 // ===================== REAL UPDATES DATA =====================
 const updatesData = [
+  {
+    title: "🪙 MemeCoin Page Live",
+    date: "2026-07-12 18:20",
+    desc: "MemeCoin project page is now live! Check it out in the Projects section."
+  },
   {
     title: "🪙 MemeCoin Project Announced",
     date: "2026-07-12 16:45",
@@ -1524,7 +1551,7 @@ function submitTicket() {
 const botMap = {
   'owners': '🎯 MegaGroup is owned by @DachAshkan (Site Developer) and @DachNima (Project Developer).',
   'megabomber': '💣 MegaBomber is an SMS Bomber tool under development. Coming soon!',
-  'memecoin': '🪙 MemeCoin is a Mega Meme Token project. Coming soon! Follow for updates.',
+  'memecoin': '🪙 MemeCoin is a Mega Meme Token project. Check it out in the Projects section!',
   'launch': '🚀 MegaBomber and MemeCoin are coming soon. Follow our channels for updates.',
   'support': '💬 Contact @DachAshkan and @DachNima on Discord/Telegram. Support bot coming soon!',
   'team': '👥 Team: @DachAshkan (Owner), @DachNima (Owner), llA_Sll (Admin), arad1040 (Member), Mohammadvip10 (Member).',
