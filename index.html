@@ -45,7 +45,7 @@
       left: 50%;
       transform: translateX(-50%);
       width: 94%;
-      max-width: 900px;
+      max-width: 960px;
       height: 64px;
       background: rgba(20, 28, 26, 0.75);
       backdrop-filter: blur(20px);
@@ -101,17 +101,52 @@
       padding: 8px 12px;
       font-size: 12px;
     }
+
+    /* ----- LANGUAGE SWITCHER ----- */
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 30px;
+      padding: 3px;
+      border: 1px solid rgba(166,255,179,0.06);
+    }
+    .lang-switcher button {
+      border: none;
+      outline: none;
+      background: transparent;
+      color: rgba(255,255,255,0.4);
+      font-family: "V1", sans-serif;
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .lang-switcher button:hover {
+      color: rgba(255,255,255,0.7);
+    }
+    .lang-switcher button.active-lang {
+      background: rgba(166,255,179,0.12);
+      color: #b8ffc4;
+      box-shadow: 0 0 20px rgba(166,255,179,0.04);
+    }
+
     @media (max-width: 640px) {
       .topbar { height: 56px; padding: 0 10px; }
       .logo { font-size: 20px; }
       .nav button { font-size: 10px; padding: 5px 8px; }
       .nav .right-nav button { font-size: 10px; padding: 4px 8px; }
+      .lang-switcher button { font-size: 9px; padding: 3px 8px; }
     }
     @media (max-width: 480px) {
       .topbar { height: 50px; padding: 0 8px; }
       .logo { font-size: 16px; }
-      .nav button { font-size: 9px; padding: 4px 6px; }
-      .nav .right-nav button { font-size: 9px; padding: 3px 6px; }
+      .nav button { font-size: 8px; padding: 3px 5px; }
+      .nav .right-nav button { font-size: 8px; padding: 3px 5px; }
+      .lang-switcher button { font-size: 8px; padding: 2px 6px; }
     }
 
     /* ----- MAIN CONTENT ----- */
@@ -169,12 +204,12 @@
       text-shadow: 0 0 30px rgba(166,255,179,0.05);
     }
 
-    /* ----- PROJECTS / TEAM / TICKETS ----- */
-    .projects-grid, .team-grid, .ticket-section {
+    /* ----- PROJECTS / TEAM / TICKETS / ARTICLES ----- */
+    .projects-grid, .team-grid, .ticket-section, .articles-grid {
       display: none;
       animation: fadeUp 0.4s ease;
     }
-    .projects-grid.active, .team-grid.active, .ticket-section.active {
+    .projects-grid.active, .team-grid.active, .ticket-section.active, .articles-grid.active {
       display: block;
     }
     @keyframes fadeUp {
@@ -463,6 +498,138 @@
     .ticket-item .ticket-status.inprogress { background: rgba(70,130,255,0.08); color: #88b8ff; border: 1px solid rgba(70,130,255,0.06); }
     .ticket-item .ticket-status.resolved { background: rgba(166,255,179,0.08); color: #8affa0; border: 1px solid rgba(166,255,179,0.06); }
 
+    /* ARTICLES */
+    .articles-grid {
+      display: none;
+      max-width: 900px;
+      margin: 20px auto 0;
+    }
+    .articles-grid.active { display: block; }
+
+    .articles-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .articles-header h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      color: #d4ffdd;
+      text-shadow: 0 0 40px rgba(166,255,179,0.10);
+      letter-spacing: 2px;
+    }
+    .articles-header p {
+      font-family: "V1", sans-serif;
+      color: rgba(255,255,255,0.4);
+      font-size: 16px;
+      margin-top: 6px;
+    }
+
+    .article-card {
+      background: rgba(25, 35, 32, 0.6);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(166, 255, 179, 0.06);
+      border-radius: 24px;
+      padding: 30px 28px;
+      margin-bottom: 20px;
+      transition: 0.3s;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+    .article-card:hover {
+      border-color: rgba(166,255,179,0.15);
+      transform: translateX(6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 40px rgba(166,255,179,0.02);
+    }
+    .article-card .article-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .article-card .article-category {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      color: #8affa0;
+      letter-spacing: 2px;
+      background: rgba(166,255,179,0.06);
+      border: 1px solid rgba(166,255,179,0.04);
+      padding: 2px 14px;
+      border-radius: 20px;
+    }
+    .article-card .article-date {
+      font-family: "V1", sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+    }
+    .article-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #c4ffd0;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .article-card .article-excerpt {
+      font-family: "V1", sans-serif;
+      font-size: 15px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+    .article-card .article-full {
+      display: none;
+      font-family: "V1", sans-serif;
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(166,255,179,0.06);
+    }
+    .article-card .article-full.show {
+      display: block;
+    }
+    .article-card .article-full h4 {
+      color: #b8ffc4;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 16px;
+      margin: 16px 0 8px;
+      letter-spacing: 1px;
+    }
+    .article-card .article-full ul {
+      padding-left: 20px;
+      margin: 8px 0 12px;
+    }
+    .article-card .article-full ul li {
+      margin-bottom: 4px;
+      color: rgba(255,255,255,0.6);
+    }
+    .article-card .article-full strong {
+      color: #b8ffc4;
+    }
+    .article-card .article-readmore {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      color: #8affa0;
+      text-decoration: none;
+      letter-spacing: 1px;
+      border-bottom: 1px solid rgba(166,255,179,0.10);
+      padding-bottom: 2px;
+      transition: 0.3s;
+      cursor: pointer;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+    .article-card .article-readmore:hover {
+      border-bottom-color: #8affa0;
+      color: #b8ffc4;
+    }
+
     .back-btn {
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.08);
@@ -482,7 +649,7 @@
     .back-btn:hover { background: rgba(166,255,179,0.10); color: #b8ffc4; border-color: rgba(166,255,179,0.15); box-shadow: 0 0 30px rgba(166,255,179,0.04); }
 
     /* ============================================================
-       🌟 3D SECTION - AWESOME PARALLAX with UPDATES (ALWAYS VISIBLE)
+       🌟 3D SECTION - AWESOME PARALLAX with UPDATES
        ============================================================ */
     .hero-3d-section {
       position: relative;
@@ -716,7 +883,7 @@
       50% { transform: translate(-15px, 15px) scale(0.9); }
     }
 
-    /* ----- VERSION BADGE (bottom-right corner) ----- */
+    /* ----- VERSION BADGE ----- */
     .version-badge {
       position: fixed;
       bottom: 20px;
@@ -751,6 +918,9 @@
       .hero-3d-section { padding: 35px 20px 35px; margin: 30px 0 20px; border-radius: 40px; }
       .hero-3d-buttons a { padding: 12px 24px; font-size: 12px; }
       .version-badge { font-size: 9px; padding: 4px 12px; bottom: 14px; left: 14px; }
+      .articles-header h2 { font-size: 24px; }
+      .article-card { padding: 20px 18px; }
+      .article-card h3 { font-size: 17px; }
     }
     @media (max-width: 480px) {
       .hero-3d-section { padding: 25px 16px 25px; }
@@ -760,6 +930,10 @@
       .update-item { padding: 12px 14px; }
       .update-item .update-title { font-size: 12px; }
       .version-badge { font-size: 8px; padding: 3px 10px; bottom: 10px; left: 10px; }
+      .article-card { padding: 16px 14px; }
+      .article-card h3 { font-size: 15px; }
+      .article-card .article-excerpt { font-size: 13px; }
+      .article-card .article-full { font-size: 13px; }
     }
 
     /* ----- SUPPORT MODAL ----- */
@@ -1171,7 +1345,7 @@
     @media (max-width: 500px) {
       .topbar { top: 10px; height: 48px; }
       .logo { font-size: 16px; }
-      .nav button { font-size: 8px; padding: 3px 6px; }
+      .nav button { font-size: 8px; padding: 3px 5px; }
       .support-box { padding: 24px 16px; }
       .chatbot-window { width: calc(100% - 30px); right: 15px; bottom: 80px; }
       .chatbot-toggle { padding: 8px 14px; font-size: 11px; }
@@ -1183,15 +1357,20 @@
 <!-- ===== TOP NAV ===== -->
 <div class="topbar">
   <div class="nav left-nav">
-    <button id="navHome" class="active-nav">Home</button>
-    <button id="navProjects">Projects</button>
-    <button id="navTeam">Team</button>
+    <button id="navHome" class="active-nav" data-key="navHome">Home</button>
+    <button id="navProjects" data-key="navProjects">Projects</button>
+    <button id="navTeam" data-key="navTeam">Team</button>
+    <button id="navArticles" data-key="navArticles">📝 Articles</button>
   </div>
   <div class="logo">MEGA</div>
   <div class="nav right-nav">
-    <button id="navTickets" style="color:#b8ffc4;background:rgba(166,255,179,0.06);">🎫 Tickets</button>
-    <button id="supportBtn" style="color:#b8ffc4;background:rgba(166,255,179,0.06);">💬 Support</button>
-    <button id="loginNavBtn" style="background:rgba(166,255,179,0.06);color:#b8ffc4;">Login</button>
+    <button id="navTickets" style="color:#b8ffc4;background:rgba(166,255,179,0.06);" data-key="navTickets">🎫 Tickets</button>
+    <button id="supportBtn" style="color:#b8ffc4;background:rgba(166,255,179,0.06);" data-key="supportBtn">💬 Support</button>
+    <button id="loginNavBtn" style="background:rgba(166,255,179,0.06);color:#b8ffc4;" data-key="loginNavBtn">Login</button>
+    <div class="lang-switcher">
+      <button id="langEn" class="active-lang" onclick="setLanguage('en')">EN</button>
+      <button id="langFa" onclick="setLanguage('fa')">FA</button>
+    </div>
   </div>
 </div>
 
@@ -1205,83 +1384,178 @@
 
   <!-- HOME -->
   <div id="homeContent" class="page-content">
-    <h1 class="title">MEGAGROUP · ULTRA</h1>
-    <p class="subtitle">!اولین و بزرگترین تیم نرم افزاری در ایران</p>
+    <h1 class="title" data-key="homeTitle">MEGAGROUP · ULTRA</h1>
+    <p class="subtitle" data-key="homeSubtitle">!اولین و بزرگترین تیم نرم افزاری در ایران</p>
   </div>
 
   <!-- PROJECTS -->
   <div id="projectsContent" class="projects-grid page-content">
     <div class="project-card">
       <span class="icon">💣</span>
-      <h3>MegaBomber</h3>
-      <p>SMS Bomber Tool</p>
-      <div class="coming-badge">🚀 Coming Soon</div>
-      <div class="soon-overlay"><span>SOON</span></div>
+      <h3 data-key="projectBomberTitle">MegaBomber</h3>
+      <p data-key="projectBomberDesc">SMS Bomber Tool</p>
+      <div class="coming-badge" data-key="comingSoon">🚀 Coming Soon</div>
+      <div class="soon-overlay"><span data-key="soonLabel">SOON</span></div>
     </div>
     <div class="project-card">
       <span class="icon">🪙</span>
-      <h3>MemeCoin</h3>
-      <p>Mega Meme Token</p>
-      <a href="https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/MemeCoin.html" target="_blank" class="project-btn">🔗 View Project</a>
-      <div class="soon-overlay"><span>SOON</span></div>
+      <h3 data-key="projectMemeTitle">MemeCoin</h3>
+      <p data-key="projectMemeDesc">Mega Meme Token</p>
+      <a href="https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/MemeCoin.html" target="_blank" class="project-btn" data-key="viewProject">🔗 View Project</a>
+      <div class="soon-overlay"><span data-key="soonLabel">SOON</span></div>
     </div>
-    <button class="back-btn" id="backProjectsBtn">⬅ Back to Home</button>
+    <button class="back-btn" id="backProjectsBtn" data-key="backHome">⬅ Back to Home</button>
   </div>
 
   <!-- TEAM -->
   <div id="teamContent" class="team-grid page-content">
-    <div class="team-card"><div class="avatar">DA</div><h3 class="team-name">DACHASHKAN</h3><p class="team-role">🎯 Owner · Lead Developer</p><div class="team-badge">⚡ SITE DEVELOPER</div></div>
-    <div class="team-card"><div class="avatar">DN</div><h3 class="team-name">DACHNIMA</h3><p class="team-role">🎯 Owner · Project Manager</p><div class="team-badge">🚀 PROJECT DEVELOPER</div></div>
-    <div class="team-card"><div class="avatar">⚡</div><h3 class="team-name">llA_Sll</h3><p class="team-role">👑 Admin · Team Manager</p><div class="team-badge admin">⭐ ADMIN</div></div>
-    <div class="team-card"><div class="avatar">💻</div><h3 class="team-name">arad1040</h3><p class="team-role">👤 Member · Developer</p><div class="team-badge">🛠️ MEMBER</div></div>
-    <div class="team-card"><div class="avatar">🚀</div><h3 class="team-name">Mohammadvip10</h3><p class="team-role">👤 Member · Supporter</p><div class="team-badge">🤝 MEMBER</div></div>
-    <button class="back-btn" id="backTeamBtn">⬅ Back to Home</button>
+    <div class="team-card"><div class="avatar">DA</div><h3 class="team-name">DACHASHKAN</h3><p class="team-role" data-key="roleOwnerDev">🎯 Owner · Lead Developer</p><div class="team-badge" data-key="badgeSiteDev">⚡ SITE DEVELOPER</div></div>
+    <div class="team-card"><div class="avatar">DN</div><h3 class="team-name">DACHNIMA</h3><p class="team-role" data-key="roleOwnerPM">🎯 Owner · Project Manager</p><div class="team-badge" data-key="badgeProjectDev">🚀 PROJECT DEVELOPER</div></div>
+    <div class="team-card"><div class="avatar">⚡</div><h3 class="team-name">llA_Sll</h3><p class="team-role" data-key="roleAdmin">👑 Admin · Team Manager</p><div class="team-badge admin" data-key="badgeAdmin">⭐ ADMIN</div></div>
+    <div class="team-card"><div class="avatar">💻</div><h3 class="team-name">arad1040</h3><p class="team-role" data-key="roleMemberDev">👤 Member · Developer</p><div class="team-badge" data-key="badgeMember">🛠️ MEMBER</div></div>
+    <div class="team-card"><div class="avatar">🚀</div><h3 class="team-name">Mohammadvip10</h3><p class="team-role" data-key="roleMemberSupp">👤 Member · Supporter</p><div class="team-badge" data-key="badgeMemberSupp">🤝 MEMBER</div></div>
+    <button class="back-btn" id="backTeamBtn" data-key="backHome">⬅ Back to Home</button>
   </div>
 
   <!-- TICKETS -->
   <div id="ticketsContent" class="ticket-section page-content">
     <div class="ticket-form">
-      <h4>🎫 Submit a Ticket</h4>
+      <h4 data-key="ticketTitle">🎫 Submit a Ticket</h4>
       <div class="spam-protection" id="spamProtection">
-        <div class="status"><span class="dot green" id="statusDot"></span><span id="statusText">Ready</span></div>
+        <div class="status"><span class="dot green" id="statusDot"></span><span id="statusText" data-key="statusReady">Ready</span></div>
         <div class="cooldown"><span id="cooldownCount">0</span>s</div>
-        <div class="limit-info">⚡ <span id="ticketCount">0</span> / 3 per hour</div>
+        <div class="limit-info">⚡ <span id="ticketCount">0</span> <span data-key="perHour">/ 3 per hour</span></div>
       </div>
-      <div class="form-group"><label>Title</label><input type="text" id="ticketTitle" placeholder="Brief issue"></div>
-      <div class="form-group"><label>Priority</label><select id="ticketPriority"><option>Low</option><option selected>Medium</option><option>High</option><option>Critical</option></select></div>
-      <div class="form-group"><label>Message</label><textarea id="ticketMessage" placeholder="Describe..."></textarea></div>
-      <button class="submit-ticket" id="submitBtn" onclick="submitTicket()">📤 Submit Ticket</button>
+      <div class="form-group"><label data-key="ticketTitleLabel">Title</label><input type="text" id="ticketTitle" placeholder="Brief issue"></div>
+      <div class="form-group"><label data-key="ticketPriorityLabel">Priority</label><select id="ticketPriority"><option data-key="priorityLow">Low</option><option selected data-key="priorityMedium">Medium</option><option data-key="priorityHigh">High</option><option data-key="priorityCritical">Critical</option></select></div>
+      <div class="form-group"><label data-key="ticketMessageLabel">Message</label><textarea id="ticketMessage" placeholder="Describe..."></textarea></div>
+      <button class="submit-ticket" id="submitBtn" onclick="submitTicket()" data-key="submitTicket">📤 Submit Ticket</button>
     </div>
-    <div class="ticket-list"><h5>📋 Your Tickets</h5><div id="ticketListContainer"><div style="color:rgba(255,255,255,0.2);font-family:'V1';font-size:13px;text-align:center;padding:10px 0;">No tickets yet.</div></div></div>
-    <button class="back-btn" id="backTicketsBtn">⬅ Back to Home</button>
+    <div class="ticket-list"><h5 data-key="yourTickets">📋 Your Tickets</h5><div id="ticketListContainer"><div style="color:rgba(255,255,255,0.2);font-family:'V1';font-size:13px;text-align:center;padding:10px 0;" data-key="noTickets">No tickets yet.</div></div></div>
+    <button class="back-btn" id="backTicketsBtn" data-key="backHome">⬅ Back to Home</button>
+  </div>
+
+  <!-- ARTICLES -->
+  <div id="articlesContent" class="articles-grid page-content">
+    <div class="articles-header">
+      <h2 data-key="articlesTitle">📚 Articles</h2>
+      <p data-key="articlesSub">Latest articles from MegaGroup team</p>
+    </div>
+    <div class="articles-list">
+      
+      <!-- ============================================================
+           📌 ARTICLE 1: God of War - Kratos Biography
+           ============================================================ -->
+      <div class="article-card">
+        <div class="article-meta">
+          <span class="article-category">🎮 Gaming</span>
+          <span class="article-date">2026-07-13</span>
+        </div>
+        <h3>🎮 Life Story of Kratos (God of War)</h3>
+        <div class="article-excerpt">
+          The complete biography and story of Kratos, the Ghost of Sparta, from his origins in Greek mythology to his journey in the Norse realms. A tale of revenge, redemption, and fatherhood.
+        </div>
+        <button class="article-readmore" onclick="toggleArticle(this)">📖 Read More →</button>
+        <div class="article-full">
+          <h4>📖 Introduction</h4>
+          <p>God of War is one of the most famous action-adventure game series, developed by Santa Monica Studio and published by Sony. The main character, Kratos, is a Spartan warrior who became one of the most iconic figures in gaming history due to his rage, revenge, and battles against the Greek gods and later the Norse gods.</p>
+          
+          <h4>⚔️ Biography of Kratos</h4>
+          <p><strong>Childhood:</strong> Kratos was born in Sparta, Greece. He is the son of Zeus (King of the Greek gods) and a mortal woman named Callisto, but he was unaware of his true father's identity for years. He underwent harsh Spartan training from childhood and became one of the strongest warriors of his time.</p>
+          
+          <p><strong>Becoming a Spartan Commander:</strong> After years of training, Kratos became the commander of the Spartan army. He won many battles and gained great fame for his courage and strength. However, in one battle, his army was on the verge of defeat. In that moment, he called upon Ares, the God of War, for help. Ares granted him extraordinary power and the famous <strong>Blades of Chaos</strong> in exchange for eternal servitude.</p>
+          
+          <p><strong>The Death of His Family:</strong> Ares, to make Kratos a ruthless warrior, devised a plan. In one of the attacks, he secretly placed Kratos's wife (Lysandra) and daughter (Calliope) inside a temple. Kratos, consumed by rage, entered the temple and killed them both without recognizing them. After learning the truth, his life changed forever. The ashes of his wife and daughter were placed on his skin by a village oracle, which is why Kratos's skin is always white, and he earned the title <strong>Ghost of Sparta</strong>.</p>
+          
+          <h4>🔥 Revenge Against Ares</h4>
+          <p>Kratos served the gods for years, but the nightmares of his family never left him. Finally, he decided to take revenge on Ares. With the help of Pandora's Box, he gained enough power and defeated and killed Ares at the end of <strong>God of War (2005)</strong>. After Ares's death, Kratos was chosen as the new God of War.</p>
+          
+          <h4>⚡ War with Zeus</h4>
+          <p>Later, Zeus felt that Kratos had become too powerful. Zeus betrayed him and killed him. However, Kratos returned from the Underworld and decided to take revenge on Zeus and all the Olympian gods. With the help of the Titans, he launched a great war against Olympus.</p>
+          
+          <h4>💀 Destruction of the Greek Gods</h4>
+          <p>In <strong>God of War II</strong> and <strong>God of War III</strong>, Kratos defeated many famous Greek gods, including:</p>
+          <ul>
+            <li>⚡ Poseidon</li>
+            <li>👻 Hades</li>
+            <li>🏃 Hermes</li>
+            <li>☀️ Helios</li>
+            <li>💪 Hercules</li>
+            <li>👑 Hera</li>
+            <li>⏳ Cronos</li>
+            <li>⚡ Zeus</li>
+          </ul>
+          <p>In the end, Zeus was also killed, and the rule of the Greek gods was destroyed. These battles caused widespread destruction in Greece.</p>
+          
+          <h4>🌍 A New Beginning</h4>
+          <p>After the destruction of Greece, Kratos left his homeland and traveled to the world of Norse mythology (Scandinavia). He tried to forget his bloody past and live a peaceful life. There, he married a woman named <strong>Faye</strong> and had a son named <strong>Atreus</strong>.</p>
+          
+          <h4>⚔️ God of War (2018)</h4>
+          <p>After Faye's death, her last wish was for her ashes to be scattered from the highest peak in the realm. Kratos and Atreus embarked on a long journey. Along the way, they encountered Norse gods such as <strong>Baldur, Modi, Magni, and Freya</strong>. Throughout this journey, the father-son relationship deepened, and Kratos learned to be a more caring father.</p>
+          
+          <h4>🌩️ God of War Ragnarök</h4>
+          <p>In this game, it is revealed that Atreus is <strong>Loki</strong> in Norse mythology. Kratos and Atreus try to prevent the destruction of the world. In the end, Kratos is no longer just a vengeful warrior; he has become a wiser character who wants to build a better future for his son and others.</p>
+          
+          <h4>💪 Characteristics of Kratos</h4>
+          <ul>
+            <li>⚡ Superhuman physical strength</li>
+            <li>🗡️ Unmatched combat skills</li>
+            <li>🔥 Uses Blades of Chaos and Leviathan Axe</li>
+            <li>🧠 High tactical intelligence</li>
+            <li>🛡️ Incredible resistance to damage</li>
+            <li>💪 Unbreakable will and endurance</li>
+          </ul>
+          
+          <h4>📖 The Message of the Story</h4>
+          <p>The story of God of War is not just about war; it's about:</p>
+          <ul>
+            <li>🔴 Regret for the past</li>
+            <li>😤 Controlling rage</li>
+            <li>🤝 Responsibility</li>
+            <li>👨‍👦 Father-son relationship</li>
+            <li>🌟 Hope and personal change</li>
+          </ul>
+          <p>Kratos transforms from a vengeful warrior to someone who wants to not repeat past mistakes and build a better future.</p>
+          
+          <h4>🎯 Conclusion</h4>
+          <p>Kratos is one of the most memorable characters in gaming history. His story begins as a Spartan soldier, continues with becoming the God of War and battling the Greek gods, and ultimately leads to a journey of redemption and building a better future in the world of Norse mythology. This character development has made the God of War series not only exciting in terms of action but also one of the most acclaimed series in the gaming industry for its storytelling.</p>
+          
+          <p style="text-align:right;color:rgba(255,255,255,0.3);font-size:12px;margin-top:16px;">📝 Written by MegaGroup Team</p>
+        </div>
+      </div>
+
+      <!-- Empty state placeholder (hidden when articles exist) -->
+      <!-- <div class="articles-empty">
+        <span class="empty-icon">📝</span>
+        <h3 data-key="noArticles">No Articles Yet</h3>
+        <p data-key="articlesComing">Articles will be added soon. Stay tuned!</p>
+      </div> -->
+      
+    </div>
+    <button class="back-btn" id="backArticlesBtn" data-key="backHome">⬅ Back to Home</button>
   </div>
 
   <!-- ============================================================
-       🌟 3D SECTION with UPDATES - ALWAYS VISIBLE ON ALL PAGES
+       🌟 3D SECTION with UPDATES
        ============================================================ -->
   <div class="hero-3d-section" id="hero3d">
     <div class="glow-orb"></div>
     <div class="float-shape s1"></div>
     <div class="float-shape s2"></div>
     <div class="hero-3d-content" id="hero3dContent">
-      <h2>🚀 Latest Updates</h2>
+      <h2 data-key="updatesTitle">🚀 Latest Updates</h2>
       <div class="hero-3d-divider"></div>
-      <p>
+      <p data-key="updatesDesc">
         <strong>ما در این سایت بسیاری از پروژه‌های خفن و هیجان‌انگیز روز دنیا را برای شما قرار می‌دهیم.</strong><br>
         اگر دوست دارید شما هم می‌توانید جزئی از این سایت باشید و پروژه‌های خودتان را قرار دهید.<br>
         جهت انجام این کار به پشتیبانی در <strong>تلگرام</strong> یا <strong>دیسکورد</strong> مراجعه کنید.
       </p>
-
-      <!-- UPDATES LIST -->
       <div class="updates-container">
-        <h3>📰 Recent Updates</h3>
-        <div id="updatesList">
-          <!-- updates will be injected via JS -->
-        </div>
+        <h3 data-key="recentUpdates">📰 Recent Updates</h3>
+        <div id="updatesList"></div>
       </div>
-
       <div class="hero-3d-buttons">
-        <a href="#" class="primary" onclick="document.getElementById('supportBtn').click(); return false;">💬 Contact Support</a>
+        <a href="#" class="primary" onclick="document.getElementById('supportBtn').click(); return false;" data-key="contactSupport">💬 Contact Support</a>
       </div>
       <div class="hero-3d-tag">
         ⚡ @DachAshkan &amp; @DachNima ⚡
@@ -1291,7 +1565,7 @@
 
 </div>
 
-<!-- ===== VERSION BADGE (bottom-left) ===== -->
+<!-- ===== VERSION BADGE ===== -->
 <div class="version-badge" id="versionBadge">
   v1.7 <span id="versionTime"></span>
 </div>
@@ -1301,33 +1575,33 @@
   <div class="support-box">
     <button class="support-close" id="closeSupport">✕</button>
     <span class="support-icon">🛡️</span>
-    <h2>MEGA SUPPORT</h2>
-    <p class="support-sub">Get help from our team</p>
+    <h2 data-key="supportTitle">MEGA SUPPORT</h2>
+    <p class="support-sub" data-key="supportSub">Get help from our team</p>
     <div class="support-users">
-      <div class="support-user"><span class="name">@DachAshkan</span><span class="role">⚡ Site Developer</span></div>
-      <div class="support-user"><span class="name">@DachNima</span><span class="role">🚀 Project Developer</span></div>
+      <div class="support-user"><span class="name">@DachAshkan</span><span class="role" data-key="supportRoleDev">⚡ Site Developer</span></div>
+      <div class="support-user"><span class="name">@DachNima</span><span class="role" data-key="supportRolePM">🚀 Project Developer</span></div>
     </div>
-    <div class="support-channels">📱 Contact us on <span>Discord</span> &amp; <span>Telegram</span></div>
-    <div class="support-coming">🤖 SUPPORT BOT · COMING SOON</div>
+    <div class="support-channels" data-key="supportChannels">📱 Contact us on <span>Discord</span> &amp; <span>Telegram</span></div>
+    <div class="support-coming" data-key="supportComing">🤖 SUPPORT BOT · COMING SOON</div>
   </div>
 </div>
 
 <!-- ===== AI CHATBOT ===== -->
 <div class="chatbot-container">
-  <button class="chatbot-toggle" id="chatToggle"><span class="dot"></span> AI Assistant</button>
+  <button class="chatbot-toggle" id="chatToggle"><span class="dot"></span> <span data-key="aiAssistant">AI Assistant</span></button>
 </div>
 <div class="chatbot-window" id="chatWindow">
   <div class="chatbot-header"><h4>🤖 MEGA AI</h4><button class="close-chat" id="closeChat">✕</button></div>
-  <div class="chatbot-messages" id="chatMessages"><div class="msg bot">👋 Hello! I'm Mega AI. Ask me anything.</div></div>
+  <div class="chatbot-messages" id="chatMessages"><div class="msg bot" data-key="aiWelcome">👋 Hello! I'm Mega AI. Ask me anything.</div></div>
   <div class="quick-questions">
-    <button onclick="askQuestion('Who are the owners?')">Owners</button>
-    <button onclick="askQuestion('What is MegaBomber?')">MegaBomber</button>
-    <button onclick="askQuestion('What is MemeCoin?')">MemeCoin</button>
-    <button onclick="askQuestion('How to contact support?')">Support</button>
+    <button onclick="askQuestion('Who are the owners?')" data-key="qOwners">Owners</button>
+    <button onclick="askQuestion('What is MegaBomber?')" data-key="qBomber">MegaBomber</button>
+    <button onclick="askQuestion('What is MemeCoin?')" data-key="qMeme">MemeCoin</button>
+    <button onclick="askQuestion('How to contact support?')" data-key="qSupport">Support</button>
   </div>
   <div class="chatbot-input">
     <input type="text" id="chatInput" placeholder="Ask..." onkeypress="if(event.key==='Enter') sendMessage()">
-    <button onclick="sendMessage()">Send</button>
+    <button onclick="sendMessage()" data-key="sendBtn">Send</button>
   </div>
 </div>
 
@@ -1335,80 +1609,178 @@
 <div class="modal-overlay" id="loginModal">
   <div class="modal-box">
     <button class="modal-close" id="closeModal">✕</button>
-    <div class="logo-icon"><h1>⚡ MEGA</h1><p>sign in · sign up</p></div>
+    <div class="logo-icon"><h1>⚡ MEGA</h1><p data-key="signInSub">sign in · sign up</p></div>
     <div id="modalMessage" class="message"></div>
     <div id="authSection">
-      <div class="tabs"><div class="tab active" data-tab="login" onclick="switchTab('login')">Login</div><div class="tab" data-tab="register" onclick="switchTab('register')">Sign up</div></div>
+      <div class="tabs"><div class="tab active" data-tab="login" onclick="switchTab('login')" data-key="loginTab">Login</div><div class="tab" data-tab="register" onclick="switchTab('register')" data-key="signupTab">Sign up</div></div>
       <form id="loginForm" onsubmit="handleLogin(event)">
-        <div class="form-group"><label>📧 Email</label><input type="email" id="loginEmail" placeholder="your@email.com"><div class="error-message" id="loginEmailError">Valid email</div></div>
-        <div class="form-group"><label>🔒 Password</label><div class="password-wrapper"><input type="password" id="loginPassword" placeholder="••••••••"><button type="button" class="toggle-password" onclick="togglePassword('loginPassword')">👁️</button></div><div class="error-message" id="loginPasswordError">Min 6 chars</div></div>
-        <div class="remember-me"><label><input type="checkbox" id="rememberMe"> Remember me</label><a href="#" class="forgot-password">Forgot?</a></div>
-        <button type="submit" class="btn">Login</button>
+        <div class="form-group"><label data-key="emailLabel">📧 Email</label><input type="email" id="loginEmail" placeholder="your@email.com"><div class="error-message" id="loginEmailError" data-key="emailError">Valid email</div></div>
+        <div class="form-group"><label data-key="passwordLabel">🔒 Password</label><div class="password-wrapper"><input type="password" id="loginPassword" placeholder="••••••••"><button type="button" class="toggle-password" onclick="togglePassword('loginPassword')">👁️</button></div><div class="error-message" id="loginPasswordError" data-key="passError">Min 6 chars</div></div>
+        <div class="remember-me"><label><input type="checkbox" id="rememberMe"> <span data-key="rememberMe">Remember me</span></label><a href="#" class="forgot-password" data-key="forgot">Forgot?</a></div>
+        <button type="submit" class="btn" data-key="loginBtn">Login</button>
       </form>
       <form id="registerForm" class="hidden" onsubmit="handleRegister(event)">
-        <div class="form-group"><label>👤 Full name</label><input type="text" id="registerName" placeholder="Ali Reza"><div class="error-message" id="registerNameError">Min 3 chars</div></div>
-        <div class="form-group"><label>📧 Email</label><input type="email" id="registerEmail" placeholder="your@email.com"><div class="error-message" id="registerEmailError">Valid email</div></div>
-        <div class="form-group"><label>🔒 Password</label><div class="password-wrapper"><input type="password" id="registerPassword" placeholder="••••••••"><button type="button" class="toggle-password" onclick="togglePassword('registerPassword')">👁️</button></div><div class="error-message" id="registerPasswordError">Min 6 chars</div></div>
-        <div class="form-group"><label>✅ Confirm</label><input type="password" id="registerConfirmPassword" placeholder="••••••••"><div class="error-message" id="registerConfirmError">Passwords match</div></div>
-        <button type="submit" class="btn">Create account</button>
+        <div class="form-group"><label data-key="fullnameLabel">👤 Full name</label><input type="text" id="registerName" placeholder="Ali Reza"><div class="error-message" id="registerNameError" data-key="nameError">Min 3 chars</div></div>
+        <div class="form-group"><label data-key="emailLabel">📧 Email</label><input type="email" id="registerEmail" placeholder="your@email.com"><div class="error-message" id="registerEmailError" data-key="emailError">Valid email</div></div>
+        <div class="form-group"><label data-key="passwordLabel">🔒 Password</label><div class="password-wrapper"><input type="password" id="registerPassword" placeholder="••••••••"><button type="button" class="toggle-password" onclick="togglePassword('registerPassword')">👁️</button></div><div class="error-message" id="registerPasswordError" data-key="passError">Min 6 chars</div></div>
+        <div class="form-group"><label data-key="confirmLabel">✅ Confirm</label><input type="password" id="registerConfirmPassword" placeholder="••••••••"><div class="error-message" id="registerConfirmError" data-key="confirmError">Passwords match</div></div>
+        <button type="submit" class="btn" data-key="createBtn">Create account</button>
       </form>
     </div>
     <div id="userPanel" class="hidden">
-      <div class="user-info"><div class="avatar" id="userAvatar">👤</div><h3 id="userName">User</h3><p id="userEmail">user@example.com</p><button class="btn btn-logout" onclick="handleLogout()">🚪 Logout</button></div>
+      <div class="user-info"><div class="avatar" id="userAvatar">👤</div><h3 id="userName">User</h3><p id="userEmail">user@example.com</p><button class="btn btn-logout" onclick="handleLogout()" data-key="logoutBtn">🚪 Logout</button></div>
     </div>
   </div>
 </div>
 
 <script>
-// ===================== REAL UPDATES DATA =====================
-const updatesData = [
-  {
-    title: "🪙 MemeCoin Page Live",
-    date: "2026-07-12 18:20",
-    desc: "MemeCoin project page is now live! Check it out in the Projects section."
-  },
-  {
-    title: "🪙 MemeCoin Project Announced",
-    date: "2026-07-12 16:45",
-    desc: "New project MemeCoin added to the roadmap! A Mega Meme Token coming soon."
-  },
-  {
-    title: "🎉 MegaGroup Website Launch",
-    date: "2026-07-12 14:30",
-    desc: "Official website launched with full features including tickets, AI chatbot, and team profiles."
-  },
-  {
-    title: "🚀 MegaBomber Development Started",
-    date: "2026-07-11 09:15",
-    desc: "Initial development of MegaBomber SMS tool has begun. Expected release: Q3 2026."
-  },
-  {
-    title: "🤖 AI Chatbot Integrated",
-    date: "2026-07-10 18:45",
-    desc: "Mega AI assistant added to help users with questions about the team, projects, and support."
-  },
-  {
-    title: "🛡️ Anti-Spam System Active",
-    date: "2026-07-09 12:00",
-    desc: "Ticket system now protected with advanced anti-spam: 3 tickets/hour, 60s cooldown."
-  },
-  {
-    title: "👥 Team Expansion",
-    date: "2026-07-08 20:20",
-    desc: "New members joined: arad1040 as Developer and Mohammadvip10 as Supporter."
-  },
-  {
-    title: "🎨 UI/UX Overhaul",
-    date: "2026-07-07 16:10",
-    desc: "Complete redesign with 3D effects, brighter colors, and improved mobile responsiveness."
+// ============================================================
+// 📝 TOGGLE ARTICLE FULL CONTENT
+// ============================================================
+function toggleArticle(btn) {
+  const fullContent = btn.parentElement.querySelector('.article-full');
+  const excerpt = btn.parentElement.querySelector('.article-excerpt');
+  if (fullContent.classList.contains('show')) {
+    fullContent.classList.remove('show');
+    btn.textContent = '📖 Read More →';
+    excerpt.style.display = 'block';
+  } else {
+    fullContent.classList.add('show');
+    btn.textContent = '📖 Read Less ←';
+    excerpt.style.display = 'none';
   }
+}
+
+// ============================================================
+// 🌐 LANGUAGE SYSTEM
+// ============================================================
+const translations = {
+  en: {
+    navHome: 'Home', navProjects: 'Projects', navTeam: 'Team', navArticles: '📝 Articles',
+    navTickets: '🎫 Tickets', supportBtn: '💬 Support', loginNavBtn: 'Login',
+    homeTitle: 'MEGAGROUP · ULTRA', homeSubtitle: 'The first and largest software team in Iran!',
+    projectBomberTitle: 'MegaBomber', projectBomberDesc: 'SMS Bomber Tool',
+    projectMemeTitle: 'MemeCoin', projectMemeDesc: 'Mega Meme Token',
+    viewProject: '🔗 View Project', comingSoon: '🚀 Coming Soon', soonLabel: 'SOON', backHome: '⬅ Back to Home',
+    roleOwnerDev: '🎯 Owner · Lead Developer', roleOwnerPM: '🎯 Owner · Project Manager',
+    roleAdmin: '👑 Admin · Team Manager', roleMemberDev: '👤 Member · Developer', roleMemberSupp: '👤 Member · Supporter',
+    badgeSiteDev: '⚡ SITE DEVELOPER', badgeProjectDev: '🚀 PROJECT DEVELOPER', badgeAdmin: '⭐ ADMIN',
+    badgeMember: '🛠️ MEMBER', badgeMemberSupp: '🤝 MEMBER',
+    ticketTitle: '🎫 Submit a Ticket', ticketTitleLabel: 'Title', ticketPriorityLabel: 'Priority',
+    ticketMessageLabel: 'Message', submitTicket: '📤 Submit Ticket', yourTickets: '📋 Your Tickets',
+    noTickets: 'No tickets yet.', statusReady: 'Ready', perHour: '/ 3 per hour',
+    priorityLow: 'Low', priorityMedium: 'Medium', priorityHigh: 'High', priorityCritical: 'Critical',
+    articlesTitle: '📚 Articles', articlesSub: 'Latest articles from MegaGroup team',
+    noArticles: 'No Articles Yet', articlesComing: 'Articles will be added soon. Stay tuned!',
+    updatesTitle: '🚀 Latest Updates',
+    updatesDesc: '<strong>We provide you with many cool and exciting projects from around the world.</strong><br>If you like, you can also be a part of this site and upload your own projects.<br>To do this, contact support on <strong>Telegram</strong> or <strong>Discord</strong>.',
+    recentUpdates: '📰 Recent Updates', contactSupport: '💬 Contact Support',
+    supportTitle: 'MEGA SUPPORT', supportSub: 'Get help from our team',
+    supportRoleDev: '⚡ Site Developer', supportRolePM: '🚀 Project Developer',
+    supportChannels: '📱 Contact us on <span>Discord</span> &amp; <span>Telegram</span>',
+    supportComing: '🤖 SUPPORT BOT · COMING SOON',
+    aiAssistant: 'AI Assistant', aiWelcome: '👋 Hello! I\'m Mega AI. Ask me anything.',
+    qOwners: 'Owners', qBomber: 'MegaBomber', qMeme: 'MemeCoin', qSupport: 'Support', sendBtn: 'Send',
+    signInSub: 'sign in · sign up', loginTab: 'Login', signupTab: 'Sign up',
+    emailLabel: '📧 Email', passwordLabel: '🔒 Password', confirmLabel: '✅ Confirm',
+    rememberMe: 'Remember me', forgot: 'Forgot?', loginBtn: 'Login', createBtn: 'Create account',
+    logoutBtn: '🚪 Logout', emailError: 'Valid email', passError: 'Min 6 chars', nameError: 'Min 3 chars', confirmError: 'Passwords match'
+  },
+  fa: {
+    navHome: 'خانه', navProjects: 'پروژه‌ها', navTeam: 'تیم', navArticles: '📝 مقالات',
+    navTickets: '🎫 تیکت‌ها', supportBtn: '💬 پشتیبانی', loginNavBtn: 'ورود',
+    homeTitle: 'مگاگروپ · الترا', homeSubtitle: '!اولین و بزرگترین تیم نرم افزاری در ایران',
+    projectBomberTitle: 'مگا بمبر', projectBomberDesc: 'ابزار ارسال انبوه پیامک',
+    projectMemeTitle: 'میم کوین', projectMemeDesc: 'توکن میم مگا',
+    viewProject: '🔗 مشاهده پروژه', comingSoon: '🚀 به زودی', soonLabel: 'به زودی', backHome: '⬅ بازگشت به خانه',
+    roleOwnerDev: '🎯 مالک · توسعه‌دهنده اصلی', roleOwnerPM: '🎯 مالک · مدیر پروژه',
+    roleAdmin: '👑 ادمین · مدیر تیم', roleMemberDev: '👤 عضو · توسعه‌دهنده', roleMemberSupp: '👤 عضو · پشتیبان',
+    badgeSiteDev: '⚡ توسعه‌دهنده سایت', badgeProjectDev: '🚀 توسعه‌دهنده پروژه', badgeAdmin: '⭐ ادمین',
+    badgeMember: '🛠️ عضو', badgeMemberSupp: '🤝 عضو',
+    ticketTitle: '🎫 ثبت تیکت', ticketTitleLabel: 'عنوان', ticketPriorityLabel: 'اولویت',
+    ticketMessageLabel: 'پیام', submitTicket: '📤 ارسال تیکت', yourTickets: '📋 تیکت‌های شما',
+    noTickets: 'هنوز تیکتی ثبت نشده است.', statusReady: 'آماده', perHour: '/ ۳ در ساعت',
+    priorityLow: 'کم', priorityMedium: 'متوسط', priorityHigh: 'بالا', priorityCritical: 'بحرانی',
+    articlesTitle: '📚 مقالات', articlesSub: 'آخرین مقالات تیم مگاگروپ',
+    noArticles: 'هنوز مقاله‌ای وجود ندارد', articlesComing: 'به زودی مقالات اضافه می‌شوند. همراه ما باشید!',
+    updatesTitle: '🚀 آخرین به‌روزرسانی‌ها',
+    updatesDesc: '<strong>ما در این سایت بسیاری از پروژه‌های خفن و هیجان‌انگیز روز دنیا را برای شما قرار می‌دهیم.</strong><br>اگر دوست دارید شما هم می‌توانید جزئی از این سایت باشید و پروژه‌های خودتان را قرار دهید.<br>جهت انجام این کار به پشتیبانی در <strong>تلگرام</strong> یا <strong>دیسکورد</strong> مراجعه کنید.',
+    recentUpdates: '📰 به‌روزرسانی‌های اخیر', contactSupport: '💬 تماس با پشتیبانی',
+    supportTitle: 'پشتیبانی مگا', supportSub: 'از تیم ما کمک بگیرید',
+    supportRoleDev: '⚡ توسعه‌دهنده سایت', supportRolePM: '🚀 توسعه‌دهنده پروژه',
+    supportChannels: '📱 از طریق <span>دیسکورد</span> و <span>تلگرام</span> با ما در تماس باشید',
+    supportComing: '🤖 ربات پشتیبانی · به زودی',
+    aiAssistant: 'دستیار هوشمند', aiWelcome: '👋 سلام! من مگا ای‌آی هستم. هر چیزی بپرسید.',
+    qOwners: 'مالکان', qBomber: 'مگا بمبر', qMeme: 'میم کوین', qSupport: 'پشتیبانی', sendBtn: 'ارسال',
+    signInSub: 'ورود · ثبت‌نام', loginTab: 'ورود', signupTab: 'ثبت‌نام',
+    emailLabel: '📧 ایمیل', passwordLabel: '🔒 رمز عبور', confirmLabel: '✅ تأیید رمز',
+    rememberMe: 'مرا به خاطر بسپار', forgot: 'فراموش کردید؟', loginBtn: 'ورود', createBtn: 'ایجاد حساب',
+    logoutBtn: '🚪 خروج', emailError: 'ایمیل معتبر وارد کنید', passError: 'حداقل ۶ کاراکتر', nameError: 'حداقل ۳ کاراکتر', confirmError: 'رمزها مطابقت ندارند'
+  }
+};
+
+let currentLang = localStorage.getItem('megaLang') || 'en';
+
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('megaLang', lang);
+  document.getElementById('langEn').classList.toggle('active-lang', lang === 'en');
+  document.getElementById('langFa').classList.toggle('active-lang', lang === 'fa');
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.getAttribute('data-key');
+    if (translations[lang] && translations[lang][key]) {
+      if (key === 'updatesDesc') { el.innerHTML = translations[lang][key]; }
+      else { el.textContent = translations[lang][key]; }
+    }
+  });
+  const supportChannels = document.querySelector('.support-channels');
+  if (supportChannels && translations[lang].supportChannels) {
+    supportChannels.innerHTML = translations[lang].supportChannels;
+  }
+  document.querySelectorAll('.quick-questions button').forEach(btn => {
+    const key = btn.getAttribute('data-key');
+    if (key && translations[lang][key]) { btn.textContent = translations[lang][key]; }
+  });
+  const welcomeMsg = document.querySelector('.chatbot-messages .msg.bot');
+  if (welcomeMsg && translations[lang].aiWelcome) {
+    welcomeMsg.textContent = translations[lang].aiWelcome;
+  }
+  if (lang === 'fa') {
+    document.body.style.direction = 'rtl';
+    document.body.style.textAlign = 'right';
+    document.querySelector('.content').style.direction = 'rtl';
+    document.querySelector('.content').style.textAlign = 'right';
+    document.querySelectorAll('.project-card, .team-card, .update-item, .article-card, .ticket-form, .support-box, .chatbot-window, .modal-box').forEach(el => {
+      el.style.direction = 'ltr';
+      el.style.textAlign = 'left';
+    });
+  } else {
+    document.body.style.direction = 'ltr';
+    document.body.style.textAlign = 'left';
+    document.querySelector('.content').style.direction = 'ltr';
+    document.querySelector('.content').style.textAlign = 'left';
+  }
+}
+
+// ============================================================
+// UPDATES DATA (UPDATED)
+// ============================================================
+const updatesData = [
+  { title: '📝 God of War Article Published', date: '2026-07-13 14:30', desc: 'Complete biography and story of Kratos from God of War series now available in the Articles section!' },
+  { title: '📝 Articles Section Added', date: '2026-07-12 19:00', desc: 'New articles section ready for content! Team can now publish educational and news articles.' },
+  { title: '🪙 MemeCoin Page Live', date: '2026-07-12 18:20', desc: 'MemeCoin project page is now live! Check it out in the Projects section.' },
+  { title: '🪙 MemeCoin Project Announced', date: '2026-07-12 16:45', desc: 'New project MemeCoin added to the roadmap! A Mega Meme Token coming soon.' },
+  { title: '🎉 MegaGroup Website Launch', date: '2026-07-12 14:30', desc: 'Official website launched with full features including tickets, AI chatbot, and team profiles.' },
+  { title: '🚀 MegaBomber Development Started', date: '2026-07-11 09:15', desc: 'Initial development of MegaBomber SMS tool has begun. Expected release: Q3 2026.' },
+  { title: '🤖 AI Chatbot Integrated', date: '2026-07-10 18:45', desc: 'Mega AI assistant added to help users with questions about the team, projects, and support.' },
+  { title: '🛡️ Anti-Spam System Active', date: '2026-07-09 12:00', desc: 'Ticket system now protected with advanced anti-spam: 3 tickets/hour, 60s cooldown.' },
+  { title: '👥 Team Expansion', date: '2026-07-08 20:20', desc: 'New members joined: arad1040 as Developer and Mohammadvip10 as Supporter.' },
+  { title: '🎨 UI/UX Overhaul', date: '2026-07-07 16:10', desc: 'Complete redesign with 3D effects, brighter colors, and improved mobile responsiveness.' }
 ];
 
-// ===================== RENDER UPDATES =====================
 function renderUpdates() {
   const container = document.getElementById('updatesList');
   if (!container) return;
-  
   let html = '';
   updatesData.forEach(update => {
     html += `
@@ -1424,23 +1796,18 @@ function renderUpdates() {
   container.innerHTML = html;
 }
 
-// ===================== VERSION TIMESTAMP =====================
+// ============================================================
+// VERSION TIMESTAMP
+// ============================================================
 function updateVersionTime() {
   const now = new Date();
-  const options = { 
-    year: 'numeric', 
-    month: 'short', 
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: false
-  };
-  const timeStr = now.toLocaleString('en-US', options);
-  document.getElementById('versionTime').textContent = ` · ${timeStr}`;
+  const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+  document.getElementById('versionTime').textContent = ` · ${now.toLocaleString('en-US', options)}`;
 }
 
-// ===================== 3D PARALLAX =====================
+// ============================================================
+// 3D PARALLAX
+// ============================================================
 const hero3d = document.getElementById('hero3dContent');
 document.addEventListener('mousemove', function(e) {
   const rect = hero3d.getBoundingClientRect();
@@ -1452,7 +1819,9 @@ document.getElementById('hero3d').addEventListener('mouseleave', function() {
   hero3d.style.transform = 'rotateY(0deg) rotateX(0deg)';
 });
 
-// ===================== ANTI-SPAM =====================
+// ============================================================
+// ANTI-SPAM
+// ============================================================
 const SPAM = { MAX: 3, COOLDOWN: 60, BLOCK: 300 };
 let spamState = { count: 0, last: 0, cooldownEnd: 0, blockEnd: 0 };
 function loadSpam() {
@@ -1470,13 +1839,13 @@ function updateSpamUI() {
   tc.textContent = spamState.count;
   if (spamState.blockEnd > now) {
     const r = Math.ceil((spamState.blockEnd - now) / 1000);
-    dot.className = 'dot red'; st.textContent = `🚫 BLOCKED (${r}s)`;
+    dot.className = 'dot red'; st.textContent = '🚫 BLOCKED (' + r + 's)';
     cd.textContent = r; btn.disabled = true; btn.classList.add('spam-blocked'); btn.textContent = '⛔ BLOCKED'; return;
   }
   if (spamState.cooldownEnd > now) {
     const r = Math.ceil((spamState.cooldownEnd - now) / 1000);
     dot.className = 'dot yellow'; st.textContent = '⏳ Cooldown';
-    cd.textContent = r; btn.disabled = true; btn.classList.remove('spam-blocked'); btn.textContent = `⏳ Wait ${r}s`; return;
+    cd.textContent = r; btn.disabled = true; btn.classList.remove('spam-blocked'); btn.textContent = '⏳ Wait ' + r + 's'; return;
   }
   if (spamState.count >= SPAM.MAX && now - spamState.last < 3600000) {
     spamState.blockEnd = now + SPAM.BLOCK * 1000; saveSpam(); updateSpamUI(); return;
@@ -1503,15 +1872,23 @@ function registerTicket() {
 }
 loadSpam(); setInterval(updateSpamUI, 1000); updateSpamUI();
 
-// ===================== TICKETS =====================
+// ============================================================
+// TICKETS
+// ============================================================
 let tickets = JSON.parse(localStorage.getItem('megaTickets')) || [];
 function renderTickets() {
   const c = document.getElementById('ticketListContainer');
-  if (!tickets.length) { c.innerHTML = `<div style="color:rgba(255,255,255,0.2);font-family:'V1';font-size:13px;text-align:center;padding:10px 0;">No tickets yet.</div>`; return; }
+  if (!tickets.length) {
+    const noTicketsText = currentLang === 'fa' ? 'هنوز تیکتی ثبت نشده است.' : 'No tickets yet.';
+    c.innerHTML = `<div style="color:rgba(255,255,255,0.2);font-family:'V1';font-size:13px;text-align:center;padding:10px 0;">${noTicketsText}</div>`;
+    return;
+  }
   let html = '';
   tickets.slice().reverse().forEach((t, i) => {
     const cls = t.status.toLowerCase();
-    html += `<div class="ticket-item"><span class="ticket-title">#${tickets.length - i} ${t.title}</span><span class="ticket-status ${cls}">${t.status}</span></div>`;
+    const statusMap = { open: 'Open', inprogress: 'In Progress', resolved: 'Resolved' };
+    const statusText = statusMap[cls] || t.status;
+    html += `<div class="ticket-item"><span class="ticket-title">#${tickets.length - i} ${t.title}</span><span class="ticket-status ${cls}">${statusText}</span></div>`;
   });
   c.innerHTML = html;
 }
@@ -1519,13 +1896,14 @@ function submitTicket() {
   const title = document.getElementById('ticketTitle').value.trim();
   const priority = document.getElementById('ticketPriority').value;
   const message = document.getElementById('ticketMessage').value.trim();
-  if (!title || !message) { alert('Fill in title and message.'); return; }
+  const alertMsg = currentLang === 'fa' ? 'عنوان و پیام را پر کنید.' : 'Fill in title and message.';
+  if (!title || !message) { alert(alertMsg); return; }
   const chk = checkSpam();
   if (!chk.allowed) {
-    let msg = 'Spam protection triggered.';
-    if (chk.reason === 'blocked') msg = '⛔ You are temporarily blocked.';
-    else if (chk.reason === 'cooldown') msg = '⏳ Please wait before submitting again.';
-    else if (chk.reason === 'rate_limit') msg = '🚫 Rate limit exceeded! Blocked for 5 minutes.';
+    let msg = currentLang === 'fa' ? 'سیستم ضد اسپم فعال شد.' : 'Spam protection triggered.';
+    if (chk.reason === 'blocked') msg = currentLang === 'fa' ? '⛔ شما به طور موقت مسدود شده‌اید.' : '⛔ You are temporarily blocked.';
+    else if (chk.reason === 'cooldown') msg = currentLang === 'fa' ? '⏳ لطفاً قبل از ارسال مجدد صبر کنید.' : '⏳ Please wait before submitting again.';
+    else if (chk.reason === 'rate_limit') msg = currentLang === 'fa' ? '🚫 محدودیت سرعت! به مدت ۵ دقیقه مسدود شدید.' : '🚫 Rate limit exceeded! Blocked for 5 minutes.';
     alert(msg); updateSpamUI(); return;
   }
   const user = getCurrentUser();
@@ -1541,34 +1919,55 @@ function submitTicket() {
   localStorage.setItem('megaTickets', JSON.stringify(tickets));
   renderTickets();
   registerTicket();
-  alert('✅ Ticket submitted! Team notified.');
+  const successMsg = currentLang === 'fa' ? '✅ تیکت با موفقیت ثبت شد! تیم مطلع شد.' : '✅ Ticket submitted! Team notified.';
+  alert(successMsg);
   document.getElementById('ticketTitle').value = '';
   document.getElementById('ticketMessage').value = '';
   updateSpamUI();
 }
 
-// ===================== AI CHATBOT =====================
+// ============================================================
+// AI CHATBOT
+// ============================================================
 const botMap = {
-  'owners': '🎯 MegaGroup is owned by @DachAshkan (Site Developer) and @DachNima (Project Developer).',
-  'megabomber': '💣 MegaBomber is an SMS Bomber tool under development. Coming soon!',
-  'memecoin': '🪙 MemeCoin is a Mega Meme Token project. Check it out in the Projects section!',
-  'launch': '🚀 MegaBomber and MemeCoin are coming soon. Follow our channels for updates.',
-  'support': '💬 Contact @DachAshkan and @DachNima on Discord/Telegram. Support bot coming soon!',
-  'team': '👥 Team: @DachAshkan (Owner), @DachNima (Owner), llA_Sll (Admin), arad1040 (Member), Mohammadvip10 (Member).',
-  'spam': '🛡️ Anti-Spam: 3 tickets/hour, 60s cooldown, 5min block if exceeded.',
-  'default': '🤖 I\'m Mega AI. Ask about owners, MegaBomber, MemeCoin, launch, support, team, or spam.'
+  en: {
+    owners: '🎯 MegaGroup is owned by @DachAshkan (Site Developer) and @DachNima (Project Developer).',
+    megabomber: '💣 MegaBomber is an SMS Bomber tool under development. Coming soon!',
+    memecoin: '🪙 MemeCoin is a Mega Meme Token project. Check it out in the Projects section!',
+    launch: '🚀 MegaBomber and MemeCoin are coming soon. Follow our channels for updates.',
+    support: '💬 Contact @DachAshkan and @DachNima on Discord/Telegram. Support bot coming soon!',
+    team: '👥 Team: @DachAshkan (Owner), @DachNima (Owner), llA_Sll (Admin), arad1040 (Member), Mohammadvip10 (Member).',
+    articles: '📝 Articles section is ready! Check out the God of War article about Kratos biography.',
+    spam: '🛡️ Anti-Spam: 3 tickets/hour, 60s cooldown, 5min block if exceeded.',
+    default: '🤖 I\'m Mega AI. Ask about owners, MegaBomber, MemeCoin, articles, launch, support, team, or spam.'
+  },
+  fa: {
+    owners: '🎯 مگاگروپ متعلق به @DachAshkan (توسعه‌دهنده سایت) و @DachNima (توسعه‌دهنده پروژه) است.',
+    megabomber: '💣 مگا بمبر یک ابزار ارسال انبوه پیامک است که در حال توسعه می‌باشد. به زودی!',
+    memecoin: '🪙 میم کوین یک پروژه توکن میم مگا است. در بخش پروژه‌ها مشاهده کنید!',
+    launch: '🚀 مگا بمبر و میم کوین به زودی عرضه می‌شوند. کانال‌های ما را دنبال کنید.',
+    support: '💬 از طریق دیسکورد/تلگرام با @DachAshkan و @DachNima تماس بگیرید. ربات پشتیبانی به زودی!',
+    team: '👥 تیم: @DachAshkan (مالک)، @DachNima (مالک)، llA_Sll (ادمین)، arad1040 (عضو)، Mohammadvip10 (عضو)',
+    articles: '📝 بخش مقالات آماده است! مقاله زندگی‌نامه کریتوس از God of War را مشاهده کنید.',
+    spam: '🛡️ ضد اسپم: ۳ تیکت در ساعت، ۶۰ ثانیه فاصله، ۵ دقیقه مسدودی در صورت تخلف.',
+    default: '🤖 من مگا ای‌آی هستم. درباره مالکان، مگا بمبر، میم کوین، مقالات، راه‌اندازی، پشتیبانی، تیم یا ضد اسپم بپرسید.'
+  }
 };
+
 function getBotReply(msg) {
   const m = msg.toLowerCase();
-  if (m.includes('owner')||m.includes('who')||m.includes('founder')) return botMap.owners;
-  if (m.includes('bomber')||m.includes('sms')||m.includes('megabomber')) return botMap.megabomber;
-  if (m.includes('memecoin')||m.includes('meme')||m.includes('token')||m.includes('coin')) return botMap.memecoin;
-  if (m.includes('launch')||m.includes('soon')||m.includes('release')||m.includes('when')) return botMap.launch;
-  if (m.includes('support')||m.includes('contact')||m.includes('help')) return botMap.support;
-  if (m.includes('team')||m.includes('member')||m.includes('admin')) return botMap.team;
-  if (m.includes('spam')||m.includes('limit')||m.includes('block')||m.includes('cooldown')) return botMap.spam;
-  return botMap.default;
+  const dict = botMap[currentLang] || botMap.en;
+  if (m.includes('owner') || m.includes('who') || m.includes('founder') || m.includes('مالک')) return dict.owners;
+  if (m.includes('bomber') || m.includes('sms') || m.includes('megabomber') || m.includes('مگا بمبر')) return dict.megabomber;
+  if (m.includes('memecoin') || m.includes('meme') || m.includes('token') || m.includes('coin') || m.includes('میم')) return dict.memecoin;
+  if (m.includes('article') || m.includes('blog') || m.includes('post') || m.includes('content') || m.includes('مقاله')) return dict.articles;
+  if (m.includes('launch') || m.includes('soon') || m.includes('release') || m.includes('when') || m.includes('راه‌اندازی')) return dict.launch;
+  if (m.includes('support') || m.includes('contact') || m.includes('help') || m.includes('پشتیبانی')) return dict.support;
+  if (m.includes('team') || m.includes('member') || m.includes('admin') || m.includes('تیم')) return dict.team;
+  if (m.includes('spam') || m.includes('limit') || m.includes('block') || m.includes('cooldown') || m.includes('اسپم')) return dict.spam;
+  return dict.default;
 }
+
 function addMsg(text, type) {
   const d = document.createElement('div');
   d.className = `msg ${type}`;
@@ -1596,47 +1995,40 @@ document.getElementById('closeChat').addEventListener('click', function() {
   document.getElementById('chatWindow').classList.remove('active');
 });
 
-// ===================== NAVIGATION =====================
+// ============================================================
+// NAVIGATION
+// ============================================================
 function showHome() {
   document.getElementById('homeContent').style.display = 'block';
   document.getElementById('projectsContent').classList.remove('active');
   document.getElementById('teamContent').classList.remove('active');
   document.getElementById('ticketsContent').classList.remove('active');
+  document.getElementById('articlesContent').classList.remove('active');
   document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active-nav'));
   document.getElementById('navHome').classList.add('active-nav');
 }
+function navigateTo() {
+  document.getElementById('homeContent').style.display = 'none';
+  document.getElementById('projectsContent').classList.remove('active');
+  document.getElementById('teamContent').classList.remove('active');
+  document.getElementById('ticketsContent').classList.remove('active');
+  document.getElementById('articlesContent').classList.remove('active');
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active-nav'));
+}
+
 document.getElementById('navHome').addEventListener('click', showHome);
-document.getElementById('navProjects').addEventListener('click', function() {
-  document.getElementById('homeContent').style.display = 'none';
-  document.getElementById('projectsContent').classList.add('active');
-  document.getElementById('teamContent').classList.remove('active');
-  document.getElementById('ticketsContent').classList.remove('active');
-  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active-nav'));
-  this.classList.add('active-nav');
-});
-document.getElementById('navTeam').addEventListener('click', function() {
-  document.getElementById('homeContent').style.display = 'none';
-  document.getElementById('projectsContent').classList.remove('active');
-  document.getElementById('teamContent').classList.add('active');
-  document.getElementById('ticketsContent').classList.remove('active');
-  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active-nav'));
-  this.classList.add('active-nav');
-});
-document.getElementById('navTickets').addEventListener('click', function() {
-  document.getElementById('homeContent').style.display = 'none';
-  document.getElementById('projectsContent').classList.remove('active');
-  document.getElementById('teamContent').classList.remove('active');
-  document.getElementById('ticketsContent').classList.add('active');
-  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active-nav'));
-  this.classList.add('active-nav');
-  renderTickets();
-  updateSpamUI();
-});
+document.getElementById('navProjects').addEventListener('click', function() { navigateTo(); document.getElementById('projectsContent').classList.add('active'); this.classList.add('active-nav'); });
+document.getElementById('navTeam').addEventListener('click', function() { navigateTo(); document.getElementById('teamContent').classList.add('active'); this.classList.add('active-nav'); });
+document.getElementById('navArticles').addEventListener('click', function() { navigateTo(); document.getElementById('articlesContent').classList.add('active'); this.classList.add('active-nav'); });
+document.getElementById('navTickets').addEventListener('click', function() { navigateTo(); document.getElementById('ticketsContent').classList.add('active'); this.classList.add('active-nav'); renderTickets(); updateSpamUI(); });
 document.getElementById('backProjectsBtn').addEventListener('click', showHome);
 document.getElementById('backTeamBtn').addEventListener('click', showHome);
 document.getElementById('backTicketsBtn').addEventListener('click', showHome);
+document.getElementById('backArticlesBtn').addEventListener('click', showHome);
 
-// ===================== SUPPORT =====================
+// ============================================================
+// SUPPORT
+// ============================================================
 document.getElementById('supportBtn').addEventListener('click', function() {
   document.getElementById('supportModal').classList.add('active');
 });
@@ -1647,14 +2039,16 @@ document.getElementById('supportModal').addEventListener('click', function(e) {
   if (e.target === this) this.classList.remove('active');
 });
 
-// ===================== AUTH =====================
+// ============================================================
+// AUTH
+// ============================================================
 function getUsers() { return JSON.parse(localStorage.getItem('megaUsers')) || []; }
 function saveUsers(u) { localStorage.setItem('megaUsers', JSON.stringify(u)); }
 function getCurrentUser() { return JSON.parse(localStorage.getItem('megaCurrentUser')); }
 function setCurrentUser(u) { localStorage.setItem('megaCurrentUser', JSON.stringify(u)); }
 function clearCurrentUser() { localStorage.removeItem('megaCurrentUser'); }
 
-function showModalMessage(text, type = 'info') {
+function showModalMessage(text, type) {
   const msg = document.getElementById('modalMessage');
   msg.textContent = text;
   msg.className = `message ${type}`;
@@ -1683,17 +2077,23 @@ function handleRegister(e) {
   const pass = document.getElementById('registerPassword').value;
   const confirm = document.getElementById('registerConfirmPassword').value;
   let valid = true;
-  if (name.length < 3) { document.getElementById('registerNameError').classList.add('show'); document.getElementById('registerName').classList.add('error'); valid = false; } else { document.getElementById('registerNameError').classList.remove('show'); document.getElementById('registerName').classList.remove('error'); }
-  if (!isValidEmail(email)) { document.getElementById('registerEmailError').classList.add('show'); document.getElementById('registerEmail').classList.add('error'); valid = false; } else { document.getElementById('registerEmailError').classList.remove('show'); document.getElementById('registerEmail').classList.remove('error'); }
-  if (pass.length < 6) { document.getElementById('registerPasswordError').classList.add('show'); document.getElementById('registerPassword').classList.add('error'); valid = false; } else { document.getElementById('registerPasswordError').classList.remove('show'); document.getElementById('registerPassword').classList.remove('error'); }
-  if (pass !== confirm) { document.getElementById('registerConfirmError').classList.add('show'); document.getElementById('registerConfirmPassword').classList.add('error'); valid = false; } else { document.getElementById('registerConfirmError').classList.remove('show'); document.getElementById('registerConfirmPassword').classList.remove('error'); }
+  const errName = currentLang === 'fa' ? 'حداقل ۳ کاراکتر' : 'Min 3 chars';
+  const errEmail = currentLang === 'fa' ? 'ایمیل معتبر وارد کنید' : 'Valid email';
+  const errPass = currentLang === 'fa' ? 'حداقل ۶ کاراکتر' : 'Min 6 chars';
+  const errConfirm = currentLang === 'fa' ? 'رمزها مطابقت ندارند' : 'Passwords match';
+  if (name.length < 3) { document.getElementById('registerNameError').textContent = errName; document.getElementById('registerNameError').classList.add('show'); document.getElementById('registerName').classList.add('error'); valid = false; } else { document.getElementById('registerNameError').classList.remove('show'); document.getElementById('registerName').classList.remove('error'); }
+  if (!isValidEmail(email)) { document.getElementById('registerEmailError').textContent = errEmail; document.getElementById('registerEmailError').classList.add('show'); document.getElementById('registerEmail').classList.add('error'); valid = false; } else { document.getElementById('registerEmailError').classList.remove('show'); document.getElementById('registerEmail').classList.remove('error'); }
+  if (pass.length < 6) { document.getElementById('registerPasswordError').textContent = errPass; document.getElementById('registerPasswordError').classList.add('show'); document.getElementById('registerPassword').classList.add('error'); valid = false; } else { document.getElementById('registerPasswordError').classList.remove('show'); document.getElementById('registerPassword').classList.remove('error'); }
+  if (pass !== confirm) { document.getElementById('registerConfirmError').textContent = errConfirm; document.getElementById('registerConfirmError').classList.add('show'); document.getElementById('registerConfirmPassword').classList.add('error'); valid = false; } else { document.getElementById('registerConfirmError').classList.remove('show'); document.getElementById('registerConfirmPassword').classList.remove('error'); }
   if (!valid) return;
   const users = getUsers();
-  if (users.find(u => u.email === email)) { showModalMessage('❌ Email already registered', 'error'); return; }
+  const emailExists = currentLang === 'fa' ? '❌ این ایمیل قبلاً ثبت شده است' : '❌ Email already registered';
+  if (users.find(u => u.email === email)) { showModalMessage(emailExists, 'error'); return; }
   const newUser = { id: Date.now(), name, email, password: pass, role: 'User', createdAt: new Date().toISOString() };
   users.push(newUser);
   saveUsers(users);
-  showModalMessage('✅ Account created! Please login.', 'success');
+  const successMsg = currentLang === 'fa' ? '✅ حساب کاربری ایجاد شد! لطفاً وارد شوید.' : '✅ Account created! Please login.';
+  showModalMessage(successMsg, 'success');
   document.getElementById('registerForm').reset();
   switchTab('login');
 }
@@ -1704,23 +2104,28 @@ function handleLogin(e) {
   const pass = document.getElementById('loginPassword').value;
   const remember = document.getElementById('rememberMe').checked;
   let valid = true;
-  if (!isValidEmail(email)) { document.getElementById('loginEmailError').classList.add('show'); document.getElementById('loginEmail').classList.add('error'); valid = false; } else { document.getElementById('loginEmailError').classList.remove('show'); document.getElementById('loginEmail').classList.remove('error'); }
-  if (pass.length < 6) { document.getElementById('loginPasswordError').classList.add('show'); document.getElementById('loginPassword').classList.add('error'); valid = false; } else { document.getElementById('loginPasswordError').classList.remove('show'); document.getElementById('loginPassword').classList.remove('error'); }
+  const errEmail = currentLang === 'fa' ? 'ایمیل معتبر وارد کنید' : 'Valid email';
+  const errPass = currentLang === 'fa' ? 'حداقل ۶ کاراکتر' : 'Min 6 chars';
+  if (!isValidEmail(email)) { document.getElementById('loginEmailError').textContent = errEmail; document.getElementById('loginEmailError').classList.add('show'); document.getElementById('loginEmail').classList.add('error'); valid = false; } else { document.getElementById('loginEmailError').classList.remove('show'); document.getElementById('loginEmail').classList.remove('error'); }
+  if (pass.length < 6) { document.getElementById('loginPasswordError').textContent = errPass; document.getElementById('loginPasswordError').classList.add('show'); document.getElementById('loginPassword').classList.add('error'); valid = false; } else { document.getElementById('loginPasswordError').classList.remove('show'); document.getElementById('loginPassword').classList.remove('error'); }
   if (!valid) return;
   const users = getUsers();
   const user = users.find(u => u.email === email && u.password === pass);
-  if (!user) { showModalMessage('❌ Wrong email or password', 'error'); return; }
+  const errMsg = currentLang === 'fa' ? '❌ ایمیل یا رمز عبور اشتباه است' : '❌ Wrong email or password';
+  if (!user) { showModalMessage(errMsg, 'error'); return; }
   setCurrentUser(user);
   if (remember) localStorage.setItem('megaRemember', 'true');
   else localStorage.removeItem('megaRemember');
-  showModalMessage(`✅ Welcome ${user.name}!`, 'success');
+  const welcomeMsg = currentLang === 'fa' ? `✅ خوش آمدید ${user.name}!` : `✅ Welcome ${user.name}!`;
+  showModalMessage(welcomeMsg, 'success');
   updateUI();
   closeModal();
   renderTickets();
 }
 
 function handleLogout() {
-  if (confirm('Logout?')) { clearCurrentUser(); localStorage.removeItem('megaRemember'); showModalMessage('👋 Logged out', 'info'); updateUI(); }
+  const confirmMsg = currentLang === 'fa' ? 'خروج از حساب؟' : 'Logout?';
+  if (confirm(confirmMsg)) { clearCurrentUser(); localStorage.removeItem('megaRemember'); const msg = currentLang === 'fa' ? '👋 خارج شدید' : '👋 Logged out'; showModalMessage(msg, 'info'); updateUI(); }
 }
 
 function updateUI() {
@@ -1743,14 +2148,17 @@ function updateUI() {
     document.getElementById('registerForm').reset();
     document.querySelectorAll('.error-message').forEach(el => el.classList.remove('show'));
     document.querySelectorAll('input').forEach(inp => inp.classList.remove('error'));
-    btn.textContent = 'Login';
+    const loginText = currentLang === 'fa' ? 'ورود' : 'Login';
+    btn.textContent = loginText;
     btn.style.background = 'rgba(166,255,179,0.06)';
   }
 }
 function openModal() { document.getElementById('loginModal').classList.add('active'); document.getElementById('modalMessage').style.display = 'none'; updateUI(); }
 function closeModal() { document.getElementById('loginModal').classList.remove('active'); }
 
-// ===================== MOBILE VIEW TOGGLE =====================
+// ============================================================
+// MOBILE VIEW TOGGLE
+// ============================================================
 let isMobileView = false;
 document.getElementById('mobileViewToggle').addEventListener('click', function() {
   isMobileView = !isMobileView;
@@ -1768,12 +2176,11 @@ document.getElementById('mobileViewToggle').addEventListener('click', function()
   }
 });
 
-// ===================== INIT =====================
+// ============================================================
+// INIT
+// ============================================================
 document.addEventListener('DOMContentLoaded', function() {
-  // Render updates
   renderUpdates();
-  
-  // Update version timestamp
   updateVersionTime();
   setInterval(updateVersionTime, 60000);
 
@@ -1782,23 +2189,29 @@ document.addEventListener('DOMContentLoaded', function() {
     users.push({ id: 1, name: 'Admin', email: 'admin@mega.com', password: '123456', role: 'Admin', createdAt: new Date().toISOString() });
     saveUsers(users);
   }
+  
   document.getElementById('loginNavBtn').addEventListener('click', openModal);
   document.getElementById('closeModal').addEventListener('click', closeModal);
   document.getElementById('loginModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeModal(); document.getElementById('supportModal').classList.remove('active'); document.getElementById('chatWindow').classList.remove('active'); chatOpen = false; } });
+  
   if (localStorage.getItem('megaRemember') === 'true' && getCurrentUser()) updateUI();
   else updateUI();
+  
   tickets = JSON.parse(localStorage.getItem('megaTickets')) || [];
   renderTickets();
+  
   document.querySelectorAll('input').forEach(inp => {
     inp.addEventListener('input', function() { this.classList.remove('error'); const err = this.parentElement.querySelector('.error-message'); if (err) err.classList.remove('show'); });
   });
   document.querySelectorAll('.tab').forEach(tab => {
     tab.addEventListener('click', function() { switchTab(this.dataset.tab); });
   });
+  
   updateSpamUI();
   console.log('🚀 MegaGroup v1.7 · Anti-Spam Active');
   console.log('📧 default: admin@mega.com / 123456');
+  console.log('📝 God of War article added to Articles section!');
 });
 </script>
 </body>
