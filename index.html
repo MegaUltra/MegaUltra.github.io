@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: "Vazirmatn";
-    src: url("https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/Digi Rastin Bold.ttf") format("truetype");
+    src: url("https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/Digi%20Rastin%20Bold.ttf") format("truetype");
 }
 
 @font-face {
@@ -21,6 +21,12 @@
 @font-face {
   font-family: 'ss';
   src: url('https://raw.githubusercontent.com/dachnima/limo.github.io/main/Vazirmatn-Bold.ttf') format('truetype');
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html,body{
@@ -75,13 +81,10 @@ body::before{
     content:"";
     position:absolute;
     inset:0;
-
     background:url("https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/fadee.png")
                center center / 800px no-repeat;
-
      opacity: 0.2;
     pointer-events:none;
-
     mask-image:linear-gradient(to right,
         transparent 0%,
         black 20%,
@@ -134,6 +137,45 @@ body::before{
     border-radius: 50px;
 }
 
+.nav button.active-nav {
+    background:rgba(166,255,179,.12);
+    color:#a6ffb3;
+    border-radius: 50px;
+}
+
+/* ================= LANGUAGE SWITCHER ================= */
+.lang-switcher {
+    display: flex;
+    gap: 4px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 30px;
+    padding: 3px;
+    border: 1px solid rgba(166,255,179,0.06);
+    margin-left: 8px;
+}
+.lang-switcher button {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: rgba(255,255,255,0.4);
+    font-family: "V1", sans-serif;
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+.lang-switcher button:hover {
+    color: rgba(255,255,255,0.7);
+}
+.lang-switcher button.active-lang {
+    background: rgba(166,255,179,0.12);
+    color: #b8ffc4;
+    box-shadow: 0 0 20px rgba(166,255,179,0.04);
+}
+
 /* ================= CONTENT ================= */
 
 .content{
@@ -143,6 +185,9 @@ body::before{
     transform:translate(-50%,-50%);
     text-align:center;
     z-index:1;
+    width: 100%;
+    max-width: 1100px;
+    padding: 0 20px;
 }
 
 .title{
@@ -150,6 +195,7 @@ body::before{
     color:#a6ffb3;
     font-size:52px;
     font-family:"Vazirmatn";
+    text-shadow: 0 0 30px rgba(166,255,179,0.3), 0 0 60px rgba(166,255,179,0.10);
 }
 
 .subtitle{
@@ -182,8 +228,6 @@ body::before{
     transition:.3s;
     cursor:pointer;
 }
-
-
 
 .card:hover{
     transform:translateY(-2px);
@@ -226,13 +270,16 @@ body::before{
     font-size:16px;
     cursor:pointer;
     transition:.25s;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-btn:hover{
     background-color: #c8ffd0;
     box-shadow:0 0 25px #c8ffd03d;
 }
-
 
 /* ================= FOOTER ================= */
 
@@ -241,102 +288,1580 @@ body::before{
     bottom:-40px;
     left:50%;
     transform:translateX(-50%);
-
     color:rgba(255,255,255,.6);
     font-family:"V1";
     font-size:14px;
     text-align:center;
     z-index:10;
-
     user-select:none;
+    width: 100%;
 }
 
+/* ============================================================
+   🚀 HIDDEN SECTIONS (Projects, Team, Tickets, Articles)
+   ============================================================ */
+.hidden-sections {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 100px 20px 60px;
+}
+.hidden-sections.active {
+    display: block;
+}
 
+.hidden-sections .close-sections {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 50px;
+    color: #fff;
+    font-size: 24px;
+    padding: 8px 20px;
+    cursor: pointer;
+    font-family: "V1";
+    transition: 0.3s;
+    z-index: 1001;
+}
+.hidden-sections .close-sections:hover {
+    background: rgba(255,80,80,0.1);
+    border-color: rgba(255,80,80,0.2);
+    color: #ff6b6b;
+}
 
+/* SECTION NAV */
+.section-nav {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+.section-nav button {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 30px;
+    color: rgba(255,255,255,0.6);
+    padding: 10px 24px;
+    font-family: "V1";
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.section-nav button:hover {
+    background: rgba(166,255,179,0.08);
+    color: #a6ffb3;
+}
+.section-nav button.active-section {
+    background: rgba(166,255,179,0.08);
+    color: #a6ffb3;
+    border-color: rgba(166,255,179,0.15);
+}
+
+/* SECTION CONTENT */
+.section-content {
+    display: none;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.section-content.active {
+    display: block;
+}
+
+/* ================= PROJECTS ================= */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+.project-card {
+    background: rgba(25, 35, 32, 0.7);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(166, 255, 179, 0.08);
+    border-radius: 24px;
+    padding: 30px 24px;
+    text-align: center;
+    transition: 0.3s;
+}
+.project-card:hover {
+    border-color: rgba(166,255,179,0.2);
+    transform: translateY(-4px);
+}
+.project-card .icon { font-size: 48px; display: block; margin-bottom: 10px; }
+.project-card h3 { color: #a6ffb3; font-family: "Vazirmatn"; font-size: 22px; }
+.project-card p { color: rgba(255,255,255,0.5); font-family: "V1"; font-size: 14px; }
+.project-card .coming-badge {
+    display: inline-block;
+    background: rgba(166,255,179,0.08);
+    color: #a6ffb3;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-top: 10px;
+    border: 1px solid rgba(166,255,179,0.06);
+}
+.project-card .project-btn {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 8px 24px;
+    border-radius: 30px;
+    font-family: 'ss';
+    font-size: 13px;
+    text-decoration: none;
+    border: 1px solid rgba(166,255,179,0.15);
+    background: rgba(166,255,179,0.06);
+    color: #a6ffb3;
+    transition: 0.3s;
+}
+.project-card .project-btn:hover {
+    background: rgba(166,255,179,0.12);
+    border-color: rgba(166,255,179,0.25);
+}
+
+/* ================= TEAM ================= */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+.team-card {
+    background: rgba(25, 35, 32, 0.65);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(166, 255, 179, 0.06);
+    border-radius: 24px;
+    padding: 24px 16px;
+    text-align: center;
+    transition: 0.3s;
+}
+.team-card:hover {
+    border-color: rgba(166,255,179,0.15);
+    transform: translateY(-4px);
+}
+.team-card .avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 900;
+    color: #0a0a0a;
+    background: linear-gradient(135deg, #a6ffb3, #4ecdc4);
+    font-family: 'ss';
+}
+.team-card .team-name {
+    font-family: 'ss';
+    font-size: 16px;
+    color: #a6ffb3;
+}
+.team-card .team-role {
+    font-family: "V1";
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+}
+.team-card .team-badge {
+    display: inline-block;
+    background: rgba(166,255,179,0.06);
+    border: 1px solid rgba(166,255,179,0.04);
+    padding: 2px 12px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-family: 'ss';
+    color: #a6ffb3;
+    margin-top: 6px;
+}
+.team-card .team-badge.owner { background: rgba(255,215,0,0.12); border-color: rgba(255,215,0,0.10); color: #ffd700; }
+.team-card .team-badge.admin { background: rgba(255,215,0,0.08); border-color: rgba(255,215,0,0.06); color: #ffd700; }
+.team-card .team-badge.dark { background: rgba(100,100,255,0.08); border-color: rgba(100,100,255,0.06); color: #88aaff; }
+.team-card .team-badge.light { background: rgba(255,255,200,0.06); border-color: rgba(255,255,200,0.04); color: #ffdd88; }
+.team-card.dark-team { background: rgba(10,10,20,0.8); border-color: rgba(100,100,255,0.08); }
+.team-card.light-theme { background: rgba(200,200,180,0.08); border-color: rgba(255,255,200,0.06); }
+.team-card.light-theme .team-name { color: #ffdd88; }
+
+.team-section-title {
+    font-family: 'ss';
+    font-size: 20px;
+    color: #a6ffb3;
+    text-align: center;
+    margin: 30px 0 16px;
+    letter-spacing: 1px;
+}
+.team-section-title .sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    font-family: "V1";
+    display: block;
+    margin-top: 2px;
+    font-weight: 400;
+}
+
+/* ================= TICKETS ================= */
+.ticket-form {
+    background: rgba(25, 35, 32, 0.6);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(166, 255, 179, 0.06);
+    border-radius: 24px;
+    padding: 28px 24px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.ticket-form h4 {
+    font-family: 'ss';
+    color: #a6ffb3;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 16px;
+}
+.ticket-form .form-group {
+    margin-bottom: 14px;
+}
+.ticket-form .form-group label {
+    display: block;
+    color: rgba(255,255,255,0.4);
+    font-family: "V1";
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+.ticket-form .form-group input,
+.ticket-form .form-group select,
+.ticket-form .form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    color: #fff;
+    font-family: "V1";
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+.ticket-form .form-group textarea {
+    min-height: 70px;
+    resize: vertical;
+}
+.ticket-form .form-group input:focus,
+.ticket-form .form-group select:focus,
+.ticket-form .form-group textarea:focus {
+    border-color: rgba(166,255,179,0.15);
+    background: rgba(255,255,255,0.06);
+}
+.ticket-form .submit-ticket {
+    width: 100%;
+    padding: 12px;
+    background: rgba(166,255,179,0.06);
+    border: 1px solid rgba(166,255,179,0.08);
+    border-radius: 30px;
+    color: #a6ffb3;
+    font-family: 'ss';
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.ticket-form .submit-ticket:hover:not(:disabled) {
+    background: rgba(166,255,179,0.10);
+}
+.ticket-form .submit-ticket:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+.ticket-form .submit-ticket.spam-blocked {
+    background: rgba(255,80,80,0.06);
+    border-color: rgba(255,80,80,0.08);
+    color: #ff6b6b;
+}
+
+.spam-protection {
+    background: rgba(255,200,80,0.03);
+    border: 1px solid rgba(255,200,80,0.04);
+    border-radius: 14px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+}
+.spam-protection .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "V1";
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+}
+.spam-protection .status .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.spam-protection .status .dot.green { background: #a6ffb3; box-shadow: 0 0 15px rgba(166,255,179,0.3); }
+.spam-protection .status .dot.yellow { background: #ffb833; animation: pulse 1s infinite; }
+.spam-protection .status .dot.red { background: #ff6b6b; animation: pulse 0.5s infinite; }
+@keyframes pulse { 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.3); } }
+.spam-protection .cooldown {
+    font-family: 'ss';
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffb833;
+}
+.spam-protection .limit-info {
+    font-family: "V1";
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+}
+
+.ticket-list {
+    margin-top: 20px;
+    background: rgba(15,15,15,0.2);
+    border-radius: 16px;
+    padding: 14px 16px;
+    border: 1px solid rgba(255,255,255,0.02);
+    max-height: 200px;
+    overflow-y: auto;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.ticket-list h5 {
+    font-family: 'ss';
+    color: rgba(255,255,255,0.2);
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+.ticket-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+.ticket-item .ticket-title {
+    font-family: "V1";
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+}
+.ticket-item .ticket-status {
+    font-size: 10px;
+    font-family: 'ss';
+    padding: 2px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+}
+.ticket-item .ticket-status.open { background: rgba(255,200,80,0.06); color: #ffb833; border: 1px solid rgba(255,200,80,0.04); }
+.ticket-item .ticket-status.inprogress { background: rgba(70,130,255,0.06); color: #66aaff; border: 1px solid rgba(70,130,255,0.04); }
+.ticket-item .ticket-status.resolved { background: rgba(166,255,179,0.06); color: #a6ffb3; border: 1px solid rgba(166,255,179,0.04); }
+
+/* ================= ARTICLES ================= */
+.articles-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.article-card {
+    background: rgba(25, 35, 32, 0.6);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(166, 255, 179, 0.04);
+    border-radius: 20px;
+    padding: 24px 22px;
+    margin-bottom: 16px;
+    transition: 0.3s;
+}
+.article-card:hover {
+    border-color: rgba(166,255,179,0.10);
+    transform: translateX(4px);
+}
+.article-card .article-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+.article-card .article-category {
+    font-family: 'ss';
+    font-size: 10px;
+    color: #a6ffb3;
+    letter-spacing: 1px;
+    background: rgba(166,255,179,0.04);
+    border: 1px solid rgba(166,255,179,0.04);
+    padding: 2px 12px;
+    border-radius: 20px;
+}
+.article-card .article-date {
+    font-family: "V1";
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+}
+.article-card h3 {
+    font-family: 'ss';
+    font-size: 18px;
+    color: #a6ffb3;
+    margin-bottom: 6px;
+}
+.article-card .article-excerpt {
+    font-family: "V1";
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+.article-card .article-full {
+    display: none;
+    font-family: "V1";
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.8;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(166,255,179,0.04);
+}
+.article-card .article-full.show {
+    display: block;
+}
+.article-card .article-full h4 {
+    color: #a6ffb3;
+    font-family: 'ss';
+    font-size: 15px;
+    margin: 14px 0 6px;
+}
+.article-card .article-full ul {
+    padding-left: 20px;
+    margin: 6px 0 10px;
+}
+.article-card .article-full ul li {
+    margin-bottom: 3px;
+    color: rgba(255,255,255,0.6);
+}
+.article-card .article-full strong {
+    color: #a6ffb3;
+}
+.article-card .article-readmore {
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(166,255,179,0.08);
+    padding-bottom: 2px;
+    color: #a6ffb3;
+    font-family: 'ss';
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.article-card .article-readmore:hover {
+    border-bottom-color: #a6ffb3;
+}
+
+/* ================= CHATBOT ================= */
+.chatbot-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 998;
+}
+.chatbot-toggle {
+    background: rgba(15,15,15,0.8);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(166,255,179,0.12);
+    border-radius: 50px;
+    padding: 12px 22px;
+    color: #a6ffb3;
+    font-family: 'ss';
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.5px;
+}
+.chatbot-toggle:hover {
+    background: rgba(166,255,179,0.06);
+    border-color: rgba(166,255,179,0.2);
+    transform: scale(1.03);
+}
+.chatbot-toggle .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #a6ffb3;
+    animation: dotPulse 2s infinite;
+}
+@keyframes dotPulse {
+    0%,100%{ opacity:0.3; transform:scale(0.8); }
+    50%{ opacity:1; transform:scale(1.2); }
+}
+
+.chatbot-window {
+    display: none;
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 340px;
+    max-width: calc(100% - 40px);
+    max-height: 450px;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(166,255,179,0.06);
+    border-radius: 24px;
+    z-index: 999;
+    overflow: hidden;
+    animation: slideUp 0.3s ease;
+}
+@keyframes slideUp { 0%{ transform:translateY(20px); opacity:0; } 100%{ transform:translateY(0); opacity:1; } }
+.chatbot-window.active { display: block; }
+.chatbot-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.chatbot-header h4 { font-family: 'ss'; font-size: 15px; color: #a6ffb3; }
+.chatbot-header .close-chat {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.3);
+    font-size: 22px;
+    cursor: pointer;
+}
+.chatbot-header .close-chat:hover { color: #ff6b6b; transform: rotate(90deg); }
+.chatbot-messages {
+    padding: 14px 16px;
+    max-height: 220px;
+    overflow-y: auto;
+}
+.chatbot-messages .msg {
+    margin-bottom: 10px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    max-width: 88%;
+    font-family: "V1";
+    font-size: 13px;
+    line-height: 1.4;
+}
+.chatbot-messages .msg.bot {
+    background: rgba(166,255,179,0.04);
+    border: 1px solid rgba(166,255,179,0.03);
+    color: rgba(255,255,255,0.8);
+    margin-right: auto;
+    border-bottom-left-radius: 4px;
+}
+.chatbot-messages .msg.user {
+    background: rgba(166,255,179,0.08);
+    border: 1px solid rgba(166,255,179,0.04);
+    color: #a6ffb3;
+    margin-left: auto;
+    border-bottom-right-radius: 4px;
+}
+.quick-questions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0 16px 10px;
+}
+.quick-questions button {
+    background: rgba(166,255,179,0.02);
+    border: 1px solid rgba(166,255,179,0.04);
+    border-radius: 30px;
+    padding: 3px 12px;
+    color: rgba(255,255,255,0.4);
+    font-family: "V1";
+    font-size: 10px;
+    cursor: pointer;
+}
+.quick-questions button:hover { background: rgba(166,255,179,0.05); color: #a6ffb3; }
+.chatbot-input {
+    padding: 10px 16px;
+    border-top: 1px solid rgba(255,255,255,0.02);
+    display: flex;
+    gap: 8px;
+}
+.chatbot-input input {
+    flex: 1;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 30px;
+    padding: 8px 14px;
+    color: #fff;
+    font-family: "V1";
+    font-size: 13px;
+    outline: none;
+}
+.chatbot-input input:focus { border-color: rgba(166,255,179,0.08); }
+.chatbot-input input::placeholder { color: rgba(255,255,255,0.2); }
+.chatbot-input button {
+    background: rgba(166,255,179,0.04);
+    border: 1px solid rgba(166,255,179,0.06);
+    border-radius: 30px;
+    padding: 8px 16px;
+    color: #a6ffb3;
+    font-family: "V1";
+    font-size: 13px;
+    cursor: pointer;
+}
+.chatbot-input button:hover { background: rgba(166,255,179,0.08); }
+
+/* ================= VERSION BADGE ================= */
+.version-badge {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 900;
+    font-family: 'ss';
+    font-size: 10px;
+    color: rgba(166,255,179,0.12);
+    letter-spacing: 1px;
+    text-align: left;
+    line-height: 1.5;
+    background: rgba(0,0,0,0.2);
+    backdrop-filter: blur(6px);
+    padding: 4px 12px;
+    border-radius: 30px;
+    border: 1px solid rgba(166,255,179,0.02);
+    user-select: none;
+    pointer-events: none;
+}
+.version-badge span {
+    color: rgba(166,255,179,0.2);
+    font-size: 9px;
+    font-family: "V1";
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    .topbar {
+        top: 16px;
+        height: 56px;
+        padding: 0 12px;
+        border-radius: 40px;
+    }
+    .logo { font-size: 18px; }
+    .nav button { font-size: 11px; padding: 6px 10px; }
+    .title { font-size: 32px; }
+    .subtitle { font-size: 16px; margin-top: -10px; }
+    .cards { gap: 14px; }
+    .card { width: 100%; max-width: 280px; min-height: 150px; }
+    .hidden-sections { padding: 80px 14px 40px; }
+    .section-nav button { font-size: 12px; padding: 6px 14px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    .chatbot-window { width: calc(100% - 30px); right: 15px; bottom: 80px; }
+    .chatbot-toggle { padding: 8px 16px; font-size: 11px; }
+}
+
+@media (max-width: 480px) {
+    .topbar { height: 48px; padding: 0 8px; }
+    .logo { font-size: 14px; }
+    .nav button { font-size: 9px; padding: 4px 6px; }
+    .title { font-size: 24px; }
+    .subtitle { font-size: 13px; }
+    .card { max-width: 100%; }
+    .team-grid { grid-template-columns: 1fr; }
+    .lang-switcher button { font-size: 8px; padding: 2px 6px; }
+}
 </style>
 </head>
-
 <body>
 
-<!-- Navbar -->
+<!-- ===== NAVBAR ===== -->
 <div class="topbar">
-
     <div class="nav left-nav">
-        <button>Home</button>
-        <button>Projects</button>
+        <button id="navHome" class="active-nav" data-key="navHome">Home</button>
+        <button id="navSections" data-key="navMenu">☰ Menu</button>
     </div>
-
-    <div class="logo">
-        MegaGroup
-    </div>
-
+    <div class="logo">MegaGroup</div>
     <div class="nav right-nav">
-        <button>Team</button>
-        <button>Contact</button>
+        <button id="supportBtn" data-key="supportBtn">💬 Support</button>
+        <button id="loginNavBtn" data-key="loginNavBtn">Login</button>
+        <div class="lang-switcher">
+            <button id="langEn" class="active-lang" onclick="setLanguage('en')">EN</button>
+            <button id="langFa" onclick="setLanguage('fa')">FA</button>
+        </div>
     </div>
-
 </div>
 
-<!-- Main Content -->
-<div class="content">
-
-    <h1 class="title">MEGAGROUP - ULTRA EDITION</h1>
-
-    <p class="subtitle">
-        !اولین و بزرگترین تیم نرم افزاری در ایران
-    </p>
+<!-- ===== MAIN CONTENT ===== -->
+<div class="content" id="mainContent">
+    <h1 class="title" data-key="homeTitle">MEGAGROUP - ULTRA EDITION</h1>
+    <p class="subtitle" data-key="homeSubtitle">!اولین و بزرگترین تیم نرم افزاری در ایران</p>
 
     <div class="cards">
-
-        <!-- Card 1 -->
         <div class="card">
-            <h3>MEGACOIN</h3>
-
-            <p>
-                فقط با کلیک کردن، صاحب کلی جایزه متنوع شو و هر هفته منتظر یک رویداد جدید باش.
-            </p>
-
-      <a href="https://megaultra.github.io/MemeCoin.html">
-        <button class="card-btn">
-           [BETA] شروع
-        </button>
-    </a>
+            <h3 data-key="cardCoinTitle">MEGACOIN</h3>
+            <p data-key="cardCoinDesc">فقط با کلیک کردن، صاحب کلی جایزه متنوع شو و هر هفته منتظر یک رویداد جدید باش.</p>
+            <a href="https://megaultra.github.io/MemeCoin.html">
+                <button class="card-btn" data-key="cardCoinBtn">[BETA] شروع</button>
+            </a>
         </div>
 
-        <!-- Card 2 -->
         <div class="card">
-            <h3>MEGABOMBER</h3>
-
-            <p>
-                یک سرویس کاملاً رایگان که بتونی دوستات رو اس‌ام‌اس بارون کنی و اذیتشون کنی.
-            </p>
-
-            <button class="card-btn">
-                شروع
-            </button>
+            <h3 data-key="cardBomberTitle">MEGABOMBER</h3>
+            <p data-key="cardBomberDesc">یک سرویس کاملاً رایگان که بتونی دوستات رو اس‌ام‌اس بارون کنی و اذیتشون کنی.</p>
+            <button class="card-btn" data-key="cardBomberBtn">شروع</button>
         </div>
 
-        <!-- Card 3 -->
         <div class="card">
-            <h3>Coming Soon!</h3>
-
-            <p>
-                این پروژه به زودی تکمیل و منتشر می‌شود.
-            </p>
-
-            <button class="card-btn">
-               !به زودی
-            </button>
+            <h3 data-key="cardComingTitle">Coming Soon!</h3>
+            <p data-key="cardComingDesc">این پروژه به زودی تکمیل و منتشر می‌شود.</p>
+            <button class="card-btn" data-key="cardComingBtn">!به زودی</button>
         </div>
+    </div>
+</div>
 
+<!-- ===== HIDDEN SECTIONS (Projects, Team, Tickets, Articles) ===== -->
+<div class="hidden-sections" id="hiddenSections">
+    <button class="close-sections" id="closeSections">✕ Close</button>
+
+    <div class="section-nav">
+        <button class="active-section" data-section="projects" data-key="navProjects">📦 Projects</button>
+        <button data-section="team" data-key="navTeam">👥 Team</button>
+        <button data-section="tickets" data-key="navTickets">🎫 Tickets</button>
+        <button data-section="articles" data-key="navArticles">📝 Articles</button>
     </div>
 
-<!-- Footer -->
+    <!-- PROJECTS -->
+    <div class="section-content active" id="sectionProjects">
+        <div class="projects-grid">
+            <div class="project-card">
+                <span class="icon">🪙</span>
+                <h3 data-key="projectMemeTitle">MemeCoin</h3>
+                <p data-key="projectMemeDesc">Mega Meme Token</p>
+                <a href="https://megaultra.github.io/MemeCoin.html" target="_blank" class="project-btn" data-key="viewProject">🔗 View Project</a>
+            </div>
+            <div class="project-card">
+                <span class="icon">💣</span>
+                <h3 data-key="projectBomberTitle">MegaBomber</h3>
+                <p data-key="projectBomberDesc">SMS Bomber Tool</p>
+                <div class="coming-badge" data-key="comingSoon">🚀 Coming Soon</div>
+            </div>
+            <div class="project-card">
+                <span class="icon">🚀</span>
+                <h3 data-key="projectComingTitle">MegaUltra</h3>
+                <p data-key="projectComingDesc">Ultimate Mega Project</p>
+                <div class="coming-badge" data-key="comingSoon">🚀 Coming Soon</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEAM -->
+    <div class="section-content" id="sectionTeam">
+        <div class="team-section-title">
+            🏆 Main Owner
+            <span class="sub">Founder & Lead Developer</span>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="avatar">DA</div>
+                <h3 class="team-name">DACHASHKAN</h3>
+                <p class="team-role" data-key="roleMainOwner">🎯 Founder · Lead Developer</p>
+                <div class="team-badge owner">⭐ MAIN OWNER</div>
+            </div>
+        </div>
+
+        <div class="team-section-title">
+            👥 Default Team
+            <span class="sub">Core Members</span>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="avatar">DN</div>
+                <h3 class="team-name">DACHNIMA</h3>
+                <p class="team-role" data-key="roleOwnerPM">🎯 Owner · Project Manager</p>
+                <div class="team-badge">🚀 PROJECT MANAGER</div>
+            </div>
+            <div class="team-card">
+                <div class="avatar">⚡</div>
+                <h3 class="team-name">llA_Sll</h3>
+                <p class="team-role" data-key="roleAdmin">👑 Admin · Team Manager</p>
+                <div class="team-badge admin">⭐ ADMIN</div>
+            </div>
+            <div class="team-card">
+                <div class="avatar">💻</div>
+                <h3 class="team-name">arad1040</h3>
+                <p class="team-role" data-key="roleMemberDev">👤 Member · Developer</p>
+                <div class="team-badge">🛠️ DEVELOPER</div>
+            </div>
+            <div class="team-card">
+                <div class="avatar">🚀</div>
+                <h3 class="team-name">Mohammadvip10</h3>
+                <p class="team-role" data-key="roleMemberSupp">👤 Member · Supporter</p>
+                <div class="team-badge">🤝 SUPPORTER</div>
+            </div>
+        </div>
+
+        <div class="team-section-title">
+            🌑 Dark Team
+            <span class="sub">Elite Security & Development Division</span>
+        </div>
+        <div class="team-grid">
+            <div class="team-card dark-team">
+                <div class="avatar">🖤</div>
+                <h3 class="team-name">Dark_Shadow</h3>
+                <p class="team-role">🛡️ Security Lead · Penetration Tester</p>
+                <div class="team-badge dark">🔒 SECURITY</div>
+            </div>
+            <div class="team-card dark-team">
+                <div class="avatar">🌙</div>
+                <h3 class="team-name">Night_Coder</h3>
+                <p class="team-role">💻 Backend Developer · Database Expert</p>
+                <div class="team-badge dark">⚡ BACKEND</div>
+            </div>
+            <div class="team-card dark-team">
+                <div class="avatar">🔥</div>
+                <h3 class="team-name">Dark_Flame</h3>
+                <p class="team-role">🔧 DevOps · Infrastructure Engineer</p>
+                <div class="team-badge dark">🚀 DEVOPS</div>
+            </div>
+        </div>
+
+        <div class="team-section-title">
+            ☀️ Light Theme Team
+            <span class="sub">UI/UX & Frontend Specialists</span>
+        </div>
+        <div class="team-grid">
+            <div class="team-card light-theme">
+                <div class="avatar">✨</div>
+                <h3 class="team-name">Luna_Design</h3>
+                <p class="team-role">🎨 UI/UX Designer · Frontend Lead</p>
+                <div class="team-badge light">💎 DESIGN</div>
+            </div>
+            <div class="team-card light-theme">
+                <div class="avatar">🌟</div>
+                <h3 class="team-name">Ray_Dev</h3>
+                <p class="team-role">⚡ Frontend Developer · React Expert</p>
+                <div class="team-badge light">🖥️ FRONTEND</div>
+            </div>
+            <div class="team-card light-theme">
+                <div class="avatar">💫</div>
+                <h3 class="team-name">Stella_Code</h3>
+                <p class="team-role">📱 Mobile Developer · Flutter Specialist</p>
+                <div class="team-badge light">📲 MOBILE</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TICKETS -->
+    <div class="section-content" id="sectionTickets">
+        <div class="ticket-form">
+            <h4 data-key="ticketTitle">🎫 Submit a Ticket</h4>
+            <div class="spam-protection" id="spamProtection">
+                <div class="status"><span class="dot green" id="statusDot"></span><span id="statusText" data-key="statusReady">Ready</span></div>
+                <div class="cooldown"><span id="cooldownCount">0</span>s</div>
+                <div class="limit-info">⚡ <span id="ticketCount">0</span> <span data-key="perHour">/ 3 per hour</span></div>
+            </div>
+            <div class="form-group"><label data-key="ticketTitleLabel">Title</label><input type="text" id="ticketTitle" placeholder="Brief issue"></div>
+            <div class="form-group"><label data-key="ticketPriorityLabel">Priority</label><select id="ticketPriority"><option data-key="priorityLow">Low</option><option selected data-key="priorityMedium">Medium</option><option data-key="priorityHigh">High</option><option data-key="priorityCritical">Critical</option></select></div>
+            <div class="form-group"><label data-key="ticketMessageLabel">Message</label><textarea id="ticketMessage" placeholder="Describe..."></textarea></div>
+            <button class="submit-ticket" id="submitBtn" onclick="submitTicket()" data-key="submitTicket">📤 Submit Ticket</button>
+        </div>
+        <div class="ticket-list"><h5 data-key="yourTickets">📋 Your Tickets</h5><div id="ticketListContainer"><div style="color:rgba(255,255,255,0.15);font-family:'V1';font-size:13px;text-align:center;padding:10px 0;" data-key="noTickets">No tickets yet.</div></div></div>
+    </div>
+
+    <!-- ARTICLES -->
+    <div class="section-content" id="sectionArticles">
+        <div class="articles-list">
+            <div class="article-card">
+                <div class="article-meta">
+                    <span class="article-category">🎮 Gaming</span>
+                    <span class="article-date">2026-07-13</span>
+                </div>
+                <h3>🎮 Life Story of Kratos (God of War)</h3>
+                <div class="article-excerpt">The complete biography and story of Kratos, the Ghost of Sparta, from his origins in Greek mythology to his journey in the Norse realms.</div>
+                <button class="article-readmore" onclick="toggleArticle(this)">📖 Read More →</button>
+                <div class="article-full">
+                    <h4>📖 Introduction</h4>
+                    <p>God of War is one of the most famous action-adventure game series, developed by Santa Monica Studio and published by Sony. The main character, Kratos, is a Spartan warrior who became one of the most iconic figures in gaming history.</p>
+                    <h4>⚔️ Biography of Kratos</h4>
+                    <p><strong>Childhood:</strong> Kratos was born in Sparta, Greece. He is the son of Zeus and a mortal woman named Callisto.</p>
+                    <p><strong>Becoming a Spartan Commander:</strong> After years of training, Kratos became the commander of the Spartan army. He called upon Ares for help and received the Blades of Chaos.</p>
+                    <p><strong>The Death of His Family:</strong> Ares tricked Kratos into killing his wife and daughter. This gave him the title Ghost of Sparta.</p>
+                    <h4>🔥 Revenge Against Ares</h4>
+                    <p>Kratos defeated and killed Ares at the end of God of War (2005), becoming the new God of War.</p>
+                    <h4>⚡ War with Zeus</h4>
+                    <p>Zeus betrayed and killed Kratos, but he returned from the Underworld to take revenge on Zeus and all Olympian gods.</p>
+                    <h4>💀 Destruction of the Greek Gods</h4>
+                    <p>In God of War II and III, Kratos defeated Poseidon, Hades, Hermes, Helios, Hercules, Hera, Cronos, and Zeus.</p>
+                    <h4>🌍 A New Beginning</h4>
+                    <p>After destroying Greece, Kratos traveled to Norse mythology, married Faye, and had a son named Atreus.</p>
+                    <h4>⚔️ God of War (2018)</h4>
+                    <p>After Faye's death, Kratos and Atreus journeyed to scatter her ashes, encountering Norse gods like Baldur, Modi, Magni, and Freya.</p>
+                    <h4>🌩️ God of War Ragnarök</h4>
+                    <p>Atreus is revealed to be Loki. Kratos transforms from a vengeful warrior to a wise father building a better future.</p>
+                    <h4>💪 Characteristics of Kratos</h4>
+                    <ul>
+                        <li>⚡ Superhuman physical strength</li>
+                        <li>🗡️ Unmatched combat skills</li>
+                        <li>🔥 Uses Blades of Chaos and Leviathan Axe</li>
+                        <li>🧠 High tactical intelligence</li>
+                    </ul>
+                    <h4>📖 The Message of the Story</h4>
+                    <p>The story is about regret, controlling rage, responsibility, father-son relationship, hope and personal change.</p>
+                    <h4>🎯 Conclusion</h4>
+                    <p>Kratos is one of the most memorable characters in gaming history. His transformation from a vengeful warrior to a wise father made God of War one of the most acclaimed series.</p>
+                    <p style="text-align:right;color:rgba(255,255,255,0.2);font-size:11px;margin-top:12px;">📝 Written by MegaGroup Team</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
 <footer class="footer">
     © 2026 MegaGroup. All Rights Reserved - Join to our Discord ;)
 </footer>
 
+<!-- ===== VERSION BADGE ===== -->
+<div class="version-badge" id="versionBadge">
+    v1.7 <span id="versionTime"></span>
 </div>
 
+<!-- ===== SUPPORT MODAL ===== -->
+<div class="support-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(16px);z-index:2000;justify-content:center;align-items:center;padding:20px;">
+    <div style="background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);border:1px solid rgba(166,255,179,0.06);border-radius:36px;padding:40px 32px;max-width:500px;width:100%;text-align:center;position:relative;animation:popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275);">
+        <button style="position:absolute;top:14px;right:20px;background:none;border:none;color:rgba(255,255,255,0.3);font-size:28px;cursor:pointer;" id="closeSupportModal">✕</button>
+        <span style="font-size:56px;display:block;margin-bottom:4px;">🛡️</span>
+        <h2 style="font-family:'ss';font-size:28px;font-weight:900;color:#a6ffb3;letter-spacing:2px;" data-key="supportTitle">MEGA SUPPORT</h2>
+        <p style="font-family:'V1';font-size:14px;color:rgba(255,255,255,0.5);" data-key="supportSub">Get help from our team</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:16px 0;">
+            <div style="background:rgba(166,255,179,0.04);border:1px solid rgba(166,255,179,0.04);border-radius:16px;padding:12px 20px;">
+                <span style="font-family:'ss';font-size:16px;font-weight:700;color:#a6ffb3;display:block;">@DachAshkan</span>
+                <span style="font-family:'V1';font-size:12px;color:rgba(255,255,255,0.4);" data-key="supportRoleDev">⚡ Founder & Lead Developer</span>
+            </div>
+            <div style="background:rgba(166,255,179,0.04);border:1px solid rgba(166,255,179,0.04);border-radius:16px;padding:12px 20px;">
+                <span style="font-family:'ss';font-size:16px;font-weight:700;color:#a6ffb3;display:block;">@DachNima</span>
+                <span style="font-family:'V1';font-size:12px;color:rgba(255,255,255,0.4);" data-key="supportRolePM">🚀 Project Manager</span>
+            </div>
+        </div>
+        <div style="font-family:'V1';font-size:14px;color:rgba(255,255,255,0.5);" data-key="supportChannels">📱 Contact us on <span style="color:#a6ffb3;font-weight:700;">Discord</span> &amp; <span style="color:#a6ffb3;font-weight:700;">Telegram</span></div>
+        <div style="display:inline-block;background:rgba(166,255,179,0.04);border:1px solid rgba(166,255,179,0.06);padding:6px 22px;border-radius:40px;font-family:'ss';font-size:12px;color:rgba(166,255,179,0.4);margin-top:12px;letter-spacing:2px;" data-key="supportComing">🤖 SUPPORT BOT · COMING SOON</div>
+    </div>
+</div>
+
+<!-- ===== CHATBOT ===== -->
+<div class="chatbot-container">
+    <button class="chatbot-toggle" id="chatToggle"><span class="dot"></span> <span data-key="aiAssistant">AI Assistant</span></button>
+</div>
+<div class="chatbot-window" id="chatWindow">
+    <div class="chatbot-header"><h4>🤖 MEGA AI</h4><button class="close-chat" id="closeChat">✕</button></div>
+    <div class="chatbot-messages" id="chatMessages"><div class="msg bot" data-key="aiWelcome">👋 Hello! I'm Mega AI. Ask me anything.</div></div>
+    <div class="quick-questions">
+        <button onclick="askQuestion('Who are the owners?')" data-key="qOwners">Owners</button>
+        <button onclick="askQuestion('What is MegaBomber?')" data-key="qBomber">MegaBomber</button>
+        <button onclick="askQuestion('What is MemeCoin?')" data-key="qMeme">MemeCoin</button>
+        <button onclick="askQuestion('How to contact support?')" data-key="qSupport">Support</button>
+    </div>
+    <div class="chatbot-input">
+        <input type="text" id="chatInput" placeholder="Ask..." onkeypress="if(event.key==='Enter') sendMessage()">
+        <button onclick="sendMessage()" data-key="sendBtn">Send</button>
+    </div>
+</div>
+
+<!-- ===== LOGIN MODAL ===== -->
+<div style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);z-index:1500;justify-content:center;align-items:center;padding:20px;" id="loginModal">
+    <div style="background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);border:1px solid rgba(166,255,179,0.04);border-radius:36px;padding:30px 24px;max-width:400px;width:100%;color:#fff;position:relative;max-height:90vh;overflow-y:auto;">
+        <button style="position:absolute;top:12px;right:16px;background:none;border:none;color:rgba(255,255,255,0.3);font-size:26px;cursor:pointer;" id="closeModal">✕</button>
+        <div style="text-align:center;margin-bottom:16px;">
+            <h1 style="font-family:'Vazirmatn';color:#a6ffb3;font-size:28px;">⚡ MEGA</h1>
+            <p style="color:rgba(255,255,255,0.3);font-size:13px;" data-key="signInSub">sign in · sign up</p>
+        </div>
+        <div id="modalMessage" style="padding:8px 14px;border-radius:16px;margin-bottom:14px;display:none;font-size:13px;"></div>
+        <div id="authSection">
+            <div style="display:flex;margin-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.04);">
+                <div class="tab active" data-tab="login" onclick="switchTab('login')" style="flex:1;text-align:center;padding:10px 0;cursor:pointer;color:rgba(255,255,255,0.3);font-weight:600;font-size:14px;position:relative;" data-key="loginTab">Login</div>
+                <div class="tab" data-tab="register" onclick="switchTab('register')" style="flex:1;text-align:center;padding:10px 0;cursor:pointer;color:rgba(255,255,255,0.3);font-weight:600;font-size:14px;position:relative;" data-key="signupTab">Sign up</div>
+            </div>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div style="margin-bottom:14px;"><label style="display:block;color:rgba(255,255,255,0.4);font-size:12px;margin-bottom:4px;" data-key="emailLabel">📧 Email</label><input type="email" id="loginEmail" placeholder="your@email.com" style="width:100%;padding:10px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:14px;background:rgba(255,255,255,0.03);color:#fff;font-size:14px;outline:none;"></div>
+                <div style="margin-bottom:14px;"><label style="display:block;color:rgba(255,255,255,0.4);font-size:12px;margin-bottom:4px;" data-key="passwordLabel">🔒 Password</label><input type="password" id="loginPassword" placeholder="••••••••" style="width:100%;padding:10px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:14px;background:rgba(255,255,255,0.03);color:#fff;font-size:14px;outline:none;"></div>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin:10px 0 16px;">
+                    <label style="color:rgba(255,255,255,0.4);font-size:12px;display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" id="rememberMe" style="accent-color:#a6ffb3;width:16px;height:16px;"> <span data-key="rememberMe">Remember me</span></label>
+                    <a href="#" style="color:#a6ffb3;text-decoration:none;font-size:12px;" data-key="forgot">Forgot?</a>
+                </div>
+                <button type="submit" style="width:100%;padding:12px;background:rgba(166,255,179,0.06);border:1px solid rgba(166,255,179,0.08);border-radius:40px;color:#a6ffb3;font-size:16px;font-weight:700;cursor:pointer;transition:0.3s;font-family:'Vazirmatn';" data-key="loginBtn">Login</button>
+            </form>
+            <form id="registerForm" style="display:none;" onsubmit="handleRegister(event)">
+                <div style="margin-bottom:14px;"><label style="display:block;color:rgba(255,255,255,0.4);font-size:12px;margin-bottom:4px;" data-key="fullnameLabel">👤 Full name</label><input type="text" id="registerName" placeholder="Ali Reza" style="width:100%;padding:10px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:14px;background:rgba(255,255,255,0.03);color:#fff;font-size:14px;outline:none;"></div>
+                <div style="margin-bottom:14px;"><label style="display:block;color:rgba(255,255,255,0.4);font-size:12px;margin-bottom:4px;" data-key="emailLabel">📧 Email</label><input type="email" id="registerEmail" placeholder="your@email.com" style="width:100%;padding:10px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:14px;background:rgba(255,255,255,0.03);color:#fff;font-size:14px;outline:none;"></div>
+                <div style="margin-bottom:14px;"><label style="display:block;color:rgba(255,255,255,0.4);font-size:12px;margin-bottom:4px;" data-key="passwordLabel">🔒 Password</label><input type="password" id="registerPassword" placeholder="••••••••" style="width:100%;padding:10px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:14px;background:rgba(255,255,255,0.03);color:#fff;font-size:14px;outline:none;"></div>
+                <div style="margin-bottom:14px;"><label style="display:block;color:rgba(255,255,255,0.4);font-size:12px;margin-bottom:4px;" data-key="confirmLabel">✅ Confirm</label><input type="password" id="registerConfirmPassword" placeholder="••••••••" style="width:100%;padding:10px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:14px;background:rgba(255,255,255,0.03);color:#fff;font-size:14px;outline:none;"></div>
+                <button type="submit" style="width:100%;padding:12px;background:rgba(166,255,179,0.06);border:1px solid rgba(166,255,179,0.08);border-radius:40px;color:#a6ffb3;font-size:16px;font-weight:700;cursor:pointer;transition:0.3s;font-family:'Vazirmatn';" data-key="createBtn">Create account</button>
+            </form>
+        </div>
+        <div id="userPanel" style="display:none;text-align:center;padding:8px 0;">
+            <div style="width:60px;height:60px;border-radius:50%;background:rgba(166,255,179,0.06);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:28px;color:#a6ffb3;border:1px solid rgba(166,255,179,0.04);" id="userAvatar">👤</div>
+            <h3 id="userName" style="color:#fff;font-size:18px;">User</h3>
+            <p id="userEmail" style="color:rgba(255,255,255,0.3);font-size:13px;">user@example.com</p>
+            <button onclick="handleLogout()" style="width:100%;padding:12px;background:transparent;border:1px solid rgba(255,80,80,0.15);border-radius:40px;color:#ff8a8a;font-size:16px;font-weight:700;cursor:pointer;transition:0.3s;font-family:'Vazirmatn';" data-key="logoutBtn">🚪 Logout</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============================================================
+// 📝 TOGGLE ARTICLE
+// ============================================================
+function toggleArticle(btn) {
+    const full = btn.parentElement.querySelector('.article-full');
+    const excerpt = btn.parentElement.querySelector('.article-excerpt');
+    if (full.classList.contains('show')) {
+        full.classList.remove('show');
+        btn.textContent = '📖 Read More →';
+        excerpt.style.display = 'block';
+    } else {
+        full.classList.add('show');
+        btn.textContent = '📖 Read Less ←';
+        excerpt.style.display = 'none';
+    }
+}
+
+// ============================================================
+// 🌐 LANGUAGE SYSTEM
+// ============================================================
+const translations = {
+    en: {
+        navHome: 'Home', navMenu: '☰ Menu', supportBtn: '💬 Support', loginNavBtn: 'Login',
+        homeTitle: 'MEGAGROUP - ULTRA EDITION',
+        homeSubtitle: 'The first and largest software team in Iran!',
+        cardCoinTitle: 'MEGACOIN',
+        cardCoinDesc: 'Just by clicking, get various rewards and expect a new event every week.',
+        cardCoinBtn: '[BETA] Start',
+        cardBomberTitle: 'MEGABOMBER',
+        cardBomberDesc: 'A completely free service to spam your friends with SMS and annoy them.',
+        cardBomberBtn: 'Start',
+        cardComingTitle: 'Coming Soon!',
+        cardComingDesc: 'This project will be completed and published soon.',
+        cardComingBtn: 'Soon!',
+        navProjects: '📦 Projects',
+        navTeam: '👥 Team',
+        navTickets: '🎫 Tickets',
+        navArticles: '📝 Articles',
+        projectMemeTitle: 'MemeCoin',
+        projectMemeDesc: 'Mega Meme Token',
+        viewProject: '🔗 View Project',
+        projectBomberTitle: 'MegaBomber',
+        projectBomberDesc: 'SMS Bomber Tool',
+        projectComingTitle: 'MegaUltra',
+        projectComingDesc: 'Ultimate Mega Project',
+        comingSoon: '🚀 Coming Soon',
+        roleMainOwner: '🎯 Founder · Lead Developer',
+        roleOwnerPM: '🎯 Owner · Project Manager',
+        roleAdmin: '👑 Admin · Team Manager',
+        roleMemberDev: '👤 Member · Developer',
+        roleMemberSupp: '👤 Member · Supporter',
+        ticketTitle: '🎫 Submit a Ticket',
+        ticketTitleLabel: 'Title',
+        ticketPriorityLabel: 'Priority',
+        ticketMessageLabel: 'Message',
+        submitTicket: '📤 Submit Ticket',
+        yourTickets: '📋 Your Tickets',
+        noTickets: 'No tickets yet.',
+        statusReady: 'Ready',
+        perHour: '/ 3 per hour',
+        priorityLow: 'Low',
+        priorityMedium: 'Medium',
+        priorityHigh: 'High',
+        priorityCritical: 'Critical',
+        supportTitle: 'MEGA SUPPORT',
+        supportSub: 'Get help from our team',
+        supportRoleDev: '⚡ Founder & Lead Developer',
+        supportRolePM: '🚀 Project Manager',
+        supportChannels: '📱 Contact us on <span style="color:#a6ffb3;font-weight:700;">Discord</span> &amp; <span style="color:#a6ffb3;font-weight:700;">Telegram</span>',
+        supportComing: '🤖 SUPPORT BOT · COMING SOON',
+        aiAssistant: 'AI Assistant',
+        aiWelcome: '👋 Hello! I\'m Mega AI. Ask me anything.',
+        qOwners: 'Owners',
+        qBomber: 'MegaBomber',
+        qMeme: 'MemeCoin',
+        qSupport: 'Support',
+        sendBtn: 'Send',
+        signInSub: 'sign in · sign up',
+        loginTab: 'Login',
+        signupTab: 'Sign up',
+        emailLabel: '📧 Email',
+        passwordLabel: '🔒 Password',
+        confirmLabel: '✅ Confirm',
+        rememberMe: 'Remember me',
+        forgot: 'Forgot?',
+        loginBtn: 'Login',
+        createBtn: 'Create account',
+        logoutBtn: '🚪 Logout',
+    },
+    fa: {
+        navHome: 'خانه',
+        navMenu: '☰ منو',
+        supportBtn: '💬 پشتیبانی',
+        loginNavBtn: 'ورود',
+        homeTitle: 'مگاگروپ - نسخه الترا',
+        homeSubtitle: '!اولین و بزرگترین تیم نرم افزاری در ایران',
+        cardCoinTitle: 'مگاکوین',
+        cardCoinDesc: 'فقط با کلیک کردن، صاحب کلی جایزه متنوع شو و هر هفته منتظر یک رویداد جدید باش.',
+        cardCoinBtn: '[BETA] شروع',
+        cardBomberTitle: 'مگابم‌بر',
+        cardBomberDesc: 'یک سرویس کاملاً رایگان که بتونی دوستات رو اس‌ام‌اس بارون کنی و اذیتشون کنی.',
+        cardBomberBtn: 'شروع',
+        cardComingTitle: 'به زودی!',
+        cardComingDesc: 'این پروژه به زودی تکمیل و منتشر می‌شود.',
+        cardComingBtn: '!به زودی',
+        navProjects: '📦 پروژه‌ها',
+        navTeam: '👥 تیم',
+        navTickets: '🎫 تیکت‌ها',
+        navArticles: '📝 مقالات',
+        projectMemeTitle: 'میم کوین',
+        projectMemeDesc: 'توکن میم مگا',
+        viewProject: '🔗 مشاهده پروژه',
+        projectBomberTitle: 'مگا بمبر',
+        projectBomberDesc: 'ابزار ارسال انبوه پیامک',
+        projectComingTitle: 'مگا اولترا',
+        projectComingDesc: 'پروژه نهایی مگا',
+        comingSoon: '🚀 به زودی',
+        roleMainOwner: '🎯 بنیان‌گذار · توسعه‌دهنده اصلی',
+        roleOwnerPM: '🎯 مالک · مدیر پروژه',
+        roleAdmin: '👑 ادمین · مدیر تیم',
+        roleMemberDev: '👤 عضو · توسعه‌دهنده',
+        roleMemberSupp: '👤 عضو · پشتیبان',
+        ticketTitle: '🎫 ثبت تیکت',
+        ticketTitleLabel: 'عنوان',
+        ticketPriorityLabel: 'اولویت',
+        ticketMessageLabel: 'پیام',
+        submitTicket: '📤 ارسال تیکت',
+        yourTickets: '📋 تیکت‌های شما',
+        noTickets: 'هنوز تیکتی ثبت نشده است.',
+        statusReady: 'آماده',
+        perHour: '/ ۳ در ساعت',
+        priorityLow: 'کم',
+        priorityMedium: 'متوسط',
+        priorityHigh: 'بالا',
+        priorityCritical: 'بحرانی',
+        supportTitle: 'پشتیبانی مگا',
+        supportSub: 'از تیم ما کمک بگیرید',
+        supportRoleDev: '⚡ بنیان‌گذار و توسعه‌دهنده اصلی',
+        supportRolePM: '🚀 مدیر پروژه',
+        supportChannels: '📱 از طریق <span style="color:#a6ffb3;font-weight:700;">دیسکورد</span> و <span style="color:#a6ffb3;font-weight:700;">تلگرام</span> با ما در تماس باشید',
+        supportComing: '🤖 ربات پشتیبانی · به زودی',
+        aiAssistant: 'دستیار هوشمند',
+        aiWelcome: '👋 سلام! من مگا ای‌آی هستم. هر چیزی بپرسید.',
+        qOwners: 'مالکان',
+        qBomber: 'مگا بمبر',
+        qMeme: 'میم کوین',
+        qSupport: 'پشتیبانی',
+        sendBtn: 'ارسال',
+        signInSub: 'ورود · ثبت‌نام',
+        loginTab: 'ورود',
+        signupTab: 'ثبت‌نام',
+        emailLabel: '📧 ایمیل',
+        passwordLabel: '🔒 رمز عبور',
+        confirmLabel: '✅ تأیید رمز',
+        rememberMe: 'مرا به خاطر بسپار',
+        forgot: 'فراموش کردید؟',
+        loginBtn: 'ورود',
+        createBtn: 'ایجاد حساب',
+        logoutBtn: '🚪 خروج',
+    }
+};
+
+let currentLang = localStorage.getItem('megaLang') || 'en';
+
+function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('megaLang', lang);
+    document.getElementById('langEn').classList.toggle('active-lang', lang === 'en');
+    document.getElementById('langFa').classList.toggle('active-lang', lang === 'fa');
+    document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (translations[lang] && translations[lang][key]) {
+            if (key === 'supportChannels') {
+                el.innerHTML = translations[lang][key];
+            } else {
+                el.textContent = translations[lang][key];
+            }
+        }
+    });
+    const welcome = document.querySelector('.chatbot-messages .msg.bot');
+    if (welcome && translations[lang].aiWelcome) welcome.textContent = translations[lang].aiWelcome;
+    document.querySelectorAll('.quick-questions button').forEach(btn => {
+        const key = btn.getAttribute('data-key');
+        if (key && translations[lang][key]) btn.textContent = translations[lang][key];
+    });
+}
+
+// ============================================================
+// NAVIGATION - Show/Hide Sections
+// ============================================================
+document.getElementById('navSections').addEventListener('click', function() {
+    document.getElementById('hiddenSections').classList.add('active');
+});
+
+document.getElementById('closeSections').addEventListener('click', function() {
+    document.getElementById('hiddenSections').classList.remove('active');
+});
+
+// Section navigation tabs
+document.querySelectorAll('.section-nav button').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.section-nav button').forEach(b => b.classList.remove('active-section'));
+        this.classList.add('active-section');
+        const section = this.dataset.section;
+        document.querySelectorAll('.section-content').forEach(c => c.classList.remove('active'));
+        document.getElementById('section' + section.charAt(0).toUpperCase() + section.slice(1)).classList.add('active');
+    });
+});
+
+// ============================================================
+// SUPPORT MODAL
+// ============================================================
+const supportModal = document.querySelector('.support-modal');
+document.getElementById('supportBtn').addEventListener('click', function() {
+    supportModal.style.display = 'flex';
+});
+document.getElementById('closeSupportModal').addEventListener('click', function() {
+    supportModal.style.display = 'none';
+});
+supportModal.addEventListener('click', function(e) {
+    if (e.target === this) this.style.display = 'none';
+});
+
+// ============================================================
+// ANTI-SPAM
+// ============================================================
+const SPAM = { MAX: 3, COOLDOWN: 60, BLOCK: 300 };
+let spamState = { count: 0, last: 0, cooldownEnd: 0, blockEnd: 0 };
+function loadSpam() {
+    const s = localStorage.getItem('megaSpam');
+    if (s) { try { const p = JSON.parse(s); spamState = { ...spamState, ...p }; if (Date.now() - spamState.last > 3600000) { spamState.count = 0; spamState.blockEnd = 0; } } catch(e){} }
+}
+function saveSpam() { localStorage.setItem('megaSpam', JSON.stringify(spamState)); }
+function updateSpamUI() {
+    const now = Date.now();
+    const dot = document.getElementById('statusDot');
+    const st = document.getElementById('statusText');
+    const cd = document.getElementById('cooldownCount');
+    const tc = document.getElementById('ticketCount');
+    const btn = document.getElementById('submitBtn');
+    tc.textContent = spamState.count;
+    if (spamState.blockEnd > now) {
+        const r = Math.ceil((spamState.blockEnd - now) / 1000);
+        dot.className = 'dot red'; st.textContent = '🚫 BLOCKED (' + r + 's)';
+        cd.textContent = r; btn.disabled = true; btn.classList.add('spam-blocked'); btn.textContent = '⛔ BLOCKED'; return;
+    }
+    if (spamState.cooldownEnd > now) {
+        const r = Math.ceil((spamState.cooldownEnd - now) / 1000);
+        dot.className = 'dot yellow'; st.textContent = '⏳ Cooldown';
+        cd.textContent = r; btn.disabled = true; btn.classList.remove('spam-blocked'); btn.textContent = '⏳ Wait ' + r + 's'; return;
+    }
+    if (spamState.count >= SPAM.MAX && now - spamState.last < 3600000) {
+        spamState.blockEnd = now + SPAM.BLOCK * 1000; saveSpam(); updateSpamUI(); return;
+    }
+    if (now - spamState.last > 3600000) spamState.count = 0;
+    dot.className = 'dot green'; st.textContent = '✅ Ready';
+    cd.textContent = '0'; btn.disabled = false; btn.classList.remove('spam-blocked'); btn.textContent = '📤 Submit Ticket';
+}
+function checkSpam() {
+    const now = Date.now();
+    if (spamState.blockEnd > now) return { allowed: false, reason: 'blocked' };
+    if (spamState.cooldownEnd > now) return { allowed: false, reason: 'cooldown' };
+    if (spamState.count >= SPAM.MAX) { spamState.blockEnd = now + SPAM.BLOCK * 1000; saveSpam(); return { allowed: false, reason: 'rate_limit' }; }
+    return { allowed: true };
+}
+function registerTicket() {
+    const now = Date.now();
+    spamState.count++;
+    spamState.last = now;
+    spamState.cooldownEnd = now + SPAM.COOLDOWN * 1000;
+    saveSpam();
+    updateSpamUI();
+    setTimeout(updateSpamUI, SPAM.COOLDOWN * 1000);
+}
+loadSpam(); setInterval(updateSpamUI, 1000); updateSpamUI();
+
+// ============================================================
+// TICKETS
+// ============================================================
+let tickets = JSON.parse(localStorage.getItem('megaTickets')) || [];
+function renderTickets() {
+    const c = document.getElementById('ticketListContainer');
+    if (!tickets.length) {
+        const noText = currentLang === 'fa' ? 'هنوز تیکتی ثبت نشده است.' : 'No tickets yet.';
+        c.innerHTML = `<div style="color:rgba(255,255,255,0.15);font-family:'V1';font-size:13px;text-align:center;padding:10px 0;">${noText}</div>`;
+        return;
+    }
+    let html = '';
+    tickets.slice().reverse().forEach((t, i) => {
+        const cls = t.status.toLowerCase();
+        const statusMap = { open: 'Open', inprogress: 'In Progress', resolved: 'Resolved' };
+        const statusText = statusMap[cls] || t.status;
+        html += `<div class="ticket-item"><span class="ticket-title">#${tickets.length - i} ${t.title}</span><span class="ticket-status ${cls}">${statusText}</span></div>`;
+    });
+    c.innerHTML = html;
+}
+function submitTicket() {
+    const title = document.getElementById('ticketTitle').value.trim();
+    const priority = document.getElementById('ticketPriority').value;
+    const message = document.getElementById('ticketMessage').value.trim();
+    const alertMsg = currentLang === 'fa' ? 'عنوان و پیام را پر کنید.' : 'Fill in title and message.';
+    if (!title || !message) { alert(alertMsg); return; }
+    const chk = checkSpam();
+    if (!chk.allowed) {
+        let msg = currentLang === 'fa' ? 'سیستم ضد اسپم فعال شد.' : 'Spam protection triggered.';
+        if (chk.reason === 'blocked') msg = currentLang === 'fa' ? '⛔ شما به طور موقت مسدود شده‌اید.' : '⛔ You are temporarily blocked.';
+        else if (chk.reason === 'cooldown') msg = currentLang === 'fa' ? '⏳ لطفاً قبل از ارسال مجدد صبر کنید.' : '⏳ Please wait before submitting again.';
+        else if (chk.reason === 'rate_limit') msg = currentLang === 'fa' ? '🚫 محدودیت سرعت! به مدت ۵ دقیقه مسدود شدید.' : '🚫 Rate limit exceeded! Blocked for 5 minutes.';
+        alert(msg); updateSpamUI(); return;
+    }
+    const user = getCurrentUser();
+    const ticket = {
+        id: Date.now(),
+        title, priority, message,
+        status: 'Open',
+        createdBy: user ? user.name : 'Guest',
+        userEmail: user ? user.email : 'guest@mega.com',
+        createdAt: new Date().toISOString()
+    };
+    tickets.push(ticket);
+    localStorage.setItem('megaTickets', JSON.stringify(tickets));
+    renderTickets();
+    registerTicket();
+    const successMsg = currentLang === 'fa' ? '✅ تیکت با موفقیت ثبت شد! تیم مطلع شد.' : '✅ Ticket submitted! Team notified.';
+    alert(successMsg);
+    document.getElementById('ticketTitle').value = '';
+    document.getElementById('ticketMessage').value = '';
+    updateSpamUI();
+}
+
+// ============================================================
+// AI CHATBOT
+// ============================================================
+const botMap = {
+    en: {
+        owners: '🎯 MegaGroup is owned by @DachAshkan (Founder & Lead Developer) and @DachNima (Project Manager).',
+        megabomber: '💣 MegaBomber is an SMS Bomber tool under development. Coming soon!',
+        memecoin: '🪙 MemeCoin is a Mega Meme Token project. Check it out in the Projects section!',
+        launch: '🚀 MegaBomber and MemeCoin are coming soon. Follow our channels for updates.',
+        support: '💬 Contact @DachAshkan and @DachNima on Discord/Telegram. Support bot coming soon!',
+        team: '👥 Team: @DachAshkan (Main Owner), @DachNima (Owner), llA_Sll (Admin), arad1040 (Member), Mohammadvip10 (Member). Also Dark Team and Light Theme Team.',
+        articles: '📝 Articles section is ready! Check out the God of War article about Kratos biography.',
+        spam: '🛡️ Anti-Spam: 3 tickets/hour, 60s cooldown, 5min block if exceeded.',
+        default: '🤖 I\'m Mega AI. Ask about owners, MegaBomber, MemeCoin, articles, launch, support, team, or spam.'
+    },
+    fa: {
+        owners: '🎯 مگاگروپ متعلق به @DachAshkan (بنیان‌گذار و توسعه‌دهنده اصلی) و @DachNima (مدیر پروژه) است.',
+        megabomber: '💣 مگا بمبر یک ابزار ارسال انبوه پیامک است که در حال توسعه می‌باشد. به زودی!',
+        memecoin: '🪙 میم کوین یک پروژه توکن میم مگا است. در بخش پروژه‌ها مشاهده کنید!',
+        launch: '🚀 مگا بمبر و میم کوین به زودی عرضه می‌شوند. کانال‌های ما را دنبال کنید.',
+        support: '💬 از طریق دیسکورد/تلگرام با @DachAshkan و @DachNima تماس بگیرید. ربات پشتیبانی به زودی!',
+        team: '👥 تیم: @DachAshkan (مالک اصلی)، @DachNima (مالک)، llA_Sll (ادمین)، arad1040 (عضو)، Mohammadvip10 (عضو). همچنین تیم دارک و تیم لایت تم.',
+        articles: '📝 بخش مقالات آماده است! مقاله زندگی‌نامه کریتوس از God of War را مشاهده کنید.',
+        spam: '🛡️ ضد اسپم: ۳ تیکت در ساعت، ۶۰ ثانیه فاصله، ۵ دقیقه مسدودی در صورت تخلف.',
+        default: '🤖 من مگا ای‌آی هستم. درباره مالکان، مگا بمبر، میم کوین، مقالات، راه‌اندازی، پشتیبانی، تیم یا ضد اسپم بپرسید.'
+    }
+};
+
+function getBotReply(msg) {
+    const m = msg.toLowerCase();
+    const dict = botMap[currentLang] || botMap.en;
+    if (m.includes('owner') || m.includes('who') || m.includes('founder') || m.includes('مالک')) return dict.owners;
+    if (m.includes('bomber') || m.includes('sms') || m.includes('megabomber') || m.includes('مگا بمبر')) return dict.megabomber;
+    if (m.includes('memecoin') || m.includes('meme') || m.includes('token') || m.includes('coin') || m.includes('میم')) return dict.memecoin;
+    if (m.includes('article') || m.includes('blog') || m.includes('post') || m.includes('content') || m.includes('مقاله')) return dict.articles;
+    if (m.includes('launch') || m.includes('soon') || m.includes('release') || m.includes('when') || m.includes('راه‌اندازی')) return dict.launch;
+    if (m.includes('support') || m.includes('contact') || m.includes('help') || m.includes('پشتیبانی')) return dict.support;
+    if (m.includes('team') || m.includes('member') || m.includes('admin') || m.includes('تیم')) return dict.team;
+    if (m.includes('spam') || m.includes('limit') || m.includes('block') || m.includes('cooldown') || m.includes('اسپم')) return dict.spam;
+    return dict.default;
+}
+
+function addMsg(text, type) {
+    const d = document.createElement('div');
+    d.className = `msg ${type}`;
+    d.textContent = text;
+    document.getElementById('chatMessages').appendChild(d);
+    d.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if (!text) return;
+    addMsg(text, 'user');
+    input.value = '';
+    setTimeout(() => { addMsg(getBotReply(text), 'bot'); }, 400);
+}
+function askQuestion(q) { document.getElementById('chatInput').value = q; sendMessage(); }
+
+let chatOpen = false;
+document.getElementById('chatToggle').addEventListener('click', function() {
+    chatOpen = !chatOpen;
+    document.getElementById('chatWindow').classList.toggle('active');
+});
+document.getElementById('closeChat').addEventListener('click', function() {
+    chatOpen = false;
+    document.getElementById('chatWindow').classList.remove('active');
+});
+
+// ============================================================
+// VERSION TIMESTAMP
+// ============================================================
+function updateVersionTime() {
+    const now = new Date();
+    const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+    document.getElementById('versionTime').textContent = ` · ${now.toLocaleString('en-US', options)}`;
+}
+updateVersionTime();
+setInterval(updateVersionTime, 60000);
+
+// ============================================================
+// AUTH
+// ============================================================
+function getUsers() { return JSON.parse(localStorage.getItem('megaUsers')) || []; }
+function saveUsers(u) { localStorage.setItem('megaUsers', JSON.stringify(u)); }
+function getCurrentUser() { return JSON.parse(localStorage.getItem('megaCurrentUser')); }
+function setCurrentUser(u) { localStorage.setItem('megaCurrentUser', JSON.stringify(u)); }
+function clearCurrentUser() { localStorage.removeItem('megaCurrentUser'); }
+
+function showModalMessage(text, type) {
+    const msg = document.getElementById('modalMessage');
+    msg.textContent = text;
+    msg.className = `message ${type}`;
+    msg.style.display = 'block';
+    msg.style.background = type === 'success' ? 'rgba(166,255,179,0.06)' : type === 'error' ? 'rgba(255,80,80,0.06)' : 'rgba(70,130,255,0.06)';
+    msg.style.color = type === 'success' ? '#a6ffb3' : type === 'error' ? '#ff8a8a' : '#88b0ff';
+    msg.style.border = type === 'success' ? '1px solid rgba(166,255,179,0.06)' : type === 'error' ? '1px solid rgba(255,80,80,0.06)' : '1px solid rgba(70,130,255,0.06)';
+    clearTimeout(window._msgTimer);
+    window._msgTimer = setTimeout(() => { msg.style.display = 'none'; }, 4000);
+}
+function switchTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelector(`.tab[data-tab="${tab}"]`).classList.add('active');
+    document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
+    document.getElementById('registerForm').style.display = tab === 'register' ? 'block' : 'none';
+    document.getElementById('modalMessage').style.display = 'none';
+}
+function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+function handleRegister(e) {
+    e.preventDefault();
+    const name = document.getElementById('registerName').value.trim();
+    const email = document.getElementById('registerEmail').value.trim();
+    const pass = document.getElementById('registerPassword').value;
+    const confirm = document.getElementById('registerConfirmPassword').value;
+    if (name.length < 3) { showModalMessage(currentLang === 'fa' ? 'حداقل ۳ کاراکتر' : 'Min 3 chars', 'error'); return; }
+    if (!isValidEmail(email)) { showModalMessage(currentLang === 'fa' ? 'ایمیل معتبر وارد کنید' : 'Valid email', 'error'); return; }
+    if (pass.length < 6) { showModalMessage(currentLang === 'fa' ? 'حداقل ۶ کاراکتر' : 'Min 6 chars', 'error'); return; }
+    if (pass !== confirm) { showModalMessage(currentLang === 'fa' ? 'رمزها مطابقت ندارند' : 'Passwords match', 'error'); return; }
+    const users = getUsers();
+    if (users.find(u => u.email === email)) { showModalMessage(currentLang === 'fa' ? '❌ این ایمیل قبلاً ثبت شده است' : '❌ Email already registered', 'error'); return; }
+    const newUser = { id: Date.now(), name, email, password: pass, role: 'User', createdAt: new Date().toISOString() };
+    users.push(newUser);
+    saveUsers(users);
+    showModalMessage(currentLang === 'fa' ? '✅ حساب کاربری ایجاد شد! لطفاً وارد شوید.' : '✅ Account created! Please login.', 'success');
+    document.getElementById('registerForm').reset();
+    switchTab('login');
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value.trim();
+    const pass = document.getElementById('loginPassword').value;
+    const remember = document.getElementById('rememberMe').checked;
+    if (!isValidEmail(email)) { showModalMessage(currentLang === 'fa' ? 'ایمیل معتبر وارد کنید' : 'Valid email', 'error'); return; }
+    if (pass.length < 6) { showModalMessage(currentLang === 'fa' ? 'حداقل ۶ کاراکتر' : 'Min 6 chars', 'error'); return; }
+    const users = getUsers();
+    const user = users.find(u => u.email === email && u.password === pass);
+    if (!user) { showModalMessage(currentLang === 'fa' ? '❌ ایمیل یا رمز عبور اشتباه است' : '❌ Wrong email or password', 'error'); return; }
+    setCurrentUser(user);
+    if (remember) localStorage.setItem('megaRemember', 'true');
+    else localStorage.removeItem('megaRemember');
+    showModalMessage(currentLang === 'fa' ? `✅ خوش آمدید ${user.name}!` : `✅ Welcome ${user.name}!`, 'success');
+    updateUI();
+    closeModal();
+    renderTickets();
+}
+
+function handleLogout() {
+    if (confirm(currentLang === 'fa' ? 'خروج از حساب؟' : 'Logout?')) {
+        clearCurrentUser();
+        localStorage.removeItem('megaRemember');
+        showModalMessage(currentLang === 'fa' ? '👋 خارج شدید' : '👋 Logged out', 'info');
+        updateUI();
+    }
+}
+
+function updateUI() {
+    const user = getCurrentUser();
+    const auth = document.getElementById('authSection');
+    const panel = document.getElementById('userPanel');
+    const btn = document.getElementById('loginNavBtn');
+    if (user) {
+        auth.style.display = 'none';
+        panel.style.display = 'block';
+        document.getElementById('userName').textContent = user.name;
+        document.getElementById('userEmail').textContent = user.email;
+        document.getElementById('userAvatar').textContent = user.name.charAt(0).toUpperCase();
+        btn.textContent = '👤 ' + user.name;
+        btn.style.background = 'rgba(166,255,179,0.08)';
+    } else {
+        auth.style.display = 'block';
+        panel.style.display = 'none';
+        document.getElementById('loginForm').reset();
+        document.getElementById('registerForm').reset();
+        btn.textContent = currentLang === 'fa' ? 'ورود' : 'Login';
+        btn.style.background = 'rgba(166,255,179,0.06)';
+    }
+}
+
+function openModal() {
+    document.getElementById('loginModal').style.display = 'flex';
+    document.getElementById('modalMessage').style.display = 'none';
+    updateUI();
+}
+function closeModal() {
+    document.getElementById('loginModal').style.display = 'none';
+}
+
+document.getElementById('loginNavBtn').addEventListener('click', openModal);
+document.getElementById('closeModal').addEventListener('click', closeModal);
+document.getElementById('loginModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+    const users = getUsers();
+    if (users.length === 0) {
+        users.push({ id: 1, name: 'Admin', email: 'admin@mega.com', password: '123456', role: 'Admin', createdAt: new Date().toISOString() });
+        saveUsers(users);
+    }
+    if (localStorage.getItem('megaRemember') === 'true' && getCurrentUser()) updateUI();
+    else updateUI();
+    tickets = JSON.parse(localStorage.getItem('megaTickets')) || [];
+    renderTickets();
+    updateSpamUI();
+    console.log('🚀 MegaGroup v1.7 · All features integrated');
+    console.log('📧 default: admin@mega.com / 123456');
+});
+
+// Close sections with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        document.getElementById('hiddenSections').classList.remove('active');
+        supportModal.style.display = 'none';
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('chatWindow').classList.remove('active');
+        chatOpen = false;
+    }
+});
+</script>
 </body>
 </html>
