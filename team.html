@@ -1,343 +1,989 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MegaGroup - Team</title>
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/343434.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MegaGroup · Official</title>
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/343434.png">
+  <style>
+    /* ----- FONTS ----- */
+    @font-face {
+      font-family: "Vazirmatn";
+      src: url("https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/Digi%20Rastin%20Bold.ttf") format("truetype");
+    }
+    @font-face {
+      font-family: "V1";
+      src: url("https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/Vazirmatn-Medium.ttf") format("truetype");
+    }
+    @font-face {
+      font-family: 'ss';
+      src: url('https://raw.githubusercontent.com/dachnima/limo.github.io/main/Vazirmatn-Bold.ttf') format('truetype');
+    }
 
-<style>
+    /* ----- RESET / BASE ----- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      margin: 0; width: 100%; height: 100%; overflow: hidden;
+      background: #000; font-family: Arial, sans-serif;
+    }
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background: url("https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/coin.png") center/cover no-repeat;
+      animation: fade 4s ease-in-out infinite;
+      z-index: 0;
+    }
+    @keyframes fade {
+      0% { opacity: .5; }
+      50% { opacity: 1; }
+      100% { opacity: .5; }
+    }
 
-@font-face {
-    font-family: "Vazirmatn";
-    src: url("https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/Digi Rastin Bold.ttf") format("truetype");
-}
+    /* ----- TOPBAR (NAV) ----- */
+    .topbar {
+      position: fixed; top: 50px; left: 50%; transform: translateX(-50%);
+      width: 900px; max-width: calc(100% - 40px); height: 68px;
+      background: rgba(15,15,15,.6); backdrop-filter: blur(100000px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.08); border-radius: 100px;
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+      padding: 0 25px; z-index: 999;
+    }
+    .topbar::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: url("https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/fadee.png") center center / 800px no-repeat;
+      opacity: 0.2; pointer-events: none;
+      mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+    }
+    .logo {
+      justify-self: center; color: #a6ffb3; font-size: 25px; margin-top: 6px;
+      font-family: "Vazirmatn"; user-select: none;
+    }
+    .left-nav { justify-self: start; }
+    .right-nav { justify-self: end; }
+    .nav { display: flex; gap: 12px; }
+    .nav button {
+      border: none; background: transparent; color: #fff;
+      font-family: "V1"; font-size: 15px; padding: 10px 18px;
+      border-radius: 10px; cursor: pointer; transition: .25s;
+    }
+    .nav button:hover, .nav button.active-nav {
+      background: rgba(166,255,179,.12); color: #a6ffb3; border-radius: 50px;
+    }
 
-@font-face {
-    font-family: "V1";
-    src: url("https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/Vazirmatn-Medium.ttf") format("truetype");
-}
+    /* ----- LANGUAGE SWITCHER ----- */
+    .lang-switcher {
+      display: flex; gap: 4px; background: rgba(255,255,255,0.04);
+      border-radius: 30px; padding: 3px; border: 1px solid rgba(166,255,179,0.06);
+      margin-left: 8px;
+    }
+    .lang-switcher button {
+      border: none; background: transparent; color: rgba(255,255,255,0.4);
+      font-family: "V1"; font-size: 11px; padding: 4px 12px; border-radius: 20px;
+      cursor: pointer; transition: 0.3s; font-weight: 700; letter-spacing: 0.5px;
+    }
+    .lang-switcher button:hover { color: rgba(255,255,255,0.7); }
+    .lang-switcher button.active-lang {
+      background: rgba(166,255,179,0.12); color: #b8ffc4;
+      box-shadow: 0 0 20px rgba(166,255,179,0.04);
+    }
 
-@font-face {
-  font-family: 'ss';
-  src: url('https://raw.githubusercontent.com/dachnima/limo.github.io/main/Vazirmatn-Bold.ttf') format('truetype');
-}
+    /* ----- MAIN CONTENT ----- */
+    .content {
+      position: absolute; top: 45%; left: 50%; transform: translate(-50%,-50%);
+      text-align: center; z-index: 1; width: 100%; max-width: 1100px; padding: 0 20px;
+    }
+    .title {
+      margin: 0; color: #a6ffb3; font-size: 52px; font-family: "Vazirmatn";
+      text-shadow: 0 0 30px rgba(166,255,179,0.3), 0 0 60px rgba(166,255,179,0.10);
+    }
+    .subtitle {
+      margin-top: -20px; color: #fff; font-size: 20px; font-family: "V1";
+    }
 
-html,body{
-    margin:0;
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    background:#000;
-    font-family:Arial,sans-serif;
-}
+    /* ----- CARDS ----- */
+    .cards {
+      margin-top: 45px; display: flex; justify-content: center;
+      gap: 22px; flex-wrap: wrap;
+    }
+    .card {
+      width: 250px; min-height: 180px;
+      background: rgba(15,15,15,.55); backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.08); border-radius: 18px;
+      padding: 25px; transition: .3s; cursor: pointer;
+      display: flex; flex-direction: column;
+    }
+    .card:hover { transform: translateY(-2px); border-color: rgba(166,255,179,.4); }
+    .card h3 { margin: 0 0 15px; color: #a6ffb3; font-family: "Vazirmatn"; font-size: 22px; }
+    .card p { margin: 0; color: #ddd; font-family: "V1"; line-height: 1.8; font-size: 14px; flex: 1; }
+    .card-btn {
+      margin-top: 20px; width: 100%; height: 45px; border: none; border-radius: 12px;
+      background: #a6ffb3; color: #111; font-family: "ss"; font-size: 16px;
+      cursor: pointer; transition: .25s; text-decoration: none;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card-btn:hover {
+      background-color: #c8ffd0; box-shadow: 0 0 25px #c8ffd03d;
+    }
 
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:url("https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/44.png") center/cover no-repeat;
-    animation:fade 4s ease-in-out infinite;
-    z-index:0;
-}
+    /* ----- FOOTER ----- */
+    .footer {
+      position: fixed; bottom: -40px; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,.6); font-family: "V1"; font-size: 14px;
+      text-align: center; z-index: 10; user-select: none; width: 100%;
+    }
 
-@keyframes fade{
-    0%{opacity:.5;}
-    50%{opacity:1;}
-    100%{opacity:.5;}
-}
+    /* ----- HIDDEN SECTIONS (Projects, Team) ----- */
+    .hidden-sections {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.92); backdrop-filter: blur(20px);
+      z-index: 1000; overflow-y: auto; padding: 100px 20px 60px;
+    }
+    .hidden-sections.active { display: block; }
+    .hidden-sections .close-sections {
+      position: fixed; top: 20px; right: 30px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50px; color: #fff; font-size: 24px; padding: 8px 20px;
+      cursor: pointer; font-family: "V1"; transition: 0.3s; z-index: 1001;
+    }
+    .hidden-sections .close-sections:hover {
+      background: rgba(255,80,80,0.1); border-color: rgba(255,80,80,0.2); color: #ff6b6b;
+    }
 
-/* ================= NAVBAR ================= */
+    /* section nav */
+    .section-nav {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px;
+    }
+    .section-nav button {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 30px; color: rgba(255,255,255,0.6); padding: 10px 24px;
+      font-family: "V1"; font-size: 14px; cursor: pointer; transition: 0.3s;
+    }
+    .section-nav button:hover, .section-nav button.active-section {
+      background: rgba(166,255,179,0.08); color: #a6ffb3; border-color: rgba(166,255,179,0.15);
+    }
 
-.topbar{
-    position:fixed;
-    top:50px;
-    left:50%;
-    transform:translateX(-50%);
-    width:900px;
-    max-width:calc(100% - 40px);
-    height:68px;
-    background:rgba(15,15,15,.6);
-    backdrop-filter:blur(100000px);
-    -webkit-backdrop-filter:blur(18px);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:100px;
-    display:grid;
-    grid-template-columns:1fr auto 1fr;
-    align-items:center;
-    padding:0 25px;
-    box-sizing:border-box;
-    z-index:999;
-}
+    .section-content { display: none; max-width: 900px; margin: 0 auto; }
+    .section-content.active { display: block; }
 
+    /* ----- PROJECTS ----- */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;
+    }
+    .project-card {
+      background: rgba(25, 35, 32, 0.7); backdrop-filter: blur(14px);
+      border: 1px solid rgba(166, 255, 179, 0.08); border-radius: 24px;
+      padding: 30px 24px; text-align: center; transition: 0.3s;
+    }
+    .project-card:hover { border-color: rgba(166,255,179,0.2); transform: translateY(-4px); }
+    .project-card .icon { font-size: 48px; display: block; margin-bottom: 10px; }
+    .project-card h3 { color: #a6ffb3; font-family: "Vazirmatn"; font-size: 22px; }
+    .project-card p { color: rgba(255,255,255,0.5); font-family: "V1"; font-size: 14px; }
+    .project-card .coming-badge {
+      display: inline-block; background: rgba(166,255,179,0.08); color: #a6ffb3;
+      padding: 4px 16px; border-radius: 20px; font-size: 12px; margin-top: 10px;
+      border: 1px solid rgba(166,255,179,0.06);
+    }
+    .project-card .project-btn {
+      display: inline-block; margin-top: 14px; padding: 8px 24px; border-radius: 30px;
+      font-family: 'ss'; font-size: 13px; text-decoration: none;
+      border: 1px solid rgba(166,255,179,0.15); background: rgba(166,255,179,0.06);
+      color: #a6ffb3; transition: 0.3s;
+    }
+    .project-card .project-btn:hover {
+      background: rgba(166,255,179,0.12); border-color: rgba(166,255,179,0.25);
+    }
 
-.topbar::before{
-    content:"";
-    position:absolute;
-    inset:0;
+    /* ----- TEAM (simplified) ----- */
+    .team-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;
+    }
+    .team-card {
+      background: rgba(25, 35, 32, 0.65); backdrop-filter: blur(14px);
+      border: 1px solid rgba(166, 255, 179, 0.06); border-radius: 24px;
+      padding: 24px 16px; text-align: center; transition: 0.3s;
+    }
+    .team-card:hover { border-color: rgba(166,255,179,0.15); transform: translateY(-4px); }
+    .team-card .avatar {
+      width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; font-weight: 900; color: #0a0a0a;
+      background: linear-gradient(135deg, #a6ffb3, #4ecdc4); font-family: 'ss';
+    }
+    .team-card .team-name { font-family: 'ss'; font-size: 16px; color: #a6ffb3; }
+    .team-card .team-role { font-family: "V1"; font-size: 12px; color: rgba(255,255,255,0.5); }
+    .team-card .team-badge {
+      display: inline-block; background: rgba(166,255,179,0.06);
+      border: 1px solid rgba(166,255,179,0.04); padding: 2px 12px;
+      border-radius: 20px; font-size: 9px; font-family: 'ss'; color: #a6ffb3;
+      margin-top: 6px;
+    }
+    .team-card .team-badge.owner { background: rgba(255,215,0,0.12); border-color: rgba(255,215,0,0.10); color: #ffd700; }
+    .team-card .team-badge.admin { background: rgba(255,215,0,0.08); border-color: rgba(255,215,0,0.06); color: #ffd700; }
+    .team-section-title {
+      font-family: 'ss'; font-size: 20px; color: #a6ffb3;
+      text-align: center; margin: 30px 0 16px; letter-spacing: 1px;
+    }
+    .team-section-title .sub {
+      font-size: 12px; color: rgba(255,255,255,0.3); font-family: "V1";
+      display: block; margin-top: 2px; font-weight: 400;
+    }
 
-    background:url("https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/fadee.png")
-               center center / 800px no-repeat;
+    /* ----- CHATBOT ----- */
+    .chatbot-container {
+      position: fixed; bottom: 30px; right: 30px; z-index: 998;
+    }
+    .chatbot-toggle {
+      background: rgba(15,15,15,0.8); backdrop-filter: blur(18px);
+      border: 1px solid rgba(166,255,179,0.12); border-radius: 50px;
+      padding: 12px 22px; color: #a6ffb3; font-family: 'ss'; font-size: 13px;
+      font-weight: 700; cursor: pointer; transition: 0.3s;
+      display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px;
+    }
+    .chatbot-toggle:hover {
+      background: rgba(166,255,179,0.06); border-color: rgba(166,255,179,0.2);
+      transform: scale(1.03);
+    }
+    .chatbot-toggle .dot {
+      width: 8px; height: 8px; border-radius: 50%; background: #a6ffb3;
+      animation: dotPulse 2s infinite;
+    }
+    @keyframes dotPulse {
+      0%,100% { opacity:0.3; transform:scale(0.8); }
+      50% { opacity:1; transform:scale(1.2); }
+    }
+    .chatbot-window {
+      display: none; position: fixed; bottom: 100px; right: 30px;
+      width: 340px; max-width: calc(100% - 40px); max-height: 450px;
+      background: rgba(10,10,10,0.95); backdrop-filter: blur(20px);
+      border: 1px solid rgba(166,255,179,0.06); border-radius: 24px;
+      z-index: 999; overflow: hidden; animation: slideUp 0.3s ease;
+    }
+    .chatbot-window.active { display: block; }
+    @keyframes slideUp { 0% { transform:translateY(20px); opacity:0; } 100% { transform:translateY(0); opacity:1; } }
+    .chatbot-header {
+      padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.03);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .chatbot-header h4 { font-family: 'ss'; font-size: 15px; color: #a6ffb3; }
+    .chatbot-header .close-chat {
+      background: none; border: none; color: rgba(255,255,255,0.3);
+      font-size: 22px; cursor: pointer;
+    }
+    .chatbot-header .close-chat:hover { color: #ff6b6b; transform: rotate(90deg); }
+    .chatbot-messages {
+      padding: 14px 16px; max-height: 220px; overflow-y: auto;
+    }
+    .chatbot-messages .msg {
+      margin-bottom: 10px; padding: 10px 14px; border-radius: 14px;
+      max-width: 88%; font-family: "V1"; font-size: 13px; line-height: 1.4;
+    }
+    .chatbot-messages .msg.bot {
+      background: rgba(166,255,179,0.04); border: 1px solid rgba(166,255,179,0.03);
+      color: rgba(255,255,255,0.8); margin-right: auto; border-bottom-left-radius: 4px;
+    }
+    .chatbot-messages .msg.user {
+      background: rgba(166,255,179,0.08); border: 1px solid rgba(166,255,179,0.04);
+      color: #a6ffb3; margin-left: auto; border-bottom-right-radius: 4px;
+    }
+    .quick-questions {
+      display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 10px;
+    }
+    .quick-questions button {
+      background: rgba(166,255,179,0.02); border: 1px solid rgba(166,255,179,0.04);
+      border-radius: 30px; padding: 3px 12px; color: rgba(255,255,255,0.4);
+      font-family: "V1"; font-size: 10px; cursor: pointer;
+    }
+    .quick-questions button:hover { background: rgba(166,255,179,0.05); color: #a6ffb3; }
+    .chatbot-input {
+      padding: 10px 16px; border-top: 1px solid rgba(255,255,255,0.02);
+      display: flex; gap: 8px;
+    }
+    .chatbot-input input {
+      flex: 1; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 30px; padding: 8px 14px; color: #fff; font-family: "V1";
+      font-size: 13px; outline: none;
+    }
+    .chatbot-input input:focus { border-color: rgba(166,255,179,0.08); }
+    .chatbot-input input::placeholder { color: rgba(255,255,255,0.2); }
+    .chatbot-input button {
+      background: rgba(166,255,179,0.04); border: 1px solid rgba(166,255,179,0.06);
+      border-radius: 30px; padding: 8px 16px; color: #a6ffb3; font-family: "V1";
+      font-size: 13px; cursor: pointer;
+    }
+    .chatbot-input button:hover { background: rgba(166,255,179,0.08); }
 
-     opacity: 0.2;
-    pointer-events:none;
+    /* ----- VERSION BADGE ----- */
+    .version-badge {
+      position: fixed; bottom: 20px; left: 20px; z-index: 900;
+      font-family: 'ss'; font-size: 10px; color: rgba(166,255,179,0.12);
+      letter-spacing: 1px; text-align: left; line-height: 1.5;
+      background: rgba(0,0,0,0.2); backdrop-filter: blur(6px);
+      padding: 4px 12px; border-radius: 30px;
+      border: 1px solid rgba(166,255,179,0.02); user-select: none; pointer-events: none;
+    }
+    .version-badge span { color: rgba(166,255,179,0.2); font-size: 9px; font-family: "V1"; }
 
-    mask-image:linear-gradient(to right,
-        transparent 0%,
-        black 20%,
-        black 80%,
-        transparent 100%);
-    -webkit-mask-image:linear-gradient(to right,
-        transparent 0%,
-        black 20%,
-        black 80%,
-        transparent 100%);
-}
+    /* ----- SUPPORT MODAL ----- */
+    .support-modal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(16px);
+      z-index: 2000; justify-content: center; align-items: center; padding: 20px;
+    }
+    .support-modal .inner {
+      background: rgba(10,10,10,0.95); backdrop-filter: blur(20px);
+      border: 1px solid rgba(166,255,179,0.06); border-radius: 36px;
+      padding: 40px 32px; max-width: 500px; width: 100%; text-align: center;
+      position: relative; animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+    }
+    @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    .support-modal .close-support {
+      position: absolute; top: 14px; right: 20px;
+      background: none; border: none; color: rgba(255,255,255,0.3);
+      font-size: 28px; cursor: pointer;
+    }
+    .support-modal h2 { font-family: 'ss'; font-size: 28px; font-weight: 900; color: #a6ffb3; letter-spacing: 2px; }
+    .support-modal p { font-family: 'V1'; font-size: 14px; color: rgba(255,255,255,0.5); }
+    .support-contact {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin: 16px 0;
+    }
+    .support-contact .item {
+      background: rgba(166,255,179,0.04); border: 1px solid rgba(166,255,179,0.04);
+      border-radius: 16px; padding: 12px 20px;
+    }
+    .support-contact .item .name { font-family: 'ss'; font-size: 16px; font-weight: 700; color: #a6ffb3; display: block; }
+    .support-contact .item .role { font-family: 'V1'; font-size: 12px; color: rgba(255,255,255,0.4); }
+    .support-coming {
+      display: inline-block; background: rgba(166,255,179,0.04);
+      border: 1px solid rgba(166,255,179,0.06); padding: 6px 22px;
+      border-radius: 40px; font-family: 'ss'; font-size: 12px;
+      color: rgba(166,255,179,0.4); margin-top: 12px; letter-spacing: 2px;
+    }
 
-.logo{
-    justify-self:center;
-    color:#a6ffb3;
-    font-size:25px;
-    margin-top: 6px;
-    font-family:"Vazirmatn";
-    user-select:none;
-}
+    /* ----- LOGIN MODAL ----- */
+    .login-modal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(10px);
+      z-index: 1500; justify-content: center; align-items: center; padding: 20px;
+    }
+    .login-modal .inner {
+      background: rgba(10,10,10,0.95); backdrop-filter: blur(20px);
+      border: 1px solid rgba(166,255,179,0.04); border-radius: 36px;
+      padding: 30px 24px; max-width: 400px; width: 100%; color: #fff;
+      position: relative; max-height: 90vh; overflow-y: auto;
+    }
+    .login-modal .close-login {
+      position: absolute; top: 12px; right: 16px;
+      background: none; border: none; color: rgba(255,255,255,0.3);
+      font-size: 26px; cursor: pointer;
+    }
+    .login-modal .brand { font-family: 'Vazirmatn'; color: #a6ffb3; font-size: 28px; text-align: center; }
+    .login-modal .sub { color: rgba(255,255,255,0.3); font-size: 13px; text-align: center; }
+    .login-modal .tabs { display: flex; margin-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .login-modal .tab {
+      flex: 1; text-align: center; padding: 10px 0; cursor: pointer;
+      color: rgba(255,255,255,0.3); font-weight: 600; font-size: 14px;
+      position: relative;
+    }
+    .login-modal .tab.active { color: #a6ffb3; border-bottom: 2px solid #a6ffb3; }
+    .login-modal input {
+      width: 100%; padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,0.06); border-radius: 14px;
+      background: rgba(255,255,255,0.03); color: #fff; font-size: 14px; outline: none;
+    }
+    .login-modal input:focus { border-color: rgba(166,255,179,0.15); }
+    .login-modal label { display: block; color: rgba(255,255,255,0.4); font-size: 12px; margin-bottom: 4px; }
+    .login-modal .btn-primary {
+      width: 100%; padding: 12px; background: rgba(166,255,179,0.06);
+      border: 1px solid rgba(166,255,179,0.08); border-radius: 40px;
+      color: #a6ffb3; font-size: 16px; font-weight: 700; cursor: pointer;
+      transition: 0.3s; font-family: 'Vazirmatn';
+    }
+    .login-modal .btn-primary:hover { background: rgba(166,255,179,0.10); }
+    .login-modal .message { padding: 8px 14px; border-radius: 16px; margin-bottom: 14px; display: none; font-size: 13px; }
 
-.left-nav{
-    justify-self:start;
-}
-
-.right-nav{
-    justify-self:end;
-}
-
-.nav{
-    display:flex;
-    gap:12px;
-}
-
-.nav button{
-    border:none;
-    background:transparent;
-    color:#fff;
-    font-family:"V1";
-    font-size:15px;
-    padding:10px 18px;
-    border-radius:10px;
-    cursor:pointer;
-    transition:.25s;
-}
-
-.nav button:hover{
-    background:rgba(166,255,179,.12);
-    color:#a6ffb3;
-    border-radius: 50px;
-}
-
-/* ================= CONTENT ================= */
-
-.content{
-    position:absolute;
-    top:45%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    text-align:center;
-    z-index:1;
-}
-
-.title{
-    margin:0;
-    color:#a6ffb3;
-    font-size:52px;
-    font-family:"Vazirmatn";
-}
-
-.subtitle{
-    margin-top:-20px;
-    color:#fff;
-    font-size:20px;
-    font-family:"V1";
-}
-
-.cards{
-    margin-top:45px;
-    display:flex;
-    justify-content:center;
-    gap:22px;
-    flex-wrap:wrap;
-}
-
-.card{
-    width:250px;
-    min-height:180px;
-    background:rgba(15,15,15,.55);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:18px;
-    padding:25px;
-    box-sizing:border-box;
-    transition:.3s;
-    cursor:pointer;
-}
-
-
-
-.card:hover{
-    transform:translateY(-2px);
-    border-color:rgba(166,255,179,.4);
-}
-
-.card h3{
-    margin:0 0 15px;
-    color:#a6ffb3;
-    font-family:"Vazirmatn";
-    font-size:22px;
-    margin-top: -1px;
-}
-
-.card p{
-    margin:0;
-    color:#ddd;
-    font-family:"V1";
-    line-height:1.8;
-    font-size:14px;
-    margin-top: -20px;
-}
-
-.card{
-    display:flex;
-    flex-direction:column;
-}
-
-.card p{
-    flex:1;
-}
-
-
-.profile{
-    width:80px;
-    height:80px;
-    border-radius:50%;
-    object-fit:cover;
-    margin:0 auto 18px;
-    display:block;
-    border:0.5px solid #c8ffd0;
-    box-shadow:0 0 20px #c8ffd05b;
-}
-
-.badge{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    margin:18px auto 0;
-    padding:8px 18px;
-    background:rgba(166, 255, 179, 0.192);
-    border:1px solid rgba(166,255,179,.35);
-    border-radius:999px;
-    color:#a6ffb3;
-    font-family:"V1";
-    height: 5px;
-    margin-top: 4px;
-    font-size:12px;
-
-}
-
-.footer{
-    position:fixed;
-    bottom:-40px;
-    left:50%;
-    transform:translateX(-50%);
-
-    color:rgba(255,255,255,.6);
-    font-family:"V1";
-    font-size:14px;
-    text-align:center;
-    z-index:10;
-
-    user-select:none;
-}
-
-
-</style>
+    /* ----- RESPONSIVE ----- */
+    @media (max-width: 768px) {
+      .topbar { top: 16px; height: 56px; padding: 0 12px; border-radius: 40px; }
+      .logo { font-size: 18px; }
+      .nav button { font-size: 11px; padding: 6px 10px; }
+      .title { font-size: 32px; }
+      .subtitle { font-size: 16px; margin-top: -10px; }
+      .cards { gap: 14px; }
+      .card { width: 100%; max-width: 280px; min-height: 150px; }
+      .hidden-sections { padding: 80px 14px 40px; }
+      .section-nav button { font-size: 12px; padding: 6px 14px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .chatbot-window { width: calc(100% - 30px); right: 15px; bottom: 80px; }
+      .chatbot-toggle { padding: 8px 16px; font-size: 11px; }
+    }
+    @media (max-width: 480px) {
+      .topbar { height: 48px; padding: 0 8px; }
+      .logo { font-size: 14px; }
+      .nav button { font-size: 9px; padding: 4px 6px; }
+      .title { font-size: 24px; }
+      .subtitle { font-size: 13px; }
+      .card { max-width: 100%; }
+      .team-grid { grid-template-columns: 1fr; }
+      .lang-switcher button { font-size: 8px; padding: 2px 6px; }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- Navbar -->
+<!-- ===== TOPBAR ===== -->
 <div class="topbar">
-
-<div class="nav left-nav">
-<button onclick="window.location.href='https://megaultra.github.io/'">Home</button>
-    </button>
-
-<button onclick="window.location.href='https://megaultra.github.io/team.html'">Team</button>
-    
-</div>
-
-    <div class="logo">
-        MegaGroup
+  <div class="nav left-nav">
+    <button id="navHome" class="active-nav" data-key="navHome">Home</button>
+    <button id="navSections" data-key="navMenu">☰ Menu</button>
+  </div>
+  <div class="logo">MegaGroup</div>
+  <div class="nav right-nav">
+    <button id="supportBtn" data-key="supportBtn">💬 Support</button>
+    <button id="loginNavBtn" data-key="loginNavBtn">Login</button>
+    <div class="lang-switcher">
+      <button id="langEn" class="active-lang" onclick="setLanguage('en')">EN</button>
+      <button id="langFa" onclick="setLanguage('fa')">FA</button>
     </div>
+  </div>
+</div>
 
-    <div class="nav right-nav">
-        <button>Team</button>
-        <button>Contact</button>
+<!-- ===== MAIN CONTENT ===== -->
+<div class="content" id="mainContent">
+  <h1 class="title" data-key="homeTitle">MEGAGROUP · ULTRA EDITION</h1>
+  <p class="subtitle" data-key="homeSubtitle">!اولین و بزرگترین تیم نرم افزاری در ایران</p>
+
+  <div class="cards">
+    <div class="card">
+      <h3 data-key="cardCoinTitle">MEGACOIN</h3>
+      <p data-key="cardCoinDesc">فقط با کلیک کردن، صاحب کلی جایزه متنوع شو و هر هفته منتظر یک رویداد جدید باش.</p>
+      <a href="https://megaultra.github.io/MemeCoin.html"><button class="card-btn" data-key="cardCoinBtn">[BETA] شروع</button></a>
     </div>
-
+    <div class="card">
+      <h3 data-key="cardBomberTitle">MEGABOMBER</h3>
+      <p data-key="cardBomberDesc">یک سرویس کاملاً رایگان که بتونی دوستات رو اس‌ام‌اس بارون کنی و اذیتشون کنی.</p>
+      <button class="card-btn" data-key="cardBomberBtn">شروع</button>
+    </div>
+    <div class="card">
+      <h3 data-key="cardComingTitle">Coming Soon!</h3>
+      <p data-key="cardComingDesc">این پروژه به زودی تکمیل و منتشر می‌شود.</p>
+      <button class="card-btn" data-key="cardComingBtn">!به زودی</button>
+    </div>
+  </div>
 </div>
 
-<!-- Main Content -->
-<div class="content">
+<!-- ===== HIDDEN SECTIONS (Projects, Team) ===== -->
+<div class="hidden-sections" id="hiddenSections">
+  <button class="close-sections" id="closeSections">✕ Close</button>
 
-    <h1 class="title">MEGAGROUP - TEAM</h1>
+  <div class="section-nav">
+    <button class="active-section" data-section="projects" data-key="navProjects">📦 Projects</button>
+    <button data-section="team" data-key="navTeam">👥 Team</button>
+  </div>
 
-    <p class="subtitle">
-       !این تیم یکی از بهترین تیم های دنیاست
-    </p>
+  <!-- PROJECTS -->
+  <div class="section-content active" id="sectionProjects">
+    <div class="projects-grid">
+      <div class="project-card">
+        <span class="icon">🪙</span>
+        <h3 data-key="projectMemeTitle">MemeCoin</h3>
+        <p data-key="projectMemeDesc">Mega Meme Token</p>
+        <a href="https://megaultra.github.io/MemeCoin.html" target="_blank" class="project-btn" data-key="viewProject">🔗 View Project</a>
+      </div>
+      <div class="project-card">
+        <span class="icon">💣</span>
+        <h3 data-key="projectBomberTitle">MegaBomber</h3>
+        <p data-key="projectBomberDesc">SMS Bomber Tool</p>
+        <div class="coming-badge" data-key="comingSoon">🚀 Coming Soon</div>
+      </div>
+      <div class="project-card">
+        <span class="icon">🚀</span>
+        <h3 data-key="projectComingTitle">MegaUltra</h3>
+        <p data-key="projectComingDesc">Ultimate Mega Project</p>
+        <div class="coming-badge" data-key="comingSoon">🚀 Coming Soon</div>
+      </div>
+    </div>
+  </div>
 
-
-    <div class="cards">
-
-        <!-- Card 1 -->
-<div class="card">
-
-    <img class="profile"
-         src="https://uploadkon.ir/uploads/859814_26Save-Stylish-simple-wedding-cake-ideas-that-make-your-next-project-look-polished-and-expensive-for-ideas-worth-saving-right-now.jpg"
-         alt="DachNima">
-
-    <h3>DachNima</h3>
-
-    <p>
-        Founder Of MegaGroup
-    </p>
-
-    <div class="badge">FOUNDER</div>
-
+  <!-- TEAM (simplified: only DachNima & DachAshkan as managers) -->
+  <div class="section-content" id="sectionTeam">
+    <div class="team-section-title">
+      🏆 Core Team
+      <span class="sub">Founders & Managers</span>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">DA</div>
+        <h3 class="team-name">DACHASHKAN</h3>
+        <p class="team-role" data-key="roleMainOwner">🎯 Founder · Lead Developer</p>
+        <div class="team-badge owner">⭐ MAIN OWNER</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">DN</div>
+        <h3 class="team-name">DACHNIMA</h3>
+        <p class="team-role" data-key="roleOwnerPM">🎯 Owner · Project Manager</p>
+        <div class="team-badge admin">⭐ ADMIN</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:30px;color:rgba(255,255,255,0.2);font-family:'V1';font-size:14px;">
+      🚀 Together we build the future.
+    </div>
+  </div>
 </div>
 
-        <!-- Card 2 -->
-<div class="card">
+<!-- ===== FOOTER ===== -->
+<footer class="footer">© 2026 MegaGroup. All Rights Reserved - Join to our Discord ;)</footer>
 
-    <img class="profile"
-         src="https://uploadkon.ir/uploads/48b414_26-2147483648-210056.jpg"
-         alt="DachAshkan">
+<!-- ===== VERSION BADGE ===== -->
+<div class="version-badge" id="versionBadge">v2.0 <span id="versionTime"></span></div>
 
-    <h3>DachAshkan</h3>
-
-    <p>
-        Founder Of MegaGroup
-    </p>
-
-    <div class="badge">FOUNDER</div>
-
+<!-- ===== SUPPORT MODAL ===== -->
+<div class="support-modal" id="supportModal">
+  <div class="inner">
+    <button class="close-support" id="closeSupportModal">✕</button>
+    <span style="font-size:56px;display:block;margin-bottom:4px;">🛡️</span>
+    <h2 data-key="supportTitle">MEGA SUPPORT</h2>
+    <p data-key="supportSub">Get help from our team</p>
+    <div class="support-contact">
+      <div class="item">
+        <span class="name">@DachAshkan</span>
+        <span class="role" data-key="supportRoleDev">⚡ Founder & Lead Developer</span>
+      </div>
+      <div class="item">
+        <span class="name">@DachNima</span>
+        <span class="role" data-key="supportRolePM">🚀 Project Manager</span>
+      </div>
+    </div>
+    <div style="font-family:'V1';font-size:14px;color:rgba(255,255,255,0.5);" data-key="supportChannels">📱 Contact us on <span style="color:#a6ffb3;font-weight:700;">Discord</span> &amp; <span style="color:#a6ffb3;font-weight:700;">Telegram</span></div>
+    <div class="support-coming" data-key="supportComing">🤖 SUPPORT BOT · COMING SOON</div>
+  </div>
 </div>
 
-<footer class="footer">
-    Together We Build The Future! 🚀
-</footer>
+<!-- ===== CHATBOT ===== -->
+<div class="chatbot-container">
+  <button class="chatbot-toggle" id="chatToggle"><span class="dot"></span> <span data-key="aiAssistant">AI Assistant</span></button>
+</div>
+<div class="chatbot-window" id="chatWindow">
+  <div class="chatbot-header"><h4>🤖 MEGA AI</h4><button class="close-chat" id="closeChat">✕</button></div>
+  <div class="chatbot-messages" id="chatMessages"><div class="msg bot" data-key="aiWelcome">👋 Hello! I'm Mega AI. Ask me anything.</div></div>
+  <div class="quick-questions">
+    <button onclick="askQuestion('Who are the owners?')" data-key="qOwners">Owners</button>
+    <button onclick="askQuestion('What is MegaBomber?')" data-key="qBomber">MegaBomber</button>
+    <button onclick="askQuestion('What is MemeCoin?')" data-key="qMeme">MemeCoin</button>
+    <button onclick="askQuestion('How to contact support?')" data-key="qSupport">Support</button>
+  </div>
+  <div class="chatbot-input">
+    <input type="text" id="chatInput" placeholder="Ask..." onkeypress="if(event.key==='Enter') sendMessage()">
+    <button onclick="sendMessage()" data-key="sendBtn">Send</button>
+  </div>
+</div>
 
+<!-- ===== LOGIN MODAL ===== -->
+<div class="login-modal" id="loginModal">
+  <div class="inner">
+    <button class="close-login" id="closeModal">✕</button>
+    <div style="text-align:center;margin-bottom:16px;">
+      <h1 class="brand">⚡ MEGA</h1>
+      <p class="sub" data-key="signInSub">sign in · sign up</p>
+    </div>
+    <div id="modalMessage" class="message"></div>
+    <div id="authSection">
+      <div class="tabs">
+        <div class="tab active" data-tab="login" onclick="switchTab('login')" data-key="loginTab">Login</div>
+        <div class="tab" data-tab="register" onclick="switchTab('register')" data-key="signupTab">Sign up</div>
+      </div>
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div style="margin-bottom:14px;"><label data-key="emailLabel">📧 Email</label><input type="email" id="loginEmail" placeholder="your@email.com"></div>
+        <div style="margin-bottom:14px;"><label data-key="passwordLabel">🔒 Password</label><input type="password" id="loginPassword" placeholder="••••••••"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin:10px 0 16px;">
+          <label style="color:rgba(255,255,255,0.4);font-size:12px;display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" id="rememberMe" style="accent-color:#a6ffb3;width:16px;height:16px;"> <span data-key="rememberMe">Remember me</span></label>
+          <a href="#" style="color:#a6ffb3;text-decoration:none;font-size:12px;" data-key="forgot">Forgot?</a>
+        </div>
+        <button type="submit" class="btn-primary" data-key="loginBtn">Login</button>
+      </form>
+      <form id="registerForm" style="display:none;" onsubmit="handleRegister(event)">
+        <div style="margin-bottom:14px;"><label data-key="fullnameLabel">👤 Full name</label><input type="text" id="registerName" placeholder="Ali Reza"></div>
+        <div style="margin-bottom:14px;"><label data-key="emailLabel">📧 Email</label><input type="email" id="registerEmail" placeholder="your@email.com"></div>
+        <div style="margin-bottom:14px;"><label data-key="passwordLabel">🔒 Password</label><input type="password" id="registerPassword" placeholder="••••••••"></div>
+        <div style="margin-bottom:14px;"><label data-key="confirmLabel">✅ Confirm</label><input type="password" id="registerConfirmPassword" placeholder="••••••••"></div>
+        <button type="submit" class="btn-primary" data-key="createBtn">Create account</button>
+      </form>
+    </div>
+    <div id="userPanel" style="display:none;text-align:center;padding:8px 0;">
+      <div style="width:60px;height:60px;border-radius:50%;background:rgba(166,255,179,0.06);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:28px;color:#a6ffb3;border:1px solid rgba(166,255,179,0.04);" id="userAvatar">👤</div>
+      <h3 id="userName" style="color:#fff;font-size:18px;">User</h3>
+      <p id="userEmail" style="color:rgba(255,255,255,0.3);font-size:13px;">user@example.com</p>
+      <button onclick="handleLogout()" style="width:100%;padding:12px;background:transparent;border:1px solid rgba(255,80,80,0.15);border-radius:40px;color:#ff8a8a;font-size:16px;font-weight:700;cursor:pointer;transition:0.3s;font-family:'Vazirmatn';" data-key="logoutBtn">🚪 Logout</button>
+    </div>
+  </div>
+</div>
 
-        <!-- Card 3 -->
+<script>
+// ============================================================
+// 🌐 LANGUAGE SYSTEM
+// ============================================================
+const translations = {
+  en: {
+    navHome: 'Home', navMenu: '☰ Menu', supportBtn: '💬 Support', loginNavBtn: 'Login',
+    homeTitle: 'MEGAGROUP · ULTRA EDITION',
+    homeSubtitle: 'The first and largest software team in Iran!',
+    cardCoinTitle: 'MEGACOIN',
+    cardCoinDesc: 'Just by clicking, get various rewards and expect a new event every week.',
+    cardCoinBtn: '[BETA] Start',
+    cardBomberTitle: 'MEGABOMBER',
+    cardBomberDesc: 'A completely free service to spam your friends with SMS and annoy them.',
+    cardBomberBtn: 'Start',
+    cardComingTitle: 'Coming Soon!',
+    cardComingDesc: 'This project will be completed and published soon.',
+    cardComingBtn: 'Soon!',
+    navProjects: '📦 Projects',
+    navTeam: '👥 Team',
+    projectMemeTitle: 'MemeCoin',
+    projectMemeDesc: 'Mega Meme Token',
+    viewProject: '🔗 View Project',
+    projectBomberTitle: 'MegaBomber',
+    projectBomberDesc: 'SMS Bomber Tool',
+    projectComingTitle: 'MegaUltra',
+    projectComingDesc: 'Ultimate Mega Project',
+    comingSoon: '🚀 Coming Soon',
+    roleMainOwner: '🎯 Founder · Lead Developer',
+    roleOwnerPM: '🎯 Owner · Project Manager',
+    supportTitle: 'MEGA SUPPORT',
+    supportSub: 'Get help from our team',
+    supportRoleDev: '⚡ Founder & Lead Developer',
+    supportRolePM: '🚀 Project Manager',
+    supportChannels: '📱 Contact us on <span style="color:#a6ffb3;font-weight:700;">Discord</span> &amp; <span style="color:#a6ffb3;font-weight:700;">Telegram</span>',
+    supportComing: '🤖 SUPPORT BOT · COMING SOON',
+    aiAssistant: 'AI Assistant',
+    aiWelcome: '👋 Hello! I\'m Mega AI. Ask me anything.',
+    qOwners: 'Owners',
+    qBomber: 'MegaBomber',
+    qMeme: 'MemeCoin',
+    qSupport: 'Support',
+    sendBtn: 'Send',
+    signInSub: 'sign in · sign up',
+    loginTab: 'Login',
+    signupTab: 'Sign up',
+    emailLabel: '📧 Email',
+    passwordLabel: '🔒 Password',
+    confirmLabel: '✅ Confirm',
+    rememberMe: 'Remember me',
+    forgot: 'Forgot?',
+    loginBtn: 'Login',
+    createBtn: 'Create account',
+    logoutBtn: '🚪 Logout',
+    fullnameLabel: '👤 Full name'
+  },
+  fa: {
+    navHome: 'خانه',
+    navMenu: '☰ منو',
+    supportBtn: '💬 پشتیبانی',
+    loginNavBtn: 'ورود',
+    homeTitle: 'مگاگروپ · نسخه الترا',
+    homeSubtitle: '!اولین و بزرگترین تیم نرم افزاری در ایران',
+    cardCoinTitle: 'مگاکوین',
+    cardCoinDesc: 'فقط با کلیک کردن، صاحب کلی جایزه متنوع شو و هر هفته منتظر یک رویداد جدید باش.',
+    cardCoinBtn: '[BETA] شروع',
+    cardBomberTitle: 'مگابم‌بر',
+    cardBomberDesc: 'یک سرویس کاملاً رایگان که بتونی دوستات رو اس‌ام‌اس بارون کنی و اذیتشون کنی.',
+    cardBomberBtn: 'شروع',
+    cardComingTitle: 'به زودی!',
+    cardComingDesc: 'این پروژه به زودی تکمیل و منتشر می‌شود.',
+    cardComingBtn: '!به زودی',
+    navProjects: '📦 پروژه‌ها',
+    navTeam: '👥 تیم',
+    projectMemeTitle: 'میم کوین',
+    projectMemeDesc: 'توکن میم مگا',
+    viewProject: '🔗 مشاهده پروژه',
+    projectBomberTitle: 'مگا بمبر',
+    projectBomberDesc: 'ابزار ارسال انبوه پیامک',
+    projectComingTitle: 'مگا اولترا',
+    projectComingDesc: 'پروژه نهایی مگا',
+    comingSoon: '🚀 به زودی',
+    roleMainOwner: '🎯 بنیان‌گذار · توسعه‌دهنده اصلی',
+    roleOwnerPM: '🎯 مالک · مدیر پروژه',
+    supportTitle: 'پشتیبانی مگا',
+    supportSub: 'از تیم ما کمک بگیرید',
+    supportRoleDev: '⚡ بنیان‌گذار و توسعه‌دهنده اصلی',
+    supportRolePM: '🚀 مدیر پروژه',
+    supportChannels: '📱 از طریق <span style="color:#a6ffb3;font-weight:700;">دیسکورد</span> و <span style="color:#a6ffb3;font-weight:700;">تلگرام</span> با ما در تماس باشید',
+    supportComing: '🤖 ربات پشتیبانی · به زودی',
+    aiAssistant: 'دستیار هوشمند',
+    aiWelcome: '👋 سلام! من مگا ای‌آی هستم. هر چیزی بپرسید.',
+    qOwners: 'مالکان',
+    qBomber: 'مگا بمبر',
+    qMeme: 'میم کوین',
+    qSupport: 'پشتیبانی',
+    sendBtn: 'ارسال',
+    signInSub: 'ورود · ثبت‌نام',
+    loginTab: 'ورود',
+    signupTab: 'ثبت‌نام',
+    emailLabel: '📧 ایمیل',
+    passwordLabel: '🔒 رمز عبور',
+    confirmLabel: '✅ تأیید رمز',
+    rememberMe: 'مرا به خاطر بسپار',
+    forgot: 'فراموش کردید؟',
+    loginBtn: 'ورود',
+    createBtn: 'ایجاد حساب',
+    logoutBtn: '🚪 خروج',
+    fullnameLabel: '👤 نام کامل'
+  }
+};
 
+let currentLang = localStorage.getItem('megaLang') || 'en';
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('megaLang', lang);
+  document.getElementById('langEn').classList.toggle('active-lang', lang === 'en');
+  document.getElementById('langFa').classList.toggle('active-lang', lang === 'fa');
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.getAttribute('data-key');
+    if (translations[lang] && translations[lang][key]) {
+      if (key === 'supportChannels') el.innerHTML = translations[lang][key];
+      else el.textContent = translations[lang][key];
+    }
+  });
+  const welcome = document.querySelector('.chatbot-messages .msg.bot');
+  if (welcome && translations[lang].aiWelcome) welcome.textContent = translations[lang].aiWelcome;
+  document.querySelectorAll('.quick-questions button').forEach(btn => {
+    const key = btn.getAttribute('data-key');
+    if (key && translations[lang][key]) btn.textContent = translations[lang][key];
+  });
+}
 
+// ============================================================
+// NAVIGATION
+// ============================================================
+document.getElementById('navSections').addEventListener('click', function() {
+  document.getElementById('hiddenSections').classList.add('active');
+});
+document.getElementById('closeSections').addEventListener('click', function() {
+  document.getElementById('hiddenSections').classList.remove('active');
+});
+document.querySelectorAll('.section-nav button').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.section-nav button').forEach(b => b.classList.remove('active-section'));
+    this.classList.add('active-section');
+    const section = this.dataset.section;
+    document.querySelectorAll('.section-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('section' + section.charAt(0).toUpperCase() + section.slice(1)).classList.add('active');
+  });
+});
+
+// ============================================================
+// SUPPORT MODAL
+// ============================================================
+const supportModal = document.getElementById('supportModal');
+document.getElementById('supportBtn').addEventListener('click', () => supportModal.style.display = 'flex');
+document.getElementById('closeSupportModal').addEventListener('click', () => supportModal.style.display = 'none');
+supportModal.addEventListener('click', function(e) { if (e.target === this) this.style.display = 'none'; });
+
+// ============================================================
+// AI CHATBOT
+// ============================================================
+const botMap = {
+  en: {
+    owners: '🎯 MegaGroup is managed by @DachAshkan (Founder & Lead Developer) and @DachNima (Project Manager).',
+    megabomber: '💣 MegaBomber is an SMS Bomber tool under development. Coming soon!',
+    memecoin: '🪙 MemeCoin is a Mega Meme Token project. Check it out in the Projects section!',
+    launch: '🚀 MegaBomber and MemeCoin are coming soon. Follow our channels for updates.',
+    support: '💬 Contact @DachAshkan and @DachNima on Discord/Telegram. Support bot coming soon!',
+    team: '👥 Core Team: @DachAshkan and @DachNima are the managers.',
+    default: '🤖 I\'m Mega AI. Ask about owners, MegaBomber, MemeCoin, launch, support, or team.'
+  },
+  fa: {
+    owners: '🎯 مگاگروپ توسط @DachAshkan (بنیان‌گذار و توسعه‌دهنده اصلی) و @DachNima (مدیر پروژه) مدیریت می‌شود.',
+    megabomber: '💣 مگا بمبر یک ابزار ارسال انبوه پیامک است که در حال توسعه می‌باشد. به زودی!',
+    memecoin: '🪙 میم کوین یک پروژه توکن میم مگا است. در بخش پروژه‌ها مشاهده کنید!',
+    launch: '🚀 مگا بمبر و میم کوین به زودی عرضه می‌شوند. کانال‌های ما را دنبال کنید.',
+    support: '💬 از طریق دیسکورد/تلگرام با @DachAshkan و @DachNima تماس بگیرید. ربات پشتیبانی به زودی!',
+    team: '👥 تیم اصلی: @DachAshkan و @DachNima مدیران هستند.',
+    default: '🤖 من مگا ای‌آی هستم. درباره مالکان، مگا بمبر، میم کوین، راه‌اندازی، پشتیبانی یا تیم بپرسید.'
+  }
+};
+function getBotReply(msg) {
+  const m = msg.toLowerCase();
+  const dict = botMap[currentLang] || botMap.en;
+  if (m.includes('owner') || m.includes('who') || m.includes('founder') || m.includes('مالک')) return dict.owners;
+  if (m.includes('bomber') || m.includes('sms') || m.includes('megabomber') || m.includes('مگا بمبر')) return dict.megabomber;
+  if (m.includes('memecoin') || m.includes('meme') || m.includes('token') || m.includes('coin') || m.includes('میم')) return dict.memecoin;
+  if (m.includes('launch') || m.includes('soon') || m.includes('release') || m.includes('when') || m.includes('راه‌اندازی')) return dict.launch;
+  if (m.includes('support') || m.includes('contact') || m.includes('help') || m.includes('پشتیبانی')) return dict.support;
+  if (m.includes('team') || m.includes('member') || m.includes('admin') || m.includes('تیم')) return dict.team;
+  return dict.default;
+}
+function addMsg(text, type) {
+  const d = document.createElement('div');
+  d.className = `msg ${type}`;
+  d.textContent = text;
+  document.getElementById('chatMessages').appendChild(d);
+  d.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+function sendMessage() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text) return;
+  addMsg(text, 'user');
+  input.value = '';
+  setTimeout(() => addMsg(getBotReply(text), 'bot'), 400);
+}
+function askQuestion(q) { document.getElementById('chatInput').value = q; sendMessage(); }
+document.getElementById('chatToggle').addEventListener('click', function() {
+  document.getElementById('chatWindow').classList.toggle('active');
+});
+document.getElementById('closeChat').addEventListener('click', function() {
+  document.getElementById('chatWindow').classList.remove('active');
+});
+
+// ============================================================
+// VERSION TIMESTAMP
+// ============================================================
+function updateVersionTime() {
+  const now = new Date();
+  const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+  document.getElementById('versionTime').textContent = ` · ${now.toLocaleString('en-US', options)}`;
+}
+updateVersionTime();
+setInterval(updateVersionTime, 60000);
+
+// ============================================================
+// AUTH
+// ============================================================
+function getUsers() { return JSON.parse(localStorage.getItem('megaUsers')) || []; }
+function saveUsers(u) { localStorage.setItem('megaUsers', JSON.stringify(u)); }
+function getCurrentUser() { return JSON.parse(localStorage.getItem('megaCurrentUser')); }
+function setCurrentUser(u) { localStorage.setItem('megaCurrentUser', JSON.stringify(u)); }
+function clearCurrentUser() { localStorage.removeItem('megaCurrentUser'); }
+
+function showModalMessage(text, type) {
+  const msg = document.getElementById('modalMessage');
+  msg.textContent = text;
+  msg.style.display = 'block';
+  msg.style.background = type === 'success' ? 'rgba(166,255,179,0.06)' : type === 'error' ? 'rgba(255,80,80,0.06)' : 'rgba(70,130,255,0.06)';
+  msg.style.color = type === 'success' ? '#a6ffb3' : type === 'error' ? '#ff8a8a' : '#88b0ff';
+  msg.style.border = type === 'success' ? '1px solid rgba(166,255,179,0.06)' : type === 'error' ? '1px solid rgba(255,80,80,0.06)' : '1px solid rgba(70,130,255,0.06)';
+  clearTimeout(window._msgTimer);
+  window._msgTimer = setTimeout(() => { msg.style.display = 'none'; }, 4000);
+}
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelector(`.tab[data-tab="${tab}"]`).classList.add('active');
+  document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('registerForm').style.display = tab === 'register' ? 'block' : 'none';
+  document.getElementById('modalMessage').style.display = 'none';
+}
+function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+function handleRegister(e) {
+  e.preventDefault();
+  const name = document.getElementById('registerName').value.trim();
+  const email = document.getElementById('registerEmail').value.trim();
+  const pass = document.getElementById('registerPassword').value;
+  const confirm = document.getElementById('registerConfirmPassword').value;
+  if (name.length < 3) { showModalMessage(currentLang === 'fa' ? 'حداقل ۳ کاراکتر' : 'Min 3 chars', 'error'); return; }
+  if (!isValidEmail(email)) { showModalMessage(currentLang === 'fa' ? 'ایمیل معتبر وارد کنید' : 'Valid email', 'error'); return; }
+  if (pass.length < 6) { showModalMessage(currentLang === 'fa' ? 'حداقل ۶ کاراکتر' : 'Min 6 chars', 'error'); return; }
+  if (pass !== confirm) { showModalMessage(currentLang === 'fa' ? 'رمزها مطابقت ندارند' : 'Passwords match', 'error'); return; }
+  const users = getUsers();
+  if (users.find(u => u.email === email)) { showModalMessage(currentLang === 'fa' ? '❌ این ایمیل قبلاً ثبت شده است' : '❌ Email already registered', 'error'); return; }
+  const newUser = { id: Date.now(), name, email, password: pass, role: 'User', createdAt: new Date().toISOString() };
+  users.push(newUser);
+  saveUsers(users);
+  showModalMessage(currentLang === 'fa' ? '✅ حساب کاربری ایجاد شد! لطفاً وارد شوید.' : '✅ Account created! Please login.', 'success');
+  document.getElementById('registerForm').reset();
+  switchTab('login');
+}
+
+function handleLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass = document.getElementById('loginPassword').value;
+  const remember = document.getElementById('rememberMe').checked;
+  if (!isValidEmail(email)) { showModalMessage(currentLang === 'fa' ? 'ایمیل معتبر وارد کنید' : 'Valid email', 'error'); return; }
+  if (pass.length < 6) { showModalMessage(currentLang === 'fa' ? 'حداقل ۶ کاراکتر' : 'Min 6 chars', 'error'); return; }
+  const users = getUsers();
+  const user = users.find(u => u.email === email && u.password === pass);
+  if (!user) { showModalMessage(currentLang === 'fa' ? '❌ ایمیل یا رمز عبور اشتباه است' : '❌ Wrong email or password', 'error'); return; }
+  setCurrentUser(user);
+  if (remember) localStorage.setItem('megaRemember', 'true');
+  else localStorage.removeItem('megaRemember');
+  showModalMessage(currentLang === 'fa' ? `✅ خوش آمدید ${user.name}!` : `✅ Welcome ${user.name}!`, 'success');
+  updateUI();
+  closeModal();
+}
+
+function handleLogout() {
+  if (confirm(currentLang === 'fa' ? 'خروج از حساب؟' : 'Logout?')) {
+    clearCurrentUser();
+    localStorage.removeItem('megaRemember');
+    showModalMessage(currentLang === 'fa' ? '👋 خارج شدید' : '👋 Logged out', 'info');
+    updateUI();
+  }
+}
+
+function updateUI() {
+  const user = getCurrentUser();
+  const auth = document.getElementById('authSection');
+  const panel = document.getElementById('userPanel');
+  const btn = document.getElementById('loginNavBtn');
+  if (user) {
+    auth.style.display = 'none';
+    panel.style.display = 'block';
+    document.getElementById('userName').textContent = user.name;
+    document.getElementById('userEmail').textContent = user.email;
+    document.getElementById('userAvatar').textContent = user.name.charAt(0).toUpperCase();
+    btn.textContent = '👤 ' + user.name;
+    btn.style.background = 'rgba(166,255,179,0.08)';
+  } else {
+    auth.style.display = 'block';
+    panel.style.display = 'none';
+    document.getElementById('loginForm').reset();
+    document.getElementById('registerForm').reset();
+    btn.textContent = currentLang === 'fa' ? 'ورود' : 'Login';
+    btn.style.background = 'rgba(166,255,179,0.06)';
+  }
+}
+
+function openModal() {
+  document.getElementById('loginModal').style.display = 'flex';
+  document.getElementById('modalMessage').style.display = 'none';
+  updateUI();
+}
+function closeModal() { document.getElementById('loginModal').style.display = 'none'; }
+
+document.getElementById('loginNavBtn').addEventListener('click', openModal);
+document.getElementById('closeModal').addEventListener('click', closeModal);
+document.getElementById('loginModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+  const users = getUsers();
+  if (users.length === 0) {
+    users.push({ id: 1, name: 'Admin', email: 'admin@mega.com', password: '123456', role: 'Admin', createdAt: new Date().toISOString() });
+    saveUsers(users);
+  }
+  if (localStorage.getItem('megaRemember') === 'true' && getCurrentUser()) updateUI();
+  else updateUI();
+  console.log('🚀 MegaGroup v2.0 · simplified');
+  console.log('📧 default: admin@mega.com / 123456');
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.getElementById('hiddenSections').classList.remove('active');
+    supportModal.style.display = 'none';
+    document.getElementById('loginModal').style.display = 'none';
+    document.getElementById('chatWindow').classList.remove('active');
+  }
+});
+</script>
 </body>
+</html>
