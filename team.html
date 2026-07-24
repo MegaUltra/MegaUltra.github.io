@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MegaGroup · Official</title>
+  <title>مگا · گروه</title>
   <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/343434.png">
   <style>
-    /* ----- FONTS ----- */
+    /* ----- FONTS (Premium) ----- */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap');
+
     @font-face {
       font-family: "Vazirmatn";
       src: url("https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/Digi%20Rastin%20Bold.ttf") format("truetype");
@@ -24,212 +26,666 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       margin: 0; width: 100%; height: 100%; overflow: hidden;
-      background: #000; font-family: Arial, sans-serif;
+      background: #111518;
+      font-family: 'Rajdhani', 'V1', Arial, sans-serif;
     }
-    body::before {
-      content: "";
-      position: fixed; inset: 0;
-      background: url("https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/coin.png") center/cover no-repeat;
-      animation: fade 4s ease-in-out infinite;
+
+    /* ===== ANIMATED LIGHTING BACKGROUND ===== */
+    .lighting-bg {
+      position: fixed;
+      inset: 0;
       z-index: 0;
+      background: #111518;
+      overflow: hidden;
+      pointer-events: none;
     }
-    @keyframes fade {
-      0% { opacity: .5; }
-      50% { opacity: 1; }
-      100% { opacity: .5; }
+    .lighting-bg .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.25;
+      animation: orbFloat 20s infinite alternate ease-in-out;
+      will-change: transform, opacity;
+    }
+    .lighting-bg .orb:nth-child(1) {
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, #a6ffb3, #2a6b3a);
+      top: -15%; left: -10%;
+      animation-duration: 25s;
+    }
+    .lighting-bg .orb:nth-child(2) {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, #7edfa0, #1f5230);
+      bottom: -20%; right: -10%;
+      animation-duration: 30s;
+      animation-delay: -5s;
+    }
+    .lighting-bg .orb:nth-child(3) {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, #b8ffc4, #2a7540);
+      top: 30%; left: 25%;
+      animation-duration: 22s;
+      animation-delay: -10s;
+      opacity: 0.18;
+    }
+    .lighting-bg .orb:nth-child(4) {
+      width: 450px; height: 450px;
+      background: radial-gradient(circle, #8fe3a5, #1a4528);
+      bottom: 25%; right: 15%;
+      animation-duration: 28s;
+      animation-delay: -15s;
+    }
+    .lighting-bg .orb:nth-child(5) {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, #a6ffb3, #2a6b3a);
+      top: 10%; right: 15%;
+      animation-duration: 32s;
+      animation-delay: -8s;
+      opacity: 0.2;
+    }
+    .lighting-bg .orb:nth-child(6) {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, #4ecdc4, #1f5230);
+      bottom: 10%; left: 20%;
+      animation-duration: 26s;
+      animation-delay: -12s;
+      opacity: 0.12;
+    }
+    @keyframes orbFloat {
+      0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      25% { transform: translate(10%, -8%) scale(1.15) rotate(3deg); }
+      50% { transform: translate(-6%, 12%) scale(0.85) rotate(-2deg); }
+      75% { transform: translate(8%, 4%) scale(1.08) rotate(1.5deg); }
+      100% { transform: translate(-4%, -6%) scale(0.92) rotate(-1deg); }
+    }
+
+    /* floating particles */
+    .particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #a6ffb3;
+      border-radius: 50%;
+      opacity: 0;
+      animation: particleFloat 12s infinite;
+      box-shadow: 0 0 10px rgba(166,255,179,0.2);
+    }
+    .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+    .particle:nth-child(2) { left: 80%; top: 15%; animation-delay: 2s; width: 6px; height: 6px; }
+    .particle:nth-child(3) { left: 30%; top: 70%; animation-delay: 4s; }
+    .particle:nth-child(4) { left: 70%; top: 60%; animation-delay: 1s; width: 3px; height: 3px; }
+    .particle:nth-child(5) { left: 50%; top: 30%; animation-delay: 3s; width: 5px; height: 5px; }
+    .particle:nth-child(6) { left: 15%; top: 80%; animation-delay: 5s; }
+    .particle:nth-child(7) { left: 90%; top: 40%; animation-delay: 2.5s; width: 3px; height: 3px; }
+    .particle:nth-child(8) { left: 45%; top: 85%; animation-delay: 4.5s; }
+    @keyframes particleFloat {
+      0% { opacity: 0; transform: translate(0, 0) scale(0); }
+      20% { opacity: 0.5; transform: translate(20px, -30px) scale(1); }
+      40% { opacity: 0.2; transform: translate(-10px, -60px) scale(0.8); }
+      60% { opacity: 0.6; transform: translate(30px, -90px) scale(1.2); }
+      80% { opacity: 0.15; transform: translate(-20px, -120px) scale(0.6); }
+      100% { opacity: 0; transform: translate(0, -150px) scale(0); }
+    }
+
+    .lighting-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(166,255,179,0.04) 0%, transparent 60%),
+        radial-gradient(circle at 80% 30%, rgba(166,255,179,0.03) 0%, transparent 50%),
+        repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.003) 3px, rgba(255,255,255,0.003) 4px);
+      pointer-events: none;
+    }
+
+    /* ===== NEWS ALERT ===== */
+    .news-alert {
+      position: fixed;
+      top: 110px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+      background: rgba(20, 25, 28, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(166, 255, 179, 0.04);
+      border-radius: 40px;
+      padding: 8px 24px 8px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      animation: newsSlideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    @keyframes newsSlideDown {
+      0% { opacity: 0; transform: translateX(-50%) translateY(-20px) scale(0.95); }
+      100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+    }
+    .news-alert .bell {
+      font-size: 20px;
+      animation: bellRing 2s infinite;
+    }
+    @keyframes bellRing {
+      0%,100% { transform: rotate(0); }
+      10% { transform: rotate(15deg); }
+      20% { transform: rotate(-10deg); }
+      30% { transform: rotate(5deg); }
+      40% { transform: rotate(-5deg); }
+      50% { transform: rotate(0); }
+    }
+    .news-alert .news-text {
+      color: rgba(255,255,255,0.6);
+      font-family: 'Rajdhani', 'V1', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      font-weight: 400;
+    }
+    .news-alert .news-text strong {
+      color: #a6ffb3;
+      font-weight: 700;
+    }
+    .news-alert .news-close {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.15);
+      font-size: 16px;
+      cursor: pointer;
+      padding: 0 4px;
+      transition: 0.3s;
+    }
+    .news-alert .news-close:hover {
+      color: #ff6b6b;
+      transform: rotate(90deg);
+    }
+    @media (max-width: 768px) {
+      .news-alert {
+        top: 80px;
+        padding: 6px 16px 6px 14px;
+        gap: 10px;
+        max-width: calc(100% - 32px);
+      }
+      .news-alert .news-text { font-size: 11px; }
+      .news-alert .bell { font-size: 16px; }
+    }
+    @media (max-width: 480px) {
+      .news-alert {
+        top: 70px;
+        padding: 4px 12px 4px 10px;
+        gap: 6px;
+      }
+      .news-alert .news-text { font-size: 9px; }
+      .news-alert .bell { font-size: 13px; }
     }
 
     /* ----- TOPBAR (NAV) ----- */
     .topbar {
-      position: fixed; top: 50px; left: 50%; transform: translateX(-50%);
-      width: 900px; max-width: calc(100% - 40px); height: 68px;
-      background: rgba(15,15,15,.6); backdrop-filter: blur(100000px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,.08); border-radius: 100px;
+      position: fixed; top: 30px; left: 50%; transform: translateX(-50%) scale(0.98);
+      width: 940px; max-width: calc(100% - 40px); height: 68px;
+      background: rgba(20, 25, 28, 0.55);
+      backdrop-filter: blur(30px) saturate(1.2);
+      -webkit-backdrop-filter: blur(30px) saturate(1.2);
+      border: 1px solid rgba(166, 255, 179, 0.06);
+      border-radius: 60px;
       display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
-      padding: 0 25px; z-index: 999;
+      padding: 0 28px; z-index: 999;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(166,255,179,0.05);
+      animation: topbarGlow 4s ease-in-out infinite;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .topbar:hover { transform: translateX(-50%) scale(1); }
+    @keyframes topbarGlow {
+      0%,100% { box-shadow: 0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(166,255,179,0.05); }
+      50% { box-shadow: 0 20px 80px rgba(166,255,179,0.05), inset 0 1px 0 rgba(166,255,179,0.08); }
     }
     .topbar::before {
       content: "";
       position: absolute; inset: 0;
       background: url("https://raw.githubusercontent.com/MegaUltra/MegaUltra.github.io/main/fadee.png") center center / 800px no-repeat;
-      opacity: 0.2; pointer-events: none;
+      opacity: 0.1; pointer-events: none;
       mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
     }
     .logo {
-      justify-self: center; color: #a6ffb3; font-size: 25px; margin-top: 6px;
-      font-family: "Vazirmatn"; user-select: none;
+      justify-self: center; 
+      font-family: 'Orbitron', 'Vazirmatn', sans-serif;
+      font-weight: 900;
+      font-size: 26px;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #a6ffb3, #4ecdc4, #a6ffb3);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: logoShine 4s ease-in-out infinite;
+      text-shadow: 0 0 40px rgba(166,255,179,0.05);
+      user-select: none;
+    }
+    @keyframes logoShine {
+      0%,100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
     .left-nav { justify-self: start; }
     .right-nav { justify-self: end; }
-    .nav { display: flex; gap: 12px; }
+    .nav { display: flex; gap: 8px; align-items: center; }
     .nav button {
-      border: none; background: transparent; color: #fff;
-      font-family: "V1"; font-size: 15px; padding: 10px 18px;
-      border-radius: 10px; cursor: pointer; transition: .25s;
+      border: none; background: transparent; color: rgba(255,255,255,0.5);
+      font-family: 'Rajdhani', 'V1', sans-serif;
+      font-weight: 600;
+      font-size: 15px; padding: 10px 20px;
+      border-radius: 40px; cursor: pointer; transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      letter-spacing: 0.5px;
+      position: relative;
+    }
+    .nav button::after {
+      content: '';
+      position: absolute; inset: 0; border-radius: 40px;
+      background: linear-gradient(135deg, rgba(166,255,179,0.0), rgba(166,255,179,0.0));
+      transition: all 0.4s;
+      z-index: -1;
     }
     .nav button:hover, .nav button.active-nav {
-      background: rgba(166,255,179,.12); color: #a6ffb3; border-radius: 50px;
+      color: #a6ffb3;
+      transform: translateY(-1px);
+    }
+    .nav button:hover::after, .nav button.active-nav::after {
+      background: linear-gradient(135deg, rgba(166,255,179,0.08), rgba(78,205,196,0.04));
+      box-shadow: 0 0 30px rgba(166,255,179,0.02);
     }
 
     /* ----- LANGUAGE SWITCHER ----- */
     .lang-switcher {
-      display: flex; gap: 4px; background: rgba(255,255,255,0.04);
-      border-radius: 30px; padding: 3px; border: 1px solid rgba(166,255,179,0.06);
+      display: flex; gap: 4px; background: rgba(255,255,255,0.02);
+      border-radius: 40px; padding: 3px; border: 1px solid rgba(166,255,179,0.04);
       margin-left: 8px;
     }
     .lang-switcher button {
-      border: none; background: transparent; color: rgba(255,255,255,0.4);
-      font-family: "V1"; font-size: 11px; padding: 4px 12px; border-radius: 20px;
-      cursor: pointer; transition: 0.3s; font-weight: 700; letter-spacing: 0.5px;
+      border: none; background: transparent; color: rgba(255,255,255,0.25);
+      font-family: 'Rajdhani', 'V1', sans-serif;
+      font-weight: 700;
+      font-size: 11px; padding: 4px 14px; border-radius: 30px;
+      cursor: pointer; transition: all 0.3s; letter-spacing: 1px;
     }
-    .lang-switcher button:hover { color: rgba(255,255,255,0.7); }
+    .lang-switcher button:hover { color: rgba(255,255,255,0.5); }
     .lang-switcher button.active-lang {
-      background: rgba(166,255,179,0.12); color: #b8ffc4;
-      box-shadow: 0 0 20px rgba(166,255,179,0.04);
+      background: rgba(166,255,179,0.08); color: #b8ffc4;
+      box-shadow: 0 0 30px rgba(166,255,179,0.02);
     }
 
     /* ----- MAIN CONTENT ----- */
     .content {
-      position: absolute; top: 45%; left: 50%; transform: translate(-50%,-50%);
+      position: absolute; top: 48%; left: 50%; transform: translate(-50%,-50%);
       text-align: center; z-index: 1; width: 100%; max-width: 1100px; padding: 0 20px;
+      animation: contentIn 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    @keyframes contentIn {
+      0% { opacity: 0; transform: translate(-50%,-40%) scale(0.95); }
+      100% { opacity: 1; transform: translate(-50%,-50%) scale(1); }
     }
     .title {
-      margin: 0; color: #a6ffb3; font-size: 52px; font-family: "Vazirmatn";
-      text-shadow: 0 0 30px rgba(166,255,179,0.3), 0 0 60px rgba(166,255,179,0.10);
+      margin: 0; 
+      font-family: 'Orbitron', 'Vazirmatn', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      background: linear-gradient(135deg, #a6ffb3, #4ecdc4, #7edfa0, #a6ffb3);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: titleShine 6s ease-in-out infinite;
+      text-shadow: 0 0 60px rgba(166,255,179,0.05);
+      letter-spacing: 4px;
+    }
+    @keyframes titleShine {
+      0%,100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
     .subtitle {
-      margin-top: -20px; color: #fff; font-size: 20px; font-family: "V1";
+      margin-top: -16px; 
+      font-family: 'Rajdhani', 'V1', sans-serif;
+      font-weight: 600;
+      font-size: 22px; color: rgba(255,255,255,0.4);
+      letter-spacing: 4px;
     }
+    .subtitle span { color: #a6ffb3; font-weight: 700; }
 
     /* ----- CARDS ----- */
     .cards {
-      margin-top: 45px; display: flex; justify-content: center;
-      gap: 22px; flex-wrap: wrap;
+      margin-top: 50px; display: flex; justify-content: center;
+      gap: 28px; flex-wrap: wrap;
     }
     .card {
-      width: 250px; min-height: 180px;
-      background: rgba(15,15,15,.55); backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,.08); border-radius: 18px;
-      padding: 25px; transition: .3s; cursor: pointer;
+      width: 260px; min-height: 190px;
+      background: rgba(20, 25, 28, 0.5);
+      backdrop-filter: blur(24px) saturate(1.1);
+      -webkit-backdrop-filter: blur(24px) saturate(1.1);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 28px;
+      padding: 28px 24px;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
       display: flex; flex-direction: column;
+      position: relative;
+      overflow: hidden;
     }
-    .card:hover { transform: translateY(-2px); border-color: rgba(166,255,179,.4); }
-    .card h3 { margin: 0 0 15px; color: #a6ffb3; font-family: "Vazirmatn"; font-size: 22px; }
-    .card p { margin: 0; color: #ddd; font-family: "V1"; line-height: 1.8; font-size: 14px; flex: 1; }
+    .card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(166,255,179,0.03), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+    }
+    .card:hover::before { opacity: 1; }
+    .card:hover {
+      transform: translateY(-6px) scale(1.01);
+      border-color: rgba(166,255,179,0.08);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3), 0 0 40px rgba(166,255,179,0.01);
+    }
+    .card h3 {
+      margin: 0 0 12px; 
+      font-family: 'Orbitron', 'Vazirmatn', sans-serif;
+      font-weight: 700;
+      font-size: 20px; color: #a6ffb3;
+      letter-spacing: 1px;
+    }
+    .card p {
+      margin: 0; color: rgba(255,255,255,0.4);
+      font-family: 'Rajdhani', 'V1', sans-serif;
+      font-weight: 400;
+      line-height: 1.7; font-size: 14px; flex: 1;
+    }
     .card-btn {
-      margin-top: 20px; width: 100%; height: 45px; border: none; border-radius: 12px;
-      background: #a6ffb3; color: #111; font-family: "ss"; font-size: 16px;
-      cursor: pointer; transition: .25s; text-decoration: none;
+      margin-top: 20px; width: 100%; height: 48px; border: none; border-radius: 40px;
+      background: linear-gradient(135deg, rgba(166,255,179,0.08), rgba(78,205,196,0.02));
+      color: #a6ffb3; 
+      font-family: 'Orbitron', 'ss', sans-serif;
+      font-weight: 700; font-size: 13px;
+      cursor: pointer; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      text-decoration: none;
       display: flex; align-items: center; justify-content: center;
+      letter-spacing: 1px;
+      border: 1px solid rgba(166,255,179,0.06);
     }
     .card-btn:hover {
-      background-color: #c8ffd0; box-shadow: 0 0 25px #c8ffd03d;
+      background: linear-gradient(135deg, rgba(166,255,179,0.14), rgba(78,205,196,0.04));
+      border-color: rgba(166,255,179,0.1);
+      box-shadow: 0 0 40px rgba(166,255,179,0.03);
+      transform: scale(1.02);
     }
 
     /* ----- FOOTER ----- */
     .footer {
-      position: fixed; bottom: -40px; left: 50%; transform: translateX(-50%);
-      color: rgba(255,255,255,.6); font-family: "V1"; font-size: 14px;
-      text-align: center; z-index: 10; user-select: none; width: 100%;
+      position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.15); 
+      font-family: 'Rajdhani', 'V1', sans-serif;
+      font-weight: 400;
+      font-size: 12px; text-align: center; z-index: 10; user-select: none; width: 100%;
+      letter-spacing: 2px;
     }
 
-    /* ----- HIDDEN SECTIONS (Projects, Team) ----- */
+    /* ----- HIDDEN SECTIONS ----- */
     .hidden-sections {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.92); backdrop-filter: blur(20px);
+      background: rgba(17, 21, 24, 0.96); backdrop-filter: blur(40px);
       z-index: 1000; overflow-y: auto; padding: 100px 20px 60px;
     }
     .hidden-sections.active { display: block; }
     .hidden-sections .close-sections {
-      position: fixed; top: 20px; right: 30px;
-      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 50px; color: #fff; font-size: 24px; padding: 8px 20px;
-      cursor: pointer; font-family: "V1"; transition: 0.3s; z-index: 1001;
+      position: fixed; top: 24px; right: 30px;
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 60px; color: rgba(255,255,255,0.3); font-size: 20px; padding: 6px 24px;
+      cursor: pointer; font-family: 'Rajdhani', 'V1', sans-serif;
+      transition: all 0.3s; z-index: 1001;
+      font-weight: 600;
+      letter-spacing: 1px;
     }
     .hidden-sections .close-sections:hover {
-      background: rgba(255,80,80,0.1); border-color: rgba(255,80,80,0.2); color: #ff6b6b;
+      background: rgba(255,80,80,0.04); border-color: rgba(255,80,80,0.08); color: #ff6b6b;
+      transform: scale(1.02);
     }
 
     /* section nav */
     .section-nav {
-      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px;
+      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px;
     }
     .section-nav button {
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 30px; color: rgba(255,255,255,0.6); padding: 10px 24px;
-      font-family: "V1"; font-size: 14px; cursor: pointer; transition: 0.3s;
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.03);
+      border-radius: 60px; color: rgba(255,255,255,0.3); padding: 10px 28px;
+      font-family: 'Rajdhani', 'V1', sans-serif;
+      font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.3s;
+      letter-spacing: 1px;
     }
     .section-nav button:hover, .section-nav button.active-section {
-      background: rgba(166,255,179,0.08); color: #a6ffb3; border-color: rgba(166,255,179,0.15);
+      background: rgba(166,255,179,0.04); color: #a6ffb3; border-color: rgba(166,255,179,0.06);
+      box-shadow: 0 0 30px rgba(166,255,179,0.01);
     }
 
-    .section-content { display: none; max-width: 900px; margin: 0 auto; }
+    .section-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      animation: sectionFadeIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
     .section-content.active { display: block; }
+
+    @keyframes sectionFadeIn {
+      0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
 
     /* ----- PROJECTS ----- */
     .projects-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;
     }
     .project-card {
-      background: rgba(25, 35, 32, 0.7); backdrop-filter: blur(14px);
-      border: 1px solid rgba(166, 255, 179, 0.08); border-radius: 24px;
-      padding: 30px 24px; text-align: center; transition: 0.3s;
+      background: rgba(20, 25, 28, 0.6); backdrop-filter: blur(20px);
+      border: 1px solid rgba(166, 255, 179, 0.03); border-radius: 32px;
+      padding: 32px 24px; text-align: center; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .project-card:hover { border-color: rgba(166,255,179,0.2); transform: translateY(-4px); }
+    .project-card:hover { border-color: rgba(166,255,179,0.06); transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
     .project-card .icon { font-size: 48px; display: block; margin-bottom: 10px; }
-    .project-card h3 { color: #a6ffb3; font-family: "Vazirmatn"; font-size: 22px; }
-    .project-card p { color: rgba(255,255,255,0.5); font-family: "V1"; font-size: 14px; }
+    .project-card h3 { color: #a6ffb3; font-family: 'Orbitron', 'Vazirmatn', sans-serif; font-size: 20px; letter-spacing: 1px; }
+    .project-card p { color: rgba(255,255,255,0.3); font-family: 'Rajdhani', 'V1', sans-serif; font-size: 14px; }
     .project-card .coming-badge {
-      display: inline-block; background: rgba(166,255,179,0.08); color: #a6ffb3;
-      padding: 4px 16px; border-radius: 20px; font-size: 12px; margin-top: 10px;
-      border: 1px solid rgba(166,255,179,0.06);
+      display: inline-block; background: rgba(166,255,179,0.02); color: rgba(166,255,179,0.4);
+      padding: 4px 18px; border-radius: 40px; font-size: 11px; margin-top: 10px;
+      border: 1px solid rgba(166,255,179,0.02); font-family: 'Orbitron', sans-serif; letter-spacing: 1px;
     }
     .project-card .project-btn {
-      display: inline-block; margin-top: 14px; padding: 8px 24px; border-radius: 30px;
-      font-family: 'ss'; font-size: 13px; text-decoration: none;
-      border: 1px solid rgba(166,255,179,0.15); background: rgba(166,255,179,0.06);
-      color: #a6ffb3; transition: 0.3s;
+      display: inline-block; margin-top: 14px; padding: 8px 28px; border-radius: 60px;
+      font-family: 'Orbitron', 'ss', sans-serif; font-size: 12px; text-decoration: none;
+      border: 1px solid rgba(166,255,179,0.04); background: rgba(166,255,179,0.02);
+      color: #a6ffb3; transition: all 0.3s; letter-spacing: 1px;
     }
     .project-card .project-btn:hover {
-      background: rgba(166,255,179,0.12); border-color: rgba(166,255,179,0.25);
+      background: rgba(166,255,179,0.04); border-color: rgba(166,255,179,0.06);
+      transform: scale(1.02);
     }
 
-    /* ----- TEAM (simplified) ----- */
+    /* ----- TEAM ----- */
     .team-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;
     }
     .team-card {
-      background: rgba(25, 35, 32, 0.65); backdrop-filter: blur(14px);
-      border: 1px solid rgba(166, 255, 179, 0.06); border-radius: 24px;
-      padding: 24px 16px; text-align: center; transition: 0.3s;
+      background: rgba(20, 25, 28, 0.6); backdrop-filter: blur(20px);
+      border: 1px solid rgba(166, 255, 179, 0.03); border-radius: 32px;
+      padding: 24px 16px; text-align: center; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
     }
-    .team-card:hover { border-color: rgba(166,255,179,0.15); transform: translateY(-4px); }
+    .team-card:hover { border-color: rgba(166,255,179,0.05); transform: translateY(-4px); }
     .team-card .avatar {
-      width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 10px;
+      width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 12px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 26px; font-weight: 900; color: #0a0a0a;
-      background: linear-gradient(135deg, #a6ffb3, #4ecdc4); font-family: 'ss';
+      font-size: 28px; font-weight: 900; color: #111518;
+      background: linear-gradient(135deg, #a6ffb3, #4ecdc4);
+      font-family: 'Orbitron', 'ss', sans-serif;
+      box-shadow: 0 0 40px rgba(166,255,179,0.02);
     }
-    .team-card .team-name { font-family: 'ss'; font-size: 16px; color: #a6ffb3; }
-    .team-card .team-role { font-family: "V1"; font-size: 12px; color: rgba(255,255,255,0.5); }
+    .team-card .crown {
+      position: absolute;
+      top: -6px;
+      right: 14px;
+      font-size: 22px;
+      filter: drop-shadow(0 0 8px rgba(255,215,0,0.2));
+    }
+    .team-card .team-name { font-family: 'Orbitron', 'ss', sans-serif; font-size: 16px; color: #a6ffb3; letter-spacing: 1px; }
+    .team-card .team-role { font-family: 'Rajdhani', 'V1', sans-serif; font-size: 12px; color: rgba(255,255,255,0.3); }
     .team-card .team-badge {
-      display: inline-block; background: rgba(166,255,179,0.06);
-      border: 1px solid rgba(166,255,179,0.04); padding: 2px 12px;
-      border-radius: 20px; font-size: 9px; font-family: 'ss'; color: #a6ffb3;
-      margin-top: 6px;
+      display: inline-block; background: rgba(166,255,179,0.02);
+      border: 1px solid rgba(166,255,179,0.02); padding: 2px 14px;
+      border-radius: 40px; font-size: 9px; font-family: 'Orbitron', 'ss', sans-serif; color: rgba(166,255,179,0.4);
+      margin-top: 6px; letter-spacing: 0.5px;
     }
-    .team-card .team-badge.owner { background: rgba(255,215,0,0.12); border-color: rgba(255,215,0,0.10); color: #ffd700; }
-    .team-card .team-badge.admin { background: rgba(255,215,0,0.08); border-color: rgba(255,215,0,0.06); color: #ffd700; }
+    .team-card .team-badge.owner { background: rgba(255,215,0,0.04); border-color: rgba(255,215,0,0.04); color: #ffd700; }
+    .team-card .team-badge.admin { background: rgba(255,215,0,0.02); border-color: rgba(255,215,0,0.02); color: #ffd700; }
+    .team-card .team-badge.member { background: rgba(166,255,179,0.02); border-color: rgba(166,255,179,0.02); color: rgba(166,255,179,0.4); }
     .team-section-title {
-      font-family: 'ss'; font-size: 20px; color: #a6ffb3;
-      text-align: center; margin: 30px 0 16px; letter-spacing: 1px;
+      font-family: 'Orbitron', 'ss', sans-serif;
+      font-size: 20px; color: #a6ffb3;
+      text-align: center; margin: 30px 0 16px; letter-spacing: 2px;
     }
     .team-section-title .sub {
-      font-size: 12px; color: rgba(255,255,255,0.3); font-family: "V1";
-      display: block; margin-top: 2px; font-weight: 400;
+      font-size: 12px; color: rgba(255,255,255,0.15); font-family: 'Rajdhani', 'V1', sans-serif;
+      display: block; margin-top: 2px; font-weight: 400; letter-spacing: 2px;
+    }
+    .team-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(166,255,179,0.05), transparent);
+      margin: 30px 0 20px;
+    }
+
+    /* ----- SHOP (Rank) ----- */
+    .shop-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;
+      margin-top: 20px;
+    }
+    .shop-card {
+      background: rgba(20, 25, 28, 0.6); backdrop-filter: blur(20px);
+      border: 1px solid rgba(166, 255, 179, 0.03); border-radius: 32px;
+      padding: 32px 24px; text-align: center; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .shop-card:hover { border-color: rgba(166,255,179,0.06); transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+    .shop-card .rank-icon { font-size: 56px; display: block; margin-bottom: 10px; }
+    .shop-card h3 { color: #a6ffb3; font-family: 'Orbitron', 'Vazirmatn', sans-serif; font-size: 24px; letter-spacing: 1px; }
+    .shop-card .price { color: rgba(255,255,255,0.3); font-family: 'Rajdhani', 'V1', sans-serif; font-size: 16px; margin: 8px 0; }
+    .shop-card .price span { color: #a6ffb3; font-weight: 700; }
+    .shop-card .rank-desc { color: rgba(255,255,255,0.3); font-family: 'Rajdhani', 'V1', sans-serif; font-size: 14px; margin-bottom: 16px; }
+    .shop-card .shop-btn {
+      display: inline-block; padding: 12px 40px; border-radius: 60px;
+      font-family: 'Orbitron', 'ss', sans-serif; font-size: 13px; text-decoration: none;
+      border: 1px solid rgba(166,255,179,0.04); background: rgba(166,255,179,0.02);
+      color: #a6ffb3; transition: all 0.3s; letter-spacing: 1px;
+      cursor: pointer;
+    }
+    .shop-card .shop-btn:hover {
+      background: rgba(166,255,179,0.04); border-color: rgba(166,255,179,0.06);
+      transform: scale(1.02);
+    }
+
+    /* ----- SERVERS ----- */
+    .servers-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;
+      margin-top: 20px;
+    }
+    .server-card {
+      background: rgba(20, 25, 28, 0.6); backdrop-filter: blur(20px);
+      border: 1px solid rgba(166, 255, 179, 0.03); border-radius: 32px;
+      padding: 32px 24px; text-align: center; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .server-card:hover { border-color: rgba(166,255,179,0.06); transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+    .server-card .server-icon { font-size: 48px; display: block; margin-bottom: 10px; }
+    .server-card h3 { color: #a6ffb3; font-family: 'Orbitron', 'Vazirmatn', sans-serif; font-size: 20px; letter-spacing: 1px; }
+    .server-card .server-desc { color: rgba(255,255,255,0.3); font-family: 'Rajdhani', 'V1', sans-serif; font-size: 14px; margin: 8px 0; }
+    .server-card .server-status {
+      display: inline-block; background: rgba(166,255,179,0.02); color: rgba(166,255,179,0.4);
+      padding: 4px 18px; border-radius: 40px; font-size: 11px;
+      border: 1px solid rgba(166,255,179,0.02); font-family: 'Orbitron', sans-serif; letter-spacing: 1px;
+    }
+    .server-card .server-status.coming { color: #ffb347; border-color: rgba(255,180,70,0.06); }
+
+    /* ----- DONATION SECTION ----- */
+    .donation-section {
+      margin-top: 40px;
+      padding: 30px 24px;
+      background: rgba(20, 25, 28, 0.4);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(166, 255, 179, 0.03);
+      border-radius: 32px;
+      text-align: center;
+    }
+    .donation-section h3 {
+      font-family: 'Orbitron', 'Vazirmatn', sans-serif;
+      color: #a6ffb3;
+      font-size: 22px;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .donation-section p {
+      color: rgba(255,255,255,0.3);
+      font-family: 'Rajdhani', 'V1', sans-serif;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    .donation-section .donate-btn {
+      display: inline-block;
+      padding: 14px 48px;
+      border-radius: 60px;
+      font-family: 'Orbitron', 'ss', sans-serif;
+      font-size: 14px;
+      text-decoration: none;
+      border: 1px solid rgba(166,255,179,0.04);
+      background: rgba(166,255,179,0.02);
+      color: #a6ffb3;
+      transition: all 0.3s;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+    .donation-section .donate-btn:hover {
+      background: rgba(166,255,179,0.04);
+      border-color: rgba(166,255,179,0.06);
+      transform: scale(1.02);
+    }
+
+    /* ----- SOCIAL LINKS (footer addresses) ----- */
+    .social-links {
+      position: fixed;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 30px;
+      z-index: 10;
+      background: rgba(20, 25, 28, 0.4);
+      backdrop-filter: blur(20px);
+      padding: 12px 32px;
+      border-radius: 60px;
+      border: 1px solid rgba(166,255,179,0.03);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+    .social-links a {
+      color: rgba(255,255,255,0.2);
+      text-decoration: none;
+      font-family: 'Rajdhani', 'V1', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .social-links a:hover {
+      color: #a6ffb3;
+      transform: translateY(-2px);
+    }
+    .social-links .icon {
+      font-size: 16px;
     }
 
     /* ----- CHATBOT ----- */
@@ -237,19 +693,21 @@
       position: fixed; bottom: 30px; right: 30px; z-index: 998;
     }
     .chatbot-toggle {
-      background: rgba(15,15,15,0.8); backdrop-filter: blur(18px);
-      border: 1px solid rgba(166,255,179,0.12); border-radius: 50px;
-      padding: 12px 22px; color: #a6ffb3; font-family: 'ss'; font-size: 13px;
-      font-weight: 700; cursor: pointer; transition: 0.3s;
-      display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px;
+      background: rgba(20, 25, 28, 0.6); backdrop-filter: blur(24px);
+      border: 1px solid rgba(166,255,179,0.04); border-radius: 60px;
+      padding: 14px 26px; color: #a6ffb3; 
+      font-family: 'Orbitron', 'ss', sans-serif;
+      font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex; align-items: center; gap: 10px; letter-spacing: 1px;
     }
     .chatbot-toggle:hover {
-      background: rgba(166,255,179,0.06); border-color: rgba(166,255,179,0.2);
-      transform: scale(1.03);
+      background: rgba(166,255,179,0.02); border-color: rgba(166,255,179,0.06);
+      transform: scale(1.02);
     }
     .chatbot-toggle .dot {
       width: 8px; height: 8px; border-radius: 50%; background: #a6ffb3;
       animation: dotPulse 2s infinite;
+      box-shadow: 0 0 20px rgba(166,255,179,0.1);
     }
     @keyframes dotPulse {
       0%,100% { opacity:0.3; transform:scale(0.8); }
@@ -258,156 +716,169 @@
     .chatbot-window {
       display: none; position: fixed; bottom: 100px; right: 30px;
       width: 340px; max-width: calc(100% - 40px); max-height: 450px;
-      background: rgba(10,10,10,0.95); backdrop-filter: blur(20px);
-      border: 1px solid rgba(166,255,179,0.06); border-radius: 24px;
-      z-index: 999; overflow: hidden; animation: slideUp 0.3s ease;
+      background: rgba(17, 21, 24, 0.96); backdrop-filter: blur(40px);
+      border: 1px solid rgba(166,255,179,0.02); border-radius: 32px;
+      z-index: 999; overflow: hidden; animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .chatbot-window.active { display: block; }
-    @keyframes slideUp { 0% { transform:translateY(20px); opacity:0; } 100% { transform:translateY(0); opacity:1; } }
+    @keyframes slideUp { 0% { transform:translateY(30px); opacity:0; } 100% { transform:translateY(0); opacity:1; } }
     .chatbot-header {
-      padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.03);
+      padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.01);
       display: flex; justify-content: space-between; align-items: center;
     }
-    .chatbot-header h4 { font-family: 'ss'; font-size: 15px; color: #a6ffb3; }
+    .chatbot-header h4 { font-family: 'Orbitron', 'ss', sans-serif; font-size: 14px; color: #a6ffb3; letter-spacing: 1px; }
     .chatbot-header .close-chat {
-      background: none; border: none; color: rgba(255,255,255,0.3);
-      font-size: 22px; cursor: pointer;
+      background: none; border: none; color: rgba(255,255,255,0.15);
+      font-size: 20px; cursor: pointer; transition: all 0.3s;
     }
     .chatbot-header .close-chat:hover { color: #ff6b6b; transform: rotate(90deg); }
     .chatbot-messages {
       padding: 14px 16px; max-height: 220px; overflow-y: auto;
     }
     .chatbot-messages .msg {
-      margin-bottom: 10px; padding: 10px 14px; border-radius: 14px;
-      max-width: 88%; font-family: "V1"; font-size: 13px; line-height: 1.4;
+      margin-bottom: 10px; padding: 10px 16px; border-radius: 20px;
+      max-width: 88%; font-family: 'Rajdhani', 'V1', sans-serif;
+      font-size: 13px; line-height: 1.5;
     }
     .chatbot-messages .msg.bot {
-      background: rgba(166,255,179,0.04); border: 1px solid rgba(166,255,179,0.03);
-      color: rgba(255,255,255,0.8); margin-right: auto; border-bottom-left-radius: 4px;
+      background: rgba(166,255,179,0.02); border: 1px solid rgba(166,255,179,0.01);
+      color: rgba(255,255,255,0.6); margin-right: auto; border-bottom-left-radius: 4px;
     }
     .chatbot-messages .msg.user {
-      background: rgba(166,255,179,0.08); border: 1px solid rgba(166,255,179,0.04);
+      background: rgba(166,255,179,0.04); border: 1px solid rgba(166,255,179,0.02);
       color: #a6ffb3; margin-left: auto; border-bottom-right-radius: 4px;
     }
     .quick-questions {
       display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 10px;
     }
     .quick-questions button {
-      background: rgba(166,255,179,0.02); border: 1px solid rgba(166,255,179,0.04);
-      border-radius: 30px; padding: 3px 12px; color: rgba(255,255,255,0.4);
-      font-family: "V1"; font-size: 10px; cursor: pointer;
+      background: rgba(166,255,179,0.01); border: 1px solid rgba(166,255,179,0.01);
+      border-radius: 40px; padding: 3px 14px; color: rgba(255,255,255,0.2);
+      font-family: 'Rajdhani', 'V1', sans-serif;
+      font-size: 10px; cursor: pointer; transition: all 0.3s;
+      letter-spacing: 0.5px;
     }
-    .quick-questions button:hover { background: rgba(166,255,179,0.05); color: #a6ffb3; }
+    .quick-questions button:hover { background: rgba(166,255,179,0.02); color: #a6ffb3; }
     .chatbot-input {
-      padding: 10px 16px; border-top: 1px solid rgba(255,255,255,0.02);
+      padding: 10px 16px; border-top: 1px solid rgba(255,255,255,0.01);
       display: flex; gap: 8px;
     }
     .chatbot-input input {
-      flex: 1; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.04);
-      border-radius: 30px; padding: 8px 14px; color: #fff; font-family: "V1";
-      font-size: 13px; outline: none;
+      flex: 1; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.01);
+      border-radius: 40px; padding: 8px 16px; color: #fff; 
+      font-family: 'Rajdhani', 'V1', sans-serif;
+      font-size: 13px; outline: none; transition: all 0.3s;
     }
-    .chatbot-input input:focus { border-color: rgba(166,255,179,0.08); }
-    .chatbot-input input::placeholder { color: rgba(255,255,255,0.2); }
+    .chatbot-input input:focus { border-color: rgba(166,255,179,0.02); }
+    .chatbot-input input::placeholder { color: rgba(255,255,255,0.1); }
     .chatbot-input button {
-      background: rgba(166,255,179,0.04); border: 1px solid rgba(166,255,179,0.06);
-      border-radius: 30px; padding: 8px 16px; color: #a6ffb3; font-family: "V1";
-      font-size: 13px; cursor: pointer;
+      background: rgba(166,255,179,0.01); border: 1px solid rgba(166,255,179,0.01);
+      border-radius: 40px; padding: 8px 20px; color: #a6ffb3; 
+      font-family: 'Orbitron', 'V1', sans-serif;
+      font-size: 11px; cursor: pointer; transition: all 0.3s;
+      letter-spacing: 0.5px;
     }
-    .chatbot-input button:hover { background: rgba(166,255,179,0.08); }
+    .chatbot-input button:hover { background: rgba(166,255,179,0.02); }
 
     /* ----- VERSION BADGE ----- */
     .version-badge {
-      position: fixed; bottom: 20px; left: 20px; z-index: 900;
-      font-family: 'ss'; font-size: 10px; color: rgba(166,255,179,0.12);
-      letter-spacing: 1px; text-align: left; line-height: 1.5;
-      background: rgba(0,0,0,0.2); backdrop-filter: blur(6px);
-      padding: 4px 12px; border-radius: 30px;
-      border: 1px solid rgba(166,255,179,0.02); user-select: none; pointer-events: none;
+      position: fixed; bottom: 20px; left: 24px; z-index: 900;
+      font-family: 'Orbitron', 'ss', sans-serif;
+      font-size: 9px; color: rgba(166,255,179,0.04);
+      letter-spacing: 2px; text-align: left; line-height: 1.5;
+      background: rgba(0,0,0,0.1); backdrop-filter: blur(6px);
+      padding: 4px 16px; border-radius: 40px;
+      border: 1px solid rgba(166,255,179,0.01); user-select: none; pointer-events: none;
     }
-    .version-badge span { color: rgba(166,255,179,0.2); font-size: 9px; font-family: "V1"; }
+    .version-badge span { color: rgba(166,255,179,0.04); font-family: 'Rajdhani', 'V1', sans-serif; }
 
     /* ----- SUPPORT MODAL ----- */
     .support-modal {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.85); backdrop-filter: blur(16px);
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(40px);
       z-index: 2000; justify-content: center; align-items: center; padding: 20px;
     }
     .support-modal .inner {
-      background: rgba(10,10,10,0.95); backdrop-filter: blur(20px);
-      border: 1px solid rgba(166,255,179,0.06); border-radius: 36px;
+      background: rgba(17, 21, 24, 0.96); backdrop-filter: blur(40px);
+      border: 1px solid rgba(166,255,179,0.02); border-radius: 48px;
       padding: 40px 32px; max-width: 500px; width: 100%; text-align: center;
-      position: relative; animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+      position: relative; animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
     .support-modal .close-support {
-      position: absolute; top: 14px; right: 20px;
-      background: none; border: none; color: rgba(255,255,255,0.3);
-      font-size: 28px; cursor: pointer;
+      position: absolute; top: 16px; right: 24px;
+      background: none; border: none; color: rgba(255,255,255,0.15);
+      font-size: 26px; cursor: pointer; transition: all 0.3s;
     }
-    .support-modal h2 { font-family: 'ss'; font-size: 28px; font-weight: 900; color: #a6ffb3; letter-spacing: 2px; }
-    .support-modal p { font-family: 'V1'; font-size: 14px; color: rgba(255,255,255,0.5); }
+    .support-modal .close-support:hover { color: #ff6b6b; transform: rotate(90deg); }
+    .support-modal h2 { font-family: 'Orbitron', 'ss', sans-serif; font-size: 28px; font-weight: 900; color: #a6ffb3; letter-spacing: 2px; }
+    .support-modal p { font-family: 'Rajdhani', 'V1', sans-serif; font-size: 14px; color: rgba(255,255,255,0.3); }
     .support-contact {
       display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin: 16px 0;
     }
     .support-contact .item {
-      background: rgba(166,255,179,0.04); border: 1px solid rgba(166,255,179,0.04);
-      border-radius: 16px; padding: 12px 20px;
+      background: rgba(166,255,179,0.01); border: 1px solid rgba(166,255,179,0.01);
+      border-radius: 24px; padding: 12px 20px;
     }
-    .support-contact .item .name { font-family: 'ss'; font-size: 16px; font-weight: 700; color: #a6ffb3; display: block; }
-    .support-contact .item .role { font-family: 'V1'; font-size: 12px; color: rgba(255,255,255,0.4); }
+    .support-contact .item .name { font-family: 'Orbitron', 'ss', sans-serif; font-size: 14px; font-weight: 700; color: #a6ffb3; display: block; letter-spacing: 1px; }
+    .support-contact .item .role { font-family: 'Rajdhani', 'V1', sans-serif; font-size: 11px; color: rgba(255,255,255,0.2); }
     .support-coming {
-      display: inline-block; background: rgba(166,255,179,0.04);
-      border: 1px solid rgba(166,255,179,0.06); padding: 6px 22px;
-      border-radius: 40px; font-family: 'ss'; font-size: 12px;
-      color: rgba(166,255,179,0.4); margin-top: 12px; letter-spacing: 2px;
+      display: inline-block; background: rgba(166,255,179,0.01);
+      border: 1px solid rgba(166,255,179,0.01); padding: 6px 24px;
+      border-radius: 60px; font-family: 'Orbitron', 'ss', sans-serif;
+      font-size: 10px; color: rgba(166,255,179,0.15); margin-top: 12px; letter-spacing: 2px;
     }
 
     /* ----- LOGIN MODAL ----- */
     .login-modal {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.7); backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(30px);
       z-index: 1500; justify-content: center; align-items: center; padding: 20px;
     }
     .login-modal .inner {
-      background: rgba(10,10,10,0.95); backdrop-filter: blur(20px);
-      border: 1px solid rgba(166,255,179,0.04); border-radius: 36px;
+      background: rgba(17, 21, 24, 0.96); backdrop-filter: blur(40px);
+      border: 1px solid rgba(166,255,179,0.02); border-radius: 48px;
       padding: 30px 24px; max-width: 400px; width: 100%; color: #fff;
       position: relative; max-height: 90vh; overflow-y: auto;
     }
     .login-modal .close-login {
       position: absolute; top: 12px; right: 16px;
-      background: none; border: none; color: rgba(255,255,255,0.3);
-      font-size: 26px; cursor: pointer;
+      background: none; border: none; color: rgba(255,255,255,0.15);
+      font-size: 24px; cursor: pointer; transition: all 0.3s;
     }
-    .login-modal .brand { font-family: 'Vazirmatn'; color: #a6ffb3; font-size: 28px; text-align: center; }
-    .login-modal .sub { color: rgba(255,255,255,0.3); font-size: 13px; text-align: center; }
-    .login-modal .tabs { display: flex; margin-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .login-modal .close-login:hover { color: #ff6b6b; transform: rotate(90deg); }
+    .login-modal .brand { font-family: 'Orbitron', 'Vazirmatn', sans-serif; color: #a6ffb3; font-size: 28px; text-align: center; letter-spacing: 2px; }
+    .login-modal .sub { color: rgba(255,255,255,0.15); font-size: 13px; text-align: center; font-family: 'Rajdhani', 'V1', sans-serif; letter-spacing: 2px; }
+    .login-modal .tabs { display: flex; margin-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.01); }
     .login-modal .tab {
       flex: 1; text-align: center; padding: 10px 0; cursor: pointer;
-      color: rgba(255,255,255,0.3); font-weight: 600; font-size: 14px;
-      position: relative;
+      color: rgba(255,255,255,0.15); font-weight: 700; font-size: 14px;
+      position: relative; font-family: 'Orbitron', 'V1', sans-serif;
+      letter-spacing: 1px;
     }
     .login-modal .tab.active { color: #a6ffb3; border-bottom: 2px solid #a6ffb3; }
     .login-modal input {
-      width: 100%; padding: 10px 14px;
-      border: 1px solid rgba(255,255,255,0.06); border-radius: 14px;
-      background: rgba(255,255,255,0.03); color: #fff; font-size: 14px; outline: none;
+      width: 100%; padding: 10px 16px;
+      border: 1px solid rgba(255,255,255,0.02); border-radius: 40px;
+      background: rgba(255,255,255,0.01); color: #fff; font-size: 14px; outline: none;
+      font-family: 'Rajdhani', 'V1', sans-serif;
+      transition: all 0.3s;
     }
-    .login-modal input:focus { border-color: rgba(166,255,179,0.15); }
-    .login-modal label { display: block; color: rgba(255,255,255,0.4); font-size: 12px; margin-bottom: 4px; }
+    .login-modal input:focus { border-color: rgba(166,255,179,0.02); }
+    .login-modal label { display: block; color: rgba(255,255,255,0.15); font-size: 11px; margin-bottom: 4px; font-family: 'Rajdhani', 'V1', sans-serif; letter-spacing: 1px; }
     .login-modal .btn-primary {
-      width: 100%; padding: 12px; background: rgba(166,255,179,0.06);
-      border: 1px solid rgba(166,255,179,0.08); border-radius: 40px;
+      width: 100%; padding: 12px; background: rgba(166,255,179,0.01);
+      border: 1px solid rgba(166,255,179,0.02); border-radius: 60px;
       color: #a6ffb3; font-size: 16px; font-weight: 700; cursor: pointer;
-      transition: 0.3s; font-family: 'Vazirmatn';
+      transition: all 0.3s; font-family: 'Orbitron', 'Vazirmatn', sans-serif;
+      letter-spacing: 1px;
     }
-    .login-modal .btn-primary:hover { background: rgba(166,255,179,0.10); }
-    .login-modal .message { padding: 8px 14px; border-radius: 16px; margin-bottom: 14px; display: none; font-size: 13px; }
+    .login-modal .btn-primary:hover { background: rgba(166,255,179,0.02); border-color: rgba(166,255,179,0.04); }
+    .login-modal .message { padding: 8px 14px; border-radius: 16px; margin-bottom: 14px; display: none; font-size: 13px; font-family: 'Rajdhani', 'V1', sans-serif; }
 
     /* ----- RESPONSIVE ----- */
     @media (max-width: 768px) {
-      .topbar { top: 16px; height: 56px; padding: 0 12px; border-radius: 40px; }
+      .topbar { top: 16px; height: 54px; padding: 0 12px; border-radius: 40px; }
       .logo { font-size: 18px; }
       .nav button { font-size: 11px; padding: 6px 10px; }
       .title { font-size: 32px; }
@@ -418,11 +889,16 @@
       .section-nav button { font-size: 12px; padding: 6px 14px; }
       .projects-grid { grid-template-columns: 1fr; }
       .team-grid { grid-template-columns: 1fr 1fr; }
+      .shop-grid { grid-template-columns: 1fr; }
+      .servers-grid { grid-template-columns: 1fr; }
       .chatbot-window { width: calc(100% - 30px); right: 15px; bottom: 80px; }
-      .chatbot-toggle { padding: 8px 16px; font-size: 11px; }
+      .chatbot-toggle { padding: 10px 18px; font-size: 10px; }
+      .social-links { gap: 16px; padding: 10px 20px; bottom: 40px; flex-wrap: wrap; justify-content: center; }
+      .social-links a { font-size: 12px; }
+      .donation-section { padding: 20px 16px; }
     }
     @media (max-width: 480px) {
-      .topbar { height: 48px; padding: 0 8px; }
+      .topbar { height: 46px; padding: 0 8px; }
       .logo { font-size: 14px; }
       .nav button { font-size: 9px; padding: 4px 6px; }
       .title { font-size: 24px; }
@@ -430,113 +906,228 @@
       .card { max-width: 100%; }
       .team-grid { grid-template-columns: 1fr; }
       .lang-switcher button { font-size: 8px; padding: 2px 6px; }
+      .social-links { gap: 10px; padding: 8px 14px; bottom: 30px; }
+      .social-links a { font-size: 10px; }
+      .donation-section h3 { font-size: 18px; }
+      .donation-section .donate-btn { padding: 10px 28px; font-size: 12px; }
     }
   </style>
 </head>
 <body>
 
+<!-- ===== ANIMATED LIGHTING BACKGROUND ===== -->
+<div class="lighting-bg">
+  <div class="orb"></div>
+  <div class="orb"></div>
+  <div class="orb"></div>
+  <div class="orb"></div>
+  <div class="orb"></div>
+  <div class="orb"></div>
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+</div>
+
+<!-- ===== NEWS ALERT ===== -->
+<div class="news-alert" id="newsAlert">
+  <span class="bell">🔔</span>
+  <span class="news-text"><strong>خبر فوری:</strong> نسخه 2.0 سایت مگا منتشر شد! 🎉</span>
+  <button class="news-close" id="newsClose">✕</button>
+</div>
+
 <!-- ===== TOPBAR ===== -->
 <div class="topbar">
   <div class="nav left-nav">
-    <button id="navHome" class="active-nav" data-key="navHome">Home</button>
-    <button id="navSections" data-key="navMenu">☰ Menu</button>
+    <button id="navHome" class="active-nav" data-key="navHome">خانه</button>
+    <button id="navSections" data-key="navMenu">☰ منو</button>
   </div>
-  <div class="logo">MegaGroup</div>
+  <div class="logo">مگا</div>
   <div class="nav right-nav">
-    <button id="supportBtn" data-key="supportBtn">💬 Support</button>
-    <button id="loginNavBtn" data-key="loginNavBtn">Login</button>
+    <button id="supportBtn" data-key="supportBtn">💬 پشتیبانی</button>
+    <button id="loginNavBtn" data-key="loginNavBtn">ورود</button>
     <div class="lang-switcher">
-      <button id="langEn" class="active-lang" onclick="setLanguage('en')">EN</button>
-      <button id="langFa" onclick="setLanguage('fa')">FA</button>
+      <button id="langEn" onclick="setLanguage('en')">EN</button>
+      <button id="langFa" class="active-lang" onclick="setLanguage('fa')">FA</button>
     </div>
   </div>
 </div>
 
 <!-- ===== MAIN CONTENT ===== -->
 <div class="content" id="mainContent">
-  <h1 class="title" data-key="homeTitle">MEGAGROUP · ULTRA EDITION</h1>
-  <p class="subtitle" data-key="homeSubtitle">!اولین و بزرگترین تیم نرم افزاری در ایران</p>
+  <h1 class="title" data-key="homeTitle">مگا · الترا</h1>
+  <p class="subtitle" data-key="homeSubtitle"><span>با هم</span> بازی کن · <span>با هم</span> پیروز شو</p>
 
   <div class="cards">
-    <div class="card">
-      <h3 data-key="cardCoinTitle">MEGACOIN</h3>
+    <div class="card" data-key="cardCoin">
+      <h3 data-key="cardCoinTitle">مگاکوین</h3>
       <p data-key="cardCoinDesc">فقط با کلیک کردن، صاحب کلی جایزه متنوع شو و هر هفته منتظر یک رویداد جدید باش.</p>
-      <a href="https://megaultra.github.io/MemeCoin.html"><button class="card-btn" data-key="cardCoinBtn">[BETA] شروع</button></a>
+      <a href="https://megaultra.github.io/MemeCoin.html" target="_blank"><button class="card-btn" data-key="cardCoinBtn">[BETA] شروع</button></a>
     </div>
-    <div class="card">
-      <h3 data-key="cardBomberTitle">MEGABOMBER</h3>
+    <div class="card" data-key="cardBomber">
+      <h3 data-key="cardBomberTitle">مگابم‌بر</h3>
       <p data-key="cardBomberDesc">یک سرویس کاملاً رایگان که بتونی دوستات رو اس‌ام‌اس بارون کنی و اذیتشون کنی.</p>
-      <button class="card-btn" data-key="cardBomberBtn">شروع</button>
+      <button class="card-btn" data-key="cardBomberBtn" id="bomberBtn">شروع</button>
     </div>
-    <div class="card">
-      <h3 data-key="cardComingTitle">Coming Soon!</h3>
+    <div class="card" data-key="cardComing">
+      <h3 data-key="cardComingTitle">به زودی!</h3>
       <p data-key="cardComingDesc">این پروژه به زودی تکمیل و منتشر می‌شود.</p>
-      <button class="card-btn" data-key="cardComingBtn">!به زودی</button>
+      <button class="card-btn" data-key="cardComingBtn" id="comingSoonBtn">!به زودی</button>
     </div>
   </div>
 </div>
 
-<!-- ===== HIDDEN SECTIONS (Projects, Team) ===== -->
+<!-- ===== HIDDEN SECTIONS ===== -->
 <div class="hidden-sections" id="hiddenSections">
-  <button class="close-sections" id="closeSections">✕ Close</button>
-
+  <button class="close-sections" id="closeSections">✕ بستن</button>
   <div class="section-nav">
-    <button class="active-section" data-section="projects" data-key="navProjects">📦 Projects</button>
-    <button data-section="team" data-key="navTeam">👥 Team</button>
+    <button class="active-section" data-section="projects" data-key="navProjects">📦 پروژه‌ها</button>
+    <button data-section="team" data-key="navTeam">👥 تیم</button>
+    <button data-section="shop" data-key="navShop">🛒 فروشگاه</button>
+    <button data-section="servers" data-key="navServers">🖥️ سرورهای مگا</button>
   </div>
-
+  
   <!-- PROJECTS -->
   <div class="section-content active" id="sectionProjects">
     <div class="projects-grid">
       <div class="project-card">
         <span class="icon">🪙</span>
-        <h3 data-key="projectMemeTitle">MemeCoin</h3>
-        <p data-key="projectMemeDesc">Mega Meme Token</p>
-        <a href="https://megaultra.github.io/MemeCoin.html" target="_blank" class="project-btn" data-key="viewProject">🔗 View Project</a>
+        <h3 data-key="projectMemeTitle">میم کوین</h3>
+        <p data-key="projectMemeDesc">توکن میم مگا</p>
+        <a href="https://megaultra.github.io/MemeCoin.html" target="_blank" class="project-btn" data-key="viewProject">🔗 مشاهده</a>
       </div>
       <div class="project-card">
         <span class="icon">💣</span>
-        <h3 data-key="projectBomberTitle">MegaBomber</h3>
-        <p data-key="projectBomberDesc">SMS Bomber Tool</p>
-        <div class="coming-badge" data-key="comingSoon">🚀 Coming Soon</div>
+        <h3 data-key="projectBomberTitle">مگا بمبر</h3>
+        <p data-key="projectBomberDesc">ابزار ارسال انبوه پیامک</p>
+        <div class="coming-badge" data-key="comingSoon">🚀 به زودی</div>
       </div>
       <div class="project-card">
         <span class="icon">🚀</span>
-        <h3 data-key="projectComingTitle">MegaUltra</h3>
-        <p data-key="projectComingDesc">Ultimate Mega Project</p>
-        <div class="coming-badge" data-key="comingSoon">🚀 Coming Soon</div>
+        <h3 data-key="projectComingTitle">مگا اولترا</h3>
+        <p data-key="projectComingDesc">پروژه نهایی مگا</p>
+        <div class="coming-badge" data-key="comingSoon">🚀 به زودی</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- TEAM -->
+  <div class="section-content" id="sectionTeam">
+    <div class="team-section-title">
+      👑 تیم اصلی
+      <span class="sub">بنیان‌گذاران · مالکان · اعضا</span>
+    </div>
+    
+    <div class="team-grid" style="margin-bottom:10px;">
+      <div class="team-card">
+        <div class="crown">👑</div>
+        <div class="avatar">DA</div>
+        <h3 class="team-name">DACHASHKAN</h3>
+        <p class="team-role" data-key="roleMainOwner">🎯 بنیان‌گذار · توسعه‌دهنده اصلی</p>
+        <div class="team-badge owner">⭐ مالک</div>
+      </div>
+      <div class="team-card">
+        <div class="crown">👑</div>
+        <div class="avatar">DN</div>
+        <h3 class="team-name">DACHNIMA</h3>
+        <p class="team-role" data-key="roleOwnerPM">🎯 مالک · مدیر پروژه</p>
+        <div class="team-badge owner">⭐ مالک</div>
+      </div>
+    </div>
+
+    <hr class="team-divider">
+
+    <div class="team-section-title" style="font-size:16px; margin-top:10px;">
+      🧩 اعضا
+      <span class="sub">بازیکنان تیم</span>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar" style="background:linear-gradient(135deg,#7edfa0,#3a8a52);">👤</div>
+        <h3 class="team-name" style="font-size:14px;">llA_Sll.arad</h3>
+        <p class="team-role">عضو</p>
+        <div class="team-badge member">🔹 عضو</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:linear-gradient(135deg,#7edfa0,#3a8a52);">👤</div>
+        <h3 class="team-name" style="font-size:14px;">mohammadvip10</h3>
+        <p class="team-role">عضو</p>
+        <div class="team-badge member">🔹 عضو</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:linear-gradient(135deg,#7edfa0,#3a8a52);">👤</div>
+        <h3 class="team-name" style="font-size:14px;">Kasra</h3>
+        <p class="team-role">عضو</p>
+        <div class="team-badge member">🔹 عضو</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:30px;color:rgba(255,255,255,0.04);font-family:'Rajdhani','V1',sans-serif;font-size:14px;letter-spacing:2px;">
+      🚀 با هم آینده را می‌سازیم.
+    </div>
+  </div>
+
+  <!-- SHOP -->
+  <div class="section-content" id="sectionShop">
+    <div class="team-section-title">
+      🛒 فروشگاه رنک
+      <span class="sub">ارتقا سطح خود را دریافت کنید</span>
+    </div>
+    <div class="shop-grid">
+      <div class="shop-card">
+        <span class="rank-icon">👑</span>
+        <h3>VIP</h3>
+        <div class="price">💰 <span>۵۰,۰۰۰ تومان</span></div>
+        <div class="rank-desc">دسترسی به امکانات ویژه، رنگ نام اختصاصی و پشتیبانی優先</div>
+        <button class="shop-btn" id="vipBuyBtn">خرید رنک VIP</button>
       </div>
     </div>
   </div>
 
-  <!-- TEAM (simplified: only DachNima & DachAshkan as managers) -->
-  <div class="section-content" id="sectionTeam">
+  <!-- SERVERS -->
+  <div class="section-content" id="sectionServers">
     <div class="team-section-title">
-      🏆 Core Team
-      <span class="sub">Founders & Managers</span>
+      🖥️ لیست سرورهای مگا
+      <span class="sub">سرورهای تحت نظارت مگا</span>
     </div>
-    <div class="team-grid">
-      <div class="team-card">
-        <div class="avatar">DA</div>
-        <h3 class="team-name">DACHASHKAN</h3>
-        <p class="team-role" data-key="roleMainOwner">🎯 Founder · Lead Developer</p>
-        <div class="team-badge owner">⭐ MAIN OWNER</div>
+    <div class="servers-grid">
+      <div class="server-card">
+        <span class="server-icon">⛏️</span>
+        <h3>Minecraft · Survival</h3>
+        <div class="server-desc">سرور زنده‌مونده با اقتصاد پویا و مینی‌گیم</div>
+        <div class="server-status coming">🔜 به زودی</div>
       </div>
-      <div class="team-card">
-        <div class="avatar">DN</div>
-        <h3 class="team-name">DACHNIMA</h3>
-        <p class="team-role" data-key="roleOwnerPM">🎯 Owner · Project Manager</p>
-        <div class="team-badge admin">⭐ ADMIN</div>
+      <div class="server-card">
+        <span class="server-icon">🔫</span>
+        <h3>CS2 · رقابتی</h3>
+        <div class="server-desc">سرور رقابتی با آنتی‌چیت قوی و رنکینگ</div>
+        <div class="server-status coming">🔜 به زودی</div>
       </div>
     </div>
-    <div style="text-align:center;margin-top:30px;color:rgba(255,255,255,0.2);font-family:'V1';font-size:14px;">
-      🚀 Together we build the future.
+
+    <!-- Donation Section -->
+    <div class="donation-section">
+      <h3>🤝 با هم بسازیم</h3>
+      <p>به کمک شما میتوانیم بهترین سرورها را با هم بسازیم</p>
+      <a href="https://reymit.ir/dachashkan" target="_blank" class="donate-btn">💖 حمایت مالی</a>
     </div>
   </div>
 </div>
 
+<!-- ===== SOCIAL LINKS ===== -->
+<div class="social-links" id="socialLinks">
+  <a href="#" id="discordLink" class="social-link"><span class="icon">🎮</span> Discord</a>
+  <a href="https://t.me/MegaUltraIR" target="_blank" id="telegramLink" class="social-link"><span class="icon">✈️</span> Telegram</a>
+  <a href="#" id="teamspeakLink" class="social-link"><span class="icon">🔊</span> TeamSpeak</a>
+</div>
+
 <!-- ===== FOOTER ===== -->
-<footer class="footer">© 2026 MegaGroup. All Rights Reserved - Join to our Discord ;)</footer>
+<footer class="footer">© 2026 مگا · تمام حقوق محفوظ است</footer>
 
 <!-- ===== VERSION BADGE ===== -->
 <div class="version-badge" id="versionBadge">v2.0 <span id="versionTime"></span></div>
@@ -546,39 +1137,39 @@
   <div class="inner">
     <button class="close-support" id="closeSupportModal">✕</button>
     <span style="font-size:56px;display:block;margin-bottom:4px;">🛡️</span>
-    <h2 data-key="supportTitle">MEGA SUPPORT</h2>
-    <p data-key="supportSub">Get help from our team</p>
+    <h2 data-key="supportTitle">پشتیبانی مگا</h2>
+    <p data-key="supportSub">از تیم ما کمک بگیرید</p>
     <div class="support-contact">
       <div class="item">
         <span class="name">@DachAshkan</span>
-        <span class="role" data-key="supportRoleDev">⚡ Founder & Lead Developer</span>
+        <span class="role" data-key="supportRoleDev">⚡ بنیان‌گذار و توسعه‌دهنده اصلی</span>
       </div>
       <div class="item">
         <span class="name">@DachNima</span>
-        <span class="role" data-key="supportRolePM">🚀 Project Manager</span>
+        <span class="role" data-key="supportRolePM">🚀 مدیر پروژه</span>
       </div>
     </div>
-    <div style="font-family:'V1';font-size:14px;color:rgba(255,255,255,0.5);" data-key="supportChannels">📱 Contact us on <span style="color:#a6ffb3;font-weight:700;">Discord</span> &amp; <span style="color:#a6ffb3;font-weight:700;">Telegram</span></div>
-    <div class="support-coming" data-key="supportComing">🤖 SUPPORT BOT · COMING SOON</div>
+    <div style="font-family:'Rajdhani','V1',sans-serif;font-size:14px;color:rgba(255,255,255,0.2);" data-key="supportChannels">📱 از طریق <span style="color:#a6ffb3;font-weight:700;">دیسکورد</span> و <span style="color:#a6ffb3;font-weight:700;">تلگرام</span> با ما در تماس باشید</div>
+    <div class="support-coming" data-key="supportComing">🤖 ربات پشتیبانی · به زودی</div>
   </div>
 </div>
 
 <!-- ===== CHATBOT ===== -->
 <div class="chatbot-container">
-  <button class="chatbot-toggle" id="chatToggle"><span class="dot"></span> <span data-key="aiAssistant">AI Assistant</span></button>
+  <button class="chatbot-toggle" id="chatToggle"><span class="dot"></span> <span data-key="aiAssistant">دستیار هوشمند</span></button>
 </div>
 <div class="chatbot-window" id="chatWindow">
-  <div class="chatbot-header"><h4>🤖 MEGA AI</h4><button class="close-chat" id="closeChat">✕</button></div>
-  <div class="chatbot-messages" id="chatMessages"><div class="msg bot" data-key="aiWelcome">👋 Hello! I'm Mega AI. Ask me anything.</div></div>
+  <div class="chatbot-header"><h4>🤖 مگا ای‌آی</h4><button class="close-chat" id="closeChat">✕</button></div>
+  <div class="chatbot-messages" id="chatMessages"><div class="msg bot" data-key="aiWelcome">👋 سلام! من مگا ای‌آی هستم. هر چیزی بپرسید.</div></div>
   <div class="quick-questions">
-    <button onclick="askQuestion('Who are the owners?')" data-key="qOwners">Owners</button>
-    <button onclick="askQuestion('What is MegaBomber?')" data-key="qBomber">MegaBomber</button>
-    <button onclick="askQuestion('What is MemeCoin?')" data-key="qMeme">MemeCoin</button>
-    <button onclick="askQuestion('How to contact support?')" data-key="qSupport">Support</button>
+    <button onclick="askQuestion('مالکان تیم چه کسانی هستند؟')" data-key="qOwners">مالکان</button>
+    <button onclick="askQuestion('مگا بمبر چیست؟')" data-key="qBomber">مگا بمبر</button>
+    <button onclick="askQuestion('میم کوین چیست؟')" data-key="qMeme">میم کوین</button>
+    <button onclick="askQuestion('چطور با پشتیبانی تماس بگیرم؟')" data-key="qSupport">پشتیبانی</button>
   </div>
   <div class="chatbot-input">
-    <input type="text" id="chatInput" placeholder="Ask..." onkeypress="if(event.key==='Enter') sendMessage()">
-    <button onclick="sendMessage()" data-key="sendBtn">Send</button>
+    <input type="text" id="chatInput" placeholder="سوال خود را بپرسید..." onkeypress="if(event.key==='Enter') sendMessage()">
+    <button onclick="sendMessage()" data-key="sendBtn">ارسال</button>
   </div>
 </div>
 
@@ -587,50 +1178,50 @@
   <div class="inner">
     <button class="close-login" id="closeModal">✕</button>
     <div style="text-align:center;margin-bottom:16px;">
-      <h1 class="brand">⚡ MEGA</h1>
-      <p class="sub" data-key="signInSub">sign in · sign up</p>
+      <h1 class="brand">⚡ مگا</h1>
+      <p class="sub" data-key="signInSub">ورود · ثبت‌نام</p>
     </div>
     <div id="modalMessage" class="message"></div>
     <div id="authSection">
       <div class="tabs">
-        <div class="tab active" data-tab="login" onclick="switchTab('login')" data-key="loginTab">Login</div>
-        <div class="tab" data-tab="register" onclick="switchTab('register')" data-key="signupTab">Sign up</div>
+        <div class="tab active" data-tab="login" onclick="switchTab('login')" data-key="loginTab">ورود</div>
+        <div class="tab" data-tab="register" onclick="switchTab('register')" data-key="signupTab">ثبت‌نام</div>
       </div>
       <form id="loginForm" onsubmit="handleLogin(event)">
-        <div style="margin-bottom:14px;"><label data-key="emailLabel">📧 Email</label><input type="email" id="loginEmail" placeholder="your@email.com"></div>
-        <div style="margin-bottom:14px;"><label data-key="passwordLabel">🔒 Password</label><input type="password" id="loginPassword" placeholder="••••••••"></div>
+        <div style="margin-bottom:14px;"><label data-key="emailLabel">📧 ایمیل</label><input type="email" id="loginEmail" placeholder="ایمیل خود را وارد کنید"></div>
+        <div style="margin-bottom:14px;"><label data-key="passwordLabel">🔒 رمز عبور</label><input type="password" id="loginPassword" placeholder="••••••••"></div>
         <div style="display:flex;align-items:center;justify-content:space-between;margin:10px 0 16px;">
-          <label style="color:rgba(255,255,255,0.4);font-size:12px;display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" id="rememberMe" style="accent-color:#a6ffb3;width:16px;height:16px;"> <span data-key="rememberMe">Remember me</span></label>
-          <a href="#" style="color:#a6ffb3;text-decoration:none;font-size:12px;" data-key="forgot">Forgot?</a>
+          <label style="color:rgba(255,255,255,0.15);font-size:11px;display:flex;align-items:center;gap:6px;cursor:pointer;font-family:'Rajdhani','V1',sans-serif;"><input type="checkbox" id="rememberMe" style="accent-color:#a6ffb3;width:16px;height:16px;"> <span data-key="rememberMe">مرا به خاطر بسپار</span></label>
+          <a href="#" style="color:#a6ffb3;text-decoration:none;font-size:11px;font-family:'Rajdhani','V1',sans-serif;" data-key="forgot">فراموش کردید؟</a>
         </div>
-        <button type="submit" class="btn-primary" data-key="loginBtn">Login</button>
+        <button type="submit" class="btn-primary" data-key="loginBtn">ورود</button>
       </form>
       <form id="registerForm" style="display:none;" onsubmit="handleRegister(event)">
-        <div style="margin-bottom:14px;"><label data-key="fullnameLabel">👤 Full name</label><input type="text" id="registerName" placeholder="Ali Reza"></div>
-        <div style="margin-bottom:14px;"><label data-key="emailLabel">📧 Email</label><input type="email" id="registerEmail" placeholder="your@email.com"></div>
-        <div style="margin-bottom:14px;"><label data-key="passwordLabel">🔒 Password</label><input type="password" id="registerPassword" placeholder="••••••••"></div>
-        <div style="margin-bottom:14px;"><label data-key="confirmLabel">✅ Confirm</label><input type="password" id="registerConfirmPassword" placeholder="••••••••"></div>
-        <button type="submit" class="btn-primary" data-key="createBtn">Create account</button>
+        <div style="margin-bottom:14px;"><label data-key="fullnameLabel">👤 نام کامل</label><input type="text" id="registerName" placeholder="نام خود را وارد کنید"></div>
+        <div style="margin-bottom:14px;"><label data-key="emailLabel">📧 ایمیل</label><input type="email" id="registerEmail" placeholder="ایمیل خود را وارد کنید"></div>
+        <div style="margin-bottom:14px;"><label data-key="passwordLabel">🔒 رمز عبور</label><input type="password" id="registerPassword" placeholder="••••••••"></div>
+        <div style="margin-bottom:14px;"><label data-key="confirmLabel">✅ تأیید رمز</label><input type="password" id="registerConfirmPassword" placeholder="••••••••"></div>
+        <button type="submit" class="btn-primary" data-key="createBtn">ایجاد حساب</button>
       </form>
     </div>
     <div id="userPanel" style="display:none;text-align:center;padding:8px 0;">
-      <div style="width:60px;height:60px;border-radius:50%;background:rgba(166,255,179,0.06);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:28px;color:#a6ffb3;border:1px solid rgba(166,255,179,0.04);" id="userAvatar">👤</div>
-      <h3 id="userName" style="color:#fff;font-size:18px;">User</h3>
-      <p id="userEmail" style="color:rgba(255,255,255,0.3);font-size:13px;">user@example.com</p>
-      <button onclick="handleLogout()" style="width:100%;padding:12px;background:transparent;border:1px solid rgba(255,80,80,0.15);border-radius:40px;color:#ff8a8a;font-size:16px;font-weight:700;cursor:pointer;transition:0.3s;font-family:'Vazirmatn';" data-key="logoutBtn">🚪 Logout</button>
+      <div style="width:60px;height:60px;border-radius:50%;background:rgba(166,255,179,0.02);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:28px;color:#a6ffb3;border:1px solid rgba(166,255,179,0.01);" id="userAvatar">👤</div>
+      <h3 id="userName" style="color:#fff;font-size:18px;font-family:'Orbitron','V1',sans-serif;letter-spacing:1px;">کاربر</h3>
+      <p id="userEmail" style="color:rgba(255,255,255,0.15);font-size:13px;font-family:'Rajdhani','V1',sans-serif;">user@example.com</p>
+      <button onclick="handleLogout()" style="width:100%;padding:12px;background:transparent;border:1px solid rgba(255,80,80,0.02);border-radius:60px;color:#ff8a8a;font-size:16px;font-weight:700;cursor:pointer;transition:all 0.3s;font-family:'Orbitron','Vazirmatn',sans-serif;letter-spacing:1px;" data-key="logoutBtn">🚪 خروج</button>
     </div>
   </div>
 </div>
 
 <script>
 // ============================================================
-// 🌐 LANGUAGE SYSTEM
+// 🌐 LANGUAGE SYSTEM (default: fa)
 // ============================================================
 const translations = {
   en: {
     navHome: 'Home', navMenu: '☰ Menu', supportBtn: '💬 Support', loginNavBtn: 'Login',
-    homeTitle: 'MEGAGROUP · ULTRA EDITION',
-    homeSubtitle: 'The first and largest software team in Iran!',
+    homeTitle: 'MEGA · ULTRA',
+    homeSubtitle: 'PLAY TOGETHER · WIN TOGETHER',
     cardCoinTitle: 'MEGACOIN',
     cardCoinDesc: 'Just by clicking, get various rewards and expect a new event every week.',
     cardCoinBtn: '[BETA] Start',
@@ -642,9 +1233,11 @@ const translations = {
     cardComingBtn: 'Soon!',
     navProjects: '📦 Projects',
     navTeam: '👥 Team',
+    navShop: '🛒 Shop',
+    navServers: '🖥️ Mega Servers',
     projectMemeTitle: 'MemeCoin',
     projectMemeDesc: 'Mega Meme Token',
-    viewProject: '🔗 View Project',
+    viewProject: '🔗 View',
     projectBomberTitle: 'MegaBomber',
     projectBomberDesc: 'SMS Bomber Tool',
     projectComingTitle: 'MegaUltra',
@@ -683,8 +1276,8 @@ const translations = {
     navMenu: '☰ منو',
     supportBtn: '💬 پشتیبانی',
     loginNavBtn: 'ورود',
-    homeTitle: 'مگاگروپ · نسخه الترا',
-    homeSubtitle: '!اولین و بزرگترین تیم نرم افزاری در ایران',
+    homeTitle: 'مگا · الترا',
+    homeSubtitle: 'با هم بازی کن · با هم پیروز شو',
     cardCoinTitle: 'مگاکوین',
     cardCoinDesc: 'فقط با کلیک کردن، صاحب کلی جایزه متنوع شو و هر هفته منتظر یک رویداد جدید باش.',
     cardCoinBtn: '[BETA] شروع',
@@ -696,9 +1289,11 @@ const translations = {
     cardComingBtn: '!به زودی',
     navProjects: '📦 پروژه‌ها',
     navTeam: '👥 تیم',
+    navShop: '🛒 فروشگاه',
+    navServers: '🖥️ سرورهای مگا',
     projectMemeTitle: 'میم کوین',
     projectMemeDesc: 'توکن میم مگا',
-    viewProject: '🔗 مشاهده پروژه',
+    viewProject: '🔗 مشاهده',
     projectBomberTitle: 'مگا بمبر',
     projectBomberDesc: 'ابزار ارسال انبوه پیامک',
     projectComingTitle: 'مگا اولترا',
@@ -734,7 +1329,7 @@ const translations = {
   }
 };
 
-let currentLang = localStorage.getItem('megaLang') || 'en';
+let currentLang = localStorage.getItem('megaLang') || 'fa';
 function setLanguage(lang) {
   currentLang = lang;
   localStorage.setItem('megaLang', lang);
@@ -753,10 +1348,21 @@ function setLanguage(lang) {
     const key = btn.getAttribute('data-key');
     if (key && translations[lang][key]) btn.textContent = translations[lang][key];
   });
+  document.querySelectorAll('.login-modal [data-key]').forEach(el => {
+    const key = el.getAttribute('data-key');
+    if (translations[lang] && translations[lang][key]) el.textContent = translations[lang][key];
+  });
 }
 
 // ============================================================
-// NAVIGATION
+// NEWS ALERT CLOSE
+// ============================================================
+document.getElementById('newsClose').addEventListener('click', function() {
+  document.getElementById('newsAlert').style.display = 'none';
+});
+
+// ============================================================
+// NAVIGATION - with smooth section animation
 // ============================================================
 document.getElementById('navSections').addEventListener('click', function() {
   document.getElementById('hiddenSections').classList.add('active');
@@ -764,13 +1370,18 @@ document.getElementById('navSections').addEventListener('click', function() {
 document.getElementById('closeSections').addEventListener('click', function() {
   document.getElementById('hiddenSections').classList.remove('active');
 });
+
 document.querySelectorAll('.section-nav button').forEach(btn => {
   btn.addEventListener('click', function() {
     document.querySelectorAll('.section-nav button').forEach(b => b.classList.remove('active-section'));
     this.classList.add('active-section');
     const section = this.dataset.section;
-    document.querySelectorAll('.section-content').forEach(c => c.classList.remove('active'));
-    document.getElementById('section' + section.charAt(0).toUpperCase() + section.slice(1)).classList.add('active');
+    document.querySelectorAll('.section-content').forEach(c => {
+      c.classList.remove('active');
+      void c.offsetWidth;
+    });
+    const target = document.getElementById('section' + section.charAt(0).toUpperCase() + section.slice(1));
+    target.classList.add('active');
   });
 });
 
@@ -807,13 +1418,13 @@ const botMap = {
 };
 function getBotReply(msg) {
   const m = msg.toLowerCase();
-  const dict = botMap[currentLang] || botMap.en;
-  if (m.includes('owner') || m.includes('who') || m.includes('founder') || m.includes('مالک')) return dict.owners;
-  if (m.includes('bomber') || m.includes('sms') || m.includes('megabomber') || m.includes('مگا بمبر')) return dict.megabomber;
-  if (m.includes('memecoin') || m.includes('meme') || m.includes('token') || m.includes('coin') || m.includes('میم')) return dict.memecoin;
-  if (m.includes('launch') || m.includes('soon') || m.includes('release') || m.includes('when') || m.includes('راه‌اندازی')) return dict.launch;
-  if (m.includes('support') || m.includes('contact') || m.includes('help') || m.includes('پشتیبانی')) return dict.support;
-  if (m.includes('team') || m.includes('member') || m.includes('admin') || m.includes('تیم')) return dict.team;
+  const dict = botMap[currentLang] || botMap.fa;
+  if (m.includes('owner') || m.includes('who') || m.includes('founder') || m.includes('مالک') || m.includes('کیست')) return dict.owners;
+  if (m.includes('bomber') || m.includes('sms') || m.includes('megabomber') || m.includes('بمبر') || m.includes('پیامک')) return dict.megabomber;
+  if (m.includes('memecoin') || m.includes('meme') || m.includes('token') || m.includes('coin') || m.includes('میم') || m.includes('کوین')) return dict.memecoin;
+  if (m.includes('launch') || m.includes('soon') || m.includes('release') || m.includes('when') || m.includes('راه‌اندازی') || m.includes('زمان')) return dict.launch;
+  if (m.includes('support') || m.includes('contact') || m.includes('help') || m.includes('پشتیبانی') || m.includes('تماس')) return dict.support;
+  if (m.includes('team') || m.includes('member') || m.includes('admin') || m.includes('تیم') || m.includes('اعضا')) return dict.team;
   return dict.default;
 }
 function addMsg(text, type) {
@@ -863,9 +1474,9 @@ function showModalMessage(text, type) {
   const msg = document.getElementById('modalMessage');
   msg.textContent = text;
   msg.style.display = 'block';
-  msg.style.background = type === 'success' ? 'rgba(166,255,179,0.06)' : type === 'error' ? 'rgba(255,80,80,0.06)' : 'rgba(70,130,255,0.06)';
+  msg.style.background = type === 'success' ? 'rgba(166,255,179,0.02)' : type === 'error' ? 'rgba(255,80,80,0.02)' : 'rgba(70,130,255,0.02)';
   msg.style.color = type === 'success' ? '#a6ffb3' : type === 'error' ? '#ff8a8a' : '#88b0ff';
-  msg.style.border = type === 'success' ? '1px solid rgba(166,255,179,0.06)' : type === 'error' ? '1px solid rgba(255,80,80,0.06)' : '1px solid rgba(70,130,255,0.06)';
+  msg.style.border = type === 'success' ? '1px solid rgba(166,255,179,0.02)' : type === 'error' ? '1px solid rgba(255,80,80,0.02)' : '1px solid rgba(70,130,255,0.02)';
   clearTimeout(window._msgTimer);
   window._msgTimer = setTimeout(() => { msg.style.display = 'none'; }, 4000);
 }
@@ -937,14 +1548,14 @@ function updateUI() {
     document.getElementById('userEmail').textContent = user.email;
     document.getElementById('userAvatar').textContent = user.name.charAt(0).toUpperCase();
     btn.textContent = '👤 ' + user.name;
-    btn.style.background = 'rgba(166,255,179,0.08)';
+    btn.style.background = 'rgba(166,255,179,0.02)';
   } else {
     auth.style.display = 'block';
     panel.style.display = 'none';
     document.getElementById('loginForm').reset();
     document.getElementById('registerForm').reset();
     btn.textContent = currentLang === 'fa' ? 'ورود' : 'Login';
-    btn.style.background = 'rgba(166,255,179,0.06)';
+    btn.style.background = 'transparent';
   }
 }
 
@@ -962,18 +1573,68 @@ document.getElementById('loginModal').addEventListener('click', function(e) {
 });
 
 // ============================================================
+// CARD BUTTONS INTERACTIONS
+// ============================================================
+document.getElementById('bomberBtn').addEventListener('click', function(e) {
+  e.stopPropagation();
+  alert(currentLang === 'fa' ? '🔜 مگا بمبر به زودی عرضه می‌شود!' : '🔜 MegaBomber is coming soon!');
+});
+
+document.getElementById('comingSoonBtn').addEventListener('click', function(e) {
+  e.stopPropagation();
+  alert(currentLang === 'fa' ? '🚀 این پروژه به زودی تکمیل می‌شود.' : '🚀 This project will be completed soon.');
+});
+
+// Mouse tracking for card glow
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mouse-x', x + '%');
+    card.style.setProperty('--mouse-y', y + '%');
+  });
+});
+
+// ============================================================
+// SOCIAL LINKS
+// ============================================================
+document.getElementById('discordLink').addEventListener('click', function(e) {
+  e.preventDefault();
+  alert('آدرس دیسکورد به زودی اضافه می‌شود!');
+});
+document.getElementById('telegramLink').addEventListener('click', function(e) {
+  // already has href
+});
+document.getElementById('teamspeakLink').addEventListener('click', function(e) {
+  e.preventDefault();
+  alert('TeamSpeak: takts.ir:9251');
+});
+
+// ============================================================
+// SHOP - VIP Buy Button
+// ============================================================
+document.getElementById('vipBuyBtn').addEventListener('click', function() {
+  alert(currentLang === 'fa' ? 
+    '✅ رنک VIP با قیمت ۵۰,۰۰۰ تومان\nلینک خرید به زودی اضافه می‌شود.' : 
+    '✅ VIP Rank for 50,000 Toman\nPurchase link will be added soon.'
+  );
+});
+
+// ============================================================
 // INIT
 // ============================================================
 document.addEventListener('DOMContentLoaded', function() {
   const users = getUsers();
   if (users.length === 0) {
-    users.push({ id: 1, name: 'Admin', email: 'admin@mega.com', password: '123456', role: 'Admin', createdAt: new Date().toISOString() });
+    users.push({ id: 1, name: 'مدیر', email: 'admin@mega.com', password: '123456', role: 'Admin', createdAt: new Date().toISOString() });
     saveUsers(users);
   }
   if (localStorage.getItem('megaRemember') === 'true' && getCurrentUser()) updateUI();
   else updateUI();
-  console.log('🚀 MegaGroup v2.0 · simplified');
-  console.log('📧 default: admin@mega.com / 123456');
+  setLanguage('fa');
+  console.log('🚀 مگا · نسخه ۲.۰');
+  console.log('📧 پیش‌فرض: admin@mega.com / 123456');
 });
 
 document.addEventListener('keydown', function(e) {
