@@ -27,7 +27,7 @@
         html, body {
             width: 100%;
             min-height: 100vh;
-            background: #0a0f0c;
+            background: #0a0e17;
             font-family: 'Rajdhani', 'V1', Arial, sans-serif;
             color: #fff;
             overflow-x: hidden;
@@ -39,7 +39,7 @@
             position: fixed;
             inset: 0;
             z-index: 9999;
-            background: #0a0f0c;
+            background: #0a0e17;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -66,59 +66,94 @@
         .splash .loader {
             width: 60px;
             height: 60px;
-            border: 3px solid rgba(166,255,179,0.05);
-            border-top: 3px solid #a6ffb3;
+            border: 3px solid rgba(78,205,196,0.1);
+            border-top: 3px solid #4ecdc4;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin-top: 20px;
         }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* ===== پس‌زمینه پویا ===== */
+        /* ===== پس‌زمینه پویا - استایل trexmine ===== */
         .bg-wrap {
             position: fixed;
             inset: 0;
             z-index: 0;
-            background: #0a0f0c;
+            background: #0a0e17;
             overflow: hidden;
             pointer-events: none;
         }
+
+        /* گرادینت متحرک پس‌زمینه */
+        .bg-gradient {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(10, 30, 80, 0.6) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(80, 10, 60, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(10, 60, 80, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 100% 80%, rgba(200, 80, 30, 0.15) 0%, transparent 40%);
+            animation: bgMove 20s ease-in-out infinite alternate;
+        }
+        @keyframes bgMove {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.2) rotate(5deg); }
+        }
+
+        /* خطوط شبکه */
+        .grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(78, 205, 196, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(78, 205, 196, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridMove 30s linear infinite;
+            transform-origin: center center;
+        }
+        @keyframes gridMove {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(30px, 30px) rotate(1deg); }
+        }
+
+        /* نقاط نورانی (glowing dots) */
+        .glow-dots {
+            position: absolute;
+            inset: 0;
+        }
+        .glow-dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #4ecdc4;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
+            animation: dotFloat 15s ease-in-out infinite alternate;
+        }
+        .glow-dot:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; width: 6px; height: 6px; }
+        .glow-dot:nth-child(2) { top: 25%; right: 20%; animation-delay: -3s; }
+        .glow-dot:nth-child(3) { bottom: 30%; left: 25%; animation-delay: -6s; width: 8px; height: 8px; box-shadow: 0 0 30px rgba(78,205,196,0.2); }
+        .glow-dot:nth-child(4) { top: 60%; right: 10%; animation-delay: -9s; }
+        .glow-dot:nth-child(5) { top: 40%; left: 5%; animation-delay: -12s; width: 5px; height: 5px; }
+        .glow-dot:nth-child(6) { bottom: 10%; right: 30%; animation-delay: -15s; }
+        .glow-dot:nth-child(7) { top: 80%; left: 40%; animation-delay: -7s; width: 7px; height: 7px; background: #a6ffb3; box-shadow: 0 0 30px rgba(166,255,179,0.2); }
+        .glow-dot:nth-child(8) { top: 15%; left: 60%; animation-delay: -5s; background: #ff6b6b; box-shadow: 0 0 20px rgba(255,107,107,0.2); }
+        .glow-dot:nth-child(9) { bottom: 40%; right: 40%; animation-delay: -11s; background: #ffd93d; box-shadow: 0 0 25px rgba(255,217,61,0.15); }
+        .glow-dot:nth-child(10) { top: 70%; left: 70%; animation-delay: -18s; width: 6px; height: 6px; background: #a29bfe; box-shadow: 0 0 25px rgba(162,155,254,0.2); }
+        @keyframes dotFloat {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            25% { transform: translate(30px, -40px) scale(1.5); opacity: 0.8; }
+            50% { transform: translate(-20px, 30px) scale(0.8); opacity: 0.4; }
+            75% { transform: translate(40px, 20px) scale(1.3); opacity: 0.9; }
+            100% { transform: translate(-10px, -20px) scale(1); opacity: 0.3; }
+        }
+
+        /* کانوس پارتیکل */
         canvas#particlesCanvas {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
-        }
-        .bg-wrap .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.2;
-            animation: orbFloat 20s infinite alternate ease-in-out;
-        }
-        .bg-wrap .orb:nth-child(2) {
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, #a6ffb3, transparent);
-            top: -20%; left: -10%;
-            animation-duration: 25s;
-        }
-        .bg-wrap .orb:nth-child(3) {
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, #4ecdc4, transparent);
-            bottom: -20%; right: -10%;
-            animation-duration: 30s;
-            animation-delay: -5s;
-        }
-        .bg-wrap .orb:nth-child(4) {
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, #7edfa0, transparent);
-            top: 40%; left: 30%;
-            animation-duration: 22s;
-            animation-delay: -10s;
-        }
-        @keyframes orbFloat {
-            0% { transform: translate(0,0) scale(1); }
-            100% { transform: translate(10%,-10%) scale(1.3); }
         }
 
         /* ===== آرم‌های بازی‌ها ===== */
@@ -132,14 +167,14 @@
         .game-logo {
             position: absolute;
             font-size: 60px;
-            opacity: 0.04;
+            opacity: 0.03;
             animation: floatLogo 25s infinite linear;
             filter: grayscale(1) brightness(0.5);
             transition: all 0.5s;
             user-select: none;
         }
         .game-logo:hover {
-            opacity: 0.12;
+            opacity: 0.08;
             transform: scale(1.2);
             filter: grayscale(0) brightness(1);
         }
@@ -171,13 +206,14 @@
             gap: 6px;
             align-items: center;
             height: 40px;
-            opacity: 0.15;
+            opacity: 0.12;
         }
         .sound-waves .bar {
             width: 4px;
-            background: #a6ffb3;
+            background: #4ecdc4;
             border-radius: 4px;
             animation: wave 1.2s ease-in-out infinite alternate;
+            box-shadow: 0 0 10px rgba(78,205,196,0.1);
         }
         .sound-waves .bar:nth-child(1) { height: 20px; animation-delay: 0s; }
         .sound-waves .bar:nth-child(2) { height: 35px; animation-delay: 0.2s; }
@@ -188,8 +224,8 @@
         .sound-waves .bar:nth-child(7) { height: 20px; animation-delay: 0.7s; }
         .sound-waves .bar:nth-child(8) { height: 35px; animation-delay: 0.5s; }
         @keyframes wave {
-            0% { transform: scaleY(0.4); }
-            100% { transform: scaleY(1); }
+            0% { transform: scaleY(0.3); opacity: 0.3; }
+            100% { transform: scaleY(1); opacity: 1; }
         }
 
         /* ===== TOPBAR ===== */
@@ -201,21 +237,21 @@
             width: 92%;
             max-width: 1200px;
             height: 72px;
-            background: rgba(10, 15, 12, 0.7);
+            background: rgba(10, 14, 23, 0.6);
             backdrop-filter: blur(30px) saturate(1.3);
-            border: 1px solid rgba(166, 255, 179, 0.06);
+            border: 1px solid rgba(78, 205, 196, 0.06);
             border-radius: 60px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 24px;
             z-index: 1000;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .topbar.scrolled {
-            background: rgba(10, 15, 12, 0.92);
-            border-color: rgba(166,255,179,0.08);
+            background: rgba(10, 14, 23, 0.85);
+            border-color: rgba(78,205,196,0.08);
             box-shadow: 0 10px 40px rgba(0,0,0,0.6);
         }
         .topbar .logo {
@@ -240,7 +276,7 @@
             align-items: center;
         }
         .topbar .nav-links a {
-            color: rgba(255,255,255,0.35);
+            color: rgba(255,255,255,0.3);
             text-decoration: none;
             font-weight: 600;
             font-size: 14px;
@@ -256,7 +292,7 @@
             position: absolute;
             inset: 0;
             border-radius: 40px;
-            background: rgba(166,255,179,0);
+            background: rgba(78,205,196,0);
             transition: all 0.4s;
             z-index: -1;
         }
@@ -266,17 +302,17 @@
         }
         .topbar .nav-links a:hover::after,
         .topbar .nav-links a.active::after {
-            background: rgba(166,255,179,0.04);
+            background: rgba(78,205,196,0.04);
         }
         .topbar .nav-links .btn-primary {
-            background: rgba(166,255,179,0.04);
-            border: 1px solid rgba(166,255,179,0.06);
+            background: rgba(78,205,196,0.04);
+            border: 1px solid rgba(78,205,196,0.06);
             color: #a6ffb3;
             padding: 8px 24px;
         }
         .topbar .nav-links .btn-primary:hover {
-            background: rgba(166,255,179,0.08);
-            border-color: rgba(166,255,179,0.12);
+            background: rgba(78,205,196,0.08);
+            border-color: rgba(78,205,196,0.12);
             transform: scale(1.02);
         }
         .topbar .nav-links .btn-primary::after { display: none; }
@@ -313,8 +349,8 @@
         }
         .hero .badge {
             display: inline-block;
-            background: rgba(166,255,179,0.04);
-            border: 1px solid rgba(166,255,179,0.06);
+            background: rgba(78,205,196,0.04);
+            border: 1px solid rgba(78,205,196,0.06);
             padding: 6px 24px;
             border-radius: 40px;
             font-size: 13px;
@@ -369,15 +405,15 @@
             overflow: hidden;
         }
         .btn-hero.primary {
-            background: rgba(166,255,179,0.04);
-            border: 1px solid rgba(166,255,179,0.08);
+            background: rgba(78,205,196,0.04);
+            border: 1px solid rgba(78,205,196,0.08);
             color: #a6ffb3;
         }
         .btn-hero.primary:hover {
-            background: rgba(166,255,179,0.08);
-            border-color: rgba(166,255,179,0.14);
+            background: rgba(78,205,196,0.08);
+            border-color: rgba(78,205,196,0.14);
             transform: scale(1.03);
-            box-shadow: 0 0 60px rgba(166,255,179,0.03);
+            box-shadow: 0 0 60px rgba(78,205,196,0.03);
         }
         .btn-hero.secondary {
             background: rgba(255,255,255,0.02);
@@ -424,7 +460,7 @@
         }
         .stats .stat-item .label {
             font-size: 13px;
-            color: rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.12);
             letter-spacing: 2px;
             margin-top: 4px;
         }
@@ -447,7 +483,7 @@
         }
         .cards-section .subtitle {
             text-align: center;
-            color: rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.12);
             font-size: 16px;
             letter-spacing: 3px;
             margin-bottom: 50px;
@@ -458,9 +494,9 @@
             gap: 30px;
         }
         .card-3d {
-            background: rgba(10, 15, 12, 0.4);
+            background: rgba(10, 14, 23, 0.4);
             backdrop-filter: blur(24px);
-            border: 1px solid rgba(166,255,179,0.03);
+            border: 1px solid rgba(78,205,196,0.03);
             border-radius: 32px;
             padding: 32px 28px;
             text-align: center;
@@ -475,7 +511,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(166,255,179,0.04), transparent 70%);
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(78,205,196,0.04), transparent 70%);
             opacity: 0;
             transition: opacity 0.5s;
             pointer-events: none;
@@ -483,8 +519,8 @@
         .card-3d:hover::before { opacity: 1; }
         .card-3d:hover {
             transform: translateY(-10px) scale(1.02);
-            border-color: rgba(166,255,179,0.08);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3), 0 0 80px rgba(166,255,179,0.02);
+            border-color: rgba(78,205,196,0.08);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3), 0 0 80px rgba(78,205,196,0.02);
         }
         .card-3d .icon {
             font-size: 52px;
@@ -508,8 +544,8 @@
             display: inline-block;
             padding: 10px 36px;
             border-radius: 60px;
-            border: 1px solid rgba(166,255,179,0.03);
-            background: rgba(166,255,179,0.02);
+            border: 1px solid rgba(78,205,196,0.03);
+            background: rgba(78,205,196,0.02);
             color: #a6ffb3;
             font-family: 'Orbitron', 'ss', sans-serif;
             font-size: 12px;
@@ -519,8 +555,8 @@
             cursor: pointer;
         }
         .card-3d .card-btn:hover {
-            background: rgba(166,255,179,0.04);
-            border-color: rgba(166,255,179,0.06);
+            background: rgba(78,205,196,0.04);
+            border-color: rgba(78,205,196,0.06);
             transform: scale(1.02);
         }
         .card-3d .glow-line {
@@ -543,7 +579,7 @@
             margin: 0 auto 60px;
             overflow: hidden;
             border-radius: 32px;
-            border: 1px solid rgba(166,255,179,0.03);
+            border: 1px solid rgba(78,205,196,0.03);
         }
         .slider-track {
             display: flex;
@@ -553,12 +589,12 @@
             min-width: 100%;
             padding: 40px 30px;
             text-align: center;
-            background: rgba(10,15,12,0.3);
+            background: rgba(10,14,23,0.3);
             backdrop-filter: blur(20px);
         }
         .slider-slide .quote {
             font-size: 20px;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.4);
             font-style: italic;
             line-height: 1.8;
         }
@@ -589,7 +625,158 @@
             box-shadow: 0 0 20px rgba(166,255,179,0.1);
         }
 
-        /* ===== تیم (7 عضو - به‌روزرسانی شده) ===== */
+        /* ===== بخش سرورها ===== */
+        .servers-section {
+            position: relative;
+            z-index: 1;
+            padding: 60px 20px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .servers-section h2 {
+            font-family: 'Orbitron', 'Vazirmatn', sans-serif;
+            font-size: 36px;
+            color: #a6ffb3;
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .servers-section .subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.12);
+            font-size: 16px;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+        }
+        .server-card {
+            background: rgba(10,14,23,0.4);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(78,205,196,0.04);
+            border-radius: 32px;
+            padding: 40px 35px;
+            max-width: 800px;
+            margin: 0 auto;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .server-card:hover {
+            border-color: rgba(78,205,196,0.08);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            transform: translateY(-4px);
+        }
+        .server-card .server-icon {
+            font-size: 60px;
+            display: block;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .server-card .server-name {
+            font-family: 'Orbitron', 'Vazirmatn', sans-serif;
+            font-size: 28px;
+            color: #a6ffb3;
+            text-align: center;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+        .server-card .server-ip {
+            font-family: 'Orbitron', 'ss', sans-serif;
+            font-size: 18px;
+            color: #4ecdc4;
+            text-align: center;
+            letter-spacing: 1px;
+            direction: ltr;
+            padding: 6px 0;
+            margin-bottom: 16px;
+        }
+        .server-card .server-ip span {
+            color: #a6ffb3;
+        }
+        .server-card .server-divider {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(78,205,196,0.1), transparent);
+            margin: 14px auto;
+        }
+        .server-card .server-desc {
+            font-family: 'Rajdhani', 'V1', sans-serif;
+            font-size: 16px;
+            color: rgba(255,255,255,0.35);
+            line-height: 2;
+            text-align: center;
+        }
+        .server-card .server-desc strong {
+            color: #ffd700;
+            font-weight: 700;
+        }
+        .server-card .server-desc .highlight {
+            color: #a6ffb3;
+        }
+        .server-card .server-whitelist {
+            background: rgba(78,205,196,0.02);
+            border: 1px solid rgba(78,205,196,0.04);
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 16px 0 10px;
+        }
+        .server-card .server-whitelist .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 6px 0;
+            color: rgba(255,255,255,0.3);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .server-card .server-whitelist .step .num {
+            font-family: 'Orbitron', 'ss', sans-serif;
+            color: #4ecdc4;
+            font-size: 13px;
+            min-width: 24px;
+        }
+        .server-card .server-whitelist .step .text strong {
+            color: #ffd700;
+        }
+        .server-card .server-whitelist .step .text .id {
+            color: #a6ffb3;
+            font-family: 'Orbitron', 'ss', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .server-card .server-whitelist .step .text .id:hover {
+            color: #4ecdc4;
+        }
+        .server-card .server-footer-text {
+            font-family: 'Rajdhani', 'V1', sans-serif;
+            font-size: 14px;
+            color: rgba(255,255,255,0.15);
+            text-align: center;
+            margin-top: 14px;
+            padding: 10px 16px;
+            background: rgba(255,215,0,0.02);
+            border-radius: 16px;
+            border: 1px solid rgba(255,215,0,0.02);
+            line-height: 1.8;
+        }
+        .server-card .server-footer-text .emoji {
+            color: #ffd700;
+        }
+        .server-card .server-footer-text .highlight-green {
+            color: #a6ffb3;
+        }
+        .server-card .server-glow-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #a6ffb3, transparent);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .server-card:hover .server-glow-line { opacity: 0.3; }
+
+        /* ===== تیم ===== */
         .team-section {
             position: relative;
             z-index: 1;
@@ -606,7 +793,7 @@
             letter-spacing: 2px;
         }
         .team-section .subtitle {
-            color: rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.12);
             font-size: 16px;
             letter-spacing: 3px;
             margin-bottom: 40px;
@@ -617,9 +804,9 @@
             gap: 20px;
         }
         .team-card {
-            background: rgba(10,15,12,0.4);
+            background: rgba(10,14,23,0.4);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(166,255,179,0.02);
+            border: 1px solid rgba(78,205,196,0.02);
             border-radius: 28px;
             padding: 24px 16px;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -627,7 +814,7 @@
         }
         .team-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(166,255,179,0.05);
+            border-color: rgba(78,205,196,0.05);
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         .team-card .avatar {
@@ -636,7 +823,7 @@
             border-radius: 50%;
             margin: 0 auto 12px;
             overflow: hidden;
-            border: 2px solid rgba(166,255,179,0.06);
+            border: 2px solid rgba(78,205,196,0.06);
             transition: all 0.4s;
             position: relative;
         }
@@ -658,7 +845,7 @@
             justify-content: center;
             font-size: 32px;
             font-weight: 900;
-            color: #0a0f0c;
+            color: #0a0e17;
             background: linear-gradient(135deg, #a6ffb3, #4ecdc4);
             font-family: 'Orbitron', 'ss', sans-serif;
         }
@@ -745,8 +932,8 @@
         .team-card .badge {
             display: inline-block;
             margin-top: 6px;
-            background: rgba(166,255,179,0.02);
-            border: 1px solid rgba(166,255,179,0.02);
+            background: rgba(78,205,196,0.02);
+            border: 1px solid rgba(78,205,196,0.02);
             padding: 2px 14px;
             border-radius: 40px;
             font-size: 8px;
@@ -758,7 +945,7 @@
         .team-card .badge.co-owner { color: #ffd700; border-color: rgba(255,215,0,0.03); background: rgba(255,215,0,0.02); }
         .team-card .badge.sponsor { color: #ffd700; border-color: rgba(255,215,0,0.04); background: rgba(255,215,0,0.02); }
         .team-card .badge.admin { color: #64c8ff; border-color: rgba(100,200,255,0.03); background: rgba(100,200,255,0.02); }
-        .team-card .badge.member { color: rgba(166,255,179,0.3); border-color: rgba(166,255,179,0.02); background: rgba(166,255,179,0.02); }
+        .team-card .badge.member { color: rgba(166,255,179,0.3); border-color: rgba(78,205,196,0.02); background: rgba(78,205,196,0.02); }
 
         /* ===== شبکه‌های اجتماعی ===== */
         .social-section {
@@ -777,7 +964,7 @@
             letter-spacing: 2px;
         }
         .social-section .subtitle {
-            color: rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.1);
             font-size: 14px;
             letter-spacing: 3px;
             margin-bottom: 30px;
@@ -791,9 +978,9 @@
         .social-item {
             width: 100px;
             padding: 20px 10px;
-            background: rgba(10,15,12,0.4);
+            background: rgba(10,14,23,0.4);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(166,255,179,0.03);
+            border: 1px solid rgba(78,205,196,0.03);
             border-radius: 24px;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
@@ -803,7 +990,7 @@
         }
         .social-item:hover {
             transform: translateY(-8px) scale(1.02);
-            border-color: rgba(166,255,179,0.08);
+            border-color: rgba(78,205,196,0.08);
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             color: #a6ffb3;
         }
@@ -836,15 +1023,15 @@
             letter-spacing: 2px;
         }
         .support-section .subtitle {
-            color: rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.1);
             font-size: 14px;
             letter-spacing: 3px;
             margin-bottom: 30px;
         }
         .support-box {
-            background: rgba(10,15,12,0.4);
+            background: rgba(10,14,23,0.4);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(166,255,179,0.04);
+            border: 1px solid rgba(78,205,196,0.04);
             border-radius: 32px;
             padding: 30px 24px;
             max-width: 600px;
@@ -852,7 +1039,7 @@
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .support-box:hover {
-            border-color: rgba(166,255,179,0.08);
+            border-color: rgba(78,205,196,0.08);
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         .support-box .support-icon {
@@ -873,8 +1060,8 @@
         }
         .support-box .support-id {
             display: inline-block;
-            background: rgba(166,255,179,0.02);
-            border: 1px solid rgba(166,255,179,0.04);
+            background: rgba(78,205,196,0.02);
+            border: 1px solid rgba(78,205,196,0.04);
             padding: 6px 24px;
             border-radius: 40px;
             font-family: 'Orbitron', 'ss', sans-serif;
@@ -885,12 +1072,12 @@
             cursor: pointer;
         }
         .support-box .support-id:hover {
-            background: rgba(166,255,179,0.04);
-            border-color: rgba(166,255,179,0.08);
+            background: rgba(78,205,196,0.04);
+            border-color: rgba(78,205,196,0.08);
         }
         .support-box .support-label {
             font-size: 12px;
-            color: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.08);
             letter-spacing: 2px;
             display: block;
             margin-top: 8px;
@@ -902,9 +1089,9 @@
             bottom: 100px;
             right: 30px;
             z-index: 50;
-            background: rgba(10,15,12,0.7);
+            background: rgba(10,14,23,0.7);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(166,255,179,0.04);
+            border: 1px solid rgba(78,205,196,0.04);
             border-radius: 20px;
             padding: 16px 20px;
             max-width: 220px;
@@ -912,7 +1099,7 @@
             transition: all 0.3s;
             cursor: pointer;
         }
-        .update-widget:hover { border-color: rgba(166,255,179,0.08); }
+        .update-widget:hover { border-color: rgba(78,205,196,0.08); }
         .update-widget .title {
             font-family: 'Orbitron', 'V1', sans-serif;
             font-size: 10px;
@@ -921,13 +1108,13 @@
         }
         .update-widget .content {
             font-size: 12px;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.4);
             margin-top: 4px;
             font-family: 'Rajdhani', 'V1', sans-serif;
         }
         .update-widget .time {
             font-size: 9px;
-            color: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.08);
             margin-top: 6px;
             letter-spacing: 1px;
         }
@@ -938,9 +1125,9 @@
             bottom: 100px;
             left: 30px;
             z-index: 50;
-            background: rgba(10,15,12,0.5);
+            background: rgba(10,14,23,0.5);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(166,255,179,0.03);
+            border: 1px solid rgba(78,205,196,0.03);
             border-radius: 60px;
             padding: 10px 20px;
             color: rgba(255,255,255,0.15);
@@ -951,7 +1138,7 @@
             letter-spacing: 1px;
         }
         .music-toggle:hover {
-            border-color: rgba(166,255,179,0.06);
+            border-color: rgba(78,205,196,0.06);
             color: #a6ffb3;
         }
 
@@ -974,7 +1161,7 @@
             margin-bottom: 16px;
         }
         .footer .social-links a {
-            color: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.06);
             text-decoration: none;
             font-size: 14px;
             transition: all 0.3s;
@@ -1003,9 +1190,166 @@
             backdrop-filter: blur(6px);
             padding: 4px 16px;
             border-radius: 40px;
-            border: 1px solid rgba(166,255,179,0.01);
+            border: 1px solid rgba(78,205,196,0.01);
             user-select: none;
             pointer-events: none;
+        }
+
+        /* ===== ویجت الارم در گوشه صفحه ===== */
+        .alert-widget {
+            position: fixed;
+            bottom: 160px;
+            right: 30px;
+            z-index: 9998;
+            max-width: 340px;
+            width: 92%;
+            background: rgba(10,14,23,0.85);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255,215,0,0.08);
+            border-radius: 28px;
+            padding: 20px 22px 18px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(255,215,0,0.01);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: alertBounce 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            transform-origin: bottom right;
+        }
+        @keyframes alertBounce {
+            0% { opacity: 0; transform: scale(0.8) translateY(30px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .alert-widget:hover {
+            border-color: rgba(255,215,0,0.15);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.5), 0 0 60px rgba(255,215,0,0.02);
+        }
+        .alert-widget .alert-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .alert-widget .alert-title-small {
+            font-family: 'Orbitron', 'Vazirmatn', sans-serif;
+            font-size: 14px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .alert-widget .alert-title-small .badge-icon {
+            font-size: 20px;
+            animation: alertPulse 2s ease-in-out infinite;
+        }
+        @keyframes alertPulse {
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        .alert-widget .alert-close {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.1);
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 4px 6px;
+            border-radius: 50%;
+            line-height: 1;
+        }
+        .alert-widget .alert-close:hover {
+            color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.04);
+        }
+        .alert-widget .alert-ip-mini {
+            font-family: 'Orbitron', 'ss', sans-serif;
+            font-size: 12px;
+            color: #4ecdc4;
+            background: rgba(78,205,196,0.04);
+            border: 1px solid rgba(78,205,196,0.04);
+            padding: 4px 14px;
+            border-radius: 40px;
+            display: inline-block;
+            margin: 4px 0 6px;
+            direction: ltr;
+            letter-spacing: 0.5px;
+        }
+        .alert-widget .alert-ip-mini span {
+            color: #a6ffb3;
+        }
+        .alert-widget .alert-desc {
+            font-family: 'Rajdhani', 'V1', sans-serif;
+            font-size: 13px;
+            color: rgba(255,255,255,0.35);
+            line-height: 1.6;
+            margin: 4px 0;
+        }
+        .alert-widget .alert-desc strong {
+            color: #ffd700;
+            font-weight: 700;
+        }
+        .alert-widget .alert-id-mini {
+            display: inline-block;
+            background: rgba(78,205,196,0.02);
+            border: 1px solid rgba(78,205,196,0.04);
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-family: 'Orbitron', 'ss', sans-serif;
+            font-size: 11px;
+            color: #a6ffb3;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .alert-widget .alert-id-mini:hover {
+            background: rgba(78,205,196,0.04);
+            border-color: rgba(78,205,196,0.08);
+        }
+        .alert-widget .alert-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .alert-widget .alert-btn-mini {
+            padding: 6px 20px;
+            border-radius: 60px;
+            border: 1px solid rgba(78,205,196,0.04);
+            background: rgba(78,205,196,0.02);
+            color: #a6ffb3;
+            font-family: 'Orbitron', 'ss', sans-serif;
+            font-size: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+        }
+        .alert-widget .alert-btn-mini:hover {
+            background: rgba(78,205,196,0.04);
+            border-color: rgba(78,205,196,0.08);
+            transform: scale(1.02);
+        }
+        .alert-widget .alert-btn-mini.dismiss {
+            background: rgba(255,255,255,0.02);
+            border-color: rgba(255,255,255,0.02);
+            color: rgba(255,255,255,0.15);
+        }
+        .alert-widget .alert-btn-mini.dismiss:hover {
+            background: rgba(255,255,255,0.04);
+            color: rgba(255,255,255,0.3);
+        }
+        .alert-widget .alert-glow-line-mini {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffd700, #a6ffb3, #ffd700, transparent);
+            animation: glowLineMove 4s linear infinite;
+            background-size: 200% 100%;
+            border-radius: 28px 28px 0 0;
+        }
+        @keyframes glowLineMove {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
 
         /* ===== RESPONSIVE ===== */
@@ -1020,6 +1364,7 @@
             .stats { gap: 30px; }
             .stats .stat-item .number { font-size: 28px; }
             .cards-section h2 { font-size: 28px; }
+            .servers-section h2 { font-size: 28px; }
             .team-section h2 { font-size: 28px; }
             .social-section h2 { font-size: 22px; }
             .support-section h2 { font-size: 22px; }
@@ -1032,6 +1377,19 @@
             .social-item .label { font-size: 10px; }
             .support-box { padding: 20px 16px; }
             .support-box .support-text { font-size: 14px; }
+            .alert-widget {
+                bottom: 80px;
+                right: 16px;
+                max-width: 300px;
+                padding: 16px 18px;
+            }
+            .alert-widget .alert-title-small { font-size: 12px; }
+            .alert-widget .alert-desc { font-size: 12px; }
+            .server-card { padding: 28px 20px; }
+            .server-card .server-name { font-size: 22px; }
+            .server-card .server-ip { font-size: 15px; }
+            .server-card .server-desc { font-size: 14px; }
+            .server-card .server-whitelist .step { font-size: 13px; }
         }
         @media (max-width: 480px) {
             .topbar .nav-links a { font-size: 10px; padding: 4px 8px; }
@@ -1040,13 +1398,29 @@
             .hero h1 { font-size: 26px; }
             .cards-grid { grid-template-columns: 1fr; }
             .team-grid { grid-template-columns: repeat(2, 1fr); }
-            .game-logo { font-size: 25px !important; opacity: 0.03; }
+            .game-logo { font-size: 25px !important; opacity: 0.02; }
             .game-logo:nth-child(4), .game-logo:nth-child(6) { display: none; }
             .social-grid { gap: 15px; }
             .social-item { width: 65px; padding: 12px 6px; }
             .social-item .icon { font-size: 22px; }
             .social-item .label { font-size: 9px; }
             .support-box .support-id { font-size: 12px; padding: 4px 14px; }
+            .alert-widget {
+                bottom: 70px;
+                right: 10px;
+                max-width: 280px;
+                padding: 14px 14px;
+                border-radius: 20px;
+            }
+            .alert-widget .alert-title-small { font-size: 11px; }
+            .alert-widget .alert-desc { font-size: 11px; }
+            .alert-widget .alert-ip-mini { font-size: 10px; padding: 3px 10px; }
+            .server-card { padding: 20px 16px; }
+            .server-card .server-name { font-size: 18px; }
+            .server-card .server-ip { font-size: 13px; }
+            .server-card .server-desc { font-size: 13px; }
+            .server-card .server-whitelist .step { font-size: 12px; flex-direction: column; gap: 4px; }
+            .server-card .server-footer-text { font-size: 12px; }
         }
     </style>
 </head>
@@ -1060,10 +1434,21 @@
 
     <!-- ===== پس‌زمینه ===== -->
     <div class="bg-wrap">
+        <div class="bg-gradient"></div>
+        <div class="grid-overlay"></div>
+        <div class="glow-dots">
+            <div class="glow-dot"></div>
+            <div class="glow-dot"></div>
+            <div class="glow-dot"></div>
+            <div class="glow-dot"></div>
+            <div class="glow-dot"></div>
+            <div class="glow-dot"></div>
+            <div class="glow-dot"></div>
+            <div class="glow-dot"></div>
+            <div class="glow-dot"></div>
+            <div class="glow-dot"></div>
+        </div>
         <canvas id="particlesCanvas"></canvas>
-        <div class="orb"></div>
-        <div class="orb"></div>
-        <div class="orb"></div>
     </div>
 
     <!-- ===== آرم‌های بازی‌ها ===== -->
@@ -1091,6 +1476,7 @@
         <div class="nav-links">
             <a href="#" class="active">خانه</a>
             <a href="#cards">پروژه‌ها</a>
+            <a href="#servers">سرورها</a>
             <a href="#team">تیم</a>
             <a href="#social">ارتباط</a>
             <a href="#support">پشتیبانی</a>
@@ -1171,18 +1557,52 @@
             </div>
             <div class="slider-slide">
                 <div class="quote">"با مگا هر روز یه چیز جدید یاد می‌گیرم. بهترین تصمیم زندگی‌م بود."</div>
-                <div class="author">— @HesamAmeri</div>
+                <div class="author">— @Hesam</div>
             </div>
         </div>
         <div class="slider-dots" id="sliderDots"></div>
     </div>
 
-    <!-- ===== تیم (7 عضو - با عکس پروفایل) ===== -->
+    <!-- ===== بخش سرورها ===== -->
+    <section class="servers-section" id="servers">
+        <h2>🖥️ سرورهای مگا</h2>
+        <p class="subtitle">به جمع ما بپیوندید و بازی کنید</p>
+        <div class="server-card">
+            <div class="server-glow-line"></div>
+            <span class="server-icon">⛏️</span>
+            <div class="server-name">مگاکرفت</div>
+            <div class="server-ip">📡 <span>sv4.tgmc.ir:29195</span></div>
+            <div class="server-divider"></div>
+            <div class="server-desc">
+                یک سرور کاملاً <strong>سروایول</strong> بدون لابی و با پلیرهای دیگر و دوستانتان میتوانید بازی کنید.
+            </div>
+            <div class="server-whitelist">
+                <div class="step">
+                    <span class="num">۱</span>
+                    <span class="text">مبلغ <strong>۵۰ تومن</strong> به آی‌دی <span class="id" onclick="copyToClipboard('@DachAshkan')">@DachAshkan</span> در <strong>بله</strong> یا <strong>تلگرام</strong> پرداخت کنید</span>
+                </div>
+                <div class="step">
+                    <span class="num">۲</span>
+                    <span class="text">نام کاربری خود در ماینکرفت را به همراه رسید پرداخت برای <span class="id" onclick="copyToClipboard('@DachAshkan')">@DachAshkan</span> ارسال کنید</span>
+                </div>
+                <div class="step">
+                    <span class="num">۳</span>
+                    <span class="text">پس از تأیید، نام شما در <strong>وایت‌لیست</strong> قرار گرفته و میتوانید وارد سرور شوید</span>
+                </div>
+            </div>
+            <div class="server-footer-text">
+                <span class="emoji">😂</span> فقط با پرداخت ۵۰ تومن پول یه چیپس هم نمیشه <span class="highlight-green">:D</span>
+                <br>
+                <span style="color:rgba(255,255,255,0.1); font-size:12px;">مگاکرفت · بهترین تجربه سروایول</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== تیم (7 عضو) ===== -->
     <section class="team-section" id="team">
         <h2>👑 تیم اصلی</h2>
         <p class="subtitle">بنیان‌گذاران · مالکان · اسپانسر · اعضا</p>
         <div class="team-grid">
-            <!-- Owner: DachAshkan -->
             <div class="team-card">
                 <div class="crown big">👑</div>
                 <div class="avatar gold-border">
@@ -1192,7 +1612,6 @@
                 <div class="role">🎯 بنیان‌گذار ارشد · توسعه‌دهنده اصلی</div>
                 <div class="badge owner">⭐ Owner</div>
             </div>
-            <!-- Co-Owner: DachNima -->
             <div class="team-card">
                 <div class="crown">👑</div>
                 <div class="avatar">
@@ -1202,17 +1621,15 @@
                 <div class="role">🎯 بنیان‌گذار · مدیر پروژه</div>
                 <div class="badge co-owner">⭐ Co-Owner</div>
             </div>
-            <!-- Sponsor: Hesam Ameri -->
             <div class="team-card">
                 <div class="sponsor-badge">✨ SPONSOR</div>
                 <div class="avatar" style="border-color: rgba(255,215,0,0.15);">
                     <div class="fallback" style="background:linear-gradient(135deg,#ffd700,#ffb347);">HA</div>
                 </div>
-                <div class="name gold">HESAM AMERI</div>
+                <div class="name gold">Hesam</div>
                 <div class="role">✨ اسپانسر · حامی مالی</div>
                 <div class="badge sponsor">⭐ Sponsor</div>
             </div>
-            <!-- Admin: llA_Sll -->
             <div class="team-card">
                 <div class="admin-badge">🛡️ ADMIN</div>
                 <div class="avatar">
@@ -1222,7 +1639,6 @@
                 <div class="role">🛡️ مدیر تیم</div>
                 <div class="badge admin">🔷 Admin</div>
             </div>
-            <!-- Member: Arad1040 -->
             <div class="team-card">
                 <div class="avatar">
                     <img src="https://uploadkon.ir/uploads/e4bf26_26IMG-20260711-135021.jpg" alt="Arad1040" style="width:100%; height:100%; object-fit:cover;">
@@ -1231,7 +1647,6 @@
                 <div class="role">عضو تیم</div>
                 <div class="badge member">🔹 Member</div>
             </div>
-            <!-- Member: Mohammadvip10 -->
             <div class="team-card">
                 <div class="avatar">
                     <img src="https://uploadkon.ir/uploads/a4a026_26file-00000000eec881f59c5f05472ad97564.png" alt="Mohammadvip10" style="width:100%; height:100%; object-fit:cover;">
@@ -1240,7 +1655,6 @@
                 <div class="role">عضو تیم</div>
                 <div class="badge member">🔹 Member</div>
             </div>
-            <!-- Member: Kasra Yaghoobi -->
             <div class="team-card">
                 <div class="avatar">
                     <div class="fallback" style="background:linear-gradient(135deg,#7edfa0,#3a8a52);">👤</div>
@@ -1289,7 +1703,7 @@
                 <span class="support-id" onclick="copyToClipboard('@DachAshkan')">@DachAshkan</span>
             </div>
             <div style="margin-top: 10px;">
-                <span style="color:rgba(255,255,255,0.1); font-size:12px; letter-spacing:2px;">📱 تلگرام · دیسکورد</span>
+                <span style="color:rgba(255,255,255,0.08); font-size:12px; letter-spacing:2px;">📱 تلگرام · دیسکورد</span>
             </div>
             <div class="support-label">پاسخگویی ۲۴ ساعته · تیم پشتیبانی مگا</div>
         </div>
@@ -1319,6 +1733,31 @@
     <!-- ===== نسخه ===== -->
     <div class="version-badge">v2.1 · ULTRA</div>
 
+    <!-- ===== ویجت الارم در گوشه صفحه ===== -->
+    <div class="alert-widget" id="alertWidget">
+        <div class="alert-glow-line-mini"></div>
+        <div class="alert-header">
+            <div class="alert-title-small">
+                <span class="badge-icon">⛏️</span>
+                <span>سرور ماینکرفت</span>
+            </div>
+            <button class="alert-close" onclick="closeAlertWidget()" title="بستن">✖</button>
+        </div>
+        <div class="alert-ip-mini">📡 <span>sv4.tgmc.ir:29195</span></div>
+        <div class="alert-desc">
+            برای قرارگیری در سرور، <strong>۵۰ تومن</strong> به آی‌دی زیر پرداخت کنید
+            <br>و در <strong>بله</strong> یا <strong>تلگرام</strong> پیام دهید.
+        </div>
+        <div>
+            <span class="alert-id-mini" onclick="copyToClipboard('@DachAshkan')">💳 @DachAshkan</span>
+            <span class="alert-id-mini" onclick="copyToClipboard('sv4.tgmc.ir:29195')" style="margin-right:6px;">📋 کپی آی‌پی</span>
+        </div>
+        <div class="alert-actions">
+            <button class="alert-btn-mini" onclick="closeAlertWidget()">✅ دریافت کردم</button>
+            <button class="alert-btn-mini dismiss" onclick="closeAlertWidget()">⏰ یادآوری بعد</button>
+        </div>
+    </div>
+
     <script>
         // ============================================================
         // 1. لودینگ اسپلش
@@ -1330,7 +1769,19 @@
         });
 
         // ============================================================
-        // 2. پارتیکل‌های سه‌بعدی با Canvas
+        // 2. بستن ویجت الارم
+        // ============================================================
+        function closeAlertWidget() {
+            const widget = document.getElementById('alertWidget');
+            widget.style.opacity = '0';
+            widget.style.transform = 'scale(0.8) translateY(30px)';
+            setTimeout(() => {
+                widget.style.display = 'none';
+            }, 400);
+        }
+
+        // ============================================================
+        // 3. پارتیکل‌های سه‌بعدی با Canvas
         // ============================================================
         const canvas = document.getElementById('particlesCanvas');
         const ctx = canvas.getContext('2d');
@@ -1348,10 +1799,13 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
-                this.opacity = Math.random() * 0.3 + 0.1;
+                this.size = Math.random() * 2.5 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.8;
+                this.speedY = (Math.random() - 0.5) * 0.8;
+                this.opacity = Math.random() * 0.4 + 0.05;
+                const colors = ['#4ecdc4', '#a6ffb3', '#ffd700', '#ff6b6b', '#a29bfe', '#64c8ff'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.size = Math.random() * 3 + 0.5;
             }
             update() {
                 this.x += this.speedX;
@@ -1362,26 +1816,30 @@
                     const dx = mouse.x - this.x;
                     const dy = mouse.y - this.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 150) {
-                        const force = (150 - dist) / 150;
-                        this.x -= dx * force * 0.02;
-                        this.y -= dy * force * 0.02;
+                    if (dist < 120) {
+                        const force = (120 - dist) / 120;
+                        this.x -= dx * force * 0.03;
+                        this.y -= dy * force * 0.03;
                     }
                 }
             }
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(166, 255, 179, ${this.opacity})`;
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.opacity;
                 ctx.fill();
-                if (this.size > 2) {
-                    ctx.shadowColor = 'rgba(166,255,179,0.02)';
-                    ctx.shadowBlur = 10;
+                if (this.size > 1.5) {
+                    ctx.shadowColor = this.color;
+                    ctx.shadowBlur = 15;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
                 }
+                ctx.globalAlpha = 1;
             }
         }
 
-        for (let i = 0; i < 120; i++) {
+        for (let i = 0; i < 150; i++) {
             particles.push(new Particle());
         }
 
@@ -1402,7 +1860,7 @@
         animateParticles();
 
         // ============================================================
-        // 3. تایپ‌رایتر
+        // 4. تایپ‌رایتر
         // ============================================================
         const typewriterEl = document.getElementById('typewriter');
         const phrases = [
@@ -1441,7 +1899,7 @@
         typeWriter();
 
         // ============================================================
-        // 4. شمارنده‌های آمار
+        // 5. شمارنده‌های آمار
         // ============================================================
         function animateCounters() {
             document.querySelectorAll('.stat-item .number').forEach(el => {
@@ -1462,7 +1920,7 @@
         setTimeout(animateCounters, 1500);
 
         // ============================================================
-        // 5. اسلایدر خودکار
+        // 6. اسلایدر خودکار
         // ============================================================
         const sliderTrack = document.getElementById('sliderTrack');
         const slides = sliderTrack.querySelectorAll('.slider-slide');
@@ -1498,7 +1956,7 @@
         });
 
         // ============================================================
-        // 6. افکت سه‌بعدی کارت‌ها (Tilt)
+        // 7. افکت سه‌بعدی کارت‌ها (Tilt)
         // ============================================================
         document.querySelectorAll('.card-3d').forEach(card => {
             card.addEventListener('mousemove', (e) => {
@@ -1519,7 +1977,7 @@
         });
 
         // ============================================================
-        // 7. تاپبار اسکرول
+        // 8. تاپبار اسکرول
         // ============================================================
         window.addEventListener('scroll', function() {
             const topbar = document.getElementById('topbar');
@@ -1531,7 +1989,7 @@
         });
 
         // ============================================================
-        // 8. دکمه موسیقی
+        // 9. دکمه موسیقی
         // ============================================================
         let isMusicPlaying = false;
         document.getElementById('musicToggle').addEventListener('click', function() {
@@ -1550,7 +2008,7 @@
         });
 
         // ============================================================
-        // 9. آپدیت ویجت - زمان
+        // 10. آپدیت ویجت - زمان
         // ============================================================
         function updateTime() {
             const now = new Date();
@@ -1561,7 +2019,7 @@
         setInterval(updateTime, 60000);
 
         // ============================================================
-        // 10. دکمه‌های کارت‌ها
+        // 11. دکمه‌های کارت‌ها
         // ============================================================
         document.getElementById('bomberBtn').addEventListener('click', function(e) {
             e.stopPropagation();
@@ -1573,11 +2031,11 @@
         });
 
         // ============================================================
-        // 11. کپی کلیپ‌بورد برای آی‌دی پشتیبانی
+        // 12. کپی کلیپ‌بورد
         // ============================================================
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
-                alert('✅ آی‌دی ' + text + ' کپی شد!');
+                alert('✅ ' + text + ' کپی شد!');
             }).catch(() => {
                 const input = document.createElement('input');
                 input.value = text;
@@ -1585,12 +2043,12 @@
                 input.select();
                 document.execCommand('copy');
                 document.body.removeChild(input);
-                alert('✅ آی‌دی ' + text + ' کپی شد!');
+                alert('✅ ' + text + ' کپی شد!');
             });
         }
 
         // ============================================================
-        // 12. لینک‌های شبکه‌های اجتماعی
+        // 13. لینک‌های شبکه‌های اجتماعی
         // ============================================================
         document.getElementById('aparatLink').addEventListener('click', function(e) {
             e.preventDefault();
@@ -1602,19 +2060,19 @@
         });
 
         // ============================================================
-        // 13. کنسول
+        // 14. کنسول
         // ============================================================
         console.log('🚀 مگا · نسخه ۲.۱ ULTRA');
         console.log('💎 این سایت با ❤️ ساخته شده');
         console.log('👑 Owner: DachAshkan');
         console.log('👑 Co-Owner: DachNima');
-        console.log('✨ Sponsor: Hesam Ameri');
+        console.log('✨ Sponsor: Hesam');
         console.log('🛡️ Admin: llA_Sll');
         console.log('👥 Members: Arad1040, Mohammadvip10, Kasra Yaghoobi');
         console.log('🔊 تیم‌اسپیک: takts.ir:9251');
         console.log('💛 لینک حمایت: https://reymit.ir/Megaultra');
-        console.log('📧 پیش‌فرض: admin@mega.com / 123456');
         console.log('🛡️ پشتیبانی: @DachAshkan');
+        console.log('⛏️ سرور ماینکرفت: sv4.tgmc.ir:29195');
     </script>
 </body>
 </html>
