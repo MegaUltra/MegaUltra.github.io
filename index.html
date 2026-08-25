@@ -1,2210 +1,633 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MEGALUNCHER | بهترین لانچر ماینکرفت</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" href="https://uploadkon.ir/uploads/c79125_26MEGALOGO.jpg" type="image/jpeg" />
-    <link rel="shortcut icon" href="https://uploadkon.ir/uploads/c79125_26MEGALOGO.jpg" type="image/jpeg" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مگا لانچر - در حال بروزرسانی</title>
     <style>
-        /* =========================================
-           FONTS
-        ========================================= */
-        @font-face {
-            font-family: "V1";
-            src: url("./fonts/Vazirmatn-Black.ttf") format("truetype");
-        }
-        @font-face {
-            font-family: "V2";
-            src: url("./fonts/Vazirmatn-Regular.ttf") format("truetype");
-        }
-        @font-face {
-            font-family: "V3";
-            src: url("./fonts/Vazirmatn-Light.ttf") format("truetype");
-        }
-        @font-face {
-            font-family: "V4";
-            src: url("./fonts/Vazirmatn-SemiBold.ttf") format("truetype");
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* =========================================
-           ROOT — سبز کم رنگ
-        ========================================= */
-        :root {
-            --main: #4CAF50;
-            --main-light: #81C784;
-            --main-glow: rgba(76, 175, 80, 0.4);
-            --main-dark: #388E3C;
-            --bg: #000000;
-            --text: #f5ecec;
-            --muted: #b09a9b;
-            --navbar-bg: rgba(0, 0, 0, .7);
-            --modal-bg: rgba(0, 0, 0, 0.85);
-            --modal-content-bg: rgba(0, 0, 0, 0.9);
-            --card-bg: rgba(76, 175, 80, 0.08);
-            --border-color: rgba(76, 175, 80, 0.15);
-            --footer-border: rgba(76, 175, 80, 0.06);
-            transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
 
-        /* =========================================
-           تم روشن (Light Mode)
-        ========================================= */
-        body.light-mode {
-            --main: #2E7D32;
-            --main-light: #4CAF50;
-            --main-glow: rgba(46, 125, 50, 0.2);
-            --main-dark: #1B5E20;
-            --bg: #f5f5f5;
-            --text: #1a1a1a;
-            --muted: #666666;
-            --navbar-bg: rgba(255, 255, 255, 0.9);
-            --modal-bg: rgba(255, 255, 255, 0.92);
-            --modal-content-bg: rgba(255, 255, 255, 0.95);
-            --card-bg: rgba(0, 0, 0, 0.05);
-            --border-color: rgba(0, 0, 0, 0.15);
-            --footer-border: rgba(0, 0, 0, 0.1);
-            background-color: #f5f5f5;
-        }
-        body.light-mode .bg-image { opacity: 0.15; }
-        body.light-mode .navbar { background: rgba(255, 255, 255, 0.9); border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
-        body.light-mode .navbar a { color: #333; }
-        body.light-mode .navbar a:hover { color: #fff; background: #2E7D32; }
-        body.light-mode .btn-home { background: #2E7D32; color: #fff; border-color: rgba(0, 0, 0, 0.2); }
-        body.light-mode .btn-home:hover { background: #4CAF50; color: #fff; }
-        body.light-mode .hero h1 { color: #1a1a1a; }
-        body.light-mode .hero h1 span { color: #2E7D32; text-shadow: none; }
-        body.light-mode .sub-slogan { color: #555; }
-        body.light-mode .hero-btn.primary { background: #2E7D32; color: #fff; }
-        body.light-mode .hero-btn.primary:hover { background: #4CAF50; }
-        body.light-mode .hero-btn.secondary { background: #388E3C; color: #fff; }
-        body.light-mode .hero-btn.secondary:hover { background: #4CAF50; }
-        body.light-mode .modal-content { background: rgba(255, 255, 255, 0.95); border-color: rgba(0, 0, 0, 0.15); }
-        body.light-mode .modal-close { color: #333; background: rgba(0, 0, 0, 0.05); border-color: rgba(0, 0, 0, 0.1); }
-        body.light-mode .modal-close:hover { background: rgba(0, 0, 0, 0.1); color: #000; }
-        body.light-mode .download-in-modal .download-title { color: #1a1a1a; }
-        body.light-mode .download-in-modal .download-sub { color: #555; }
-        body.light-mode .download-in-modal .btn-download { background: #2E7D32; color: #fff; border-color: rgba(0, 0, 0, 0.2); }
-        body.light-mode .download-in-modal .btn-download svg { fill: #fff; }
-        body.light-mode .download-in-modal .system-box { background: rgba(0, 0, 0, 0.05); border-color: rgba(0, 0, 0, 0.1); }
-        body.light-mode .download-in-modal .system-box h3 { color: #1a1a1a; }
-        body.light-mode .download-in-modal .system-box ul li { color: #555; border-color: rgba(0, 0, 0, 0.05); }
-        body.light-mode .download-in-modal .system-box .label { color: #2E7D32; }
-        body.light-mode .shop-modal .modal-content { background: rgba(255, 255, 255, 0.95); }
-        body.light-mode .shop-modal .btn-back-home { background: #2E7D32; color: #fff; border-color: rgba(0, 0, 0, 0.2); }
-        body.light-mode .shop-modal .btn-back-home:hover { background: #4CAF50; }
-        body.light-mode .shop-modal .btn-back-home svg { fill: #fff; }
-        body.light-mode .shop-in-modal .shop-header h1 { color: #1a1a1a; }
-        body.light-mode .shop-in-modal .shop-header p { color: #555; }
-        body.light-mode .shop-in-modal .product-card { background: rgba(0, 0, 0, 0.05); border-color: rgba(0, 0, 0, 0.1); }
-        body.light-mode .shop-in-modal .product-card h2 { color: #1a1a1a; }
-        body.light-mode .shop-in-modal .product-card p { color: #555; }
-        body.light-mode .shop-in-modal .price strong { color: #1a1a1a; }
-        body.light-mode .shop-in-modal .buy-btn { background: #2E7D32; color: #fff; }
-        body.light-mode .shop-in-modal .buy-btn:hover { background: #4CAF50; }
-        body.light-mode .footer { border-top-color: rgba(0, 0, 0, 0.1); }
-        body.light-mode .footer-col h3 { color: #1a1a1a; }
-        body.light-mode .footer-col p { color: #555; }
-        body.light-mode .footer-col ul li a { color: #555; }
-        body.light-mode .footer-col ul li a:hover { color: #000; }
-        body.light-mode .footer-bottom p { color: #666; }
-        body.light-mode .footer-social a { color: #666; }
-        body.light-mode .footer-social a:hover { color: #2E7D32; }
-        body.light-mode .footer-glow { opacity: 0.1; }
-        body.light-mode .footer-glow::after { opacity: 0.1; }
-        body.light-mode .footer-fade { display: none; }
-        body.light-mode .shop-in-modal .product-tag { color: #2E7D32; background: rgba(0, 0, 0, 0.05); border-color: rgba(0, 0, 0, 0.1); }
-        body.light-mode .shop-in-modal .badge { color: #2E7D32; border-color: rgba(0, 0, 0, 0.15); background: rgba(0, 0, 0, 0.05); }
-        body.light-mode .shop-in-modal .badge-dot { background: #2E7D32; box-shadow: 0 0 20px rgba(46, 125, 50, 0.2); }
-        body.light-mode .download-in-modal .system-box.minimum { border-right-color: rgba(0, 0, 0, 0.2); }
-        body.light-mode .download-in-modal .system-box.recommended { border-left-color: #2E7D32; }
-        body.light-mode .download-in-modal .system-box ul li::before { color: #2E7D32; }
-        body.light-mode .download-in-modal .system-box.recommended::before { background: radial-gradient(circle at 70% 50%, rgba(46, 125, 50, 0.08) 0%, rgba(46, 125, 50, 0.03) 30%, transparent 70%); }
-        body.light-mode .download-in-modal .system-box::before { background: radial-gradient(circle at 30% 50%, rgba(46, 125, 50, 0.06) 0%, rgba(46, 125, 50, 0.03) 30%, transparent 70%); }
-        body.light-mode .download-in-modal .system-box::after { background: radial-gradient(circle at 50% 50%, rgba(46, 125, 50, 0.03) 0%, transparent 60%); }
-        body.light-mode hr { border-top-color: rgba(0, 0, 0, 0.15) !important; }
-
-        /* =========================================
-           دکمه‌های دایره‌ای پایین سمت راست
-        ========================================= */
-        .floating-actions {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            direction: ltr;
-        }
-        .floating-btn {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: 2px solid rgba(76, 175, 80, 0.25);
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(12px);
-            color: #b09a9b;
-            font-size: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            position: relative;
-        }
-        .floating-btn:hover {
-            transform: scale(1.12);
-            border-color: var(--main);
-            background: rgba(76, 175, 80, 0.15);
-            color: #ffffff;
-            box-shadow: 0 0 30px rgba(76, 175, 80, 0.2);
-        }
-        .floating-btn:active { transform: scale(0.92); }
-        .floating-btn .tooltip {
-            position: absolute;
-            right: 58px;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            color: #f5ecec;
-            padding: 5px 14px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(76, 175, 80, 0.15);
-        }
-        .floating-btn:hover .tooltip { opacity: 1; right: 62px; }
-        .floating-btn .flag-icon { font-size: 20px; line-height: 1; }
-        .floating-btn .theme-icon { font-size: 20px; line-height: 1; }
-
-        body.light-mode .floating-btn {
-            background: rgba(255, 255, 255, 0.85);
-            border-color: rgba(0, 0, 0, 0.15);
-            color: #333;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-        body.light-mode .floating-btn:hover {
-            background: rgba(0, 0, 0, 0.1);
-            border-color: #2E7D32;
-            color: #2E7D32;
-        }
-        body.light-mode .floating-btn .tooltip {
-            background: rgba(255, 255, 255, 0.9);
-            color: #1a1a1a;
-            border-color: rgba(0, 0, 0, 0.1);
-        }
-
-        /* =========================================
-           RESET
-        ========================================= */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-
-        /* =========================================
-           BODY
-        ========================================= */
         body {
-            min-height: 100vh;
-            overflow-x: hidden;
-            background-color: #000000;
-            color: var(--text);
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            position: relative;
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
-
-        /* =========================================
-           BACKGROUND IMAGE
-        ========================================= */
-        .bg-image {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
-            object-fit: cover;
-            opacity: 0.40;
-            animation: backgroundPulse 5s ease-in-out infinite;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
-        }
-        @keyframes backgroundPulse {
-            0% { opacity: 0.40; }
-            50% { opacity: 0.52; }
-            100% { opacity: 0.40; }
-        }
-
-        /* =========================================
-           FOOTER GLOW
-        ========================================= */
-        .footer-glow {
-            position: fixed;
-            bottom: -80px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 140vw;
-            max-width: 1500px;
-            height: 380px;
-            background: radial-gradient(ellipse at 50% 100%,
-                        rgba(76, 175, 80, 0.7) 0%,
-                        rgba(76, 175, 80, 0.4) 30%,
-                        rgba(56, 142, 60, 0.15) 55%,
-                        transparent 80%);
-            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-            filter: blur(35px);
-            pointer-events: none;
-            z-index: -1;
-            animation: pulseGlow 5s ease-in-out infinite alternate;
-            transition: opacity 0.5s ease;
-        }
-        .footer-glow::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 85%;
-            height: 200%;
-            background: radial-gradient(ellipse at 50% 100%,
-                        rgba(76, 175, 80, 0.25) 0%,
-                        transparent 70%);
-            filter: blur(70px);
-            border-radius: 50%;
-            transition: opacity 0.5s ease;
-        }
-        @keyframes pulseGlow {
-            0% { opacity: 0.25; transform: translateX(-50%) scale(0.9); filter: blur(35px); }
-            100% { opacity: 0.65; transform: translateX(-50%) scale(1.08); filter: blur(30px); }
-        }
-        .footer-fade {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 50vh;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
-            pointer-events: none;
-            z-index: -1;
-            transition: opacity 0.5s ease;
-        }
-
-        /* =========================================
-           NAVBAR
-        ========================================= */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 20;
-            height: 76px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 6%;
-            background: rgba(0, 0, 0, .7);
-            backdrop-filter: blur(18px);
-            border-bottom: 1px solid rgba(76, 175, 80, .08);
-            transition: background-color 0.5s ease, border-color 0.5s ease;
-        }
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex: 0 0 auto;
-        }
-        .nav-logo img {
-            height: 40px;
-            width: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid rgba(76, 175, 80, 0.3);
-        }
-        .nav-logo span {
-            color: #f5ecec;
-            font-family: "V1", Tahoma, Arial, sans-serif;
-            font-size: 18px;
-            font-weight: 700;
-            transition: color 0.5s ease;
-        }
-        .nav-logo span span { color: var(--main); }
-        body.light-mode .nav-logo span { color: #1a1a1a; }
-
-        .nav-left {
-            display: flex;
-            gap: 28px;
-            align-items: center;
-            flex: 1;
-            justify-content: flex-end;
-        }
-        .nav-left a {
-            color: #b09a9b;
-            text-decoration: none;
-            font-size: 14px;
-            font-family: "V1", Tahoma, Arial, sans-serif;
-            font-weight: 500;
-            transition: .3s ease;
-            padding: 8px 16px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .nav-left a:hover {
-            color: #1a0f10;
-            background: #ffffff;
-            box-shadow: 0 0 25px rgba(76, 175, 80, .2);
-        }
-        .nav-center {
-            display: flex;
-            justify-content: center;
-            flex: 0 1 auto;
-            margin: 0 10px;
-        }
-        .btn-home {
-            padding: 8px 24px;
-            border-radius: 10px;
-            background: #ffffff;
-            border: 1px solid rgba(76, 175, 80, .3);
-            color: #1a0f10;
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: .3s ease;
-            box-shadow: 0 0 20px rgba(76, 175, 80, .1);
-            cursor: pointer;
-        }
-        .btn-home:hover {
-            box-shadow: 0 0 35px rgba(76, 175, 80, .25);
-            background: #f5f0f0;
-            transform: translateY(-1px);
-        }
-        .nav-right {
-            display: flex;
-            gap: 28px;
-            align-items: center;
-            flex: 1;
-            justify-content: flex-start;
-        }
-        .nav-right a {
-            color: #b09a9b;
-            text-decoration: none;
-            font-size: 14px;
-            font-family: "V1", Tahoma, Arial, sans-serif;
-            font-weight: 500;
-            transition: .3s ease;
-            padding: 8px 16px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .nav-right a:hover {
-            color: #1a0f10;
-            background: #ffffff;
-            box-shadow: 0 0 25px rgba(76, 175, 80, .2);
-        }
-
-        /* =========================================
-           HERO
-        ========================================= */
-        .hero {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #060606;
+            color: #e0e0e0;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 125px 20px 80px;
-            position: relative;
-            z-index: 1;
+            padding: 1.5rem;
+            margin: 0;
+            overflow: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 255, 100, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 200, 80, 0.03) 0%, transparent 50%),
+                repeating-linear-gradient(45deg, rgba(0,255,100,0.01) 0px, rgba(0,255,100,0.01) 2px, transparent 2px, transparent 8px);
         }
-        .hero-content {
-            max-width: 920px;
-            animation: heroIn .9s ease both;
+
+        /* ===== SPLASH SCREEN ===== */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #060606;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                        visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            background-image: 
+                radial-gradient(circle at 50% 40%, rgba(0, 255, 100, 0.06) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(0, 200, 80, 0.03) 0%, transparent 40%);
         }
-        @keyframes heroIn {
-            from { opacity: 0; transform: translateY(25px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .hero-logo {
-            display: block;
-            margin: 0 auto 30px;
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(76, 175, 80, 0.3);
-            box-shadow: 0 0 60px rgba(76, 175, 80, 0.15), 0 0 120px rgba(76, 175, 80, 0.05);
-            transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
-            background: transparent;
-        }
-        .hero-logo:hover {
+
+        #splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
             transform: scale(1.05);
-            box-shadow: 0 0 80px rgba(76, 175, 80, 0.25), 0 0 150px rgba(76, 175, 80, 0.1);
-            border-color: rgba(76, 175, 80, 0.6);
-        }
-        body.light-mode .hero-logo {
-            border-color: rgba(46, 125, 50, 0.3);
-            box-shadow: 0 0 60px rgba(46, 125, 50, 0.1), 0 0 120px rgba(46, 125, 50, 0.03);
-        }
-        body.light-mode .hero-logo:hover {
-            border-color: rgba(46, 125, 50, 0.6);
-            box-shadow: 0 0 80px rgba(46, 125, 50, 0.2), 0 0 150px rgba(46, 125, 50, 0.08);
-        }
-        .hero h1 {
-            font-size: clamp(42px, 7vw, 86px);
-            line-height: 1;
-            font-weight: 900;
-            letter-spacing: -2px;
-            margin-bottom: 22px;
-            font-family: "V1";
-            color: #f5ecec;
-            transition: color 0.5s ease;
-        }
-        .hero h1 span {
-            color: var(--main);
-            text-shadow: 0 0 45px rgba(76, 175, 80, .15);
-            transition: color 0.5s ease, text-shadow 0.5s ease;
-        }
-        .sub-slogan {
-            color: #c9b5b6;
-            font-size: 16px;
-            margin-bottom: 38px;
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            transition: color 0.5s ease;
-        }
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 14px;
-            margin-top: 5px;
-            flex-wrap: wrap;
-        }
-        .hero-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 200px;
-            padding: 13px 25px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-family: "V1";
-            font-size: 17px;
-            font-weight: 600;
-            transition: .3s ease;
-            cursor: pointer;
-            border: none;
-        }
-        .hero-btn:active { transform: scale(0.94); }
-        .hero-btn.primary {
-            background: #ffffff;
-            color: #000000;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-        .hero-btn.primary:hover {
-            background: #f5f0f0;
-            box-shadow: 0 8px 30px rgba(255, 255, 255, .15);
-        }
-        .hero-btn.secondary {
-            background: var(--main);
-            color: #ffffff;
-            box-shadow: 0 0 25px rgba(76, 175, 80, .15);
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-        .hero-btn.secondary:hover {
-            background: var(--main-light);
-            box-shadow: 0 8px 35px rgba(76, 175, 80, .25);
         }
 
-        /* ============================================================
-           چرا مگا لانچر؟
-        ============================================================ */
-        .mega-reasons-section {
-            padding: 70px 20px 90px;
-            background: transparent;
-            position: relative;
-            z-index: 1;
-        }
-        .mega-reasons-container {
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-        .mega-reasons-header {
+        .splash-content {
             text-align: center;
-            margin-bottom: 55px;
+            max-width: 550px;
+            padding: 2rem;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
         }
-        .mega-reasons-header h2 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-            font-family: "V1", Tahoma, Arial, sans-serif;
-            transition: color 0.5s ease;
-        }
-        .mega-reasons-header h2 span {
-            color: var(--main);
-            transition: color 0.5s ease;
-        }
-        .mega-reasons-header h2::after {
+
+        /* افکت حلقه‌های نئونی */
+        .splash-content::before {
             content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--main), var(--main-light));
-            margin: 14px auto 0;
-            border-radius: 4px;
-        }
-        .mega-reasons-header p {
-            font-size: 1.2rem;
-            color: var(--muted);
-            margin-top: 14px;
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            transition: color 0.5s ease;
-        }
-        .mega-reasons-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 28px;
-        }
-        .reason-card {
-            background: rgba(76, 175, 80, 0.06);
-            border-radius: 24px;
-            padding: 30px 26px 26px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(76, 175, 80, 0.12);
-            transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.5s ease;
-            display: flex;
-            flex-direction: column;
-            backdrop-filter: blur(10px);
-        }
-        .reason-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 44px rgba(0, 0, 0, 0.8);
-            border-color: var(--main);
-        }
-        .card-icon {
-            font-size: 2.8rem;
-            margin-bottom: 6px;
-            display: inline-block;
-        }
-        .reason-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin: 6px 0 12px;
-            line-height: 1.3;
-            font-family: "V1", Tahoma, Arial, sans-serif;
-            transition: color 0.5s ease;
-        }
-        .reason-card h3 span {
-            color: var(--main);
-            transition: color 0.5s ease;
-        }
-        .reason-card p {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: var(--muted);
-            margin-bottom: 18px;
-            flex: 1;
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            transition: color 0.5s ease;
-        }
-        .card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 4px;
-        }
-        .card-tags span {
-            background: rgba(76, 175, 80, 0.12);
-            color: var(--main-light);
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 6px 14px;
-            border-radius: 40px;
-            letter-spacing: 0.3px;
-            border: 1px solid rgba(76, 175, 80, 0.15);
-            text-transform: uppercase;
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease;
-        }
-        body.light-mode .reason-card {
-            background: rgba(0, 0, 0, 0.05);
-            border-color: rgba(0, 0, 0, 0.1);
-        }
-        body.light-mode .reason-card h3 { color: #1a1a1a; }
-        body.light-mode .reason-card p { color: #555; }
-        body.light-mode .mega-reasons-header h2 { color: #1a1a1a; }
-        body.light-mode .card-tags span {
-            background: rgba(0, 0, 0, 0.08);
-            color: #333;
-            border-color: rgba(0, 0, 0, 0.1);
-        }
-
-        /* =========================================
-           مودال دانلود
-        ========================================= */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(12px);
-            z-index: 100;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            animation: modalFade .3s ease;
-            transition: background 0.5s ease;
-        }
-        .modal-overlay.active { display: flex; }
-        @keyframes modalFade {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .modal-content {
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid rgba(76, 175, 80, 0.15);
-            border-radius: 24px;
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 40px 35px 45px;
-            position: relative;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
-            transition: background 0.5s ease, border-color 0.5s ease;
-        }
-        .modal-content::-webkit-scrollbar { width: 4px; }
-        .modal-content::-webkit-scrollbar-track { background: transparent; }
-        .modal-content::-webkit-scrollbar-thumb { background: var(--main); border-radius: 10px; }
-        .modal-close {
             position: absolute;
-            top: 16px;
-            left: 20px;
-            background: rgba(76, 175, 80, 0.08);
-            border: 1px solid rgba(76, 175, 80, 0.12);
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: 
+                conic-gradient(from 0deg at 50% 50%, 
+                    transparent 0deg, 
+                    rgba(0, 255, 100, 0.03) 60deg, 
+                    transparent 120deg,
+                    rgba(0, 255, 100, 0.03) 180deg,
+                    transparent 240deg,
+                    rgba(0, 255, 100, 0.03) 300deg,
+                    transparent 360deg);
             border-radius: 50%;
-            width: 42px;
-            height: 42px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: #c9b5b6;
-            font-size: 22px;
-            font-family: "V1", Tahoma, Arial, sans-serif;
+            animation: rotateGlow 10s linear infinite;
+            z-index: -1;
+            filter: blur(20px);
         }
-        .modal-close:hover {
-            background: rgba(76, 175, 80, 0.15);
-            border-color: rgba(76, 175, 80, 0.3);
-            color: #ffffff;
-            transform: rotate(90deg);
-        }
-        .modal-close:active { transform: scale(0.9) rotate(90deg); }
 
-        /* =========================================
-           محتوای مودال دانلود
-        ========================================= */
-        .download-in-modal {
-            width: 100%;
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1.2); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ===== LOGO (متنی) ===== */
+        .splash-logo-text {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00ff88, #00b33c);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #060606;
+            box-shadow: 0 0 40px rgba(0, 200, 80, 0.2), inset 0 0 40px rgba(0, 0, 0, 0.1);
+            border: 3px solid rgba(0, 255, 100, 0.3);
+            animation: logoPulse 3s ease-in-out infinite;
+            transition: all 0.5s ease;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            user-select: none;
         }
-        .download-in-modal .download-title {
-            font-size: clamp(28px, 3.5vw, 44px);
-            font-weight: 800;
-            margin-bottom: 12px;
-            font-family: "V1";
-            color: #f5ecec;
-            text-align: center;
-            transition: color 0.5s ease;
+
+        .splash-logo-text:hover {
+            transform: scale(1.05) rotate(5deg);
+            border-color: rgba(0, 255, 100, 0.6);
+            box-shadow: 0 0 60px rgba(0, 200, 80, 0.3);
         }
-        .download-in-modal .download-title span {
-            color: var(--main);
-            transition: color 0.5s ease;
+
+        @keyframes logoPulse {
+            0%, 100% { box-shadow: 0 0 40px rgba(0, 200, 80, 0.2), inset 0 0 40px rgba(0, 0, 0, 0.1); }
+            50% { box-shadow: 0 0 70px rgba(0, 200, 80, 0.35), inset 0 0 60px rgba(0, 0, 0, 0.05); }
         }
-        .download-in-modal .download-sub {
-            color: #c9b5b6;
-            font-size: 15px;
-            margin-bottom: 35px;
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            text-align: center;
-            transition: color 0.5s ease;
+
+        .splash-title {
+            font-family: 'Orbitron', 'Segoe UI', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00ff88, #00b33c, #00ff88);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientMove 3s ease-in-out infinite;
+            letter-spacing: 2px;
+            text-shadow: 0 0 40px rgba(0, 255, 100, 0.1);
+            margin-bottom: 0.5rem;
         }
-        .download-in-modal .download-btn-wrap { margin-bottom: 45px; }
-        .download-in-modal .btn-download {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 42px;
-            border-radius: 14px;
-            background: #ffffff;
-            border: 2px solid rgba(76, 175, 80, 0.3);
-            color: #1a0f10;
-            font-family: "V1";
-            font-size: 17px;
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .splash-subtitle {
+            color: #6a6a6a;
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(0, 255, 100, 0.06);
+            padding-bottom: 1.5rem;
+            font-family: 'Orbitron', 'Segoe UI', sans-serif;
+        }
+
+        /* ===== ENTER BUTTON ===== */
+        .enter-btn {
+            display: inline-block;
+            padding: 1rem 4rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            text-decoration: none;
+            color: #060606;
+            background: linear-gradient(135deg, #00ff88, #00b33c);
+            border: none;
+            border-radius: 60px;
             cursor: pointer;
-            transition: all 0.15s ease;
-            box-shadow: 0 0 40px rgba(76, 175, 80, 0.15);
-        }
-        .download-in-modal .btn-download:active {
-            transform: scale(0.94);
-            background: #e8e0e0;
-            box-shadow: 0 0 20px rgba(76, 175, 80, 0.05);
-        }
-        .download-in-modal .btn-download svg {
-            width: 20px;
-            height: 20px;
-            fill: #1a0f10;
-            transition: fill 0.5s ease;
-        }
-        .download-in-modal .systems-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            width: 100%;
-            max-width: 800px;
-        }
-        .download-in-modal .system-box {
-            background: rgba(76, 175, 80, 0.04);
-            border: 1px solid rgba(76, 175, 80, 0.1);
-            border-radius: 16px;
-            padding: 24px 22px;
-            backdrop-filter: blur(10px);
-            cursor: default;
-            transition: all 0.15s ease, background 0.5s ease, border-color 0.5s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 30px rgba(0, 200, 80, 0.2);
+            letter-spacing: 2px;
             position: relative;
             overflow: hidden;
+            font-family: 'Orbitron', 'Segoe UI', sans-serif;
         }
-        .download-in-modal .system-box::before {
+
+        .enter-btn::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #00ff88, #00b33c, #00ff88);
+            background-size: 200% 200%;
+            border-radius: 60px;
+            z-index: -1;
+            animation: gradientMove 3s ease-in-out infinite;
+            filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .enter-btn:hover::before {
+            opacity: 1;
+        }
+
+        .enter-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(0, 200, 80, 0.3);
+        }
+
+        .enter-btn:active {
+            transform: scale(0.95);
+        }
+
+        .enter-icon {
+            display: inline-block;
+            margin-left: 12px;
+            font-size: 1.2rem;
+            animation: iconBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+
+        .splash-hint {
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #3a3a3a;
+            font-family: 'Orbitron', 'Segoe UI', sans-serif;
+            letter-spacing: 1px;
+            opacity: 0.6;
+        }
+
+        /* ===== MAIN PAGE ===== */
+        .maintenance-card {
+            max-width: 680px;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 2.5rem;
+            padding: 2.8rem 2.5rem;
+            box-shadow: 0 25px 60px -8px rgba(0, 0, 0, 0.9), 
+                        0 0 0 1px rgba(0, 255, 100, 0.1),
+                        inset 0 0 80px rgba(0, 255, 100, 0.02);
+            border: 1px solid rgba(0, 200, 80, 0.15);
+            text-align: center;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+        }
+
+        .maintenance-card.visible {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* افکت‌های نئونی پویا */
+        .maintenance-card::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 30% 50%,
-                        rgba(76, 175, 80, 0.08) 0%,
-                        rgba(76, 175, 80, 0.04) 30%,
-                        transparent 70%);
-            pointer-events: none;
-            animation: lightSweep 8s ease-in-out infinite alternate;
-            transition: background 0.5s ease;
+            background: conic-gradient(from 0deg at 50% 50%, 
+                rgba(0, 255, 100, 0.03), 
+                rgba(0, 200, 80, 0.02), 
+                rgba(0, 255, 100, 0.03));
+            animation: rotateGlow 20s linear infinite;
+            z-index: 0;
         }
-        .download-in-modal .system-box.recommended::before {
-            background: radial-gradient(circle at 70% 50%,
-                        rgba(76, 175, 80, 0.12) 0%,
-                        rgba(76, 175, 80, 0.05) 30%,
-                        transparent 70%);
-            animation: lightSweep2 8s ease-in-out infinite alternate;
-        }
-        @keyframes lightSweep {
-            0% { transform: translateX(-10%) translateY(-10%) scale(1); opacity: 0.5; }
-            50% { transform: translateX(10%) translateY(5%) scale(1.2); opacity: 1; }
-            100% { transform: translateX(-5%) translateY(-5%) scale(0.9); opacity: 0.6; }
-        }
-        @keyframes lightSweep2 {
-            0% { transform: translateX(10%) translateY(-10%) scale(1); opacity: 0.4; }
-            50% { transform: translateX(-10%) translateY(5%) scale(1.3); opacity: 1; }
-            100% { transform: translateX(5%) translateY(-5%) scale(0.9); opacity: 0.5; }
-        }
-        .download-in-modal .system-box::after {
+
+        /* خطوط شبکه AI */
+        .maintenance-card::after {
             content: '';
             position: absolute;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle at 50% 50%,
-                        rgba(76, 175, 80, 0.03) 0%,
-                        transparent 60%);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(0, 255, 100, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 100, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
             pointer-events: none;
-            animation: glowOrbit 12s linear infinite;
-            transition: background 0.5s ease;
-        }
-        @keyframes glowOrbit {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.1); }
-            100% { transform: rotate(360deg) scale(1); }
-        }
-        .download-in-modal .system-box:active { transform: scale(0.98); }
-        .download-in-modal .system-box.minimum {
-            border-right: 3px solid rgba(76, 175, 80, 0.3);
-        }
-        .download-in-modal .system-box.recommended {
-            border-left: 3px solid var(--main);
-        }
-        .download-in-modal .system-box h3 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #f0e6e6;
-            font-family: "V1";
-            position: relative;
-            z-index: 1;
-            transition: color 0.5s ease;
-        }
-        .download-in-modal .system-box h3 span {
-            color: var(--main);
-            transition: color 0.5s ease;
-        }
-        .download-in-modal .system-box ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            position: relative;
-            z-index: 1;
-        }
-        .download-in-modal .system-box ul li {
-            color: #c9b5b6;
-            font-size: 13px;
-            padding: 5px 0;
-            border-bottom: 1px solid rgba(76, 175, 80, 0.05);
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: color 0.5s ease, border-color 0.5s ease;
-        }
-        .download-in-modal .system-box ul li:last-child { border-bottom: none; }
-        .download-in-modal .system-box ul li::before {
-            content: "•";
-            color: var(--main);
-            font-size: 16px;
-            transition: color 0.5s ease;
-        }
-        .download-in-modal .system-box .label {
-            font-size: 11px;
-            color: var(--main);
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-            display: block;
-            position: relative;
-            z-index: 1;
-            transition: color 0.5s ease;
         }
 
-        /* =========================================
-           مودال فروشگاه (تمام صفحه)
-        ========================================= */
-        .shop-modal .modal-overlay {
-            background: rgba(0, 0, 0, 0.94);
-            backdrop-filter: blur(20px);
-            padding: 0;
-        }
-        .shop-modal .modal-content {
-            max-width: 100%;
-            width: 100%;
-            height: 100vh;
-            max-height: 100vh;
-            border-radius: 0;
-            border: none;
-            background: rgba(0, 0, 0, 0.96);
-            padding: 30px 6% 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: none;
-            overflow-y: auto;
-            transition: background 0.5s ease;
-        }
-        .shop-modal .modal-content::-webkit-scrollbar { width: 4px; }
-        .shop-modal .modal-content::-webkit-scrollbar-track { background: transparent; }
-        .shop-modal .modal-content::-webkit-scrollbar-thumb { background: var(--main); border-radius: 10px; }
-        .shop-modal .btn-back-home {
-            position: fixed;
-            top: 24px;
-            right: 24px;
-            z-index: 110;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px 28px;
-            border-radius: 12px;
-            background: #ffffff;
-            border: 1px solid rgba(76, 175, 80, 0.2);
-            color: #1a0f10;
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
-        }
-        .shop-modal .btn-back-home:hover {
-            transform: translateY(-2px);
-            background: #f5f0f0;
-            box-shadow: 0 8px 35px rgba(76, 175, 80, 0.2);
-        }
-        .shop-modal .btn-back-home:active { transform: scale(0.95); }
-        .shop-modal .btn-back-home svg {
-            width: 18px;
-            height: 18px;
-            fill: #1a0f10;
-            transition: fill 0.5s ease;
-        }
-        .shop-in-modal {
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            padding-top: 20px;
-        }
-        .shop-in-modal .shop-header {
-            text-align: center;
-            margin-bottom: 50px;
-            width: 100%;
-        }
-        .shop-in-modal .shop-header .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 20px;
-            border: 1px solid rgba(76, 175, 80, 0.25);
-            background: rgba(76, 175, 80, 0.08);
-            border-radius: 999px;
-            color: var(--main-light);
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            font-size: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 40px rgba(76, 175, 80, 0.05);
-            animation: badgeFloat 3s ease-in-out infinite;
-            transition: color 0.5s ease, border-color 0.5s ease, background 0.5s ease;
-        }
-        .shop-in-modal .shop-header .badge-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--main);
-            box-shadow: 0 0 20px var(--main);
-            animation: dotPulse 1.6s infinite;
-            transition: background 0.5s ease, box-shadow 0.5s ease;
-        }
-        @keyframes badgeFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
-        }
-        @keyframes dotPulse {
-            50% { opacity: .35; transform: scale(.65); }
-        }
-        .shop-in-modal .shop-header h1 {
-            font-family: "V1", Tahoma, Arial, sans-serif;
-            font-size: clamp(40px, 6vw, 72px);
-            font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 12px;
-            letter-spacing: -1px;
-            transition: color 0.5s ease;
-        }
-        .shop-in-modal .shop-header h1 span {
-            color: var(--main);
-            text-shadow: 0 0 60px rgba(76, 175, 80, 0.2);
-            transition: color 0.5s ease, text-shadow 0.5s ease;
-        }
-        .shop-in-modal .shop-header p {
-            color: var(--muted);
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            font-size: 15px;
-            line-height: 2;
-            transition: color 0.5s ease;
-        }
-        .shop-in-modal .products {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            width: 100%;
-            max-width: 1200px;
-        }
-        .shop-in-modal .product-card {
+        .content {
             position: relative;
-            width: 100%;
-            padding: 12px;
-            overflow: hidden;
-            border-radius: 28px;
-            background: linear-gradient(145deg, rgba(76, 175, 80, 0.08), rgba(10, 7, 8, 0.98) 50%);
-            border: 1px solid rgba(76, 175, 80, 0.12);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-            transform-style: preserve-3d;
-            transition: transform .5s cubic-bezier(.2, .8, .2, 1),
-                border-color .4s ease,
-                box-shadow .4s ease,
-                background 0.5s ease;
-            animation: cardIn .9s .25s cubic-bezier(.2, .8, .2, 1) both;
+            z-index: 1;
         }
-        .shop-in-modal .product-card:nth-child(2) { animation-delay: .35s; }
-        .shop-in-modal .product-card:nth-child(3) { animation-delay: .45s; }
-        @keyframes cardIn {
-            from { opacity: 0; transform: translateY(45px) rotateX(6deg) scale(.95); }
-            to { opacity: 1; transform: translateY(0) rotateX(0) scale(1); }
-        }
-        .shop-in-modal .product-card::before {
-            content: "";
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            top: -140px;
-            right: -140px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(76, 175, 80, 0.2), transparent 70%);
-            filter: blur(40px);
-            opacity: .2;
-            transition: .6s ease, background 0.5s ease;
-        }
-        .shop-in-modal .product-card::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -120%;
-            width: 70%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.05), transparent);
-            transform: skewX(-18deg);
-            transition: left .9s ease;
-            pointer-events: none;
-        }
-        .shop-in-modal .product-card:hover {
-            transform: translateY(-16px) rotateX(2deg) rotateY(-1deg);
-            border-color: rgba(76, 175, 80, 0.5);
-            box-shadow: 0 50px 120px rgba(0, 0, 0, 0.7),
-                0 0 80px rgba(76, 175, 80, 0.08);
-        }
-        .shop-in-modal .product-card:hover::after { left: 140%; }
-        .shop-in-modal .product-card:hover::before { opacity: .7; transform: scale(1.6); }
-        .shop-in-modal .product-image {
-            position: relative;
-            width: 100%;
-            height: 220px;
-            overflow: hidden;
-            border-radius: 20px;
-            background: #151011;
-            border: 1px solid rgba(76, 175, 80, 0.08);
-        }
-        .shop-in-modal .product-image::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            pointer-events: none;
-            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.6));
-        }
-        .shop-in-modal .product-image::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 45%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.08), transparent);
-            transform: skewX(-20deg);
-            transition: .7s ease;
-            z-index: 3;
-        }
-        .shop-in-modal .product-card:hover .product-image::after { left: 150%; }
-        .shop-in-modal .product-image img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-            transition: transform .8s cubic-bezier(.2, .8, .2, 1),
-                filter .5s ease;
-        }
-        .shop-in-modal .product-card:hover .product-image img {
-            transform: scale(1.08);
-            filter: brightness(1.05) saturate(1.1);
-        }
-        .shop-in-modal .product-tag {
-            display: inline-flex;
-            align-items: center;
-            color: var(--main-light);
-            background: rgba(76, 175, 80, 0.08);
-            border: 1px solid rgba(76, 175, 80, 0.15);
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            font-size: 11px;
-            margin-bottom: 14px;
-            transition: .3s ease, color 0.5s ease, background 0.5s ease, border-color 0.5s ease;
-        }
-        .shop-in-modal .product-card:hover .product-tag {
-            background: rgba(76, 175, 80, 0.15);
-            border-color: rgba(76, 175, 80, 0.25);
-        }
-        .shop-in-modal .product-info {
-            position: relative;
-            z-index: 5;
-            padding: 22px 12px 10px;
-        }
-        .shop-in-modal .product-info h2 {
-            font-family: "V1", Tahoma, Arial, sans-serif;
-            font-size: 26px;
-            font-weight: 900;
-            margin-bottom: 10px;
-            transition: color 0.5s ease;
-        }
-        .shop-in-modal .product-info h2 span {
-            color: var(--main);
-            transition: .3s ease, color 0.5s ease;
-        }
-        .shop-in-modal .product-card:hover .product-info h2 span {
-            text-shadow: 0 0 40px rgba(76, 175, 80, 0.3);
-        }
-        .shop-in-modal .product-info p {
-            color: var(--muted);
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            font-size: 14px;
-            line-height: 2;
-            min-height: 56px;
-            transition: color 0.5s ease;
-        }
-        .shop-in-modal .product-bottom {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            margin-top: 22px;
-            padding-top: 18px;
-            border-top: 1px solid rgba(76, 175, 80, 0.08);
-            transition: border-color 0.5s ease;
-        }
-        .shop-in-modal .price {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-        .shop-in-modal .price small {
-            color: #806e70;
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            font-size: 11px;
-            transition: color 0.5s ease;
-        }
-        .shop-in-modal .price strong {
-            color: #f0dcdc;
-            font-family: "V4", Tahoma, Arial, sans-serif;
-            font-size: 24px;
-            font-weight: 600;
-            transition: color 0.5s ease;
-        }
-        .shop-in-modal .buy-btn {
-            position: relative;
-            overflow: hidden;
-            border: none;
-            cursor: pointer;
-            padding: 13px 30px;
-            border-radius: 12px;
-            background: var(--main);
-            color: #ffffff;
-            font-family: "V4", Tahoma, Arial, sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            transition: transform .25s ease,
-                background .25s ease,
-                box-shadow .25s ease;
-            box-shadow: 0 0 30px rgba(76, 175, 80, 0.15);
-        }
-        .shop-in-modal .buy-btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -120%;
-            width: 70%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transform: skewX(-20deg);
-            transition: .65s ease;
-        }
-        .shop-in-modal .buy-btn:hover {
-            transform: translateY(-3px);
-            background: var(--main-light);
-            box-shadow: 0 12px 40px rgba(76, 175, 80, 0.3);
-        }
-        .shop-in-modal .buy-btn:hover::before { left: 150%; }
-        .shop-in-modal .buy-btn:active { transform: scale(.96); }
 
-        /* =========================================
-           مودال درباره ما
-        ========================================= */
-        .about-modal .modal-content {
-            max-width: 750px;
-            padding: 45px 40px 50px;
-        }
-        .about-in-modal {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .about-in-modal .about-logo {
+        /* لوگو در صفحه اصلی (متنی) */
+        .main-logo-text {
             width: 110px;
             height: 110px;
+            margin: 0 auto 1.5rem;
             border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(76, 175, 80, 0.3);
-            box-shadow: 0 0 50px rgba(76, 175, 80, 0.15);
-            margin-bottom: 20px;
-            background: transparent;
-        }
-        .about-in-modal h2 {
-            font-family: "V1", Tahoma, Arial, sans-serif;
-            font-size: 32px;
-            font-weight: 800;
-            color: #f5ecec;
-            margin-bottom: 8px;
-            transition: color 0.5s ease;
-        }
-        .about-in-modal h2 span {
-            color: var(--main);
-            transition: color 0.5s ease;
-        }
-        .about-in-modal .about-sub {
-            color: var(--muted);
-            font-size: 14px;
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            margin-bottom: 28px;
-            text-align: center;
-            transition: color 0.5s ease;
-        }
-        .about-in-modal .about-text {
-            color: var(--muted);
-            font-size: 15px;
-            line-height: 2.2;
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            text-align: justify;
-            margin-bottom: 30px;
-            padding: 0 6px;
-            transition: color 0.5s ease;
-        }
-        .about-in-modal .about-text strong {
-            color: var(--main-light);
-            font-family: "V4", Tahoma, Arial, sans-serif;
-            transition: color 0.5s ease;
-        }
-        .about-in-modal .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px 28px;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto 10px;
-            padding: 18px 20px;
-            background: rgba(76, 175, 80, 0.04);
-            border-radius: 18px;
-            border: 1px solid rgba(76, 175, 80, 0.08);
-            transition: background 0.5s ease, border-color 0.5s ease;
-        }
-        .about-in-modal .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--muted);
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            font-size: 14px;
-            padding: 6px 0;
-            transition: color 0.5s ease;
-        }
-        .about-in-modal .contact-item .icon-box {
+            background: linear-gradient(135deg, #00ff88, #00b33c);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 32px;
-            height: 32px;
-            min-width: 32px;
-            border-radius: 50%;
-            background: rgba(76, 175, 80, 0.1);
-            border: 1px solid rgba(76, 175, 80, 0.15);
-            color: var(--main-light);
-            font-size: 15px;
-            font-family: "V1", Tahoma, Arial, sans-serif;
-            font-weight: 700;
-            transition: background 0.5s ease, border-color 0.5s ease, color 0.5s ease;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: #060606;
+            box-shadow: 0 0 30px rgba(0, 200, 80, 0.15), inset 0 0 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(0, 255, 100, 0.2);
+            transition: all 0.5s ease;
+            user-select: none;
         }
-        .about-in-modal .contact-item a {
-            color: var(--muted);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .about-in-modal .contact-item a:hover {
-            color: var(--main-light);
-        }
-        body.light-mode .about-in-modal h2 { color: #1a1a1a; }
-        body.light-mode .about-in-modal .about-sub { color: #555; }
-        body.light-mode .about-in-modal .about-text { color: #444; }
-        body.light-mode .about-in-modal .about-text strong { color: #2E7D32; }
-        body.light-mode .about-in-modal .contact-grid {
-            background: rgba(0, 0, 0, 0.04);
-            border-color: rgba(0, 0, 0, 0.08);
-        }
-        body.light-mode .about-in-modal .contact-item { color: #555; }
-        body.light-mode .about-in-modal .contact-item .icon-box {
-            background: rgba(0, 0, 0, 0.06);
-            border-color: rgba(0, 0, 0, 0.12);
-            color: #2E7D32;
-        }
-        body.light-mode .about-in-modal .contact-item a { color: #555; }
-        body.light-mode .about-in-modal .contact-item a:hover { color: #2E7D32; }
 
-        /* =========================================
-           فوتر
-        ========================================= */
-        .footer {
-            position: relative;
-            z-index: 1;
-            border-top: 1px solid rgba(76, 175, 80, 0.06);
-            padding: 60px 6% 40px;
-            margin-top: 40px;
-            transition: border-color 0.5s ease;
+        .main-logo-text:hover {
+            transform: rotate(5deg) scale(1.05);
+            border-color: rgba(0, 255, 100, 0.5);
+            box-shadow: 0 0 50px rgba(0, 200, 80, 0.25);
         }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr;
-            gap: 40px;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-        .footer-col h3 {
-            font-family: "V1";
-            font-size: 18px;
+
+        h1 {
+            font-family: 'Orbitron', 'Segoe UI', sans-serif;
+            font-size: 2rem;
             font-weight: 700;
-            color: #f5ecec;
-            margin-bottom: 16px;
-            transition: color 0.5s ease;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, #00ff88, #00b33c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.3;
+            letter-spacing: 2px;
         }
-        .footer-col h3 span {
-            color: var(--main);
-            transition: color 0.5s ease;
+
+        .status-message {
+            background: rgba(0, 255, 100, 0.03);
+            border-radius: 1.5rem;
+            padding: 1.8rem 1.5rem;
+            margin: 2rem 0 2.2rem 0;
+            border: 1px solid rgba(0, 255, 100, 0.06);
+            backdrop-filter: blur(10px);
         }
-        .footer-col p {
-            color: #b09a9b;
-            font-size: 14px;
-            line-height: 1.8;
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            transition: color 0.5s ease;
+
+        .status-message p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #b0b0b0;
+            font-weight: 300;
+            letter-spacing: 0.5px;
         }
-        .footer-col .brand-desc { margin-top: 10px; }
-        .footer-col ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+
+        .status-message strong {
+            color: #00ff88;
+            font-weight: 600;
+            text-shadow: 0 0 20px rgba(0, 255, 100, 0.1);
         }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a {
-            color: #b09a9b;
-            text-decoration: none;
-            font-size: 14px;
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            transition: .3s ease, color 0.5s ease;
+
+        .support-box {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 1.2rem;
+            padding: 1.5rem 1.2rem;
+            margin-top: 1.5rem;
+            border: 1px solid rgba(0, 255, 100, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .support-label {
+            color: #8a8a8a;
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .support-telegram {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-        }
-        .footer-col ul li a:hover { color: #ffffff; }
-        .footer-col ul li a .icon {
-            color: var(--main);
-            font-size: 13px;
-            font-weight: 700;
-            transition: color 0.5s ease;
-        }
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            max-width: 1300px;
-            margin-left: auto;
-            margin-right: auto;
-            padding-top: 10px;
-        }
-        .footer-bottom p {
-            color: #6a5e5f;
-            font-size: 13px;
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            transition: color 0.5s ease;
-        }
-        .footer-social {
-            display: flex;
-            gap: 20px;
-        }
-        .footer-social a {
-            color: #6a5e5f;
+            gap: 8px;
+            background: linear-gradient(135deg, #0f1f0f, #0a0f0a);
+            padding: 0.6rem 1.6rem;
+            border-radius: 60px;
             text-decoration: none;
-            font-size: 14px;
-            font-family: "V2", Tahoma, Arial, sans-serif;
-            transition: .3s ease, color 0.5s ease;
-        }
-        .footer-social a:hover { color: var(--main); }
-        hr {
-            border: none;
-            border-top: 1px solid rgba(76, 175, 80, 0.15);
-            max-width: 1300px;
-            transition: border-color 0.5s ease;
+            color: #e0e0e0;
+            font-weight: 500;
+            border: 1px solid rgba(0, 200, 80, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            font-family: 'Orbitron', 'Segoe UI', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
         }
 
-        /* =========================================
-           RESPONSIVE
-        ========================================= */
-        @media (max-width: 1024px) {
-            .shop-in-modal .products { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+        .support-telegram:hover {
+            background: linear-gradient(135deg, #1a2a1a, #0f1a0f);
+            border-color: #00ff88;
+            transform: scale(1.02);
+            box-shadow: 0 6px 30px rgba(0, 200, 80, 0.15);
         }
-        @media (max-width: 850px) {
-            .navbar { padding: 0 3%; height: 68px; }
-            .nav-logo img { height: 32px; width: 32px; }
-            .nav-logo span { font-size: 14px; }
-            .nav-left, .nav-right { gap: 14px; }
-            .nav-left a, .nav-right a { font-size: 12px; padding: 6px 12px; }
-            .btn-home { padding: 6px 16px; font-size: 12px; }
-            .hero-logo { width: 140px; height: 140px; }
-            .footer-glow { height: 280px; width: 120vw; }
-            .modal-content { padding: 30px 20px 35px; margin: 10px; }
-            .download-in-modal .systems-grid { gap: 16px; }
-            .download-in-modal .system-box { padding: 20px 16px; }
-            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
-            .shop-modal .modal-content { padding: 80px 20px 40px; }
-            .shop-modal .btn-back-home { top: 18px; right: 18px; padding: 8px 20px; font-size: 13px; }
-            .shop-in-modal .product-image { height: 200px; }
-            .shop-in-modal .shop-header h1 { font-size: 40px; }
-            .shop-in-modal .products { grid-template-columns: 1fr 1fr; gap: 20px; }
-            .floating-btn { width: 42px; height: 42px; font-size: 17px; }
-            .floating-btn .tooltip { font-size: 11px; padding: 4px 12px; right: 50px; }
-            .floating-btn:hover .tooltip { right: 54px; }
-            .floating-actions { bottom: 20px; right: 20px; gap: 10px; }
-            .mega-reasons-header h2 { font-size: 2.2rem; }
-            .mega-reasons-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-            .about-in-modal .contact-grid { grid-template-columns: 1fr; gap: 8px; }
+
+        .telegram-icon {
+            display: inline-block;
+            background: #00b33c;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            color: #0a0a0a;
+            text-align: center;
+            line-height: 28px;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(0, 200, 80, 0.2);
         }
-        @media (max-width: 650px) {
-            .navbar { padding: 0 4%; height: 60px; }
-            .nav-logo img { height: 28px; width: 28px; }
-            .nav-logo span { font-size: 12px; }
-            .nav-left { gap: 6px; }
-            .nav-right { gap: 6px; }
-            .nav-left a, .nav-right a { font-size: 10px; padding: 4px 8px; }
-            .btn-home { padding: 5px 12px; font-size: 10px; }
-            .hero-logo { width: 120px; height: 120px; margin-bottom: 20px; }
-            .hero { padding: 100px 16px 60px; }
-            .hero h1 { font-size: 32px; letter-spacing: 0; }
-            .sub-slogan { font-size: 13px; padding: 0 10px; }
-            .hero-buttons { gap: 10px; }
-            .hero-btn { min-width: 135px; padding: 12px 18px; font-size: 13px; }
-            .modal-content { padding: 25px 16px 30px; border-radius: 18px; max-height: 95vh; }
-            .modal-close { top: 12px; left: 14px; width: 36px; height: 36px; font-size: 18px; }
-            .download-in-modal .systems-grid { grid-template-columns: 1fr; gap: 14px; }
-            .download-in-modal .system-box.minimum { border-right: none; border-bottom: 3px solid rgba(76, 175, 80, 0.3); }
-            .download-in-modal .system-box.recommended { border-left: none; border-bottom: 3px solid var(--main); }
-            .download-in-modal .btn-download { padding: 12px 28px; font-size: 15px; }
-            .download-in-modal .download-title { font-size: 24px; }
-            .download-in-modal .download-sub { font-size: 13px; margin-bottom: 25px; }
-            .footer-glow { height: 200px; width: 110vw; }
-            .footer { padding: 40px 4% 30px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 25px; }
-            .footer-bottom { flex-direction: column; text-align: center; }
-            .shop-modal .modal-content { padding: 70px 16px 30px; }
-            .shop-modal .btn-back-home { top: 14px; right: 14px; padding: 7px 16px; font-size: 12px; }
-            .shop-modal .btn-back-home span { display: none; }
-            .shop-in-modal .shop-header h1 { font-size: 32px; }
-            .shop-in-modal .shop-header p { font-size: 13px; }
-            .shop-in-modal .products { grid-template-columns: 1fr; gap: 25px; max-width: 450px; }
-            .shop-in-modal .product-image { height: 200px; }
-            .shop-in-modal .product-info h2 { font-size: 24px; }
-            .shop-in-modal .product-info p { font-size: 13px; min-height: 44px; }
-            .shop-in-modal .price strong { font-size: 20px; }
-            .shop-in-modal .buy-btn { padding: 11px 22px; font-size: 14px; }
-            .floating-btn { width: 38px; height: 38px; font-size: 15px; }
-            .floating-btn .tooltip { font-size: 10px; padding: 3px 10px; right: 44px; }
-            .floating-btn:hover .tooltip { right: 48px; }
-            .floating-actions { bottom: 16px; right: 16px; gap: 8px; }
-            .mega-reasons-header h2 { font-size: 1.8rem; }
-            .mega-reasons-grid { grid-template-columns: 1fr; gap: 18px; }
-            .reason-card { padding: 24px 18px; }
-            .about-modal .modal-content { padding: 30px 18px 35px; }
-            .about-in-modal h2 { font-size: 26px; }
-            .about-in-modal .contact-grid { grid-template-columns: 1fr; gap: 6px; padding: 14px 16px; }
-            .about-in-modal .contact-item { font-size: 13px; }
+
+        .loading-dots {
+            display: inline-flex;
+            gap: 8px;
+            margin-top: 0.8rem;
         }
-        @media (max-width: 480px) {
-            .nav-left a, .nav-right a { font-size: 9px; padding: 4px 6px; }
-            .nav-logo img { height: 24px; width: 24px; }
-            .nav-logo span { font-size: 10px; }
-            .btn-home { padding: 4px 10px; font-size: 9px; }
-            .nav-left { gap: 4px; }
-            .nav-right { gap: 4px; }
-            .hero-logo { width: 100px; height: 100px; margin-bottom: 16px; }
-            .hero h1 { font-size: 26px; }
-            .hero-btn { min-width: 120px; padding: 10px 14px; font-size: 12px; }
-            .modal-content { padding: 20px 12px 25px; border-radius: 14px; }
-            .modal-close { top: 10px; left: 10px; width: 32px; height: 32px; font-size: 16px; }
-            .download-in-modal .system-box ul li { font-size: 12px; }
-            .download-in-modal .btn-download { padding: 10px 22px; font-size: 14px; }
-            .download-in-modal .btn-download svg { width: 18px; height: 18px; }
-            .footer-glow { height: 160px; width: 100vw; }
-            .shop-modal .modal-content { padding: 60px 12px 20px; }
-            .shop-modal .btn-back-home { top: 12px; right: 12px; padding: 6px 14px; font-size: 11px; }
-            .shop-in-modal .shop-header h1 { font-size: 28px; }
-            .shop-in-modal .product-image { height: 170px; }
-            .shop-in-modal .product-info h2 { font-size: 20px; }
-            .shop-in-modal .product-bottom { flex-wrap: wrap; gap: 10px; }
-            .shop-in-modal .price strong { font-size: 17px; }
-            .shop-in-modal .buy-btn { padding: 10px 18px; font-size: 13px; }
-            .floating-btn { width: 34px; height: 34px; font-size: 13px; border-width: 1.5px; }
-            .floating-btn .tooltip { font-size: 9px; padding: 2px 8px; right: 38px; }
-            .floating-btn:hover .tooltip { right: 42px; }
-            .floating-actions { bottom: 12px; right: 12px; gap: 6px; }
-            .about-in-modal h2 { font-size: 22px; }
-            .about-in-modal .about-text { font-size: 14px; }
+
+        .loading-dots span {
+            width: 10px;
+            height: 10px;
+            background: #00ff88;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulseDot 1.4s infinite ease-in-out both;
+            box-shadow: 0 0 15px rgba(0, 255, 100, 0.2);
+        }
+
+        .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+        .loading-dots span:nth-child(3) { animation-delay: 0; }
+
+        @keyframes pulseDot {
+            0%, 80%, 100% { transform: scale(0.4); opacity: 0.3; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        .footer-note {
+            margin-top: 1.8rem;
+            font-size: 0.7rem;
+            color: #3a3a3a;
+            border-top: 1px solid rgba(0, 255, 100, 0.04);
+            padding-top: 1.2rem;
+            font-family: 'Orbitron', 'Segoe UI', sans-serif;
+            letter-spacing: 1px;
+            opacity: 0.5;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 550px) {
+            .maintenance-card {
+                padding: 1.8rem 1.2rem;
+                border-radius: 1.8rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .status-message p {
+                font-size: 0.95rem;
+            }
+            .splash-title {
+                font-size: 2rem;
+            }
+            .splash-logo-text {
+                width: 100px;
+                height: 100px;
+                font-size: 2.8rem;
+            }
+            .main-logo-text {
+                width: 90px;
+                height: 90px;
+                font-size: 2.5rem;
+            }
+            .enter-btn {
+                padding: 0.8rem 2.5rem;
+                font-size: 0.95rem;
+            }
+            .support-box {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .splash-title {
+                font-size: 1.6rem;
+            }
+            .splash-subtitle {
+                font-size: 0.8rem;
+                letter-spacing: 1px;
+            }
+            .splash-logo-text {
+                width: 80px;
+                height: 80px;
+                font-size: 2.2rem;
+            }
+            .main-logo-text {
+                width: 75px;
+                height: 75px;
+                font-size: 2rem;
+            }
+            .enter-btn {
+                padding: 0.7rem 2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ===== AUDIO ===== */
+        #bg-music {
+            display: none;
         }
     </style>
 </head>
-
 <body>
 
-    <!-- =========================================
-         BACKGROUND IMAGE
-    ========================================= -->
-    <img src="https://uploadkon.ir/uploads/f79e24_26bgg.png" alt="Background" class="bg-image" />
+    <!-- ===== AUDIO ===== -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://cdn.imgurl.ir/uploads/u795985_.mp3" type="audio/mpeg">
+        مرورگر شما از پخش صوت پشتیبانی نمی‌کند.
+    </audio>
 
-    <!-- =========================================
-         FOOTER GLOW
-    ========================================= -->
-    <div class="footer-glow"></div>
-    <div class="footer-fade"></div>
-
-    <!-- =========================================
-         NAVBAR
-    ========================================= -->
-    <header class="navbar">
-        <div class="nav-left">
-            <a href="#" id="openShopModal">فروشگاه</a>
-            <a href="#" id="openDownloadModal">دانلود لانچر</a>
-        </div>
-        <div class="nav-center">
-            <a href="#" class="btn-home">صفحه اصلی</a>
-        </div>
-        <div class="nav-right">
-            <a href="https://reymit.ir/Megaultra" target="_blank">حمایت مالی</a>
-            <a href="#" id="openAboutModal">درباره ما</a>
-        </div>
-    </header>
-
-    <!-- =========================================
-         دکمه‌های دایره‌ای پایین سمت راست
-    ========================================= -->
-    <div class="floating-actions">
-        <button class="floating-btn" id="themeToggle" title="تغییر تم">
-            <span class="theme-icon" id="themeIcon">🌙</span>
-            <span class="tooltip" id="themeTooltip">تم</span>
-        </button>
-        <button class="floating-btn" id="langToggle" title="تغییر زبان">
-            <span class="flag-icon" id="langIcon">🇮🇷</span>
-            <span class="tooltip" id="langTooltip">فارسی</span>
-        </button>
-    </div>
-
-    <!-- =========================================
-         HERO
-    ========================================= -->
-    <main>
-        <section class="hero" id="home">
-            <div class="hero-content">
-                <img src="https://uploadkon.ir/uploads/c79125_26MEGALOGO.jpg" alt="MEGALUNCHER Logo" class="hero-logo" />
-                <h1 id="heroTitle">بزرگترین و بهینه‌ترین <span>لانچر</span> ایران</h1>
-                <div class="sub-slogan" id="heroSub">اولین و بهترین لانچر ماینکرفت در ایران ، بهترین تجربه رو ببر!</div>
-                <div class="hero-buttons">
-                    <button id="openDownloadModalBtn" class="hero-btn primary">دانلود لانچر</button>
-                    <button id="openShopModalBtn" class="hero-btn secondary">ورود به فروشگاه</button>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ============================================================
-    چرا مگا لانچر؟
-    ============================================================ -->
-    <section class="mega-reasons-section">
-        <div class="mega-reasons-container">
-            <div class="mega-reasons-header">
-                <h2>چرا <span>مگا لانچر</span>؟</h2>
-                <p>همه دلایلی که مگا لانچر را انتخاب برتر می‌کند</p>
-            </div>
-            <div class="mega-reasons-grid">
-                <div class="reason-card">
-                    <div class="card-icon"></div>
-                    <h3>اجرای سریع و بهینه</h3>
-                    <p>کولد لانچر با معماری سبک و بهینه‌شده طراحی شده تا حتی روی سیستم‌های ضعیف‌تر نیز به‌راحتی اجرا شود. زمان بارگذاری بازی و لانچر به‌طور قابل‌توجهی کاهش یافته و تجربه‌ای روان و بدون تأخیر را برای بازیکنان ماینکرافت فراهم می‌کند.</p>
-                    <div class="card-tags"><span>سرعت بالا</span><span>بهینه‌سازی</span><span>اجرای سریع</span></div>
-                </div>
-                <div class="reason-card">
-                    <div class="card-icon"></div>
-                    <h3>ظاهر مدرن و زیبا</h3>
-                    <p>طراحی جذاب و مدرن لانچر مگا گیم با تمرکز بر سادگی و کاربرپسندی. تمام عناصر رابط کاربری در جای مناسب خود قرار گرفته‌اند تا استفاده از لانچر سریع، راحت و لذت‌بخش باشد. تم تیره و رنگ‌بندی حرفه‌ای برای تجربه بصری بهتر.</p>
-                    <div class="card-tags"><span>رابط کاربری</span><span>طراحی مدرن</span><span>UI/UX</span></div>
-                </div>
-                <div class="reason-card">
-                    <div class="card-icon"></div>
-                    <h3>آپدیت خودکار و هوشمند</h3>
-                    <p>لانچر ماینکرافت مگا به‌صورت خودکار آخرین نسخه خود را از طریق CDN سریع دریافت می‌کند و همیشه به‌روز می‌ماند. شما نیازی به دانلود دستی نسخه‌های جدید ندارید و تمام آپدیت‌ها به‌صورت هوشمند و بدون دخالت کاربر انجام می‌شود.</p>
-                    <div class="card-tags"><span>آپدیت خودکار</span><span>به‌روزرسانی</span><span>نسخه جدید</span></div>
-                </div>
-                <div class="reason-card">
-                    <div class="card-icon"></div>
-                    <h3>تنظیمات هوشمند و خودکار</h3>
-                    <p>مگا لانچر به‌طور خودکار بهترین تنظیمات ممکن برای اجرای بازی ماینکرافت را بر اساس سخت‌افزار سیستم شما اعمال می‌کند. دیگر نیازی به تغییرات پیچیده یا دانش فنی ندارید—همه چیز از ابتدا برای بهترین عملکرد آماده است.</p>
-                    <div class="card-tags"><span>تنظیمات خودکار</span><span>بهینه‌سازی</span><span>پیکربندی</span></div>
-                </div>
-                <div class="reason-card">
-                    <div class="card-icon"></div>
-                    <h3>اتصال یک‌کلیکه به سرور</h3>
-                    <p>با یک کلیک مستقیماً وارد سرور گیم شوید—بدون نیاز به افزودن دستی آدرس سرور، بدون ساخت حساب کاربری، بدون مراحل اضافی. فقط لانچر را اجرا کنید و بازی را شروع کنید. ساده‌ترین راه برای ورود به دنیای ماینکرافت.</p>
-                    <div class="card-tags"><span>اتصال سریع</span><span>ورود آسان</span><span>بدون تنظیمات</span></div>
-                </div>
-                <div class="reason-card">
-                    <div class="card-icon"></div>
-                    <h3>بدون نیاز به اکانت و ثبت‌نام</h3>
-                    <p>لانچر مگا گیم کاملاً ساده و بدون سیستم ورود، ثبت‌نام یا نیاز به اکانت است. هیچ اطلاعات شخصی از شما درخواست نمی‌شود. فقط دانلود کنید، اجرا کنید و وارد بازی شوید—امن، سریع و بدون دردسر.</p>
-                    <div class="card-tags"><span>بدون ثبت‌نام</span><span>بدون اکانت</span><span>حریم خصوصی</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- =========================================
-         مودال دانلود
-    ========================================= -->
-    <div class="modal-overlay" id="downloadModal">
-        <div class="modal-content">
-            <button class="modal-close" id="closeDownloadModal">✕</button>
-            <div class="download-in-modal">
-                <h2 class="download-title" id="downloadTitle">دانلود <span>لانچر</span></h2>
-                <p class="download-sub" id="downloadSub">آخرین نسخه مگالانچر رو همین حالا دریافت کن</p>
-                <div class="download-btn-wrap">
-                    <a href="#" class="btn-download" id="downloadBtn">
-                        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                        <span id="downloadBtnLabel">دانلود مگالانچر</span>
-                    </a>
-                </div>
-                <div class="systems-grid">
-                    <div class="system-box minimum">
-                        <span class="label" id="minLabel">▸ سیستم مورد نیاز</span>
-                        <h3 id="minTitle">حداقل <span>سیستم</span></h3>
-                        <ul id="minList">
-                            <li>ویندوز 10 / 11 یا مک اواس 12+</li>
-                            <li>پردازنده Intel Core i3 / AMD Ryzen 3</li>
-                            <li>رم 4 گیگابایت</li>
-                            <li>کارت گرافیک Intel HD 4000 یا معادل</li>
-                            <li>فضای خالی 2 گیگابایت</li>
-                        </ul>
-                    </div>
-                    <div class="system-box recommended">
-                        <span class="label" id="recLabel">▸ سیستم پیشنهادی</span>
-                        <h3 id="recTitle">بهترین <span>سیستم</span></h3>
-                        <ul id="recList">
-                            <li>ویندوز 11 / مک اواس 14+</li>
-                            <li>پردازنده Intel Core i7 / AMD Ryzen 7</li>
-                            <li>رم 16 گیگابایت</li>
-                            <li>کارت گرافیک NVIDIA GTX 1660 یا بالاتر</li>
-                            <li>فضای خالی 5 گیگابایت (SSD)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- =========================================
-         مودال فروشگاه
-    ========================================= -->
-    <div class="modal-overlay shop-modal" id="shopModal">
-        <div class="modal-content">
-            <button class="btn-back-home" id="closeShopModalBtn">
-                <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-                <span id="backHomeText">بازگشت به صفحه اصلی</span>
+    <!-- ===== SPLASH SCREEN ===== -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <!-- لوگوی متنی -->
+            <div class="splash-logo-text">M</div>
+            <div class="splash-title">MEGA</div>
+            <div class="splash-subtitle">Launcher • Next Gen</div>
+            <button class="enter-btn" id="enterBtn">
+                <span class="enter-icon">▶</span>
+                ورود به سایت
             </button>
-            <div class="shop-in-modal">
-                <div class="shop-header">
-                    <div class="badge" id="shopBadge">
-                        <span class="badge-dot"></span>
-                        <span id="shopBadgeText">MEGA SHOP</span>
-                    </div>
-                    <h1 id="shopTitle">فروشگاه <span>MEGA</span></h1>
-                    <p id="shopDesc">محصولات اختصاصی MEGALUNCHER را از فروشگاه ما تهیه کنید.</p>
-                </div>
-                <div class="products">
-                    <article class="product-card">
-                        <div class="product-image">
-                            <img src="https://uploadkon.ir/uploads/929a25_26teamspeakk.jpg" alt="رنک ادمینی تیم اسپیک">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-tag" id="tag1">مدیریتی</span>
-                            <h2 id="productTitle1">رنک <span>ادمینی</span></h2>
-                            <p id="productDesc1">دسترسی کامل مدیریتی در سرور تیم‌اسپیک، کنترل کانال‌ها، کاربران و امکانات ویژه</p>
-                            <div class="product-bottom">
-                                <div class="price">
-                                    <small id="priceLabel1">قیمت</small>
-                                    <strong id="priceAmount1">۴۰,۰۰۰ تومان</strong>
-                                </div>
-                                <button class="buy-btn" onclick="buyRank()" id="buyBtn1">خرید رنک</button>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="product-card">
-                        <div class="product-image">
-                            <img src="https://uploadkon.ir/uploads/929a25_26teamspeakk.jpg" alt="رنک ویژه">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-tag" id="tag2">ویژه</span>
-                            <h2 id="productTitle2">رنک <span>طلایی</span></h2>
-                            <p id="productDesc2">امکانات ویژه و دسترسی به کانال‌های اختصاصی، اولویت در پشتیبانی و تگ طلایی</p>
-                            <div class="product-bottom">
-                                <div class="price">
-                                    <small id="priceLabel2">قیمت</small>
-                                    <strong id="priceAmount2">۷۵,۰۰۰ تومان</strong>
-                                </div>
-                                <button class="buy-btn" onclick="buyRank()" id="buyBtn2">خرید رنک</button>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="product-card">
-                        <div class="product-image">
-                            <img src="https://uploadkon.ir/uploads/929a25_26teamspeakk.jpg" alt="رنک VIP">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-tag" id="tag3">VIP</span>
-                            <h2 id="productTitle3">رنک <span>الماس</span></h2>
-                            <p id="productDesc3">بالاترین سطح دسترسی، مدیریت کامل، ایموجی‌های اختصاصی، بک‌گراند سفارشی و پشتیبانی ۲۴/۷</p>
-                            <div class="product-bottom">
-                                <div class="price">
-                                    <small id="priceLabel3">قیمت</small>
-                                    <strong id="priceAmount3">۱۲۰,۰۰۰ تومان</strong>
-                                </div>
-                                <button class="buy-btn" onclick="buyRank()" id="buyBtn3">خرید رنک</button>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
+            <div class="splash-hint">● هوش مصنوعی ● واقعیت مجازی ●</div>
         </div>
     </div>
 
-    <!-- =========================================
-         مودال درباره ما
-    ========================================= -->
-    <div class="modal-overlay about-modal" id="aboutModal">
-        <div class="modal-content">
-            <button class="modal-close" id="closeAboutModal">✕</button>
-            <div class="about-in-modal">
-                <img src="https://uploadkon.ir/uploads/c79125_26MEGALOGO.jpg" alt="MEGA Team Logo" class="about-logo" />
-                <h2>درباره <span>تیم مگا</span></h2>
-                <p class="about-sub">ما تیمی از علاقه‌مندان به بازی و فناوری هستیم</p>
-                <div class="about-text">
-                    <strong>تیم مگا</strong> با هدف ارائه بهترین تجربه گیمینگ به کاربران ایرانی فعالیت خود را آغاز کرد. ما با تکیه بر دانش فنی و عشق به بازی‌های ویدئویی، <strong>مگالانچر</strong> را طراحی کرده‌ایم تا بتوانید بدون دغدغه و با بالاترین کیفیت، وارد دنیای ماینکرافت شوید.<br><br>
-                    تیم ما متشکل از برنامه‌نویسان، طراحان و متخصصان شبکه است که تمام تلاش خود را برای به‌روزرسانی مداوم، بهبود عملکرد و ارائه پشتیبانی سریع به کار می‌گیرند. ما به کیفیت، سرعت و امنیت کاربران خود اهمیت می‌دهیم و همواره در تلاشیم تا بهترین ابزارها را در اختیار شما قرار دهیم.
-                </div>
-                <div class="contact-grid">
-                    <div class="contact-item">
-                        <span class="icon-box">@</span>
-                        <a href="mailto:support@megalauncher.ir">support@megalauncher.ir</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="icon-box">T</span>
-                        <a href="#" target="_blank">تلگرام</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="icon-box">D</span>
-                        <a href="#" target="_blank">دیسکورد</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="icon-box">Y</span>
-                        <a href="#" target="_blank">یوتیوب</a>
-                    </div>
+    <!-- ===== MAIN PAGE ===== -->
+    <div class="maintenance-card" id="mainPage">
+        <div class="content">
+
+            <!-- لوگوی متنی در صفحه اصلی -->
+            <div class="main-logo-text">M</div>
+
+            <h1>در حال بروزرسانی</h1>
+
+            <div class="status-message">
+                <p>
+                    سایت جهت انجام <strong>بروزرسانی</strong> از دسترس خارج شده است.<br>
+                    لطفاً <strong>شکیبا</strong> باشید.<br>
+                    با تشکر
+                </p>
+                <div class="loading-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
+
+            <div class="support-box">
+                <span class="support-label">📞 پشتیبانی:</span>
+                <a href="https://t.me/DachAshkan" target="_blank" class="support-telegram">
+                    <span class="telegram-icon">✈</span>
+                    @DachAshkan
+                </a>
+            </div>
+
+            <div class="footer-note">
+                مگا لانچر • بزرگترین و بهینه‌ترین لانچر ماینکرفت ایران
+            </div>
+
         </div>
     </div>
 
-    <!-- =========================================
-         فوتر
-    ========================================= -->
-    <footer class="footer">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3 id="footerBrand">مگا<span>لانچر</span></h3>
-                <p class="brand-desc" id="footerDesc">بزرگترین و بهینه‌ترین لانچر ماینکرفت در ایران. با مگالانچر بهترین تجربه گیمینگ رو داشته باش.</p>
-                <p style="margin-top: 12px; font-size: 13px; color: #6a5e5f;" id="footerRights">تمام حقوق محفوظ است 2026 ©</p>
-            </div>
-            <div class="footer-col">
-                <h3 id="footerSupportTitle">ارتباط با <span>پشتیبانی</span></h3>
-                <ul>
-                    <li><a href="#"><span class="icon">▸</span> <span id="footerEmail">ایمیل</span></a></li>
-                    <li><a href="#"><span class="icon">▸</span> <span id="footerDiscord">دیسکورد</span></a></li>
-                    <li><a href="#"><span class="icon">▸</span> <span id="footerTicket">تیکت پشتیبانی</span></a></li>
-                    <li><a href="#"><span class="icon">▸</span> <span id="footerTelegram">تلگرام</span></a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3 id="footerNewsTitle">اخبار و <span>تازه‌ها</span></h3>
-                <ul>
-                    <li><a href="#"><span class="icon">▸</span> <span id="footerChannel">کانال تلگرام</span></a></li>
-                    <li><a href="#"><span class="icon">▸</span> <span id="footerYoutube">یوتیوب</span></a></li>
-                    <li><a href="#"><span class="icon">▸</span> <span id="footerTwitter">توییتر</span></a></li>
-                    <li><a href="#"><span class="icon">▸</span> <span id="footerInstagram">اینستاگرام</span></a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3 id="footerQuickTitle">دسترسی <span>سریع</span></h3>
-                <ul>
-                    <li><a href="#" id="footerHome">صفحه اصلی</a></li>
-                    <li><a href="#" id="footerDownload">دانلود لانچر</a></li>
-                    <li><a href="#" id="footerShop">فروشگاه</a></li>
-                    <li><a href="https://reymit.ir/Megaultra" target="_blank" id="footerSupport">حمایت مالی</a></li>
-                    <li><a href="#" id="footerAbout">درباره ما</a></li>
-                </ul>
-            </div>
-        </div>
-        <hr style="border: none; border-top: 1px solid rgba(76, 175, 80, 0.15); margin: 30px auto; max-width: 1300px;" />
-        <div class="footer-bottom">
-            <p id="footerDev">طراحی و توسعه توسط تیم مگالانچر</p>
-            <div class="footer-social">
-                <a href="#" id="socialTelegram">تلگرام</a>
-                <a href="#" id="socialDiscord">دیسکورد</a>
-                <a href="#" id="socialYoutube">یوتیوب</a>
-                <a href="#" id="socialInstagram">اینستاگرام</a>
-                <a href="#" id="socialTwitter">توییتر</a>
-            </div>
-        </div>
-        <hr style="border: none; border-top: 1px solid rgba(76, 175, 80, 0.15); margin: 25px auto 0; max-width: 1300px;" />
-        <p style="text-align: center; color: #6a5e5f; font-size: 12px; font-family: 'V2', Tahoma, Arial, sans-serif; margin-top: 20px;" id="footerBottomText">تمامی حقوق مادی و معنوی این سایت متعلق به تیم مگا می‌باشد.</p>
-    </footer>
-
-    <!-- =========================================
-         JAVASCRIPT
-    ========================================= -->
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // =========================================
-        // 1. تغییر تم (Dark / Light)
-        // =========================================
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const themeTooltip = document.getElementById('themeTooltip');
-        let isLightMode = false;
+        document.addEventListener('DOMContentLoaded', function() {
+            const splashScreen = document.getElementById('splash-screen');
+            const mainPage = document.getElementById('mainPage');
+            const enterBtn = document.getElementById('enterBtn');
+            const audio = document.getElementById('bg-music');
+            let musicStarted = false;
 
-        themeToggle.addEventListener('click', function() {
-            isLightMode = !isLightMode;
-            document.body.classList.toggle('light-mode', isLightMode);
-            if (isLightMode) {
-                themeIcon.textContent = '☀️';
-                themeTooltip.textContent = 'روشن';
-            } else {
-                themeIcon.textContent = '🌙';
-                themeTooltip.textContent = 'تم';
+            function enterSite() {
+                splashScreen.classList.add('hidden');
+                setTimeout(() => {
+                    mainPage.classList.add('visible');
+                }, 300);
+
+                if (!musicStarted) {
+                    audio.play().then(() => {
+                        musicStarted = true;
+                        console.log('🎵 موسیقی شروع به پخش کرد');
+                    }).catch(error => {
+                        console.log('⚠️ خطا در پخش:', error);
+                        setTimeout(() => audio.play().catch(() => {}), 500);
+                    });
+                }
             }
-            localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-        });
 
-        if (localStorage.getItem('theme') === 'light') {
-            isLightMode = true;
-            document.body.classList.add('light-mode');
-            themeIcon.textContent = '☀️';
-            themeTooltip.textContent = 'روشن';
-        }
-
-        // =========================================
-        // 2. تغییر زبان (فارسی / انگلیسی)
-        // =========================================
-        const langToggle = document.getElementById('langToggle');
-        const langIcon = document.getElementById('langIcon');
-        const langTooltip = document.getElementById('langTooltip');
-        let isEnglish = false;
-
-        const translations = {
-            fa: {
-                shop: 'فروشگاه', download: 'دانلود لانچر', home: 'صفحه اصلی', support: 'حمایت مالی', about: 'درباره ما',
-                theme: 'تم', lang: 'فارسی', flag: '🇮🇷',
-                heroTitle: 'بزرگترین و بهینه‌ترین <span>لانچر</span> ایران',
-                heroSub: 'اولین و بهترین لانچر ماینکرفت در ایران ، بهترین تجربه رو ببر!',
-                downloadBtn: 'دانلود لانچر', shopBtn: 'ورود به فروشگاه',
-                downloadTitle: 'دانلود <span>لانچر</span>', downloadSub: 'آخرین نسخه مگالانچر رو همین حالا دریافت کن',
-                downloadLabel: 'دانلود مگالانچر',
-                minLabel: '▸ سیستم مورد نیاز', minTitle: 'حداقل <span>سیستم</span>',
-                recLabel: '▸ سیستم پیشنهادی', recTitle: 'بهترین <span>سیستم</span>',
-                shopBadge: 'MEGA SHOP', shopTitle: 'فروشگاه <span>MEGA</span>',
-                shopDesc: 'محصولات اختصاصی MEGALUNCHER را از فروشگاه ما تهیه کنید.',
-                backHome: 'بازگشت به صفحه اصلی',
-                tag1: 'مدیریتی', tag2: 'ویژه', tag3: 'VIP',
-                title1: 'رنک <span>ادمینی</span>', title2: 'رنک <span>طلایی</span>', title3: 'رنک <span>الماس</span>',
-                desc1: 'دسترسی کامل مدیریتی در سرور تیم‌اسپیک، کنترل کانال‌ها، کاربران و امکانات ویژه',
-                desc2: 'امکانات ویژه و دسترسی به کانال‌های اختصاصی، اولویت در پشتیبانی و تگ طلایی',
-                desc3: 'بالاترین سطح دسترسی، مدیریت کامل، ایموجی‌های اختصاصی، بک‌گراند سفارشی و پشتیبانی ۲۴/۷',
-                price: 'قیمت', buy: 'خرید رنک',
-                footerBrand: 'مگا<span>لانچر</span>',
-                footerDesc: 'بزرگترین و بهینه‌ترین لانچر ماینکرفت در ایران. با مگالانچر بهترین تجربه گیمینگ رو داشته باش.',
-                footerRights: 'تمام حقوق محفوظ است 2026 ©',
-                supportTitle: 'ارتباط با <span>پشتیبانی</span>',
-                email: 'ایمیل', discord: 'دیسکورد', ticket: 'تیکت پشتیبانی', telegram: 'تلگرام',
-                newsTitle: 'اخبار و <span>تازه‌ها</span>',
-                channel: 'کانال تلگرام', youtube: 'یوتیوب', twitter: 'توییتر', instagram: 'اینستاگرام',
-                quickTitle: 'دسترسی <span>سریع</span>',
-                footerHome: 'صفحه اصلی', footerDownload: 'دانلود لانچر', footerShop: 'فروشگاه',
-                footerSupport: 'حمایت مالی', footerAbout: 'درباره ما',
-                footerDev: 'طراحی و توسعه توسط تیم مگالانچر',
-                footerBottom: 'تمامی حقوق مادی و معنوی این سایت متعلق به تیم مگا می‌باشد.'
-            },
-            en: {
-                shop: 'Shop', download: 'Download Launcher', home: 'Home', support: 'Support', about: 'About Us',
-                theme: 'Theme', lang: 'English', flag: '🇬🇧',
-                heroTitle: 'The Largest and Most Optimized <span>Launcher</span> in Iran',
-                heroSub: 'The first and best Minecraft launcher in Iran, get the best experience!',
-                downloadBtn: 'Download Launcher', shopBtn: 'Enter Shop',
-                downloadTitle: 'Download <span>Launcher</span>', downloadSub: 'Get the latest version of MEGALUNCHER right now',
-                downloadLabel: 'Download MEGALUNCHER',
-                minLabel: '▸ Minimum System', minTitle: 'Minimum <span>System</span>',
-                recLabel: '▸ Recommended System', recTitle: 'Best <span>System</span>',
-                shopBadge: 'MEGA SHOP', shopTitle: '<span>MEGA</span> Shop',
-                shopDesc: 'Get exclusive MEGALUNCHER products from our shop.',
-                backHome: 'Back to Home',
-                tag1: 'Admin', tag2: 'Special', tag3: 'VIP',
-                title1: 'Admin <span>Rank</span>', title2: 'Golden <span>Rank</span>', title3: 'Diamond <span>Rank</span>',
-                desc1: 'Full admin access on TeamSpeak server, channel control, users and special features',
-                desc2: 'Special features and access to exclusive channels, priority support and golden tag',
-                desc3: 'Highest access level, full management, exclusive emojis, custom background and 24/7 support',
-                price: 'Price', buy: 'Buy Rank',
-                footerBrand: 'MEGA<span>Launcher</span>',
-                footerDesc: 'The largest and most optimized Minecraft launcher in Iran. Have the best gaming experience with MEGALauncher.',
-                footerRights: 'All rights reserved 2026 ©',
-                supportTitle: 'Contact <span>Support</span>',
-                email: 'Email', discord: 'Discord', ticket: 'Support Ticket', telegram: 'Telegram',
-                newsTitle: 'News & <span>Updates</span>',
-                channel: 'Telegram Channel', youtube: 'YouTube', twitter: 'Twitter', instagram: 'Instagram',
-                quickTitle: 'Quick <span>Access</span>',
-                footerHome: 'Home', footerDownload: 'Download Launcher', footerShop: 'Shop',
-                footerSupport: 'Support', footerAbout: 'About Us',
-                footerDev: 'Designed and developed by MEGALauncher Team',
-                footerBottom: 'All material and intellectual rights of this site belong to MEGA Team.'
-            }
-        };
-
-        function setLanguage(lang) {
-            const t = translations[lang];
-            document.querySelector('.nav-left a:nth-child(1)').textContent = t.shop;
-            document.querySelector('.nav-left a:nth-child(2)').textContent = t.download;
-            document.querySelector('.btn-home').textContent = t.home;
-            document.querySelector('.nav-right a:nth-child(1)').textContent = t.support;
-            document.querySelector('.nav-right a:nth-child(2)').textContent = t.about;
-            document.getElementById('heroTitle').innerHTML = t.heroTitle;
-            document.getElementById('heroSub').textContent = t.heroSub;
-            document.getElementById('openDownloadModalBtn').textContent = t.downloadBtn;
-            document.getElementById('openShopModalBtn').textContent = t.shopBtn;
-            document.getElementById('downloadTitle').innerHTML = t.downloadTitle;
-            document.getElementById('downloadSub').textContent = t.downloadSub;
-            document.getElementById('downloadBtnLabel').textContent = t.downloadLabel;
-            document.getElementById('minLabel').textContent = t.minLabel;
-            document.getElementById('minTitle').innerHTML = t.minTitle;
-            document.getElementById('recLabel').textContent = t.recLabel;
-            document.getElementById('recTitle').innerHTML = t.recTitle;
-            document.getElementById('shopBadgeText').textContent = t.shopBadge;
-            document.getElementById('shopTitle').innerHTML = t.shopTitle;
-            document.getElementById('shopDesc').textContent = t.shopDesc;
-            document.getElementById('backHomeText').textContent = t.backHome;
-            document.getElementById('tag1').textContent = t.tag1;
-            document.getElementById('tag2').textContent = t.tag2;
-            document.getElementById('tag3').textContent = t.tag3;
-            document.getElementById('productTitle1').innerHTML = t.title1;
-            document.getElementById('productTitle2').innerHTML = t.title2;
-            document.getElementById('productTitle3').innerHTML = t.title3;
-            document.getElementById('productDesc1').textContent = t.desc1;
-            document.getElementById('productDesc2').textContent = t.desc2;
-            document.getElementById('productDesc3').textContent = t.desc3;
-            document.getElementById('priceLabel1').textContent = t.price;
-            document.getElementById('priceLabel2').textContent = t.price;
-            document.getElementById('priceLabel3').textContent = t.price;
-            document.getElementById('buyBtn1').textContent = t.buy;
-            document.getElementById('buyBtn2').textContent = t.buy;
-            document.getElementById('buyBtn3').textContent = t.buy;
-            document.getElementById('footerBrand').innerHTML = t.footerBrand;
-            document.getElementById('footerDesc').textContent = t.footerDesc;
-            document.getElementById('footerRights').textContent = t.footerRights;
-            document.getElementById('footerSupportTitle').innerHTML = t.supportTitle;
-            document.getElementById('footerEmail').textContent = t.email;
-            document.getElementById('footerDiscord').textContent = t.discord;
-            document.getElementById('footerTicket').textContent = t.ticket;
-            document.getElementById('footerTelegram').textContent = t.telegram;
-            document.getElementById('footerNewsTitle').innerHTML = t.newsTitle;
-            document.getElementById('footerChannel').textContent = t.channel;
-            document.getElementById('footerYoutube').textContent = t.youtube;
-            document.getElementById('footerTwitter').textContent = t.twitter;
-            document.getElementById('footerInstagram').textContent = t.instagram;
-            document.getElementById('footerQuickTitle').innerHTML = t.quickTitle;
-            document.getElementById('footerHome').textContent = t.footerHome;
-            document.getElementById('footerDownload').textContent = t.footerDownload;
-            document.getElementById('footerShop').textContent = t.footerShop;
-            document.getElementById('footerSupport').textContent = t.footerSupport;
-            document.getElementById('footerAbout').textContent = t.footerAbout;
-            document.getElementById('footerDev').textContent = t.footerDev;
-            document.getElementById('footerBottomText').textContent = t.footerBottom;
-            document.getElementById('socialTelegram').textContent = t.telegram;
-            document.getElementById('socialDiscord').textContent = t.discord;
-            document.getElementById('socialYoutube').textContent = t.youtube;
-            document.getElementById('socialInstagram').textContent = t.instagram;
-            document.getElementById('socialTwitter').textContent = t.twitter;
-            document.getElementById('themeTooltip').textContent = t.theme;
-            document.getElementById('langTooltip').textContent = t.lang;
-            document.getElementById('langIcon').textContent = t.flag;
-            localStorage.setItem('language', lang);
-        }
-
-        langToggle.addEventListener('click', function() {
-            isEnglish = !isEnglish;
-            const lang = isEnglish ? 'en' : 'fa';
-            setLanguage(lang);
-            langIcon.textContent = isEnglish ? '🇬🇧' : '🇮🇷';
-            langTooltip.textContent = isEnglish ? 'English' : 'فارسی';
-        });
-
-        const savedLang = localStorage.getItem('language');
-        if (savedLang === 'en') {
-            isEnglish = true;
-            setLanguage('en');
-            langIcon.textContent = '🇬🇧';
-            langTooltip.textContent = 'English';
-        }
-
-        // =========================================
-        // 3. مودال دانلود
-        // =========================================
-        const downloadModal = document.getElementById('downloadModal');
-        const openDownloadBtn = document.getElementById('openDownloadModalBtn');
-        const openDownloadNav = document.getElementById('openDownloadModal');
-        const closeDownloadBtn = document.getElementById('closeDownloadModal');
-
-        function openDownloadModalFn() {
-            downloadModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeDownloadModalFn() {
-            downloadModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        openDownloadBtn.addEventListener('click', openDownloadModalFn);
-        openDownloadNav.addEventListener('click', function(e) { e.preventDefault();
-            openDownloadModalFn(); });
-        closeDownloadBtn.addEventListener('click', closeDownloadModalFn);
-        downloadModal.addEventListener('click', function(e) { if (e.target === downloadModal) closeDownloadModalFn(); });
-
-        // =========================================
-        // 4. مودال فروشگاه
-        // =========================================
-        const shopModal = document.getElementById('shopModal');
-        const openShopBtn = document.getElementById('openShopModalBtn');
-        const openShopNav = document.getElementById('openShopModal');
-        const closeShopBtn = document.getElementById('closeShopModalBtn');
-
-        function openShopModalFn() {
-            shopModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeShopModalFn() {
-            shopModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        openShopBtn.addEventListener('click', openShopModalFn);
-        openShopNav.addEventListener('click', function(e) { e.preventDefault();
-            openShopModalFn(); });
-        closeShopBtn.addEventListener('click', closeShopModalFn);
-        shopModal.addEventListener('click', function(e) { if (e.target === shopModal) closeShopModalFn(); });
-
-        // =========================================
-        // 5. مودال درباره ما
-        // =========================================
-        const aboutModal = document.getElementById('aboutModal');
-        const openAboutNav = document.getElementById('openAboutModal');
-        const closeAboutBtn = document.getElementById('closeAboutModal');
-
-        function openAboutModalFn() {
-            aboutModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeAboutModalFn() {
-            aboutModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        openAboutNav.addEventListener('click', function(e) { e.preventDefault();
-            openAboutModalFn(); });
-        closeAboutBtn.addEventListener('click', closeAboutModalFn);
-        aboutModal.addEventListener('click', function(e) { if (e.target === aboutModal) closeAboutModalFn(); });
-
-        // =========================================
-        // 6. بستن با Escape
-        // =========================================
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                if (downloadModal.classList.contains('active')) closeDownloadModalFn();
-                if (shopModal.classList.contains('active')) closeShopModalFn();
-                if (aboutModal.classList.contains('active')) closeAboutModalFn();
-            }
-        });
-
-        // =========================================
-        // 7. دکمه خرید
-        // =========================================
-        function buyRank() {
-            const button = event.target;
-            const originalText = button.innerHTML;
-            button.innerHTML = "در حال انتقال...";
-            button.style.pointerEvents = "none";
-            setTimeout(() => {
-                button.innerHTML = originalText;
-                button.style.pointerEvents = "auto";
-                alert("سیستم خرید هنوز متصل نشده است.");
-            }, 900);
-        }
-
-        // =========================================
-        // 8. افکت 3D کارت‌های فروشگاه
-        // =========================================
-        const cards = document.querySelectorAll('.shop-in-modal .product-card');
-        if (window.innerWidth > 700) {
-            cards.forEach(card => {
-                card.addEventListener("mousemove", (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const rotateY = ((x / rect.width) - .5) * 6;
-                    const rotateX = ((y / rect.height) - .5) * -6;
-                    card.style.transform =
-                        `translateY(-16px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                });
-                card.addEventListener("mouseleave", () => {
-                    card.style.transform = "translateY(0) rotateX(0) rotateY(0)";
-                });
+            enterBtn.addEventListener('click', enterSite);
+            
+            splashScreen.addEventListener('click', function(e) {
+                if (e.target !== enterBtn && !enterBtn.contains(e.target)) {
+                    enterSite();
+                }
             });
-        }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !splashScreen.classList.contains('hidden')) {
+                    enterSite();
+                }
+            });
+
+            audio.load();
+        });
     </script>
 
 </body>
