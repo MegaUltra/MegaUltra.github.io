@@ -3,333 +3,2742 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>بروزرسانی سایت | فانتوم</title>
+    <title>PhantomLauncher | بهترین لانچر ماینکرفت</title>
     
-    <!-- فاوآیکون (آیکون تب) -->
-    <link rel="icon" type="image/png" href="https://uploadkon.ir/uploads/f34827_26phantom-big.png" />
-    <link rel="shortcut icon" href="https://uploadkon.ir/uploads/f34827_26phantom-big.png" type="image/png" />
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    
-    <!-- کد گوفتینو (چت) -->
-    <script type="text/javascript">
-        !function(){var i="Rj5AHD",d=document,g=d.createElement("script"),s="https://www.goftino.com/widget/"+i,l=localStorage.getItem("goftino_"+i);g.type="text/javascript",g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}();
-    </script>
+    <!-- Favicon -->
+    <link rel="icon" href="https://uploadkon.ir/uploads/af8927_26phantom-big.png" type="image/png" sizes="64x64" />
+    <link rel="shortcut icon" href="https://uploadkon.ir/uploads/af8927_26phantom-big.png" type="image/png" sizes="64x64" />
+    <link rel="apple-touch-icon" href="https://uploadkon.ir/uploads/af8927_26phantom-big.png" />
+
+    <!-- فونت Vazirmatn از CDN -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <!-- فونت خفن برای تیترها (Poppins) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* ---------- ریست و پایه ---------- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* =========================================
+           ROOT & RESET
+        ========================================= */
+        :root {
+            --main: #ffffff;
+            --main-light: #e0e0e0;
+            --main-glow: rgba(255, 255, 255, 0.3);
+            --main-dark: #cccccc;
+            --bg: #0a0a0a;
+            --text: #f5ecec;
+            --muted: #b09a9b;
+            --navbar-bg: rgba(0, 0, 0, .7);
+            --modal-bg: rgba(0, 0, 0, 0.85);
+            --modal-content-bg: rgba(0, 0, 0, 0.9);
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --footer-border: rgba(255, 255, 255, 0.06);
+            --shop-glow: rgba(255, 255, 255, 0.6);
+            --faq-bg: rgba(255, 255, 255, 0.03);
+            --faq-border: rgba(255, 255, 255, 0.06);
         }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
         body {
             min-height: 100vh;
+            overflow-x: hidden;
+            background-color: #0a0a0a;
+            color: var(--text);
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            position: relative;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* =========================================
+           OVERLAY خطا (پوشش کامل صفحه)
+        ========================================= */
+        .error-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #0a0a0a;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            animation: errorFadeIn 0.5s ease;
+        }
+        .error-overlay.active { display: flex; }
+        @keyframes errorFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .error-card {
+            max-width: 560px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            padding: 40px 32px 44px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            animation: cardIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .error-logo {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            margin: 0 auto 14px;
+            display: block;
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.15));
+            transition: transform 0.5s ease;
+        }
+        .error-logo:hover { transform: scale(1.05); }
+        .error-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .error-title span { color: #ffffff; text-shadow: 0 0 40px rgba(255, 255, 255, 0.2); }
+        .error-sub {
+            color: #c9b5b6;
+            font-size: 15px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+        .error-message {
+            color: #b09a9b;
+            font-size: 16px;
+            line-height: 1.9;
+            margin: 18px 0 28px;
+            padding: 18px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .error-message strong { color: #f0e6e6; font-weight: 600; }
+        .retry-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: #ffffff;
+            color: #0a0a0a;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 14px;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.12);
+            letter-spacing: 1px;
+            min-width: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        .retry-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: skewX(-20deg);
+            transition: 0.65s ease;
+        }
+        .retry-btn:hover { transform: translateY(-3px); background: #f5f0f0; box-shadow: 0 12px 45px rgba(255, 255, 255, 0.25); }
+        .retry-btn:hover::before { left: 150%; }
+        .retry-btn:active { transform: scale(0.95); }
+        .retry-btn svg { width: 22px; height: 22px; fill: none; stroke: #0a0a0a; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.6s ease; }
+        .retry-btn:hover svg { transform: rotate(180deg); }
+        .lang-hint {
+            margin-top: 20px;
+            color: #6a5e5f;
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            direction: ltr;
+        }
+        .lang-hint span { display: inline-block; margin: 0 6px; color: #b09a9b; }
+
+        /* =========================================
+           NAVBAR — شفاف با z-index بالا
+        ========================================= */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 6%;
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border-bottom: none;
+            gap: 8px;
+        }
+        .navbar::after, .navbar::before { display: none; }
+        .navbar-brand { display: none; }
+        .nav-left, .nav-right { display: flex; gap: 8px; align-items: center; flex: 0 0 auto; }
+        .nav-center { display: flex; justify-content: center; flex: 0 0 auto; margin: 0 6px; }
+        .nav-btn {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 13px;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-weight: 500;
+            transition: .3s ease;
+            padding: 7px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+        .nav-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 25px rgba(255, 255, 255, .1);
+        }
+        .btn-home {
+            padding: 7px 22px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: .3s ease;
+            cursor: pointer;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+        .btn-home:hover {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 35px rgba(255, 255, 255, .15);
+            transform: translateY(-1px);
+        }
+
+        /* =========================================
+           HERO
+        ========================================= */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 80px;
+            position: relative;
+            z-index: 1;
+            background-color: #0a0a0a;
+            overflow: hidden;
+        }
+        #heroVideo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: -2;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+        .hero-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 1500px;
+            width: 100%;
+            flex-wrap: wrap;
+            direction: rtl;
+            text-align: center;
+        }
+        .hero-content {
+            flex: 1 1 100%;
+            max-width: 800px;
+            padding: 20px;
+            animation: heroIn .9s ease both;
+        }
+        @keyframes heroIn {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-logo {
+            display: block;
+            margin: 0 auto 12px;
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+        .hero-logo:hover { transform: scale(1.06); }
+        .hero-brand-name {
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: clamp(30px, 4.5vw, 54px);
+            font-weight: 900;
+            color: var(--main);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            text-shadow: 0 0 50px rgba(0, 0, 0, 0.5), 0 0 100px rgba(0, 0, 0, 0.3);
+        }
+        .hero-brand-name span { color: var(--main); text-shadow: 0 0 60px rgba(255, 255, 255, 0.3); }
+        .hero h1 {
+            font-size: clamp(28px, 4.5vw, 52px);
+            line-height: 1.2;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            color: #f5ecec;
+            text-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+        }
+        .hero h1 span { color: var(--main); text-shadow: 0 0 45px rgba(255, 255, 255, .2); }
+        .sub-slogan {
+            color: #e0d6d6;
+            font-size: 15px;
+            margin-bottom: 30px;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+        .hero-buttons {
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Vazir', 'Tahoma', 'Segoe UI', sans-serif;
-            background-color: #0a0a0a;
+            gap: 14px;
+            margin-top: 5px;
+            flex-wrap: wrap;
+        }
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 180px;
+            padding: 12px 22px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            transition: .3s ease;
+            cursor: pointer;
+            border: none;
+            letter-spacing: 0.5px;
+        }
+        .hero-btn:active { transform: scale(0.94); }
+        .hero-btn.primary { background: #ffffff; color: #000000; }
+        .hero-btn.primary:hover { background: #f5f0f0; box-shadow: 0 8px 30px rgba(255, 255, 255, .15); }
+        .hero-btn.secondary { background: var(--main); color: #0a0a0a; box-shadow: 0 0 25px rgba(255, 255, 255, .15); }
+        .hero-btn.secondary:hover { background: var(--main-light); box-shadow: 0 8px 35px rgba(255, 255, 255, .25); }
+
+        /* =========================================
+           بخش چرا فانتوم لانچر
+        ========================================= */
+        .mega-reasons-section { padding: 70px 20px 90px; position: relative; z-index: 1; }
+        .mega-reasons-container { max-width: 1280px; margin: 0 auto; }
+        .mega-reasons-header { text-align: center; margin-bottom: 55px; }
+        .mega-reasons-header h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
             color: #ffffff;
-            padding: 1.5rem;
-            margin: 0;
-            position: relative;
+            letter-spacing: 2px;
+            font-family: "Poppins", "Vazirmatn", "Vazirmatn FD", sans-serif;
+            text-shadow: 0 0 40px rgba(0,0,0,0.8);
+        }
+        .mega-reasons-header h2 span { color: var(--main); }
+        .mega-reasons-header h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--main), var(--main-light));
+            margin: 14px auto 0;
+            border-radius: 4px;
+        }
+        .mega-reasons-header p {
+            font-size: 1.2rem;
+            color: var(--muted);
+            margin-top: 14px;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-shadow: 0 0 30px rgba(0,0,0,0.7);
+        }
+        .mega-reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .reason-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 30px 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.25s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .reason-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+        .reason-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0 0 12px;
+            line-height: 1.3;
+            font-family: "Poppins", "Vazirmatn", "Vazirmatn FD", sans-serif;
+            letter-spacing: 1px;
+            text-shadow: 0 0 30px rgba(0,0,0,0.9);
+        }
+        .reason-card h3 span { color: var(--main); }
+        .reason-card p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #d4c5c5;
+            margin-bottom: 18px;
+            flex: 1;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 25px rgba(0,0,0,0.8);
+        }
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 4px;
+        }
+        .card-tags span {
+            background: rgba(0, 0, 0, 0.4);
+            color: var(--main-light);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-transform: uppercase;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            backdrop-filter: blur(4px);
         }
 
-        /* ---------- ویدئوی پس‌زمینه ---------- */
-        .bg-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.85;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.35);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* ---------- کانتینر اصلی ---------- */
-        .main-container {
+        /* =========================================
+           سایر بخش‌ها
+        ========================================= */
+        .section-divider {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--main), var(--main-light), var(--main), transparent);
+            opacity: 0.5;
             position: relative;
             z-index: 2;
-            max-width: 1000px;
+        }
+        .dark-full-section { background-color: #0a0a0a; position: relative; z-index: 1; }
+        .scroll-section {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .scroll-section.visible { opacity: 1; transform: translateY(0); }
+        .scroll-section .reason-card, .scroll-section .step-item {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .scroll-section.visible .reason-card, .scroll-section.visible .step-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .scroll-section.visible .reason-card:nth-child(1) { transition-delay: 0.1s; }
+        .scroll-section.visible .reason-card:nth-child(2) { transition-delay: 0.2s; }
+        .scroll-section.visible .reason-card:nth-child(3) { transition-delay: 0.3s; }
+        .scroll-section.visible .step-item:nth-child(1) { transition-delay: 0.1s; }
+        .scroll-section.visible .step-item:nth-child(2) { transition-delay: 0.2s; }
+        .scroll-section.visible .step-item:nth-child(3) { transition-delay: 0.3s; }
+        .scroll-section.visible .step-item:nth-child(4) { transition-delay: 0.4s; }
+
+        /* بخش آموزش */
+        .tutorial-section { padding: 60px 20px 90px; position: relative; z-index: 1; }
+        .tutorial-container { max-width: 1280px; margin: 0 auto; }
+        .tutorial-header { text-align: center; margin-bottom: 50px; }
+        .tutorial-header h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            letter-spacing: 2px;
+            text-shadow: 0 0 40px rgba(0,0,0,0.8);
+        }
+        .tutorial-header h2 span { color: var(--main); }
+        .tutorial-header h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--main), var(--main-light));
+            margin: 14px auto 0;
+            border-radius: 4px;
+        }
+        .tutorial-header p {
+            font-size: 1.2rem;
+            color: var(--muted);
+            margin-top: 14px;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-shadow: 0 0 30px rgba(0,0,0,0.7);
+        }
+        .tutorial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        .tutorial-video-box { display: flex; flex-direction: column; align-items: center; }
+        .video-wrapper {
             width: 100%;
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            transition: border-color 0.3s ease;
+            background: rgba(0,0,0,0.4);
+        }
+        .video-wrapper:hover { border-color: var(--main); }
+        .video-placeholder {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: rgba(0,0,0,0.3);
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .video-thumb {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.45;
+            transition: transform 0.5s ease;
+        }
+        .video-placeholder:hover .video-thumb { transform: scale(1.05); }
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.3));
+        }
+        .play-button svg { display: block; width: 72px; height: 72px; }
+        .video-placeholder:hover .play-button { transform: translate(-50%, -50%) scale(1.08); }
+        .video-badge {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            z-index: 3;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: 12px;
+            color: var(--main-light);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            letter-spacing: 0.5px;
+        }
+        .video-caption {
+            color: #d4c5c5;
+            font-size: 14px;
+            margin-top: 14px;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
             text-align: center;
-            padding: 1rem 0.5rem;
-            background: transparent;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.7);
+        }
+        .tutorial-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding: 0 6px;
+        }
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 18px 0;
+            position: relative;
+        }
+        .step-item:not(.last-step) { border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+        .step-number {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: var(--main-light);
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+        .step-item:hover .step-number {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--main);
+            color: #ffffff;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+        }
+        .step-content { flex: 1; padding-top: 4px; }
+        .step-content h4 {
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.7);
+        }
+        .step-content p {
+            color: #d4c5c5;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .step-content p strong { color: var(--main-light); font-family: "Vazirmatn", "Vazirmatn FD", sans-serif; font-weight: 600; }
+        .step-content code {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: var(--main-light);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .step-arrow {
+            flex-shrink: 0;
+            width: 30px;
+            text-align: center;
+            color: var(--main);
+            font-size: 22px;
+            font-weight: 700;
+            opacity: 0.5;
+            animation: arrowBounce 1.8s ease-in-out infinite;
+            padding-top: 6px;
+        }
+        .step-item.last-step .step-arrow { display: none; }
+        @keyframes arrowBounce {
+            0%, 100% { transform: translateY(0); opacity: 0.4; }
+            50% { transform: translateY(6px); opacity: 0.9; }
         }
 
-        /* ---------- گروه لوگو + نام تصویری (بسیار بزرگ) ---------- */
+        /* =========================================
+           مودال‌ها - با پس‌زمینه مات
+        ========================================= */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: modalFade .3s ease;
+        }
+        .modal-overlay.active { display: flex; }
+        @keyframes modalFade {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .modal-content {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 20px;
+            position: relative;
+            box-shadow: none;
+        }
+        .modal-content::-webkit-scrollbar { width: 4px; }
+        .modal-content::-webkit-scrollbar-track { background: transparent; }
+        .modal-content::-webkit-scrollbar-thumb { background: var(--main); border-radius: 10px; }
+
+        /* =========================================
+           مودال فروشگاه - با بک‌گراند تصویری
+        ========================================= */
+        .shop-modal .modal-overlay {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            position: relative;
+        }
+        
+        /* بک‌گراند تصویری فروشگاه */
+        .shop-bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        .shop-modal .modal-content {
+            max-width: 100%;
+            width: 100%;
+            height: 100vh;
+            max-height: 100vh;
+            border-radius: 0;
+            border: none;
+            background: transparent;
+            padding: 30px 6% 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            box-shadow: none;
+            overflow-y: auto;
+            position: relative;
+            z-index: 1;
+        }
+        .shop-modal .modal-content::-webkit-scrollbar { width: 4px; }
+        .shop-modal .modal-content::-webkit-scrollbar-track { background: transparent; }
+        .shop-modal .modal-content::-webkit-scrollbar-thumb { background: var(--main); border-radius: 10px; }
+        .shop-modal .btn-back-home {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 110;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 28px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+            letter-spacing: 1px;
+        }
+        .shop-modal .btn-back-home:hover {
+            transform: translateY(-2px) scale(1.02);
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 45px rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .shop-modal .btn-back-home:active { transform: scale(0.95); }
+        .shop-modal .btn-back-home svg { width: 18px; height: 18px; fill: none; stroke: #ffffff; stroke-width: 2; }
+        
+        .shop-in-modal {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 auto;
+            padding-top: 60px;
+        }
+
+        /* =========================================
+           فروشگاه جدید - استایل‌های اضافی
+        ========================================= */
         .brand-section {
+            padding-top: 10px;
+            padding-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+        .brand-logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 14px;
+            filter: drop-shadow(0 0 25px rgba(255,255,255,.08));
+            transition: .3s ease;
+        }
+        .brand-logo:hover {
+            transform: translateY(-4px) scale(1.03);
+            filter: drop-shadow(0 0 35px rgba(255,255,255,.15));
+        }
+        .brand-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 1000;
+            letter-spacing: -1px;
+            background: linear-gradient(180deg, #fff 10%, #ddd 55%, #777 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .brand-title span { color: #777; }
+        .brand-subtitle {
+            margin-top: 6px;
+            color: #999;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .store-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding-bottom: 20px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .store-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .store-title-line {
+            width: 30px;
+            height: 3px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 0 14px rgba(255,255,255,.25);
+        }
+        .store-title h2 {
+            font-size: 20px;
+            font-weight: 1000;
+            color: #fff;
+        }
+
+        .search-box {
+            position: relative;
+            width: 240px;
+        }
+        .search-box input {
+            width: 100%;
+            height: 40px;
+            padding: 0 40px 0 14px;
+            outline: none;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255,255,255,.09);
+            border-radius: 10px;
+            transition: .25s ease;
+            font-size: 13px;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+        }
+        .search-box input::placeholder { color: #888; }
+        .search-box input:focus {
+            background: rgba(0, 0, 0, 0.7);
+            border-color: rgba(255,255,255,.25);
+            box-shadow: 0 0 0 3px rgba(255,255,255,.025);
+        }
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            right: 12px;
+            width: 16px;
+            height: 16px;
+            transform: translateY(-50%);
+            color: #888;
+            pointer-events: none;
+        }
+
+        .categories {
+            display: flex;
+            gap: 7px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            scrollbar-width: none;
+            width: 100%;
+        }
+        .categories::-webkit-scrollbar { display: none; }
+        .category {
+            flex: 0 0 auto;
+            padding: 8px 16px;
+            color: #aaa;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            transition: .25s ease;
+            cursor: pointer;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            backdrop-filter: blur(4px);
+        }
+        .category:hover {
+            color: #fff;
+            background: rgba(255,255,255,.06);
+            border-color: rgba(255,255,255,.18);
+            transform: translateY(-1px);
+        }
+        .category.active {
+            color: #000;
+            background: #fff;
+            border-color: #fff;
+            box-shadow: 0 5px 25px rgba(255,255,255,.08);
+        }
+
+        .empty-store {
+            position: relative;
+            min-height: 280px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-bottom: 2.5rem;
-            animation: fadeInUp 1s ease forwards;
-            opacity: 0;
-            animation-delay: 0.2s;
+            text-align: center;
+            padding: 30px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.075);
+            border-radius: 18px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+            width: 100%;
         }
-
-        /* لوگو — بدون دایره و بدون افکت */
-        .logo-big {
+        .empty-store::before {
+            content: "";
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            top: -180px;
+            right: -100px;
+            border-radius: 50%;
+            background: #fff;
+            opacity: .025;
+            filter: blur(55px);
+        }
+        .empty-store::after {
+            content: "";
+            position: absolute;
             width: 220px;
             height: 220px;
-            max-width: 70vw;
-            max-height: 70vw;
-            background: transparent;
-            padding: 0;
-            box-shadow: none;
-            border-radius: 0;
-            animation: none;
-            transition: none;
+            bottom: -180px;
+            left: -100px;
+            border-radius: 50%;
+            background: #fff;
+            opacity: .018;
+            filter: blur(55px);
+        }
+        .empty-icon {
+            width: 68px;
+            height: 68px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 18px;
+            color: #aaa;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 18px;
+            box-shadow: inset 0 0 35px rgba(255,255,255,.025);
+            animation: floating 3s ease-in-out infinite;
+        }
+        .empty-icon svg {
+            width: 30px;
+            height: 30px;
+            stroke-width: 1.4;
+        }
+        .empty-store h2 {
+            margin-bottom: 8px;
+            font-size: 19px;
+            font-weight: 1000;
+            color: #fff;
+        }
+        .empty-store p {
+            color: #aaa;
+            font-size: 12px;
+            line-height: 2;
+        }
+        .empty-label {
+            margin-top: 18px;
+            padding: 6px 14px;
+            color: #aaa;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: 999px;
+            font-size: 10px;
         }
 
-        .logo-big img {
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-7px); }
+        }
+
+        /* =========================================
+           مودال درباره ما
+        ========================================= */
+        .about-fullscreen {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            animation: modalFade 0.4s ease;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .about-fullscreen.active { display: flex; }
+        .about-fullscreen .about-card {
+            width: 100%;
+            max-width: 1100px;
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border: none;
+            border-radius: 0;
+            padding: 20px;
+            box-shadow: none;
+            animation: modalIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+            position: relative;
+            overflow: visible;
+            max-height: 90vh;
+            overflow-y: auto;
+            z-index: 1;
+        }
+        .about-fullscreen .about-card::-webkit-scrollbar { width: 4px; }
+        .about-fullscreen .about-card::-webkit-scrollbar-track { background: transparent; }
+        .about-fullscreen .about-card::-webkit-scrollbar-thumb { background: var(--main); border-radius: 10px; }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        .about-container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .about-container .team-logo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 60px rgba(255, 255, 255, 0.1);
+            margin-bottom: 18px;
+            background: rgba(0,0,0,0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .about-container .team-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 80px rgba(255, 255, 255, 0.2);
+        }
+        .about-container .about-title {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            text-align: center;
+            text-shadow: 0 0 40px rgba(0,0,0,0.8);
+            color: #fff;
+        }
+        .about-container .about-title span {
+            color: #ffffff;
+            text-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
+        }
+        .about-container .about-sub {
+            color: #c9b5b6;
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 28px;
+            letter-spacing: 1px;
+            text-align: center;
+            text-shadow: 0 0 30px rgba(0,0,0,0.7);
+        }
+        .about-container .about-text {
+            max-width: 780px;
+            color: #d4c5c5;
+            font-size: 1.05rem;
+            line-height: 2.2;
+            text-align: justify;
+            padding: 20px 10px;
+            margin-bottom: 38px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .about-container .about-text strong {
+            color: #f0e6e6;
+            font-weight: 600;
+        }
+        .about-container .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px 24px;
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto 12px;
+            padding: 20px 22px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(4px);
+        }
+        .about-container .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: #c9b5b6;
+            font-size: 0.95rem;
+            padding: 10px 6px;
+            border-radius: 16px;
+            transition: background 0.2s ease, transform 0.2s ease;
+            text-decoration: none;
+            cursor: default;
+        }
+        .about-container .contact-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-3px);
+        }
+        .about-container .contact-item .icon-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
+        .about-container .contact-item .icon-box img {
+            width: 40px;
+            height: 40px;
             object-fit: contain;
             display: block;
-            background: transparent;
-            filter: none;
+            filter: brightness(0.9);
+            transition: filter 0.3s ease;
         }
-
-        /* نام سایت (تصویر) — بسیار بزرگ */
-        .site-name-img {
-            margin-top: 1.5rem;
-            max-width: 550px;
-            width: 100%;
-            display: inline-block;
-            background: transparent;
-            padding: 0;
-            border: none;
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.05));
-        }
-
-        .site-name-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            background: transparent;
-        }
-
-        /* خط جداکننده */
-        .divider {
-            width: 140px;
-            height: 2px;
-            margin: 2rem auto 2.2rem;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4), transparent);
-            border-radius: 100%;
-            animation: expandDivider 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes expandDivider {
-            0% { width: 100px; opacity: 0.4; }
-            100% { width: 240px; opacity: 1; }
-        }
-
-        /* ---------- متن‌ها (همه سفید) ---------- */
-        .message-box {
-            margin: 1.5rem 0 1rem;
-            animation: fadeInUp 1.2s ease forwards;
-            opacity: 0;
-            animation-delay: 0.5s;
-        }
-
-        .main-text {
-            font-size: 2.5rem;
-            font-weight: 700;
-            line-height: 1.7;
-            letter-spacing: 1px;
-            color: #ffffff;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.1), 0 0 60px rgba(0, 0, 0, 0.3);
-            word-break: break-word;
-            background: none;
-            -webkit-text-fill-color: #ffffff;
-        }
-
-        .sub-text {
-            margin-top: 1.5rem;
-            font-size: 1.5rem;
-            color: #ffffff;
-            letter-spacing: 2px;
-            font-weight: 300;
-            display: inline-block;
-            padding: 0.6rem 1.8rem;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 60px;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.3s ease;
-            animation: fadeInUp 1.2s ease forwards;
-            opacity: 0;
-            animation-delay: 0.8s;
-            text-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .sub-text:hover {
+        .about-container .contact-item:hover .icon-box {
             background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
         }
-
-        /* ---------- فوتر با اسم توسعه‌دهنده ---------- */
-        .footer-dev {
-            margin-top: 3.5rem;
-            padding: 0.8rem 2rem;
-            font-size: 1.3rem;
+        .about-container .contact-item:hover .icon-box img {
+            filter: brightness(1.1);
+        }
+        .about-container .contact-item .label {
+            font-size: 0.8rem;
+            color: #806e70;
+            letter-spacing: 0.5px;
+            font-weight: 300;
+        }
+        .about-container .contact-item .value {
+            font-size: 0.85rem;
+            color: #d4c5c5;
             font-weight: 400;
-            letter-spacing: 2px;
+            word-break: break-all;
+            text-align: center;
+            direction: ltr;
+            max-width: 140px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .about-container .contact-item .value a {
+            color: #d4c5c5;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .about-container .contact-item .value a:hover {
             color: #ffffff;
-            text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-            background: rgba(0, 0, 0, 0.15);
+        }
+        .about-container .close-btn-wrap {
+            margin-top: 36px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        .about-container .close-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 44px;
+            border-radius: 16px;
+            background: #ffffff;
+            border: none;
+            color: #0a0a0a;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+            letter-spacing: 0.5px;
+        }
+        .about-container .close-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            background: #f5f0f0;
+            box-shadow: 0 12px 50px rgba(255, 255, 255, 0.2);
+        }
+        .about-container .close-btn:active { transform: scale(0.96); }
+
+        /* صفحه دانلود */
+        .download-page {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            animation: modalFade 0.4s ease;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .download-page.active { display: flex; }
+        .download-page .download-card {
+            width: 100%;
+            max-width: 900px;
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border: none;
+            border-radius: 0;
+            padding: 20px;
+            box-shadow: none;
+            position: relative;
+            overflow: visible;
+            max-height: 95vh;
+            overflow-y: auto;
+            animation: modalIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+            z-index: 1;
+        }
+        .download-page .download-card::-webkit-scrollbar { width: 4px; }
+        .download-page .download-card::-webkit-scrollbar-track { background: transparent; }
+        .download-page .download-card::-webkit-scrollbar-thumb { background: var(--main); border-radius: 10px; }
+        .download-container {
+            position: relative;
+            z-index: 1;
+        }
+        .download-container .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        .download-container .logo {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+            margin-bottom: 12px;
+            transition: transform 0.3s ease;
+        }
+        .download-container .logo:hover { transform: scale(1.05); }
+        .download-container .header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-shadow: 0 0 40px rgba(0,0,0,0.8);
+            color: #fff;
+        }
+        .download-container .header h1 span { color: #ffffff; text-shadow: 0 0 40px rgba(255, 255, 255, 0.2); }
+        .download-container .header p {
+            color: #d4c5c5;
+            font-size: 1rem;
+            margin-top: 4px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.7);
+        }
+
+        .download-container .requirements {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+        .download-container .req-box {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 22px 24px;
+            transition: all 0.3s ease;
             backdrop-filter: blur(4px);
-            border-radius: 60px;
+        }
+        .download-container .req-box:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .download-container .req-box h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.7);
+        }
+        .download-container .req-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .download-container .req-box ul li {
+            color: #d4c5c5;
+            font-size: 0.9rem;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.3px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .download-container .req-box ul li:last-child { border-bottom: none; }
+        .download-container .req-box ul li::before {
+            content: "▸";
+            color: var(--main);
+            font-size: 14px;
+        }
+        .download-container .req-box .tag {
             display: inline-block;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3px 14px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            color: #c9b5b6;
             border: 1px solid rgba(255, 255, 255, 0.06);
-            animation: fadeInUp 1.4s ease forwards;
+            margin-top: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .download-container .download-btn-wrap {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .download-container .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 50px;
+            border-radius: 14px;
+            background: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: #0a0a0a;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.12);
+            letter-spacing: 0.5px;
+        }
+        .download-container .download-btn:hover {
+            transform: translateY(-3px);
+            background: #f5f0f0;
+            box-shadow: 0 12px 50px rgba(255, 255, 255, 0.2);
+        }
+        .download-container .download-btn:active { transform: scale(0.96); }
+        .download-container .download-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: #0a0a0a;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .download-container .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding: 10px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: #c9b5b6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.25s ease;
+            background: rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .download-container .back-home:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            transform: translateX(-4px);
+        }
+        .download-container .back-home svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .download-container .footer-note {
+            text-align: center;
+            margin-top: 25px;
+            color: #6a5e5f;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* بخش تیم پشتیبانی */
+        .support-team-section { padding: 60px 20px 40px; position: relative; z-index: 1; background-color: transparent; }
+        .support-team-container { max-width: 1280px; margin: 0 auto; }
+        .support-team-header { text-align: center; margin-bottom: 50px; }
+        .support-team-header h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            letter-spacing: 2px;
+            text-shadow: 0 0 40px rgba(0,0,0,0.8);
+        }
+        .support-team-header h2 span { color: var(--main); }
+        .support-team-header h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--main), var(--main-light));
+            margin: 14px auto 0;
+            border-radius: 4px;
+        }
+        .support-team-header p {
+            font-size: 1.2rem;
+            color: var(--muted);
+            margin-top: 14px;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            letter-spacing: 1px;
+            text-shadow: 0 0 30px rgba(0,0,0,0.7);
+        }
+
+        /* Profile Card with Video Background */
+        .profile-horizontal-card {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            border-radius: 16px;
+            padding: 30px 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            backdrop-filter: blur(8px);
+            width: 100%;
+            max-width: 100%;
+            direction: ltr;
+            min-height: 200px;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .profile-horizontal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+        }
+        .profile-horizontal-card .profile-bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.7;
+        }
+        .profile-horizontal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 44px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255,255,255,0.15);
+        }
+        .profile-horizontal-avatar {
+            flex-shrink: 0;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background: rgba(0,0,0,0.2);
+            order: 2;
+            position: relative;
+            z-index: 1;
+        }
+        .profile-horizontal-card:hover .profile-horizontal-avatar {
+            border-color: var(--main);
+            box-shadow: 0 0 60px rgba(255, 255, 255, 0.2);
+        }
+        .profile-horizontal-info {
+            flex: 1;
+            text-align: right;
+            order: 1;
+            position: relative;
+            z-index: 1;
+        }
+        .profile-horizontal-info .profile-tag {
+            display: inline-block;
+            color: var(--main-light);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 4px 14px;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.2);
+            font: 700 10px/1 "Vazirmatn", "Vazirmatn FD", sans-serif;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+        .profile-horizontal-info h3 {
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.7);
+        }
+        .profile-horizontal-info .role {
+            color: var(--main-light);
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: 0.8;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .profile-horizontal-info .bio {
+            color: #d4c5c5;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+            max-width: 600px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .profile-horizontal-info .profile-meta-horizontal {
+            display: flex;
+            gap: 20px;
+            margin-top: 16px;
+            color: rgba(255, 255, 255, 0.3);
+            font: 700 9px/1 "Vazirmatn", "Vazirmatn FD", sans-serif;
+            letter-spacing: 1.5px;
+        }
+        .profile-arrows {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            direction: ltr;
+            margin-top: 30px;
+        }
+        .profile-arrow {
+            height: 48px;
+            min-width: 150px;
+            padding: 0 15px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            cursor: pointer;
+            font: 700 11px "Vazirmatn", "Vazirmatn FD", sans-serif;
+            transition: 0.3s;
+            backdrop-filter: blur(8px);
+        }
+        .profile-arrow svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .profile-arrow:hover { transform: translateY(-3px); border-color: var(--main); box-shadow: 0 12px 35px rgba(255, 255, 255, 0.1); }
+        .profile-counter {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font: 700 11px "Vazirmatn", "Vazirmatn FD", sans-serif;
+            color: var(--main-light);
+        }
+        .profile-counter i { display: block; width: 18px; height: 1px; background: var(--main); opacity: 0.5; }
+        .scroll-section .profile-horizontal-card {
             opacity: 0;
-            animation-delay: 1.1s;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .scroll-section.visible .profile-horizontal-card { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+
+        /* =========================================
+           Developer & Version Footer
+        ========================================= */
+        .dev-footer {
+            text-align: center;
+            padding: 20px 20px 10px;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            color: #6a5e5f;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            margin-top: 10px;
+            background: rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 1;
+        }
+        .dev-footer .heart {
+            color: #ff4d6d;
+            display: inline-block;
+            animation: heartBeat 1.8s ease-in-out infinite;
+        }
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .dev-footer .dev-names {
+            color: var(--main-light);
+            font-weight: 600;
+        }
+        .dev-footer .version {
+            color: #806e70;
+            font-size: 12px;
+            margin-top: 4px;
+            opacity: 0.7;
         }
 
-        .footer-dev i {
-            margin: 0 8px;
+        /* =========================================
+           فوتر — با آیکون‌های کوچک‌تر و متقارن
+        ========================================= */
+        .footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 30px 6% 20px;
+            margin-top: 0;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(8px);
+        }
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--main), transparent);
+            opacity: 0.2;
+        }
+        
+        /* چیدمان جدید فوتر: آیکون‌های کوچک و متقارن */
+        .footer-social-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 6px 0 14px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .footer-social-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            flex: 0 0 auto;
+        }
+        .footer-social-item:hover { transform: translateY(-3px); }
+        /* آیکون‌های کوچک‌تر و متقارن */
+        .footer-social-item img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            border-radius: 8px;
+            transition: box-shadow 0.3s ease;
+        }
+        .footer-social-item:hover img { box-shadow: 0 0 20px rgba(255, 255, 255, 0.12); }
+        .footer-social-item .social-label {
+            color: var(--muted);
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
             opacity: 0.6;
-            color: rgba(255, 255, 255, 0.5);
+        }
+        .footer-social-item:hover .social-label { color: var(--main); opacity: 1; }
+        .footer-social-item .social-address {
+            color: #6a5e5f;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: 8px;
+            letter-spacing: 0.3px;
+            opacity: 0.4;
+            direction: ltr;
+            text-align: center;
+            max-width: 100px;
+            word-break: break-all;
+            line-height: 1.3;
         }
 
-        /* ورود از پایین */
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(35px) scale(0.96); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
+        /* توضیحات پایین صفحه درباره تیم */
+        .footer-about-section {
+            max-width: 800px;
+            margin: 6px auto 12px;
+            padding: 14px 20px 16px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .footer-about-section p {
+            color: #a09091;
+            font-family: "Vazirmatn", "Vazirmatn FD", sans-serif;
+            font-size: 13px;
+            line-height: 2;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .footer-about-section p strong {
+            color: var(--main-light);
+            font-weight: 600;
+        }
+        .footer-about-section .about-tags {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .footer-about-section .about-tags span {
+            background: rgba(0, 0, 0, 0.3);
+            color: #b09a9b;
+            font-size: 10px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            letter-spacing: 0.5px;
         }
 
-        /* ---------- واکنش‌گرایی ---------- */
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .footer-bottom p { color: #6a5e5f; font-size: 11px; font-family: "Vazirmatn", "Vazirmatn FD", sans-serif; letter-spacing: 0.5px; opacity: 0.7; }
+        .footer-version { font-family: "Vazirmatn", "Vazirmatn FD", sans-serif; font-size: 10px; color: #6a5e5f; letter-spacing: 0.5px; font-weight: 300; opacity: 0.5; }
+
+        /* =========================================
+           لایت مود
+        ========================================= */
+        body.light-mode {
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+        }
+        body.light-mode .reason-card {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+        body.light-mode .reason-card:hover {
+            border-color: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        }
+        body.light-mode .reason-card h3 { color: #1a1a1a; text-shadow: 0 0 30px rgba(255,255,255,0.8); }
+        body.light-mode .reason-card p { color: #444; }
+        body.light-mode .card-tags span { background: rgba(255,255,255,0.6); color: #333; }
+        body.light-mode .profile-horizontal-card {
+            background: rgba(255,255,255,0.2);
+        }
+        body.light-mode .profile-horizontal-card::before {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        body.light-mode .profile-horizontal-card h3 { color: #1a1a1a; }
+        body.light-mode .profile-horizontal-card .bio { color: #444; }
+        body.light-mode .profile-horizontal-card .role { color: #333; }
+        body.light-mode .modal-overlay { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); }
+        body.light-mode .shop-modal .modal-overlay { background: rgba(255, 255, 255, 0.92); }
+        body.light-mode .shop-modal .btn-back-home { background: rgba(0,0,0,0.06); color: #1a1a1a; border-color: rgba(0,0,0,0.1); }
+        body.light-mode .shop-modal .btn-back-home:hover { background: rgba(0,0,0,0.1); }
+        body.light-mode .shop-modal .btn-back-home svg { stroke: #1a1a1a; }
+        body.light-mode .store-title h2 { color: #1a1a1a; }
+        body.light-mode .store-title-line { background: #1a1a1a; }
+        body.light-mode .search-box input { color: #1a1a1a; background: rgba(0,0,0,.035); border-color: rgba(0,0,0,.09); }
+        body.light-mode .search-box input:focus { background: rgba(0,0,0,.055); border-color: rgba(0,0,0,.25); }
+        body.light-mode .category { color: #888; background: rgba(0,0,0,.025); border-color: rgba(0,0,0,.08); }
+        body.light-mode .category:hover { color: #000; background: rgba(0,0,0,.06); border-color: rgba(0,0,0,.18); }
+        body.light-mode .category.active { color: #fff; background: #000; border-color: #000; }
+        body.light-mode .brand-title { background: linear-gradient(180deg, #1a1a1a 10%, #555 55%, #999 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        body.light-mode .brand-subtitle { color: #999; }
+        body.light-mode .empty-store { border-color: rgba(0,0,0,.075); background: rgba(255,255,255,0.6); }
+        body.light-mode .empty-store h2 { color: #1a1a1a; }
+        body.light-mode .empty-store p { color: #666; }
+        body.light-mode .empty-icon { color: #555; background: rgba(0,0,0,.035); border-color: rgba(0,0,0,.1); }
+        body.light-mode .empty-label { color: #888; background: rgba(0,0,0,.025); border-color: rgba(0,0,0,.07); }
+        body.light-mode .navbar a { color: rgba(0, 0, 0, 0.7); }
+        body.light-mode .navbar a:hover { color: #000; background: rgba(0, 0, 0, 0.08); }
+        body.light-mode .btn-home { background: rgba(0, 0, 0, 0.08); border-color: rgba(0, 0, 0, 0.15); color: #000; }
+        body.light-mode .btn-home:hover { background: rgba(0, 0, 0, 0.15); }
+        body.light-mode .hero h1 { color: #1a1a1a; }
+        body.light-mode .hero h1 span { color: #1a1a1a; text-shadow: none; }
+        body.light-mode .sub-slogan { color: #444; }
+        body.light-mode .hero-btn.primary { background: #1a1a1a; color: #fff; }
+        body.light-mode .hero-btn.primary:hover { background: #444444; }
+        body.light-mode .hero-btn.secondary { background: #333333; color: #fff; }
+        body.light-mode .hero-btn.secondary:hover { background: #444444; }
+        body.light-mode .dev-footer { color: #444; border-top-color: rgba(0,0,0,0.06); }
+        body.light-mode .dev-footer .dev-names { color: #1a1a1a; }
+        body.light-mode .dev-footer .version { color: #666; }
+        body.light-mode .about-container .about-title { color: #1a1a1a; }
+        body.light-mode .about-container .about-title span { color: #1a1a1a; }
+        body.light-mode .about-container .about-text { color: #444; }
+        body.light-mode .about-container .about-text strong { color: #1a1a1a; }
+        body.light-mode .about-container .contact-grid { background: rgba(255,255,255,0.15); }
+        body.light-mode .about-container .contact-item .value { color: #333; }
+        body.light-mode .download-page { background: rgba(255, 255, 255, 0.85); }
+        body.light-mode .download-container .header h1 { color: #1a1a1a; }
+        body.light-mode .download-container .header h1 span { color: #1a1a1a; }
+        body.light-mode .download-container .header p { color: #444; }
+        body.light-mode .download-container .req-box { background: rgba(255,255,255,0.15); }
+        body.light-mode .download-container .req-box h3 { color: #1a1a1a; }
+        body.light-mode .download-container .req-box ul li { color: #444; }
+        body.light-mode .download-container .req-box ul li::before { color: #1a1a1a; }
+        body.light-mode .footer-about-section p { color: #666; }
+        body.light-mode .footer-about-section p strong { color: #1a1a1a; }
+        body.light-mode .footer-about-section .about-tags span { background: rgba(0,0,0,0.05); color: #666; border-color: rgba(0,0,0,0.06); }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .tutorial-grid { gap: 30px; }
+            .hero-wrapper { gap: 50px; }
+            .hero-logo { width: 100px; height: 100px; }
+            .profile-horizontal-card { padding: 25px 30px; gap: 30px; }
+            .profile-horizontal-avatar { width: 130px; height: 130px; }
+            .profile-horizontal-info h3 { font-size: 1.5rem; }
+            .mega-reasons-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        }
+        @media (max-width: 850px) {
+            .navbar { padding: 0 3%; height: 68px; gap: 4px; flex-wrap: nowrap; overflow-x: auto; }
+            .nav-btn { font-size: 11px; padding: 5px 10px; }
+            .btn-home { padding: 5px 14px; font-size: 11px; }
+            .hero-wrapper { gap: 40px; flex-direction: column; }
+            .hero-content { flex: 1 1 100%; max-width: 100%; padding: 0 10px; }
+            .hero-logo { width: 80px; height: 80px; }
+            .hero-brand-name { font-size: 24px; }
+            .shop-modal .modal-content { padding: 80px 20px 40px; }
+            .shop-modal .btn-back-home { top: 18px; right: 18px; padding: 8px 20px; font-size: 13px; }
+            .mega-reasons-header h2 { font-size: 2.2rem; }
+            .mega-reasons-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .about-container .contact-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; padding: 18px 14px; }
+            .about-container .team-logo { width: 110px; height: 110px; }
+            .about-container .about-title { font-size: 2.4rem; }
+            .about-container .about-text { font-size: 0.98rem; padding: 20px 6px; }
+            .about-fullscreen .about-card { padding: 20px; }
+            .tutorial-grid { grid-template-columns: 1fr; gap: 40px; }
+            .tutorial-steps { padding: 0; }
+            .tutorial-header h2 { font-size: 2.2rem; }
+            .support-team-header h2 { font-size: 2.2rem; }
+            .footer-social-grid { gap: 20px; }
+            .footer-social-item img { width: 28px; height: 28px; }
+            .hero { padding-top: 90px; }
+            .profile-horizontal-card { flex-direction: column; text-align: center; padding: 30px 20px; }
+            .profile-horizontal-info { text-align: center; }
+            .profile-horizontal-info .bio { max-width: 100%; }
+            .profile-horizontal-info .profile-meta-horizontal { justify-content: center; }
+            .profile-horizontal-avatar { order: 0; width: 120px; height: 120px; }
+            .profile-horizontal-info { order: 1; }
+            .footer-social-item .social-address { font-size: 7px; max-width: 80px; }
+            .download-page .download-card { padding: 20px; }
+            .download-container .header h1 { font-size: 2rem; }
+            .download-container .requirements { grid-template-columns: 1fr; gap: 14px; }
+            .download-container .logo { width: 80px; height: 80px; }
+            .store-header { flex-direction: column; align-items: stretch; }
+            .search-box { width: 100%; }
+            .brand-logo { width: 65px; height: 65px; }
+            .brand-title { font-size: 28px; }
+            .shop-in-modal { padding-top: 40px; }
+            .footer-about-section p { font-size: 12px; }
+        }
         @media (max-width: 650px) {
-            .logo-big {
-                width: 170px;
-                height: 170px;
-            }
-            .site-name-img {
-                max-width: 90vw;
-                margin-top: 1.2rem;
-            }
-            .main-text {
-                font-size: 2rem;
-            }
-            .sub-text {
-                font-size: 1.2rem;
-                padding: 0.4rem 1.2rem;
-            }
-            .footer-dev {
-                font-size: 1rem;
-                padding: 0.6rem 1.2rem;
-            }
+            .navbar { padding: 0 4%; height: 60px; gap: 3px; flex-wrap: nowrap; }
+            .nav-btn { font-size: 9px; padding: 4px 7px; }
+            .btn-home { padding: 4px 10px; font-size: 9px; }
+            .nav-left { gap: 3px; }
+            .nav-right { gap: 3px; }
+            .hero-wrapper { gap: 30px; flex-direction: column; }
+            .hero-content { flex: 1 1 100%; max-width: 100%; padding: 0 10px; }
+            .hero-logo { width: 70px; height: 70px; }
+            .hero-brand-name { font-size: 20px; letter-spacing: 1px; }
+            .hero { padding: 85px 16px 60px; }
+            .hero h1 { font-size: 26px; letter-spacing: 0; }
+            .sub-slogan { font-size: 13px; padding: 0 10px; }
+            .hero-buttons { gap: 10px; }
+            .hero-btn { min-width: 135px; padding: 11px 16px; font-size: 13px; }
+            .footer { padding: 25px 4% 16px; }
+            .shop-modal .modal-content { padding: 70px 16px 30px; }
+            .shop-modal .btn-back-home { top: 14px; right: 14px; padding: 7px 16px; font-size: 12px; }
+            .shop-modal .btn-back-home span { display: none; }
+            .mega-reasons-header h2 { font-size: 1.8rem; }
+            .mega-reasons-grid { grid-template-columns: 1fr; gap: 18px; }
+            .reason-card { padding: 20px 16px; }
+            .about-container .contact-grid { grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px 10px; }
+            .about-container .contact-item .icon-box { width: 48px; height: 48px; }
+            .about-container .contact-item .icon-box img { width: 34px; height: 34px; }
+            .about-container .contact-item .value { font-size: 0.75rem; max-width: 100px; }
+            .about-container .close-btn { padding: 12px 28px; font-size: 0.9rem; }
+            .about-container .team-logo { width: 90px; height: 90px; }
+            .about-fullscreen .about-card { padding: 15px; }
+            .about-container .about-title { font-size: 1.8rem; }
+            .tutorial-header h2 { font-size: 1.8rem; }
+            .step-number { width: 34px; height: 34px; font-size: 15px; }
+            .step-content h4 { font-size: 1rem; }
+            .step-content p { font-size: 0.9rem; }
+            .step-arrow { font-size: 18px; width: 24px; }
+            .play-button svg { width: 56px; height: 56px; }
+            .video-badge { font-size: 11px; padding: 4px 14px; bottom: 12px; right: 12px; }
+            .support-team-header h2 { font-size: 1.8rem; }
+            .footer-social-grid { gap: 14px; }
+            .footer-social-item img { width: 24px; height: 24px; }
+            .footer-social-item .social-label { font-size: 8px; }
+            .footer-social-item .social-address { display: none; }
+            .profile-horizontal-card { padding: 20px 16px; gap: 20px; }
+            .profile-horizontal-avatar { width: 100px; height: 100px; }
+            .profile-horizontal-info h3 { font-size: 1.3rem; }
+            .profile-horizontal-info .bio { font-size: 0.85rem; }
+            .profile-arrow { min-width: 120px; height: 42px; font-size: 10px; padding: 0 12px; }
+            .download-page .download-card { padding: 15px; }
+            .download-container .header h1 { font-size: 1.6rem; }
+            .download-container .download-btn { padding: 14px 32px; font-size: 0.95rem; }
+            .dev-footer { font-size: 12px; padding: 15px 15px 8px; }
+            .shop-in-modal { padding-top: 30px; }
+            .brand-section { padding-top: 0; }
+            .footer-about-section { padding: 10px 12px 12px; }
+            .footer-about-section p { font-size: 11px; }
+            .footer-about-section .about-tags span { font-size: 9px; padding: 3px 10px; }
         }
-
-        @media (max-width: 450px) {
-            .logo-big {
-                width: 130px;
-                height: 130px;
-            }
-            .site-name-img {
-                max-width: 85vw;
-                margin-top: 1rem;
-            }
-            .main-text {
-                font-size: 1.6rem;
-            }
-            .sub-text {
-                font-size: 1rem;
-                padding: 0.3rem 1rem;
-            }
-            .divider {
-                width: 80px;
-                margin: 1.2rem auto 1.5rem;
-            }
-            .footer-dev {
-                font-size: 0.9rem;
-                padding: 0.4rem 1rem;
-            }
+        @media (max-width: 480px) {
+            .nav-btn { font-size: 8px; padding: 3px 5px; }
+            .btn-home { padding: 3px 8px; font-size: 8px; }
+            .nav-left { gap: 2px; }
+            .nav-right { gap: 2px; }
+            .hero-logo { width: 60px; height: 60px; }
+            .hero-brand-name { font-size: 17px; letter-spacing: 0.5px; margin-bottom: 4px; }
+            .hero h1 { font-size: 22px; }
+            .hero-btn { min-width: 110px; padding: 9px 12px; font-size: 12px; }
+            .footer { padding: 18px 4% 12px; }
+            .shop-modal .modal-content { padding: 60px 12px 20px; }
+            .shop-modal .btn-back-home { top: 12px; right: 12px; padding: 6px 14px; font-size: 11px; }
+            .about-container .contact-grid { grid-template-columns: 1fr; gap: 8px; }
+            .about-container .about-title { font-size: 1.5rem; }
+            .about-container .about-text { font-size: 0.9rem; }
+            .about-fullscreen { padding: 15px; }
+            .about-fullscreen .about-card { padding: 10px; }
+            .tutorial-section { padding: 40px 16px 60px; }
+            .step-item { padding: 14px 0; gap: 14px; }
+            .step-content p { font-size: 0.85rem; }
+            .play-button svg { width: 48px; height: 48px; }
+            .hero { padding-top: 75px; }
+            .footer-social-grid { gap: 10px; }
+            .footer-social-item img { width: 22px; height: 22px; }
+            .footer-social-item .social-label { font-size: 7px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .profile-horizontal-avatar { width: 80px; height: 80px; }
+            .profile-horizontal-info h3 { font-size: 1.1rem; }
+            .profile-arrow { min-width: 90px; height: 38px; font-size: 9px; padding: 0 10px; }
+            .profile-arrow svg { width: 16px; height: 16px; }
+            .error-card { padding: 30px 20px 34px; border-radius: 24px; }
+            .error-logo { width: 80px; height: 80px; }
+            .error-title { font-size: 22px; }
+            .error-message { font-size: 14px; padding: 14px 0; }
+            .retry-btn { padding: 12px 28px; font-size: 14px; min-width: 160px; }
+            .lang-hint { font-size: 11px; }
+            .download-page .download-card { padding: 10px; }
+            .download-container .header h1 { font-size: 1.3rem; }
+            .download-container .download-btn { padding: 12px 24px; font-size: 0.85rem; }
+            .download-container .download-btn svg { width: 18px; height: 18px; }
+            .dev-footer { font-size: 11px; }
+            .empty-store { min-height: 200px; padding: 20px; }
+            .empty-store h2 { font-size: 16px; }
+            .empty-icon { width: 56px; height: 56px; }
+            .empty-icon svg { width: 24px; height: 24px; }
+            .footer-about-section p { font-size: 10px; }
+            .footer-about-section .about-tags span { font-size: 8px; padding: 2px 8px; }
         }
-
-        @media (max-width: 360px) {
-            .logo-big {
-                width: 100px;
-                height: 100px;
-            }
-            .site-name-img {
-                max-width: 80vw;
-            }
-            .main-text {
-                font-size: 1.3rem;
-            }
+        @media (max-width: 380px) {
+            .error-card { padding: 24px 14px 28px; }
+            .error-title { font-size: 19px; }
+            .retry-btn { padding: 10px 20px; font-size: 13px; min-width: 130px; }
         }
     </style>
 </head>
+
 <body>
-
-    <!-- ویدئوی پس‌زمینه -->
-    <video class="bg-video" autoplay loop muted playsinline>
-        <source src="https://cdn.imgurl.ir/uploads/l428279_06d4698123_minecrafts-hidden-valley-wallsflow-com.mp4" type="video/mp4" />
-        مرورگر شما از ویدئو پشتیبانی نمی‌کند.
-    </video>
-
-    <!-- لایه‌ی نیمه‌شفاف -->
-    <div class="overlay"></div>
-
-    <!-- محتوای اصلی -->
-    <div class="main-container">
-
-        <!-- لوگو + نام تصویری (بسیار بزرگ) -->
-        <div class="brand-section">
-            <!-- لوگو بدون دایره و افکت -->
-            <div class="logo-big">
-                <img src="https://uploadkon.ir/uploads/f34827_26phantom-big.png" alt="لوگو سایت" />
+    <!-- OVERLAY خطا -->
+    <div class="error-overlay" id="errorOverlay">
+        <div class="error-card">
+            <img src="https://uploadkon.ir/uploads/af8927_26phantom-big.png" alt="PhantomLauncher Logo" class="error-logo" />
+            <div class="error-title">خطا در برقراری ارتباط <span>·</span> Connection Error</div>
+            <div class="error-sub">PhantomLauncher — <span style="color:#b09a9b;">ارتباط با سرور قطع شد</span></div>
+            <div class="error-message">
+                <strong>سرعت اینترنت شما بسیار ضعیف است</strong><br />
+                لطفاً اتصال خود را بررسی کنید و مجدداً تلاش نمایید.
+                <br /><br />
+                <span style="font-size:14px; color:#806e70;">
+                    Your internet connection is too slow.<br />
+                    Please check your network and try again.
+                </span>
             </div>
-            <!-- نام سایت به صورت تصویر — بزرگ‌تر از قبل -->
-            <div class="site-name-img">
-                <img src="https://uploadkon.ir/uploads/334c27_26phantom-bgb2.png" alt="نام سایت" />
-            </div>
+            <button class="retry-btn" id="retryBtn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9h-4m-9 9A9 9 0 013 12m0 0a9 9 0 019-9m-9 9h4" />
+                    <path d="M12 8v4l3 3" />
+                </svg>
+                <span>تلاش مجدد</span>
+                <span style="font-weight:400; opacity:0.5; margin-right:4px;">·</span>
+                <span style="font-weight:400; font-size:14px; opacity:0.7;">Retry</span>
+            </button>
+            <div class="lang-hint"><span>فارسی</span> · <span>English</span></div>
         </div>
-
-        <!-- خط جداکننده -->
-        <div class="divider"></div>
-
-        <!-- پیام اصلی -->
-        <div class="message-box">
-            <div class="main-text">
-                سایت جهت انجام بروزرسانی<br />از دسترس خارج شده است
-            </div>
-            <div class="sub-text">
-                <i class="fas fa-sync-alt" style="margin-left: 10px; opacity: 0.7;"></i>
-                لطفا شکیبا باشید
-                <i class="fas fa-heart" style="margin-right: 10px; opacity: 0.5; font-size: 0.9rem;"></i>
-            </div>
-        </div>
-
-        <!-- فوتر: Developed By DachAshkan -->
-        <div class="footer-dev">
-            <i class="fas fa-code"></i>
-            Developed By DachAshkan
-            <i class="fas fa-rocket" style="margin-right: 8px; opacity: 0.5;"></i>
-        </div>
-
     </div>
 
+    <!-- ========== محتوای اصلی ========== -->
+    <div class="dark-full-section">
+        <!-- NAVBAR -->
+        <header class="navbar">
+            <div class="nav-left">
+                <a href="#" class="nav-btn" id="openDownloadPageBtn">دانلود لانچر</a>
+                <a href="https://reymit.ir/MegaLauncher" target="_blank" class="nav-btn">حمایت مالی</a>
+            </div>
+            <div class="nav-center">
+                <a href="#" class="btn-home">صفحه اصلی</a>
+            </div>
+            <div class="nav-right">
+                <a href="#" class="nav-btn" id="openAboutModal">درباره ما</a>
+                <a href="#" class="nav-btn" id="openShopModal">فروشگاه</a>
+            </div>
+        </header>
+
+        <!-- HERO -->
+        <main>
+            <section class="hero" id="home">
+                <video autoplay muted loop playsinline id="heroVideo">
+                    <source src="https://cdn.imgurl.ir/uploads/l428279_06d4698123_minecrafts-hidden-valley-wallsflow-com.mp4" type="video/mp4">
+                    <img src="https://uploadkon.ir/uploads/99fe27_26minecrafttt.jpg" alt="پس‌زمینه">
+                </video>
+                <div class="hero-wrapper" dir="rtl">
+                    <div class="hero-content">
+                        <img src="https://uploadkon.ir/uploads/af8927_26phantom-big.png" alt="PhantomLauncher" class="hero-logo" />
+                        <div class="hero-brand-name">Phantom<span>Launcher</span></div>
+                        <h1>بزرگترین و بهینه‌ترین <span>لانچر</span> ایران</h1>
+                        <div class="sub-slogan">اولین و بهترین لانچر ماینکرفت در ایران ، بهترین تجربه رو ببر!</div>
+                        <div class="hero-buttons">
+                            <button id="openDownloadPageBtn2" class="hero-btn primary">دانلود لانچر</button>
+                            <button id="openShopModalBtn" class="hero-btn secondary">ورود به فروشگاه</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div class="section-divider"></div>
+
+        <!-- چرا فانتوم لانچر -->
+        <section class="mega-reasons-section scroll-section" id="sectionReasons">
+            <div class="mega-reasons-container">
+                <div class="mega-reasons-header">
+                    <h2>چرا <span>فانتوم لانچر</span>؟</h2>
+                    <p>۳ دلیل برای انتخاب هوشمندانه</p>
+                </div>
+                <div class="mega-reasons-grid">
+                    <div class="reason-card">
+                        <h3>سرعت و <span>بهینه‌سازی</span></h3>
+                        <p>فانتوم لانچر با معماری فوق‌سبک و بهینه‌شده، روی هر سیستمی روان اجرا می‌شود و کمترین مصرف منابع را دارد.</p>
+                        <div class="card-tags"><span>سرعت بالا</span><span>بهینه‌سازی</span></div>
+                    </div>
+                    <div class="reason-card">
+                        <h3>امنیت و <span>سادگی</span></h3>
+                        <p>بدون نیاز به ثبت‌نام، اکانت یا اطلاعات شخصی. فقط دانلود کنید، اجرا کنید و از بازی لذت ببرید.</p>
+                        <div class="card-tags"><span>بدون ثبت‌نام</span><span>امنیت</span></div>
+                    </div>
+                    <div class="reason-card">
+                        <h3>آپدیت <span>خودکار</span></h3>
+                        <p>لانچر به‌صورت هوشمند آخرین نسخه را از CDN دریافت می‌کند و همیشه به‌روز و آماده اجراست.</p>
+                        <div class="card-tags"><span>آپدیت خودکار</span><span>به‌روزرسانی</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- آموزش -->
+        <section class="tutorial-section scroll-section" id="sectionTutorial">
+            <div class="tutorial-container">
+                <div class="tutorial-header">
+                    <h2>آموزش <span>راه‌اندازی</span></h2>
+                    <p>با چند مرحله ساده، لانچر را نصب و اجرا کنید</p>
+                </div>
+                <div class="tutorial-grid">
+                    <div class="tutorial-video-box">
+                        <div class="video-wrapper">
+                            <div class="video-placeholder" id="videoPlaceholder">
+                                <img src="https://uploadkon.ir/uploads/f79e24_26bgg.png" alt="آموزش ویدیویی" class="video-thumb" />
+                                <div class="play-button" id="playButton">
+                                    <svg viewBox="0 0 24 24" width="64" height="64">
+                                        <circle cx="12" cy="12" r="12" fill="rgba(255, 255, 255, 0.8)" />
+                                        <polygon points="10,7 10,17 17,12" fill="#0a0a0a" />
+                                    </svg>
+                                </div>
+                                <div class="video-badge" id="videoBadge">به‌زودی</div>
+                            </div>
+                        </div>
+                        <p class="video-caption">🎬 ویدیو آموزش نصب و اجرای فانتوم لانچر - به‌زودی</p>
+                    </div>
+                    <div class="tutorial-steps">
+                        <div class="step-item">
+                            <div class="step-number">۱</div>
+                            <div class="step-content">
+                                <h4>دانلود لانچر</h4>
+                                <p>روی دکمه <strong>«دانلود لانچر»</strong> در صفحه اصلی کلیک کنید یا از منوی بالا استفاده کنید.</p>
+                            </div>
+                            <div class="step-arrow">↓</div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">۲</div>
+                            <div class="step-content">
+                                <h4>اجرای فایل نصب</h4>
+                                <p>فایل <code>PhantomLauncher-Setup.exe</code> را اجرا کرده و مراحل نصب را طی کنید.</p>
+                            </div>
+                            <div class="step-arrow">↓</div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">۳</div>
+                            <div class="step-content">
+                                <h4>اجرای لانچر</h4>
+                                <p>پس از نصب، آیکون فانتوم لانچر را روی دسکتاپ اجرا کنید تا وارد بازی شوید.</p>
+                            </div>
+                            <div class="step-arrow">↓</div>
+                        </div>
+                        <div class="step-item last-step">
+                            <div class="step-number">۴</div>
+                            <div class="step-content">
+                                <h4>شروع بازی 🚀</h4>
+                                <p>لانچر به‌صورت خودکار آخرین نسخه را دریافت کرده و آماده اجراست. فقط کافیست کلیک کنید!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- تیم پشتیبانی -->
+    <section class="support-team-section scroll-section" id="sectionSupport">
+        <div class="support-team-container">
+            <div class="support-team-header">
+                <h2>تیم <span>پشتیبانی</span></h2>
+                <p>مدیران و پشتیبان‌های حرفه‌ای فانتوم لانچر</p>
+            </div>
+            <div id="profileCardContainer"></div>
+            <div class="profile-arrows">
+                <button class="profile-arrow" id="profilePrev" type="button">
+                    <svg viewBox="0 0 24 24"><path d="M14.5 5 8 12l6.5 7"/></svg>
+                    <span>پروفایل قبلی</span>
+                </button>
+                <div class="profile-counter"><span id="profileCurrent">01</span><i></i><span id="profileTotal">02</span></div>
+                <button class="profile-arrow" id="profileNext" type="button">
+                    <span>پروفایل بعدی</span>
+                    <svg viewBox="0 0 24 24"><path d="m9.5 5 6.5 7-6.5 7"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- مودال فروشگاه - با بک‌گراند تصویری -->
+    <div class="modal-overlay shop-modal" id="shopModal">
+        <img src="https://uploadkon.ir/uploads/ebba28_26asd.png" alt="فروشگاه فانتوم" class="shop-bg-image" />
+        <div class="modal-content">
+            <button class="btn-back-home" id="closeShopModalBtn">
+                <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                <span>بازگشت به صفحه اصلی</span>
+            </button>
+            
+            <div class="shop-in-modal">
+                <div class="brand-section">
+                    <img class="brand-logo" src="https://uploadkon.ir/uploads/959e28_26phantom-big.png" alt="PhantomClient Logo">
+                    <h1 class="brand-title">فروشگاه <span>PhantomClient</span></h1>
+                    <p class="brand-subtitle">فروشگاه رسمی Phantom</p>
+                </div>
+
+                <div class="store-header">
+                    <div class="store-title">
+                        <span class="store-title-line"></span>
+                        <h2>محصولات</h2>
+                    </div>
+                    <div class="search-box">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <path d="m20 20-4-4"></path>
+                        </svg>
+                        <input id="searchInput" type="text" placeholder="جستجوی محصول...">
+                    </div>
+                </div>
+
+                <div class="categories">
+                    <button class="category active">همه</button>
+                    <button class="category">لانچر</button>
+                    <button class="category">ماینکرفت</button>
+                    <button class="category">اشتراک</button>
+                    <button class="category">خدمات</button>
+                </div>
+
+                <section class="empty-store">
+                    <div class="empty-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 3h2l2.2 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 8H6"></path>
+                            <circle cx="10" cy="20" r="1"></circle>
+                            <circle cx="18" cy="20" r="1"></circle>
+                        </svg>
+                    </div>
+                    <h2>هنوز محصولی اضافه نشده</h2>
+                    <p>فروشگاه Phantom در حال آماده‌سازی است.<br>به‌زودی محصولات جدید در این قسمت قرار می‌گیرند.</p>
+                    <div class="empty-label">به‌زودی...</div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- درباره ما با ویدیو -->
+    <div class="about-fullscreen" id="aboutModal">
+        <video autoplay muted loop playsinline class="bg-video">
+            <source src="https://cdn.imgurl.ir/uploads/p016707_f3fca9fe06_minecraft-blade-of-enchantment-live-wallpaper-wallsflow-com.mp4" type="video/mp4">
+        </video>
+        <div class="about-card">
+            <div class="about-container">
+                <img src="https://uploadkon.ir/uploads/af8927_26phantom-big.png" alt="تیم فانتوم" class="team-logo" />
+                <h1 class="about-title">درباره‌ی <span>تیم فانتوم</span></h1>
+                <p class="about-sub">ما تیمی از علاقه‌مندان به بازی و فناوری هستیم</p>
+                <div class="about-text">
+                    <strong>تیم فانتوم</strong> با هدف ارائه‌ی بهترین تجربه‌ی گیمینگ به کاربران ایرانی فعالیت خود را آغاز کرد. 
+                    ما با تکیه بر دانش فنی و عشق به بازی‌های ویدئویی، <strong>فانتوم لانچر</strong> را طراحی کرده‌ایم تا بتوانید 
+                    بدون دغدغه و با بالاترین کیفیت، وارد دنیای ماینکرافت شوید.<br><br>
+                    تیم ما متشکل از برنامه‌نویسان، طراحان و متخصصان شبکه است که تمام تلاش خود را برای به‌روزرسانی مداوم، 
+                    بهبود عملکرد و ارائه‌ی پشتیبانی سریع به کار می‌گیرند.
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="icon-box"><img src="https://uploadkon.ir/uploads/b28126_26لوگو-تلگرام.png" alt="تلگرام" /></div>
+                        <span class="label">تلگرام</span>
+                        <span class="value"><a href="https://t.me/PhantomLauncherOfficial" target="_blank">@PhantomLauncher</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon-box"><img src="https://uploadkon.ir/uploads/27da26_26لوگو-بله.jpg" alt="بله" /></div>
+                        <span class="label">بله</span>
+                        <span class="value"><a href="https://ble.ir/@phantomlauncher" target="_blank">@phantomlauncher</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon-box"><img src="https://uploadkon.ir/uploads/722126_26لوگو-تیم-اسپیک.png" alt="تیم اسپیک" /></div>
+                        <span class="label">تیم اسپیک</span>
+                        <span class="value"><span onclick="alert('takts.ir:9251')" style="cursor:pointer;color:#d4c5c5;">takts.ir:9251</span></span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon-box">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d4c5c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <span class="label">ایمیل</span>
+                        <span class="value"><a href="mailto:support@phantomlauncher.ir">support@phantomlauncher.ir</a></span>
+                    </div>
+                </div>
+                <div class="close-btn-wrap">
+                    <button class="close-btn" id="closeAboutBtn">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        بازگشت به صفحه اصلی
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحه دانلود با ویدیو -->
+    <div class="download-page" id="downloadPage">
+        <video autoplay muted loop playsinline class="bg-video">
+            <source src="https://cdn.imgurl.ir/uploads/p016707_f3fca9fe06_minecraft-blade-of-enchantment-live-wallpaper-wallsflow-com.mp4" type="video/mp4">
+        </video>
+        <div class="download-card">
+            <div class="download-container">
+                <div class="header">
+                    <img src="https://uploadkon.ir/uploads/af8927_26phantom-big.png" alt="PhantomLauncher" class="logo" />
+                    <h1>دانلود <span>فانتوم لانچر</span></h1>
+                    <p>سیستم مورد نیاز را بررسی کنید و نسخه مناسب را دانلود کنید</p>
+                </div>
+                <div class="requirements">
+                    <div class="req-box">
+                        <h3>حداقل سیستم مورد نیاز</h3>
+                        <ul>
+                            <li>ویندوز 7 / 8 / 10 / 11</li>
+                            <li>پردازنده Intel Core i3 / AMD Ryzen 3</li>
+                            <li>رم 4 گیگابایت</li>
+                            <li>کارت گرافیک Intel HD 4000 یا معادل</li>
+                            <li>فضای خالی 2 گیگابایت</li>
+                        </ul>
+                        <span class="tag">برای اجرای بازی با تنظیمات پایه</span>
+                    </div>
+                    <div class="req-box">
+                        <h3>سیستم پیشنهادی</h3>
+                        <ul>
+                            <li>ویندوز 10 / 11 (64 بیت)</li>
+                            <li>پردازنده Intel Core i7 / AMD Ryzen 7</li>
+                            <li>رم 16 گیگابایت</li>
+                            <li>کارت گرافیک NVIDIA GTX 1660 یا بالاتر</li>
+                            <li>فضای خالی 5 گیگابایت (SSD)</li>
+                        </ul>
+                        <span class="tag">برای بهترین تجربه بازی</span>
+                    </div>
+                </div>
+                <div class="download-btn-wrap">
+                    <button class="download-btn" id="mainDownloadBtn">
+                        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        دانلود فانتوم لانچر
+                    </button>
+                </div>
+                <div style="display: flex; justify-content: center;">
+                    <button class="back-home" id="closeDownloadPageBtn">
+                        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                        بازگشت به صفحه اصلی
+                    </button>
+                </div>
+                <div class="footer-note">PhantomLauncher — نسخه ۱.۰.2</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== فوتر با آیکون‌های کوچک‌تر و متقارن ====== -->
+    <footer class="footer">
+        <div class="footer-social-grid">
+            <a href="https://t.me/PhantomLauncherOfficial" target="_blank" class="footer-social-item">
+                <img src="https://uploadkon.ir/uploads/cf7f29_261.png" alt="تلگرام" />
+                <span class="social-label">تلگرام</span>
+                <span class="social-address">t.me/PhantomLauncherOfficial</span>
+            </a>
+            <a href="https://ble.ir/@phantomlauncher" target="_blank" class="footer-social-item">
+                <img src="https://uploadkon.ir/uploads/822029_26bale-color.png" alt="بله" />
+                <span class="social-label">بله</span>
+                <span class="social-address">@phantomlauncher</span>
+            </a>
+            <div class="footer-social-item" style="cursor:pointer;" onclick="alert('takts.ir:9251')">
+                <img src="https://uploadkon.ir/uploads/722126_26لوگو-تیم-اسپیک.png" alt="تیم اسپیک" />
+                <span class="social-label">تیم اسپیک</span>
+                <span class="social-address">takts.ir:9251</span>
+            </div>
+        </div>
+
+        <!-- توضیحات درباره تیم -->
+        <div class="footer-about-section">
+            <p>
+                <strong>تیم فانتوم</strong> — گروهی از برنامه‌نویسان، طراحان و متخصصان شبکه که با عشق به بازی و فناوری، 
+                بهترین تجربه‌ی گیمینگ را برای کاربران ایرانی فراهم می‌کنند. 
+                ما با تکیه بر دانش فنی و تعهد به کیفیت، <strong>فانتوم لانچر</strong> را به‌روز و پایدار نگه می‌داریم.
+            </p>
+            <div class="about-tags">
+                <span>#برنامه‌نویسی</span>
+                <span>#گیمینگ</span>
+                <span>#ماینکرفت</span>
+                <span>#فانتوم</span>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>طراحی و توسعه توسط تیم فانتوم لانچر</p>
+            <span class="footer-version">نسخه 1.0.2</span>
+        </div>
+    </footer>
+
+    <!-- بخش پایین: توسعه‌دهندگان و نسخه -->
+    <div class="dev-footer">
+        <span>Developed By <span class="dev-names">DachAshkan & DachNima</span> <span class="heart">❤</span></span>
+        <div class="version">نسخه سایت : 1.0.3 Beta</div>
+    </div>
+
+    <script>
+        // =========================================
+        // 0. سیستم تشخیص سرعت ضعیف و نمایش خطا
+        // =========================================
+        (function() {
+            "use strict";
+            const errorOverlay = document.getElementById('errorOverlay');
+            const retryBtn = document.getElementById('retryBtn');
+
+            function checkConnection() {
+                if (!navigator.onLine) return Promise.reject(new Error('offline'));
+                return fetch('https://cdn.jsdelivr.net/npm/vazirmatn@33.003/Vazirmatn-font-face.css', {
+                    method: 'HEAD',
+                    mode: 'no-cors',
+                    cache: 'no-store'
+                }).then(() => true).catch(() => { throw new Error('slow_or_offline'); });
+            }
+
+            function showError() { errorOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+
+            function hideError() { errorOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+
+            function retryConnection() {
+                retryBtn.disabled = true;
+                retryBtn.style.opacity = '0.6';
+                retryBtn.style.cursor = 'wait';
+                const originalText = retryBtn.innerHTML;
+                retryBtn.innerHTML =
+                    `<span style="display:inline-block; animation: spin 1s linear infinite;">↻</span><span style="margin-right:8px;">در حال بررسی...</span>`;
+                if (!document.getElementById('spinKeyframes')) {
+                    const style = document.createElement('style');
+                    style.id = 'spinKeyframes';
+                    style.textContent = `@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`;
+                    document.head.appendChild(style);
+                }
+                checkConnection().then(() => { hideError();
+                    window.location.reload(); }).catch(() => {
+                    retryBtn.innerHTML = originalText;
+                    retryBtn.disabled = false;
+                    retryBtn.style.opacity = '1';
+                    retryBtn.style.cursor = 'pointer';
+                    const card = errorOverlay.querySelector('.error-card');
+                    card.style.animation = 'none';
+                    requestAnimationFrame(() => { card.style.animation =
+                            'cardIn 0.5s cubic-bezier(0.2,0.8,0.2,1) both'; });
+                });
+            }
+            retryBtn.addEventListener('click', retryConnection);
+            window.addEventListener('load', function() {
+                const timeoutId = setTimeout(() => { if (!navigator.onLine) showError(); }, 4000);
+                checkConnection().then(() => { clearTimeout(timeoutId); }).catch(() => { clearTimeout(timeoutId);
+                    showError(); });
+            });
+            window.addEventListener('online', function() { retryConnection(); });
+            window.addEventListener('offline', function() { showError(); });
+        })();
+
+        // =========================================
+        // 1. صفحه دانلود - باز و بسته کردن
+        // =========================================
+        const downloadPage = document.getElementById('downloadPage');
+        const openDownloadBtns = document.querySelectorAll('#openDownloadPageBtn, #openDownloadPageBtn2');
+        const closeDownloadBtn = document.getElementById('closeDownloadPageBtn');
+        const mainDownloadBtn = document.getElementById('mainDownloadBtn');
+
+        function openDownloadPageFn() { downloadPage.classList.add('active');
+            document.body.style.overflow = 'hidden'; }
+
+        function closeDownloadPageFn() { downloadPage.classList.remove('active');
+            document.body.style.overflow = ''; }
+
+        openDownloadBtns.forEach(btn => { btn.addEventListener('click', function(e) { e.preventDefault();
+                openDownloadPageFn(); }); });
+        closeDownloadBtn.addEventListener('click', closeDownloadPageFn);
+        downloadPage.addEventListener('click', function(e) {
+            if (e.target === downloadPage || e.target.classList.contains('bg-video')) closeDownloadPageFn();
+        });
+        mainDownloadBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('🚀 دانلود فانتوم لانچر شروع شد!\n\n(این یک نمونه است. لینک واقعی در نسخه نهایی قرار می‌گیرد.)');
+        });
+
+        // =========================================
+        // 2. مودال فروشگاه
+        // =========================================
+        const shopModal = document.getElementById('shopModal');
+        const openShopBtn = document.getElementById('openShopModalBtn');
+        const openShopNav = document.getElementById('openShopModal');
+        const closeShopBtn = document.getElementById('closeShopModalBtn');
+
+        function openShopModalFn() { shopModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; }
+
+        function closeShopModalFn() { shopModal.classList.remove('active');
+            document.body.style.overflow = ''; }
+
+        openShopBtn.addEventListener('click', openShopModalFn);
+        openShopNav.addEventListener('click', function(e) { e.preventDefault();
+            openShopModalFn(); });
+        closeShopBtn.addEventListener('click', closeShopModalFn);
+        shopModal.addEventListener('click', function(e) {
+            if (e.target === shopModal || e.target.classList.contains('modal-overlay')) closeShopModalFn();
+        });
+
+        // =========================================
+        // 3. مودال درباره ما
+        // =========================================
+        const aboutModal = document.getElementById('aboutModal');
+        const openAboutNav = document.getElementById('openAboutModal');
+        const closeAboutBtn = document.getElementById('closeAboutBtn');
+
+        function openAboutModalFn() { aboutModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; }
+
+        function closeAboutModalFn() { aboutModal.classList.remove('active');
+            document.body.style.overflow = ''; }
+
+        openAboutNav.addEventListener('click', function(e) { e.preventDefault();
+            openAboutModalFn(); });
+        closeAboutBtn.addEventListener('click', closeAboutModalFn);
+        aboutModal.addEventListener('click', function(e) {
+            if (e.target === aboutModal || e.target.classList.contains('bg-video')) closeAboutModalFn();
+        });
+
+        // =========================================
+        // 4. بستن با Escape
+        // =========================================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (downloadPage.classList.contains('active')) closeDownloadPageFn();
+                if (shopModal.classList.contains('active')) closeShopModalFn();
+                if (aboutModal.classList.contains('active')) closeAboutModalFn();
+            }
+        });
+
+        // =========================================
+        // 5. افکت 3D کارت‌های فروشگاه (در صورت وجود)
+        // =========================================
+        const cards = document.querySelectorAll('.shop-in-modal .product-card');
+        if (window.innerWidth > 700) {
+            cards.forEach(card => {
+                card.addEventListener("mousemove", (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const rotateY = ((x / rect.width) - .5) * 6;
+                    const rotateX = ((y / rect.height) - .5) * -6;
+                    card.style.transform = `translateY(-12px) scale(1.01) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                card.addEventListener("mouseleave", () => { card.style.transform =
+                    "translateY(0) scale(1) rotateX(0) rotateY(0)"; });
+            });
+        }
+
+        // =========================================
+        // 6. پیام ویدیو
+        // =========================================
+        document.getElementById('videoPlaceholder').addEventListener('click', function() { alert('🎬 به زودی'); });
+
+        // =========================================
+        // 7. پروفایل تیم
+        // =========================================
+        const teamMembers = [{
+            name: 'DachAshkan',
+            role: 'مدیر ارشد / بنیان‌گذار',
+            bio: 'مدیریت و توسعه استراتژی‌های فانتوم لانچر، طراحی رابط کاربری و هدایت پروژه.',
+            avatar: 'https://uploadkon.ir/uploads/99d226_26e18da10f36dd7def783cc9d7a26a29e4.jpg',
+            tag: 'FOUNDER',
+            bgVideo: 'https://cdn.imgurl.ir/uploads/g3382_kakashi-hatake-naruto.1920x1080.mp4'
+        }, {
+            name: 'DachNima',
+            role: 'مدیر ارشد / توسعه‌دهنده',
+            bio: 'مسئول بخش فنی، توسعه قابلیت‌های لانچر و بهینه‌سازی تجربه کاربری فانتوم لانچر.',
+            avatar: 'https://uploadkon.ir/uploads/9c1226_26nima-aoori.jpg',
+            tag: 'FOUNDER',
+            bgVideo: null
+        }];
+        const profileContainer = document.getElementById('profileCardContainer');
+        const profileCurrent = document.getElementById('profileCurrent');
+        const profileTotal = document.getElementById('profileTotal');
+        const profilePrev = document.getElementById('profilePrev');
+        const profileNext = document.getElementById('profileNext');
+        let activeProfile = 0;
+
+        function renderProfileCard(direction = 1) {
+            const member = teamMembers[activeProfile];
+            const bgVideo = member.bgVideo ? 
+                `<video autoplay muted loop playsinline class="profile-bg-video">
+                    <source src="${member.bgVideo}" type="video/mp4">
+                </video>` : '';
+            
+            profileContainer.innerHTML = `
+                <div class="profile-horizontal-card" style="--slide-direction:${direction}">
+                    ${bgVideo}
+                    <img src="${member.avatar}" alt="${member.name}" class="profile-horizontal-avatar" />
+                    <div class="profile-horizontal-info">
+                        <span class="profile-tag">${member.tag}</span>
+                        <h3>${member.name}</h3>
+                        <div class="role">${member.role}</div>
+                        <div class="bio">${member.bio}</div>
+                        <div class="profile-meta-horizontal">
+                            <span>PHANTOM</span>
+                            <span>TEAM</span>
+                            <span>2026</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            profileCurrent.textContent = `0${activeProfile + 1}`;
+            profileTotal.textContent = `0${teamMembers.length}`;
+        }
+
+        function switchProfile(index, direction) {
+            activeProfile = (index + teamMembers.length) % teamMembers.length;
+            renderProfileCard(direction);
+        }
+        profilePrev.addEventListener('click', () => switchProfile(activeProfile - 1, -1));
+        profileNext.addEventListener('click', () => switchProfile(activeProfile + 1, 1));
+        renderProfileCard(1);
+
+        // =========================================
+        // 8. اسکرول انیمیشن
+        // =========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.scroll-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => { entry.target.classList.add('visible'); }, index * 150);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+            sections.forEach(section => { observer.observe(section); });
+            setTimeout(() => {
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top < window.innerHeight * 0.85) { section.classList.add('visible'); }
+                });
+            }, 300);
+        });
+
+        // =========================================
+        // 9. دسته‌بندی‌های فروشگاه جدید
+        // =========================================
+        const categories = document.querySelectorAll('.category');
+        categories.forEach(button => {
+            button.addEventListener('click', () => {
+                categories.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+
+        // جستجو
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('keydown', event => {
+                if (event.key === 'Enter' && searchInput.value.trim()) {
+                    alert('محصولی برای «' + searchInput.value.trim() + '» پیدا نشد.');
+                }
+            });
+        }
+
+        // =========================================
+        // 10. دکمه خرید (برای کارت‌های محصول در صورت وجود)
+        // =========================================
+        function buyRank(event) {
+            const button = event.currentTarget || event.target;
+            button.style.transform = 'scale(0.92)';
+            setTimeout(() => {
+                button.style.transform = '';
+            }, 200);
+            alert('🚀 این محصول به‌زودی در فروشگاه قرار خواهد گرفت!');
+        }
+    </script>
+
+    <!-- گوفتینو — ویجت چت پشتیبانی -->
+    <script type="text/javascript">
+        !function() { var i = "Rj5AHD",
+                d = document,
+                g = d.createElement("script"),
+                s = "https://www.goftino.com/widget/" + i,
+                l = localStorage.getItem("goftino_" + i);
+            g.type = "text/javascript", g.async = !0, g.src = l ? s + "?o=" + l : s;
+            d.getElementsByTagName("head")[0].appendChild(g);
+        }();
+    </script>
 </body>
 </html>
